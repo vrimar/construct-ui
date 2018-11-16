@@ -1,0 +1,9 @@
+node_modules
+.vscode
+docs
+scripts
+test
+.editorconfig
+webpack.config.js
+tslint.json
+tsconfig*
