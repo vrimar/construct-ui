@@ -1,83 +1,59 @@
-/*
-
-Atom One Dark by Daniel Gamage
-Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
-
-base:    #282c34
-mono-1:  #abb2bf
-mono-2:  #818896
-mono-3:  #5c6370
-hue-1:   #56b6c2
-hue-2:   #61aeee
-hue-3:   #c678dd
-hue-4:   #98c379
-hue-5:   #e06c75
-hue-5-2: #be5046
-hue-6:   #d19a66
-hue-6-2: #e6c07b
-
-*/
+/**
+ * GitHub Gist Theme
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
 .hljs {
   display: block;
-  overflow-x: auto;
+  background: white;
   padding: 0.5em;
-  color: #abb2bf;
-  background: #282c34; }
+  color: #333333;
+  overflow-x: auto; }
 
 .hljs-comment,
-.hljs-quote {
-  color: #5c6370;
-  font-style: italic; }
-
-.hljs-doctag,
-.hljs-keyword,
-.hljs-formula {
-  color: #c678dd; }
-
-.hljs-section,
-.hljs-name,
-.hljs-selector-tag,
-.hljs-deletion,
-.hljs-subst {
-  color: #e06c75; }
-
-.hljs-literal {
-  color: #56b6c2; }
+.hljs-meta {
+  color: #969896; }
 
 .hljs-string,
-.hljs-regexp,
-.hljs-addition,
-.hljs-attribute,
-.hljs-meta-string {
-  color: #98c379; }
-
-.hljs-built_in,
-.hljs-class .hljs-title {
-  color: #e6c07b; }
-
-.hljs-attr,
 .hljs-variable,
 .hljs-template-variable,
-.hljs-type,
-.hljs-selector-class,
-.hljs-selector-attr,
-.hljs-selector-pseudo,
-.hljs-number {
-  color: #d19a66; }
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000; }
 
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d; }
+
+.hljs-literal,
 .hljs-symbol,
 .hljs-bullet,
-.hljs-link,
-.hljs-meta,
+.hljs-attribute {
+  color: #0086b3; }
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c; }
+
+.hljs-tag {
+  color: #333333; }
+
+.hljs-title,
+.hljs-attr,
 .hljs-selector-id,
-.hljs-title {
-  color: #61aeee; }
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3; }
 
-.hljs-emphasis {
-  font-style: italic; }
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea; }
 
-.hljs-strong {
-  font-weight: bold; }
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec; }
 
 .hljs-link {
   text-decoration: underline; }
@@ -4144,6 +4120,10 @@ body.cui-overlay-open {
           transform: translateX(-50%);
   left: 50%; }
 
+.cui-example-mobile-drawer .cui-drawer-content {
+  max-height: 260px;
+  overflow-y: auto; }
+
 .cui-example-center {
   display: flex;
   justify-content: center;
@@ -4257,23 +4237,24 @@ body {
 .Docs-mobile-header {
   position: fixed;
   width: 100%;
-  background: #546e7a;
+  border-bottom: solid 1px #cfd8dc;
   z-index: 1;
-  height: 40px;
+  height: 45px;
   display: flex;
   align-items: center;
-  padding: 0 15px; }
-  .Docs-mobile-header .cui-icon {
-    color: white; }
+  box-shadow: 0px 5px 8px -4px rgba(67, 90, 111, 0.3);
+  padding: 0 10px;
+  background: #ffffff; }
+  .Docs-mobile-header .Docs-logo {
+    height: 30px;
+    margin-right: 5px; }
 
 .Docs-mobile-header-item {
   display: flex;
   align-items: center;
   height: 100%;
-  border-right: solid 1px #546e7a;
   margin-right: 10px;
-  min-width: 40px;
-  color: white; }
+  min-width: 40px; }
 
 .Docs-nav {
   position: fixed;
@@ -4282,24 +4263,16 @@ body {
   overflow: auto;
   visibility: hidden;
   outline: none; }
-  .Docs-nav a {
-    display: block;
-    font-size: 14px;
-    padding: 5px 10px;
-    margin: 0 -10px;
-    color: #546e7a;
-    text-decoration: none;
-    border-radius: 3px; }
-    .Docs-nav a:hover {
-      background: #dde4e7; }
-    .Docs-nav a.is-active {
-      background: #5c6bc0;
-      color: #ffffff; }
   .Docs-nav h4 {
     margin-bottom: 10px;
     font-size: 12px;
     text-transform: uppercase;
     font-weight: bold; }
+
+.Docs-logo {
+  display: block;
+  height: 40px;
+  margin-right: 10px; }
 
 .Docs-nav-header {
   display: flex;
@@ -4308,16 +4281,14 @@ body {
 
 .Docs-nav-title {
   font-weight: bold;
-  font-size: 14px;
-  text-transform: uppercase; }
+  font-size: 14px; }
 
-.Docs-nav-logo {
-  display: block;
-  height: 45px;
-  margin-right: 5px; }
+.Docs-nav-title-meta {
+  font-size: 12px;
+  display: block; }
 
 .Docs-nav-content {
-  padding: 25px;
+  padding: 20px;
   border-right: solid 1px #cfd8dc;
   background: #f6f7f8; }
 
@@ -4328,6 +4299,19 @@ body {
 
 .Docs-nav-section {
   margin-bottom: 20px; }
+  .Docs-nav-section a {
+    display: block;
+    font-size: 14px;
+    padding: 5px 10px;
+    margin: 0 -10px;
+    color: #546e7a;
+    text-decoration: none;
+    border-radius: 3px; }
+    .Docs-nav-section a:hover {
+      background: #dde4e7; }
+    .Docs-nav-section a.is-active {
+      background: #5c6bc0;
+      color: #ffffff; }
 
 .Docs-container {
   margin-left: 220px;
@@ -4348,4 +4332,5 @@ body {
   font-size: 12px; }
 
 .hljs {
+  border-radius: 3px;
   padding: 10px 15px; }
