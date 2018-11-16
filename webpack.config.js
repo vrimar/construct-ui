@@ -6,7 +6,7 @@ module.exports = {
     'construct-ui.min': './src/index.ts'
   },
   externals: {
-    mithril: 'mithril'
+    mithril: 'm'
   },
   output: {
     path: path.resolve(__dirname, 'lib'),
@@ -27,7 +27,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new UglifyJsPlugin()
+    // new UglifyJsPlugin()
   ],
   resolve: {
     extensions: ['.ts', '.js'],
