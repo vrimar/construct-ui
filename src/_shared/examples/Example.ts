@@ -10,7 +10,7 @@ export interface IExampleAttrs {
   src?: string;
 }
 
-const GITHUB_SRC = 'https://github.com/vrimar/construct-ui/src/';
+const GITHUB_SRC = 'https://github.com/vrimar/construct-ui/blob/master/src/';
 
 export class Example implements m.Component<IExampleAttrs> {
   private isDrawerOpen: boolean = false;
