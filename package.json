@@ -28,7 +28,7 @@
     "generate:docs": "documentalist src/**/* > docs/generated/docs.json",
     "generate:icons": "node scripts/generateIcons.js",
     "build:all": "npm run build && npm run build:docs",
-    "deploy:docs": "gh-pages -d docs/public -m 'Updates[skip ci]",
+    "deploy:docs": "gh-pages -d docs/public",
     "version": "npm run build:all && git add *",
     "postversion": "git push && git push --tags && npm publish && npm run deploy:docs"
   },
