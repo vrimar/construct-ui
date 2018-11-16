@@ -1,0 +1,80 @@
+@import '../../_shared/variables';
+
+@mixin cui-switch-sizing($size) {
+  padding-left: floor($size * 2.5);
+
+  .cui-control-indicator {
+    height: $size;
+    width: floor($size * 2);
+
+    &:after {
+      height: $size;
+      width: $size;
+    }
+  }
+
+  input:checked ~ .cui-control-indicator:after {
+    left: $size;
+  }
+}
+
+@mixin cui-switch-style($bg-color, $bg-color-hover, $bg-color-active) {
+  .cui-control-indicator {
+    background: $bg-color;
+  }
+
+  &:hover .cui-control-indicator {
+    border:none;
+    background: $bg-color-hover;
+  }
+
+  input:checked ~ .cui-control-indicator {
+    background: $bg-color-active
+  }
+}
+
+.cui-switch {
+  @include cui-switch-sizing($cui-control-base);
+  @include cui-switch-style(
+    $cui-base-bg-color-active,
+    shade($cui-base-bg-color-active, 10%),
+    $cui-primary-bg-color
+  );
+
+  .cui-control-indicator {
+    border: none;
+    border-radius: 40px;
+
+    &:after {
+      position:relative;
+      display:block;
+      top:0;
+      left:0;
+      content: '';
+      border-radius: 40px;
+      background:white;
+      border: solid 1px $cui-base-border-color;
+      transition:left $cui-transition-duration $cui-transition-ease;
+    }
+  }
+
+  &:hover .cui-control-indicator {
+    border: none;
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-switch-sizing(map-get($cui-control-map, $size))
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent} {
+      @include cui-switch-style(
+        tint(map-get($cui-bg-color-map, $intent), 50%),
+        tint(map-get($cui-bg-color-map, $intent), 30%),
+        map-get($cui-bg-color-map, $intent)
+      )
+    }
+  }
+}

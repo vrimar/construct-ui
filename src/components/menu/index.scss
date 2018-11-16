@@ -1,0 +1,50 @@
+@import '../../_shared/variables';
+@import '../../_shared/mixins';
+
+$cui-menu-max-width-map: (
+  xs: 140px,
+  sm: 160px,
+  lg: 200px,
+  xl: 240px
+);
+
+@mixin menu-sizing($padding, $max-width) {
+  $spacing: floor($padding / 2);
+  max-width: $max-width;
+  min-width: $max-width - 40;
+  padding: $spacing 0;
+
+  .cui-menu-divider {
+    margin: $spacing 0;
+  }
+}
+
+.cui-menu {
+  @include menu-sizing($cui-base-padding, 180px);
+  border-radius: $cui-border-radius;
+  background:white;
+  border: solid 1px $cui-base-border-color;
+  display: inline-flex;
+  flex-direction: column;
+
+  .cui-menu-item {
+    border-radius: 0;
+  }
+
+  .cui-menu-divider {
+    border-bottom: solid 1px $cui-base-border-color;
+  }
+
+  &.cui-basic {
+    border: none;
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include menu-sizing(
+        map-get($cui-padding-map, $size),
+        map-get($cui-menu-max-width-map, $size)
+      )
+    }
+  }
+}

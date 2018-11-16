@@ -1,0 +1,28 @@
+@import '../../_shared/variables';
+
+.cui-form {
+	.cui-form-group {
+		margin-bottom: $cui-base-size * 1.5;
+
+    .cui-input,
+    .cui-input-file {
+      width:100%;
+    }
+
+    &:last-child {
+      margin:0;
+    }
+
+    &.cui-disabled {
+      opacity: 0.75;
+      pointer-events: none;
+    }
+	}
+
+	.cui-form-label {
+    font-size: 13px;
+		font-weight:bold;
+		display:inline-block;
+		margin-bottom: $cui-base-size;
+	}
+}

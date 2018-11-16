@@ -1,0 +1,36 @@
+@import '../../_shared/variables';
+
+.cui-empty-state {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &.cui-empty-state-fill {
+    position:absolute;
+    display:flex;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    z-index: $cui-z-index-overlay;
+  }
+}
+
+.cui-empty-state-icon .cui-icon svg {
+  height: 40px;
+  width: 40px;
+  min-height: 40px;
+  min-width: 40px;
+  margin-bottom: 15px;
+}
+
+.cui-empty-state-header {
+  font-weight: bold;
+  font-size: $cui-body-font-size;
+  
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}

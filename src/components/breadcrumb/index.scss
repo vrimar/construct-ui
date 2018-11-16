@@ -1,0 +1,60 @@
+@import '../../_shared/_variables';
+
+@mixin cui-breadcrumb-sizing($padding, $font-size) {
+  .cui-breadcrumb-item {
+    font-size: $font-size;
+  }
+
+  .cui-breadcrumb-seperator {
+    font-size: $font-size;
+    margin: 0 $padding / 2;
+  }
+}
+
+.cui-breadcrumb {
+  @include cui-breadcrumb-sizing($cui-base-padding, $cui-font-size);
+
+  display:flex;
+  align-items: center;
+
+  .cui-breadcrumb-item {
+    display: flex;
+    text-decoration: none;
+    color: $blue-grey500;
+    transition: color $cui-transition-duration $cui-transition-ease;
+
+    .cui-icon {
+      color: $blue-grey500;;
+    }
+  }
+
+  a.cui-breadcrumb-item, {
+    color: $blue-grey200;
+
+    .cui-icon { color: $blue-grey200 }
+
+    &:hover {
+      color: $blue-grey500;
+
+      .cui-icon { color: $blue-grey500 }
+    }
+  }
+
+  .cui-breadcrumb-seperator {
+    display: flex;
+    color: $blue-grey500;
+
+    &:last-child {
+      display:none;
+    }
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-breadcrumb-sizing(
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)
+      )
+    }
+  }
+}

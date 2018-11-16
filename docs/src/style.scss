@@ -1,0 +1,172 @@
+@import '@/index.scss';
+@import '../../src/_shared/examples/index';
+
+$cui-docs-nav-width: 220px;
+
+body {
+  overflow-y: scroll;
+  background:$white;
+}
+
+.Docs {
+  display:flex;
+
+  &.is-mobile {
+    flex-direction: column;
+
+    .Docs-container {
+      padding: 15px;
+      padding-top: 60px;
+      margin-left: 0;
+    }
+  }
+}
+
+.Docs-nav-drawer {
+  .cui-drawer-content {
+    padding: 0;
+    min-width: $cui-docs-nav-width;
+    width: $cui-docs-nav-width;
+  }
+
+  .Docs-nav {
+    width: 100%;
+  }
+
+  .Docs-nav {
+    position: relative;
+    overflow-y: scroll;
+  }
+}
+
+.Docs-mobile-header {
+  position: fixed;
+  width: 100%;
+  border-bottom: solid 1px $blue-grey100;
+  z-index: 1;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  box-shadow: $cui-elevation-2;
+  padding: 0 10px;
+  background: $white;
+
+  .Docs-logo {
+    height: 30px;
+    margin-right: 5px;
+  }
+}
+
+.Docs-mobile-header-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-right: 10px;
+  min-width: 40px;
+}
+
+.Docs-nav {
+  position: fixed;
+  height: 100%;
+  width: $cui-docs-nav-width;
+  overflow: auto;
+  visibility: hidden;
+  outline: none;
+
+  h4 {
+    margin-bottom: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
+
+.Docs-logo {
+  display: block;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.Docs-nav-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.Docs-nav-title {
+  font-weight:bold;
+  font-size: 14px;
+}
+
+.Docs-nav-title-meta {
+  font-size: 12px;
+  display: block;
+}
+
+.Docs-nav-content {
+  padding: 20px;
+  border-right:solid 1px $blue-grey100;
+  background: tint($blue-grey50, 50%);
+}
+
+.Docs-nav-content,
+.Docs-nav:focus,
+.Docs-nav:hover {
+  visibility: visible;
+}
+
+.Docs-nav-section {
+  margin-bottom: 20px;
+
+  a {
+    display:block;
+    font-size: $cui-font-size;
+    padding: 5px 10px;
+    margin: 0 -10px;
+    color: $blue-grey600;
+    text-decoration: none;
+    border-radius: 3px;
+
+    &:hover {
+      background: tint($blue-grey100, 30%);
+    }
+
+    &.is-active {
+      background: $cui-primary-bg-color;
+      color:$white;
+    }
+  }
+
+}
+
+.Docs-container {
+  margin-left: $cui-docs-nav-width;
+  width:100%;
+  max-width: 800px;
+  padding: 40px;
+}
+
+.Docs-content {
+  .cui-table {
+    margin-bottom: 50px;
+
+    code {
+      font-weight: bold;
+    }
+  }
+}
+
+.Docs-interface-table td {
+  border-bottom: solid 1px $blue-grey100;
+}
+
+.Docs-code-type {
+  font-weight:bold;
+  font-size: 12px;
+}
+
+.hljs {
+  border-radius: 3px;
+  padding: 10px 15px;
+}

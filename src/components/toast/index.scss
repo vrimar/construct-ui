@@ -1,0 +1,109 @@
+@import '../../_shared/mixins';
+@import '../../_shared/variables';
+
+@mixin cui-toast-sizing($padding, $font-size) {
+  padding: $padding;
+  
+  .cui-toast-message {
+    padding-right: $padding;
+    font-size: $font-size;
+  }
+
+  > .cui-icon:first-child {
+    margin-right: $padding;
+  }
+}
+
+@mixin cui-toast-style($text-color, $bg-color, $border-color) {
+  color: $text-color;
+  background: $bg-color;
+  border: solid 1px $border-color;
+  box-shadow: $cui-elevation-3;
+}
+
+.cui-toaster {
+  position:fixed;
+  right:0;
+  left:0;
+  z-index: $cui-z-index-overlay;
+  pointer-events: none;
+  display:flex;
+  flex-direction: column;
+  padding:20px;
+
+  &.cui-toaster-inline {
+    position: absolute;
+  }
+
+  &.cui-toaster-top-start,
+  &.cui-toaster-bottom-start {
+    align-items: flex-start;
+  }
+
+  &.cui-toaster-top,
+  &.cui-toaster-bottom {
+    align-items: center;
+  }
+
+  &.cui-toaster-top-end,
+  &.cui-toaster-bottom-end  {
+    align-items: flex-end;
+  }
+
+  &.cui-toaster-top,
+  &.cui-toaster-top-start,
+  &.cui-toaster-top-end {
+    top:0;
+    bottom:auto;
+  }
+
+  &.cui-toaster-bottom,
+  &.cui-toaster-bottom-start,
+  &.cui-toaster-bottom-end {
+    top:auto;
+    bottom:0;
+  }
+}
+
+.cui-toast {
+	display: flex;
+	align-items: center;
+	position: relative;
+	min-width: 300px;
+	max-width: 500px;
+  pointer-events: all;
+  margin-bottom: $cui-base-size;
+  border-radius: $cui-border-radius;
+  outline:none;
+  transition: color 0.3s ease-in;
+
+  @include cui-toast-sizing($cui-base-padding, $cui-font-size);
+  @include cui-toast-style($cui-base-text-color, $cui-base-bg-color, $cui-base-border-color);
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-toast-sizing(
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)
+      )
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent} {
+      @include cui-toast-style(
+        white,
+        map-get($cui-bg-color-map, $intent),
+        map-get($cui-border-color-map, $intent)
+      );
+
+      > .cui-icon {
+        color:white;
+      }
+    }
+  }
+
+  .cui-toast-message {
+    flex: 1 1 auto;
+  }
+}

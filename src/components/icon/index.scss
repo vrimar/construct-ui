@@ -1,0 +1,66 @@
+@import '../../_shared/variables';
+
+$cui-icon-base: 16px;
+$cui-icon-xs: 14px;
+$cui-icon-sm: 14px;
+$cui-icon-lg: 18px;
+$cui-icon-xl: 20px;
+
+$cui-icon-size-map: (
+  xs: $cui-icon-xs,
+  sm: $cui-icon-sm,
+  lg: $cui-icon-lg,
+  xl: $cui-icon-xl
+);
+
+@mixin cui-icon-sizing($size) {
+  svg {
+    height: $size;
+    width: $size;
+    min-width: $size;
+    min-height: $size;
+  }
+}
+
+@mixin cui-icon-style($intent) {
+  color: $intent;
+
+  &.cui-icon-action:hover {
+    color: shade($intent, 10%);
+  }
+}
+
+.cui-icon {
+	position: relative;
+  display: inline-flex;
+  color: $cui-icon-color;
+  @include cui-icon-sizing($cui-icon-base);
+
+  svg {
+    display:block;
+    stroke: currentColor;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+
+  &.cui-icon-action:hover {
+    cursor: pointer;
+    color: $cui-icon-color-hover;
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size},
+    .cui-#{$size} & {
+      @include cui-icon-sizing(map-get($cui-icon-size-map, $size));
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent},
+    .cui-#{$intent} & {
+      @include cui-icon-style(map-get($cui-bg-color-map, $intent));
+    }
+  }
+}

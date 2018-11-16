@@ -1,0 +1,53 @@
+@import '../../_shared/_mixins';
+@import '../../_shared/_variables';
+
+@mixin cui-card-sizing($padding, $font-size) {
+  padding: floor($padding * 1.25);
+}
+
+.cui-card {
+  @include cui-card-sizing($cui-base-padding, $cui-font-size);
+
+  background:$white;
+  max-width: 320px;
+  border-radius: $cui-border-radius;
+  border: solid 1px $cui-base-border-color;
+  transition: box-shadow $cui-transition-duration ease-in-out;
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-card-sizing(
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)
+      )
+    }
+  }
+
+  &.cui-elevation-1 {
+    box-shadow: $cui-elevation-1;
+  }
+
+  &.cui-elevation-2 {
+    box-shadow: $cui-elevation-2;
+  }
+
+  &.cui-elevation-3 {
+    box-shadow: $cui-elevation-3;
+  }
+
+  &.cui-elevation-4 {
+    box-shadow: $cui-elevation-4;
+  }
+
+  &.cui-card-interactive {
+    cursor: pointer;
+
+    &:hover, &:focus {
+      box-shadow: $cui-elevation-3;
+    }
+
+    &:active {
+      box-shadow: $cui-elevation-1;
+    }
+  }
+}

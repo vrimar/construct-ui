@@ -1,0 +1,49 @@
+@import '../../_shared/variables';
+
+.cui-control-group {
+  display: inline-flex;
+  margin-right: $cui-base-size;
+
+  &:last-child {
+    margin:0;
+  }
+
+  > :first-child {
+    border-radius: $cui-border-radius 0 0 $cui-border-radius;
+    margin-right: -1px;
+  }
+
+  > :last-child {
+    border-radius: 0 $cui-border-radius $cui-border-radius 0;
+  }
+
+  > :only-child {
+    border-radius: $cui-border-radius;
+    margin:0;
+  }
+
+  > :not(:first-child):not(:last-child) {
+    border-radius: 0;
+    margin-right: -1px;
+  }
+
+  .cui-select select,
+  .cui-input input {
+    border-radius: inherit;
+  }
+
+  & :focus,
+  & :hover,
+  & :active,
+  & .cui-active {
+    z-index: 1;
+  }
+
+  & :focus {
+    z-index: 1;
+  }
+
+  &.cui-fluid > * {
+		flex: 1 1 auto;
+	}
+}

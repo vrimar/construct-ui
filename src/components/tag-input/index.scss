@@ -1,0 +1,123 @@
+@import '../../_shared/variables';
+@import '../../_shared/mixins';
+
+@mixin cui-tag-input-sizing($selector, $height, $padding, $font-size)  {
+  @include cui-content-group-sizing($selector, $height, $padding, $font-size);
+  $margin: floor($padding / 2);
+
+  > .cui-icon {
+    top: $padding - 3px;
+  }
+
+  .cui-tag-input-values {
+    padding-top: $margin - 1px;
+  }
+
+  input {
+    margin-top: 1px;
+    margin-bottom: $margin;
+  }
+
+  .cui-tag {
+    margin: 0 $margin $margin - 2px 0;
+  }
+}
+
+@mixin cui-tag-input-style($border-color, $border-color-focus) {
+  border: solid 1px $border-color;
+
+  &:focus, 
+  &.cui-active {
+    border: solid 1px $border-color-focus;
+  }
+}
+
+.cui-tag-input {
+  $selector: '.cui-tag-input-values';
+  @include cui-tag-input-style($cui-base-border-color, $cui-primary-border-color);
+  @include cui-tag-input-sizing($selector, $cui-base-height, $cui-base-padding, $cui-font-size);
+  
+  position:relative;
+  display: inline-block;
+  background: $white;
+  color: $cui-text-color;
+  border-radius: $cui-border-radius;
+  transition:
+    border $cui-transition-duration $cui-transition-ease,
+    background $cui-transition-duration $cui-transition-ease,
+    color $cui-transition-duration $cui-transition-ease;
+
+  &:hover {
+    cursor: text;
+  }
+
+  #{$selector} {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    height: auto !important;
+    line-height: inherit !important;
+    min-height: auto !important;
+    width: 100%;
+  }
+
+  input {
+    color: $cui-text-color;
+    border:none;
+    flex: 1 1 auto;
+    width: 100px;
+    outline: none;
+    vertical-align: middle;
+
+    &::placeholder {
+      color: $cui-placeholder-color;
+    }
+
+    &::-ms-clear {
+      display: none;
+    }
+  }
+
+  > .cui-icon {
+    position: absolute;
+    margin: 0;
+    z-index: 1;
+
+    &:first-child {
+      left:0;
+    }
+
+    &:last-child {
+      right:0;
+    }
+  }
+
+  &.cui-disabled {
+    input,
+    .cui-button,
+    .cui-icon {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-tag-input-sizing(
+        $selector,
+        map-get($cui-height-map, $size),
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)
+      )
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent} {
+      @include cui-tag-input-style(
+        map-get($cui-border-color-map, $intent),
+        map-get($cui-border-color-hover-map, $intent)
+      );
+    }
+  }
+}

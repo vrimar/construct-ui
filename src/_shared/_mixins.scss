@@ -1,0 +1,102 @@
+@import './colors';
+
+@mixin cui-overflow-ellipsis {
+	overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+@mixin focus-outline {
+  outline: $cui-focus-outline-color auto 2px;
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+@function tint($color, $percentage){
+  @return mix(white, $color, $percentage);
+}
+
+@mixin cui-base-sizing($height, $padding, $font-size) {
+  padding: 0 $padding;
+  font-size: $font-size;
+  height: $height;
+  min-height: $height;
+  line-height: $height - 1px;
+}
+
+@mixin cui-content-group-sizing($selectors, $height, $padding, $font-size) {
+  $child-padding: $padding * 3;
+
+  #{$selectors} {
+    @include cui-base-sizing($height, $padding, $font-size);
+
+    @if ($selectors == '.cui-input-file-content') {
+      &:not(:nth-child(2)) {
+        padding-left: $child-padding;
+      }
+    } @else {
+      &:not(:first-child) {
+        padding-left: $child-padding;
+      }
+    }
+
+    &:not(:last-child) {
+      padding-right: $child-padding;
+    }
+  }
+
+  > .cui-button,
+  > .cui-spinner,
+  > .cui-icon,
+  > .cui-tag {
+    &:first-child:not(input) {
+      margin-left: $padding;
+    }
+
+    &:last-child {
+      margin-right: $padding;
+    }
+  }
+
+  > .cui-button {
+    @include cui-base-sizing(
+      floor($height / 1.4),
+      floor($padding / 2), 
+      floor($font-size / 1.2)
+    );
+  }
+}
+
+@mixin cui-content-group-children($top-position: 50%){
+  > .cui-button,
+  > .cui-spinner,
+  > .cui-icon,
+  > .cui-tag {
+    position: absolute;
+    top: $top-position;
+    transform: translateY(-$top-position);
+    margin: 0;
+    z-index: 1;
+
+    &:first-child {
+      left:0;
+    }
+
+    &:last-child {
+      right:0;
+    }
+  }
+}
+
+@mixin cui-input-style($selector, $border-color, $border-color-focus){
+  #{$selector} {
+    border: solid 1px $border-color;
+
+    &:focus {
+      border: solid 1px $border-color-focus;
+    }
+  }
+}

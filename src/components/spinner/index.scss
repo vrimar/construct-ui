@@ -1,0 +1,94 @@
+@import '../../_shared/variables';
+
+$cui-spinner-animation-duration: 500ms;
+$cui-spinner-transition-duration: 300ms;
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin cui-spinner-sizing($height) {
+  $size: floor($height / 2);
+  height: $size;
+  width: $size;
+
+  &:after {
+    width: $size;
+    height: $size;
+    margin-left: -($size / 2);
+    margin-top: -($size / 2);
+  }
+}
+
+@mixin cui-spinner-style($color) {
+  &:after {
+    border-top-color: $color !important;
+  }
+}
+
+.cui-spinner {
+  @include cui-spinner-sizing($cui-base-height);
+  @include cui-spinner-style($cui-primary-bg-color);
+
+  display:inline-block;
+  position: relative;
+	opacity: 0;
+  transition: 
+    opacity $cui-spinner-transition-duration ease-in-out,
+    visibility 0s ease-in-out $cui-spinner-transition-duration,
+    background $cui-spinner-transition-duration ease-in-out;
+	user-select: none;
+	will-change: opacity;
+	visibility: hidden;
+
+	&.cui-spinner-active {
+		opacity: 1;
+    visibility: visible;
+    transition-delay:0s;
+  }
+
+  &:after {
+    content: "";
+    position:absolute;
+    border-width: 2px;
+    border-radius: 50%;
+    border-style: solid;
+    top:50%;
+    left:50%;
+    border-color: $cui-base-border-color;
+    animation: loading $cui-spinner-animation-duration infinite linear;
+    z-index: 1;
+  }
+
+  &.cui-spinner-fill {
+    position:absolute;
+    top:0;
+    left:0;
+    height:100% !important;
+    width:100% !important;
+    z-index: $cui-z-index-overlay;
+  }
+
+  &.cui-spinner-bg {
+    background: rgba($white, 0.5);
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size},
+    .cui-#{$size} & {
+      @include cui-spinner-sizing(map-get($cui-height-map, $size));
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent},
+    .cui-#{$intent} & {
+      @include cui-spinner-style(map-get($cui-bg-color-map, $intent))
+    }
+  }
+}

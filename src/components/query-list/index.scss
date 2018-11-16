@@ -1,0 +1,58 @@
+@import '../../_shared/variables';
+
+@mixin cui-query-list-sizing($padding) {
+  .cui-list-item {
+    padding-left: $padding * 3;
+  }
+
+  .cui-list-item-content-left {
+    left: floor($padding / 1.2);
+  }
+}
+
+.cui-query-list {
+  outline: none;
+
+  .cui-control-group {
+    margin:0;
+    margin-bottom: 15px;
+
+      &.cui-fluid > * {
+      flex: none;
+    }
+
+    .cui-input {
+      flex-grow: 1;
+    }
+  }
+}
+
+.cui-query-list-checkmark {
+  @include cui-query-list-sizing($cui-base-padding);
+
+  .cui-list-item-content-left {
+    position: absolute;
+  }
+
+  .cui-selected {
+    .cui-icon-check {
+      color: $cui-primary-bg-color;
+    }
+  }
+
+  @each $size in $cui-sizes {
+    .cui-#{$size} {
+      @include cui-query-list-sizing(map-get($cui-padding-map, $size),);
+    }
+  }
+}
+
+.cui-query-list-empty,
+.cui-query-list-initial {
+  background: none;
+  
+  .cui-query-list-message {
+    color: $cui-text-color;
+    font-size: $cui-font-size;
+  }
+}

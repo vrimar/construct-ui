@@ -1,0 +1,65 @@
+@import '../_shared/mixins';
+@import '../_shared/variables';
+
+// Headings
+
+h1, h2, h3, h4, h5, h6,
+.cui-h1, .cui-h2, .cui-h3, .cui-h4, .cui-h5, .cui-h6  {
+  margin: 0;
+  margin-bottom: $cui-headings-margin-bottom;
+  font-family: $cui-headings-font-family;
+  font-weight: $cui-headings-font-weight;
+  line-height: $cui-headings-line-height;
+  color: $cui-headings-color;
+}
+
+h1, .cui-h1 { font-size: $cui-h1-font-size; }
+h2, .cui-h2 { font-size: $cui-h2-font-size; }
+h3, .cui-h3 { font-size: $cui-h3-font-size; }
+h4, .cui-h4 { font-size: $cui-h4-font-size; }
+h5, .cui-h5 { font-size: $cui-h5-font-size; }
+h6, .cui-h6 { font-size: $cui-h6-font-size; }
+
+// Paragraph
+
+p {
+  margin: 0;
+  margin-bottom: $cui-spacer;
+}
+
+// Text
+
+.cui-text-muted {
+  color: $cui-text-muted;
+}
+
+.cui-text-disabled {
+  color: $cui-text-disabled;
+}
+
+// Code
+
+code {
+  padding: 2.5px 5px;
+  color: $blue-grey800;
+  background: white;
+  border-radius: 5px;
+  font-size: $cui-font-size-sm;
+  border:solid 1px $blue-grey100;
+  word-break: break-word;
+}
+
+pre {
+  border-radius: 5px;
+  background: white;
+  border:solid 1px $blue-grey100;
+}
+
+pre code {
+  font-size: inherit;
+  color: inherit;
+  word-break: normal;
+  background: none;
+  border: none;
+  padding: 15px 20px;
+}

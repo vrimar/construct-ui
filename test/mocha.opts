@@ -1,0 +1,6 @@
+--colors
+--require ts-node/register
+--require tsconfig-paths/register
+--require ./test/setup.js
+--watch-extensions ts
+./src/**/*.spec.ts

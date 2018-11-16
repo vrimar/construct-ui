@@ -1,0 +1,54 @@
+@import '../../_shared/_variables';
+
+.cui-button-group {
+	display: inline-flex;
+
+  .cui-button {
+		flex: 1 0 auto;
+		position:relative;
+		margin:0;
+
+		&:not(:first-child) {
+			border-top-left-radius: 0;
+			border-bottom-left-radius:0;
+		}
+
+		&:not(:last-child) {
+			margin-right: -1px;
+			border-top-right-radius: 0;
+			border-bottom-right-radius:0;
+    }
+
+    &:active,
+    &.cui-active,
+    &:focus,
+    &:hover {
+      z-index: 10;
+    }
+  }
+
+  &.cui-basic .cui-button {
+    margin-right: $cui-base-size;
+    border-radius: $cui-border-radius;
+
+    &:not(:last-child):after {
+      margin: $cui-base-size / 2;
+      background: $cui-base-border-color;
+      width: $cui-border-width;
+      display: inline-block;
+      position: absolute;
+      top: 5%;
+      bottom: 5%;
+      left: 100%;
+      content: "";
+    }
+  }
+
+  &.cui-fluid {
+    width:100%;
+
+    .cui-button {
+      flex: 1 1 auto;
+    }
+  }
+}

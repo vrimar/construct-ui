@@ -1,0 +1,102 @@
+@import '../../_shared/variables';
+
+$cui-grid-columns: 12 !default;
+$cui-grid-gutter: 0 !default;
+
+$cui-grid-breakpoints: (
+  (xs, $cui-screen-size-xs),
+  (sm, $cui-screen-size-sm),
+  (md, $cui-screen-size-md),
+  (lg, $cui-screen-size-lg),
+  (xl, $cui-screen-size-xl)
+);
+
+.cui-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: -$cui-grid-gutter;
+  margin-left: -$cui-grid-gutter;
+
+  &-align {
+    &-top {
+      align-items: flex-start;
+    }
+
+    &-middle {
+      align-items: center;
+    }
+
+    &-bottom {
+      align-items: flex-end;
+    }
+  }
+
+  &-justify {
+    &-start {
+      justify-content: flex-start;
+    }
+
+    &-end {
+      justify-content: flex-end;
+    }
+
+    &-center {
+      justify-content: center;
+    }
+
+    &-space-around {
+      justify-content: space-around;
+    }
+
+    &-space-between {
+      justify-content: space-between;
+    }
+  }
+}
+
+[class*="cui-col"] {
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+  padding-right: $cui-grid-gutter;
+  padding-left: $cui-grid-gutter;
+}
+
+@function get-col-percent($column-number) {
+  @return $column-number / $cui-grid-columns * 100%;
+}
+
+@mixin cui-generate-cols($breakpoint: null){
+  $prefix: '';
+
+  @if ($breakpoint != null) {
+    $prefix: '-#{$breakpoint}'
+  }
+
+  @for $i from 1 through $cui-grid-columns {
+    .cui-col#{$prefix}-#{$i} {
+      flex-basis: get-col-percent($i);
+      max-width:  get-col-percent($i);
+    }
+
+    .cui-col#{$prefix}-offset-#{$i} {
+      margin-left: get-col-percent($i);
+    }
+
+    .cui-col#{$prefix}-order-#{$i} {
+      order: $i
+    }
+  }
+}
+
+@include cui-generate-cols();
+
+@each $breakpoint in $cui-grid-breakpoints {
+  $val: nth($breakpoint, 1);
+  $size: nth($breakpoint, 2);
+
+  @media only screen and (min-width: #{$size}) {
+    @include cui-generate-cols($val);
+  }
+}

@@ -1,0 +1,71 @@
+@import '../../_shared/variables';
+@import '../../_shared/mixins';
+
+.cui-input {
+  $selector: 'input, textarea';
+
+  @include cui-content-group-sizing($selector, $cui-base-height, $cui-base-padding, $cui-font-size);
+  @include cui-input-style($selector, $cui-base-border-color, $cui-primary-border-color);
+
+  position:relative;
+  display: inline-block;
+  background:white;
+
+  #{$selector} {
+    position: relative;
+    width: 100%;
+    background: transparent;
+    outline: none;
+    color: $cui-text-color;
+    border-radius: $cui-border-radius;
+    transition:
+      border $cui-transition-duration $cui-transition-ease,
+      background $cui-transition-duration $cui-transition-ease,
+      color $cui-transition-duration $cui-transition-ease;
+
+    &::placeholder {
+      color: $cui-placeholder-color;
+    }
+
+    &:focus::placeholder  {
+      color: $cui-placeholder-color-focus
+    }
+
+    &::-ms-clear {
+      display: none;
+    }
+  }
+
+  @include cui-content-group-children();
+
+  &.cui-disabled {
+    input,
+    textarea,
+    .cui-button,
+    .cui-icon {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-content-group-sizing(
+        $selector,
+        map-get($cui-height-map, $size),
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)
+      )
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent} {
+      @include cui-input-style(
+        $selector,
+        map-get($cui-border-color-map, $intent),
+        map-get($cui-border-color-hover-map, $intent)
+      );
+    }
+  }
+}

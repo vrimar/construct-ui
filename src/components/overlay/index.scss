@@ -1,0 +1,40 @@
+@import '../../_shared/variables';
+
+.cui-overlay-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+  z-index: $cui-z-index-overlay;
+  // TODO: switch to UI colors
+  background-color: rgba(16, 22, 26, 0.7);
+
+  .fade-enter & {
+    opacity: 0.01;
+    transition: opacity $cui-transition-duration $cui-transition-ease;
+  }
+
+  .fade-enter-active & {
+    opacity: 1;
+  }
+
+  .fade-exit & {
+    opacity: 0.01;
+    transition: opacity $cui-transition-duration $cui-transition-ease;
+  }
+
+  .fade-exit-active & {
+    opacity: 0;
+  }
+}
+
+body.cui-overlay-open {
+  overflow-y: hidden;
+}
+
+.cui-overlay-inline {
+	.cui-overlay-backdrop {
+		position:absolute;
+	}
+}

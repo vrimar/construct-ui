@@ -1,0 +1,144 @@
+.cui-example {
+  display:flex;
+  position:relative;
+  width: 100%;
+  min-height: 200px;
+  margin-bottom: 50px;
+}
+
+.cui-example-content {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 300px;
+  padding: 20px 20px 30px 20px;
+  border: dashed 1px $blue-grey100;
+}
+
+.cui-example-src-btn {
+  position: absolute;
+  bottom: -15px;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.cui-example-mobile-drawer {
+  .cui-drawer-content {
+    max-height: 260px;
+    overflow-y: auto;
+  }
+}
+
+.cui-example-center {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cui-example-overflow-hidden {
+  position: absolute;
+  height:100%;
+  width:100%;
+  overflow: hidden;
+
+  .cui-button {
+    position: relative; 
+    z-index: 10; 
+  }
+}
+
+.cui-example-options {
+  width: 150px;
+  min-width: 150px;
+  margin-left: 20px;
+
+  h5 {
+    font-size: 12px;
+    margin-bottom: 5px;
+    font-weight:bold;
+  }
+
+  .cui-control, 
+  .cui-select {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+.cui-example-options-btn {
+  position: absolute;
+  top: -15px;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.cui-example-icon-card {
+  border: none;
+  background: $blue-grey50;
+  margin-bottom: 20px;
+  display:flex;
+  align-items: center;
+
+  span {
+    color: $blue-grey600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-left: 10px;
+    text-transform: lowercase;
+  }
+}
+
+.cui-example-colors {
+  [class^="cui-col-"] {
+    margin-bottom: 20px;
+  }
+}
+
+.cui-example-colors-group {
+  border: solid 1px $blue-grey100;
+  border-radius: 5px;
+}
+
+.cui-example-colors-bar {
+  display:flex;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+  font-size: 12px;
+  font-weight:bold;
+}
+
+.cui-example-info-trigger {
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.cui-example-tree-component {
+  background: white;
+  border: solid 1px $blue-grey200;
+  width: 300px;
+  padding: 10px;
+}
+
+.cui-example-grid {
+  .cui-grid {
+    margin-bottom:20px;
+  }
+
+  .cui-example-grid-col {
+    padding:10px;
+  }
+
+  [class^="cui-col"]:nth-child(even) {
+    .cui-example-grid-col {
+      background:$blue-grey300;
+    }
+  }
+
+  [class^="cui-col"]:nth-child(odd) {
+    .cui-example-grid-col {
+      background:$blue-grey100;
+    }
+  }
+}

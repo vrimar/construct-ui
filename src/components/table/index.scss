@@ -1,0 +1,46 @@
+@import '../../_shared/variables';
+
+.cui-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+  background-color: $white;
+
+  tbody {
+    width: 100%;
+  }
+
+  th, td, {
+    border-bottom: solid 1px $cui-base-border-color;
+    padding: $cui-base-size;
+    font-size: $cui-font-size;
+    text-align:left;
+  }
+
+  &.cui-table-bordered {
+    td, th {
+      border: solid 1px $cui-base-border-color;
+    }
+  }
+
+  &.cui-table-striped {
+    tr:nth-of-type(odd) {
+      background: tint($blue-grey50, 20%);
+    }
+  }
+
+  &.cui-table-interactive {
+    tr {
+      cursor: pointer;
+    }
+
+    tr:hover {
+      background: $blue-grey50;
+    }
+
+    tr:active {
+      background: $blue-grey100;
+    }
+  }
+}

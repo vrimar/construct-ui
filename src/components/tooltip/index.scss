@@ -1,0 +1,62 @@
+@import '../../_shared/mixins';
+@import '../../_shared/variables';
+
+
+@mixin cui-tooltip-sizing($padding, $font-size) {
+  $arrow-size: floor($padding / 1.2);
+  $arrow-offset: floor($arrow-size / 2);
+  $font-size: floor($font-size / 1.05);
+
+  .cui-popover-arrow {
+    width: $arrow-size;
+    height: $arrow-size;
+  }
+
+  .cui-popover-content {
+    padding: floor($padding / 1.5);
+    font-size: $font-size;
+  }
+
+  [x-placement^="top"] {
+		.cui-popover-arrow {
+      bottom: -$arrow-offset;
+		}
+	}
+
+	[x-placement^="bottom"] {
+		.cui-popover-arrow {
+      top: -$arrow-offset;
+		}
+	}
+
+	[x-placement^="right"] {
+		.cui-popover-arrow {
+      left: -$arrow-offset;
+		}
+	}
+
+	[x-placement^="left"] {
+		.cui-popover-arrow {
+      right: -$arrow-offset;
+    }
+	}
+}
+
+.cui-tooltip {
+  @include cui-tooltip-sizing($cui-base-padding, $cui-font-size);
+
+  .cui-popover-content {
+    width:auto;
+    min-width: auto;
+    color: $cui-text-color;
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-tooltip-sizing(
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)  
+      )
+    }
+  }
+}

@@ -1,0 +1,94 @@
+@import '../../_shared/variables';
+
+$cui-popover-min-width: 140px !default;
+$cui-popover-arrow-color: white !default;
+$cui-popover-arrow-border-color: shade($cui-base-border-color, 5%) !default;
+$cui-popover-arrow-size: 14px !default;
+$cui-popover-arrow-offset: $cui-popover-arrow-size / 2 !default;
+
+.cui-popover {
+  position: absolute;
+  z-index: $cui-z-index-overlay;
+  visibility: hidden;
+
+  &.cui-popover-open {
+    visibility: visible;
+  }
+  
+  .fade-enter & {
+    opacity: 0.01;
+    transition: opacity $cui-transition-duration $cui-transition-ease;
+  }
+
+  .fade-enter-active & {
+    opacity: 1;
+  }
+
+  .fade-exit & {
+    opacity: 0.01;
+    transition: opacity $cui-transition-duration $cui-transition-ease;
+  }
+
+  .fade-exit-active & {
+    opacity: 0;
+  }
+
+  &[x-out-of-boundaries] {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+	&[x-placement^="top"] {
+		> .cui-popover-arrow {
+      bottom: -$cui-popover-arrow-offset;
+      border-bottom: 1px solid $cui-popover-arrow-border-color;
+      border-left: 1px solid $cui-popover-arrow-border-color;
+		}
+	}
+
+	&[x-placement^="bottom"] {
+		> .cui-popover-arrow {
+      top: -$cui-popover-arrow-offset;
+      border-top: 1px solid $cui-popover-arrow-border-color;
+      border-right: 1px solid $cui-popover-arrow-border-color;
+		}
+	}
+
+	&[x-placement^="right"] {
+		> .cui-popover-arrow {
+      left: -$cui-popover-arrow-offset;
+      border-top: 1px solid $cui-popover-arrow-border-color;
+      border-left: 1px solid $cui-popover-arrow-border-color;
+		}
+	}
+
+	&[x-placement^="left"] {
+		> .cui-popover-arrow {
+      right: -$cui-popover-arrow-offset;
+      border-bottom: 1px solid $cui-popover-arrow-border-color;
+      border-right: 1px solid $cui-popover-arrow-border-color;
+    }
+	}
+}
+
+.cui-popover-content {
+  display: inline-block;
+  background:white;
+  border-radius: $cui-border-radius;
+  padding: $cui-base-size * 1.5;
+  border: solid 1px $cui-base-border-color;
+  box-shadow: $cui-elevation-4;
+}
+
+.cui-popover-arrow {
+  position:absolute;
+  width: $cui-popover-arrow-size;
+  height: $cui-popover-arrow-size;
+  transform: rotate(-45deg);
+  pointer-events: none;
+  background: $cui-popover-arrow-color;
+}
+
+.cui-popover-backdrop {
+  background: rgba($white, 0.65);
+}

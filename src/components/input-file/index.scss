@@ -1,0 +1,85 @@
+@import '../../_shared/mixins';
+@import '../../_shared/variables';
+
+@function cui-input-file-padding($padding) {
+  @return floor($padding / 3);
+}
+
+@mixin cui-input-file-style($border-color, $border-color-focus) {
+  .cui-input-file-content {
+    border: solid 1px $border-color;
+
+    &:focus, &:hover {
+      border: solid 1px $border-color-focus;
+    }
+  }
+}
+
+.cui-input-file {
+  $selector: '.cui-input-file-content';
+
+  @include cui-content-group-sizing($selector, $cui-base-height, $cui-base-padding, $cui-font-size);
+  @include cui-input-style($selector, $cui-base-border-color, $cui-base-border-color-hover);
+  @include cui-overflow-ellipsis();
+
+  position:relative;
+  display: inline-block;
+  background:white;
+  cursor: pointer;
+  min-width:200px;
+
+  input {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: -1;
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    outline: none;
+  }
+
+  .cui-input-file-content {
+    position: relative;
+    width: 100%;
+    background: transparent;
+    color: $cui-placeholder-color;
+    border-radius: $cui-border-radius;
+    transition:
+      border $cui-transition-duration $cui-transition-ease,
+      background $cui-transition-duration $cui-transition-ease,
+      color $cui-transition-duration $cui-transition-ease;
+
+      
+    &.cui-input-file-text {
+      color: $cui-text-color;
+    }
+  }
+
+  .cui-input-file-button {
+    pointer-events: none;
+  }
+
+  @include cui-content-group-children();
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-content-group-sizing(
+        $selector,
+        map-get($cui-height-map, $size),
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)
+      )
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent} {
+      @include cui-input-style(
+        $selector,
+        map-get($cui-border-color-map, $intent),
+        map-get($cui-border-color-hover-map, $intent)
+      );
+    }
+  }
+}

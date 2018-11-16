@@ -1,0 +1,42 @@
+---
+reference: components
+title: 'Components'
+---
+
+@page breadcrumb
+@page button
+@page button-group
+@page callout
+@page card
+@page checkbox
+@page collapse
+@page control-group
+@page custom-select
+@page dialog
+@page drawer
+@page empty-state
+@page form
+@page grid
+@page icon
+@page input
+@page input-file
+@page input-select
+@page list
+@page menu
+@page overlay
+@page popover
+@page popover-menu
+@page portal
+@page query-list
+@page radio
+@page select
+@page select-list
+@page spinner
+@page switch
+@page table
+@page tag
+@page tag-input
+@page text-area
+@page toast
+@page tooltip
+@page tree

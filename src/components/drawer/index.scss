@@ -1,0 +1,117 @@
+@import '../../_shared/variables';
+
+$cui-drawer-min-size: 320px;
+
+.cui-drawer {
+  position: fixed;
+  z-index: $cui-z-index-overlay;
+}
+
+.cui-drawer-right,
+.cui-drawer-left {
+  top: 0;
+  height:100%;
+  
+  .cui-drawer-content {
+    min-width: $cui-drawer-min-size;
+    max-width: 97%;
+    height:100%;
+  }
+}
+
+.cui-drawer-right {
+    right: 0;
+
+    .fade-enter & .cui-drawer-content,
+    .fade-exit-active & .cui-drawer-content{
+      transform: translateX(100%);
+    }
+
+    .fade-enter-active & .cui-drawer-content {
+      transform: translateX(0);
+    }
+}
+
+
+.cui-drawer-left {
+  left: 0;
+
+  .fade-enter & .cui-drawer-content,
+  .fade-exit-active & .cui-drawer-content{
+    transform: translateX(-100%);
+  }
+
+  .fade-enter-active & .cui-drawer-content {
+    transform: translateX(0);
+  }
+}
+
+.cui-drawer-top,
+.cui-drawer-bottom {
+  width: 100%;
+  left: 0;
+
+  .cui-drawer-content {
+    width: 100%;
+    min-height: $cui-drawer-min-size / 2;
+    max-height: 97%;
+  }
+}
+
+.cui-drawer-top {
+  top: 0;
+
+  .fade-enter & .cui-drawer-content,
+  .fade-exit-active & .cui-drawer-content{
+    transform: translateY(-100%);
+  }
+
+  .fade-enter-active & .cui-drawer-content {
+    transform: translateY(0);
+  }
+}
+
+.cui-drawer-bottom {
+  bottom: 0;
+
+  .fade-enter & .cui-drawer-content,
+  .fade-exit-active & .cui-drawer-content{
+    transform: translateY(100%);
+  }
+
+  .fade-enter-active & .cui-drawer-content {
+    transform: translateY(0);
+  }
+}
+
+.cui-overlay-inline .cui-drawer {
+  position: absolute;
+}
+
+.cui-drawer-content {
+  position: relative;
+  padding: 15px;
+  background: $white;
+  z-index: $cui-z-index-overlay;
+  box-shadow: $cui-elevation-4;
+  border: solid 1px $cui-base-border-color;
+
+  .fade-enter & {
+    opacity: 0.01;
+    transition: opacity $cui-transition-duration $cui-transition-ease,
+                transform $cui-transition-duration $cui-transition-ease;
+  }
+
+  .fade-enter-active & {
+    opacity: 1;
+  }
+
+  .fade-exit & {
+    transition: opacity $cui-transition-duration $cui-transition-ease,
+                transform $cui-transition-duration $cui-transition-ease-bounce;
+  }
+
+  .fade-exit-active & {
+    opacity: 0;
+  }
+}

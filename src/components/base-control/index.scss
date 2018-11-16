@@ -1,0 +1,84 @@
+@import '../../_shared/variables';
+@import '../../_shared/mixins';
+
+@mixin cui-control-sizing($size, $font-size) {
+  min-height: $size;
+  line-height: $size;
+  font-size: $font-size;
+  padding-left: floor($size * 1.5);
+
+  .cui-control-indicator {
+    height: $size;
+    width: $size;
+  }
+}
+
+@mixin cui-control-style($text-color) {
+  color: $text-color;
+}
+
+.cui-control {
+  @include cui-control-sizing($cui-control-base, $cui-font-size);
+  @include cui-control-style($cui-text-color);
+
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  user-select: none;
+  cursor: pointer;
+
+  input {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .cui-control-indicator {
+    background: white;
+    position:absolute;
+    top:0;
+    left:0;
+    margin:0;
+    border-radius: 2px;
+    transition: background $cui-transition-duration $cui-transition-ease;
+  }
+
+  input:focus ~ .cui-control-indicator {
+    @include focus-outline();
+  }
+
+  &:hover .cui-control-indicator,
+  &:focus .cui-control-indicator {
+    background: $cui-base-bg-color-hover;
+    border: solid 1px $cui-base-border-color-hover;
+  }
+
+  &:active .cui-control-indicator {
+    background: $cui-base-bg-color-active;
+    border: solid 1px $cui-base-border-color-active;
+  }
+
+  &.cui-disabled .cui-control-indicator {
+    background: white;
+    user-select: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-control-sizing(
+        map-get($cui-control-map, $size),
+        map-get($cui-font-size-map, $size)
+      )
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent} {
+      @include cui-control-style(map-get($cui-bg-color-map, $intent));
+    }
+  }
+}

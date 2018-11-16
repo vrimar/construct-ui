@@ -1,0 +1,141 @@
+@import '../../_shared/mixins';
+@import '../../_shared/variables';
+
+@mixin cui-select-style(
+  $text-color, $text-color-hover,
+  $bg-color-hover, $bg-color-active,
+  $gradient, $gradient-hover, $gradient-active, 
+  $border-color, $border-color-hover, $border-color-active,
+  $box-shadow, $box-shadow-active
+  ) {
+  select {
+    color: $text-color;
+    background: $gradient;
+    border: 1px solid $border-color;
+    box-shadow: $box-shadow;
+
+    &:hover {
+      color: $text-color-hover;
+      background: $gradient-hover;
+      border: 1px solid $border-color-hover;
+    }
+
+    &:active,
+    &.cui-active {
+      background: $gradient-active;
+      border: solid 1px  $border-color-active;
+      box-shadow: $box-shadow-active;
+    }
+
+    &[disabled], 
+    .cui-disabled {
+      color: $text-color;
+      background: $gradient;
+      border: 1px solid $border-color;
+      box-shadow: $box-shadow;
+    }
+  }
+
+  &.cui-basic select {
+    &:hover {
+      border: none;
+      background: $bg-color-hover;
+      color: $text-color-hover;
+    }
+
+    &:active {
+      background: $bg-color-active;
+    }
+  }
+
+  .cui-icon {
+    color: $text-color;
+  }
+}
+
+.cui-select {
+  $selector: 'select';
+
+  @include cui-content-group-sizing($selector, $cui-base-height, $cui-base-padding, $cui-font-size);
+  @include cui-select-style(
+    $cui-base-text-color, $cui-base-text-color-hover,
+    $cui-base-bg-color-hover, $cui-base-gradient-active,
+    $cui-base-gradient, $cui-base-gradient-hover, $cui-base-gradient-active,
+    $cui-base-border-color, $cui-base-border-color-hover, $cui-base-border-color-active,
+    $cui-base-box-shadow, $cui-base-box-shadow-active
+  );
+
+  position:relative;
+  display:inline-block;
+  background:white;
+
+  #{$selector} {
+    position: relative;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor:pointer;
+    border-radius: $cui-border-radius;
+    transition:
+      background $cui-transition-duration $cui-transition-ease,
+      border $cui-transition-duration $cui-transition-ease,
+      box-shadow $cui-transition-duration $cui-transition-ease;
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+
+  .cui-icon {
+    pointer-events: none;
+  }
+
+  @include cui-content-group-children();
+
+  &.cui-disabled {
+    select,
+    .cui-button,
+    .cui-spinner,
+    .cui-icon,
+    .cui-tag {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-content-group-sizing(
+        $selector,
+        map-get($cui-height-map, $size),
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)
+      )
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent} {
+      @include cui-select-style(
+        map-get($cui-bg-color-map, $intent), 
+        map-get($cui-bg-color-map, $intent),
+        tint(map-get($cui-bg-color-map, $intent), 90%),
+        tint(map-get($cui-bg-color-map, $intent), 80%),
+        $cui-base-gradient,
+        $cui-base-gradient-hover,
+        $cui-base-gradient-active,
+        map-get($cui-border-color-map, $intent),
+        map-get($cui-border-color-hover-map, $intent),
+        map-get($cui-border-color-active-map, $intent),
+        $cui-base-box-shadow,
+        $cui-base-box-shadow-active
+      );
+    }
+  }
+
+  &.cui-basic #{$selector} {
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+}

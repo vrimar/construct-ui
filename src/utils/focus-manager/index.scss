@@ -1,0 +1,14 @@
+@import '../../_shared/variables';
+@import '../../_shared/mixins';
+
+:focus {
+  @include focus-outline();
+}
+
+.cui-focus-disabled :focus {
+  outline: none !important;
+
+  ~ .cui-control-indicator {
+    outline: none !important;
+  }
+}

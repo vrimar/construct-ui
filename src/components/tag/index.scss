@@ -1,0 +1,67 @@
+@import '../../_shared/variables';
+@import '../../_shared//mixins';
+
+@mixin cui-tag-sizing($height, $padding, $font-size) {
+  $tag-padding-x: floor($padding / 1.5);
+  $tag-padding-y: floor($padding / 6);
+  $tag-font-size: floor($font-size / 1.05);
+
+	font-size: $font-size;
+  padding: $tag-padding-y $tag-padding-x;
+  margin-right: $tag-padding-x;
+
+  &.cui-tag-removable {
+    .cui-icon {
+      margin-left: $tag-padding-x;
+    }
+  }
+}
+
+@mixin cui-tag-style($color, $bg-color) {
+  color: $color;
+  background: $bg-color;
+}
+
+.cui-tag {
+  @include cui-tag-sizing($cui-base-height, $cui-base-padding, $cui-font-size);
+  @include cui-tag-style($cui-base-text-color, tint($blue-grey100, 45%));
+
+	position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: $cui-border-radius;
+
+  &.cui-rounded {
+		border-radius: $cui-border-radius-rounded;
+  }
+
+  &.cui-primary,
+  &.cui-positive,
+  &.cui-negative,
+  &.cui-warning {
+    .cui-icon {
+      color: $blue-grey50;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size},
+    .cui-#{$size} & {
+      @include cui-tag-sizing(
+        map-get($cui-height-map, $size),
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)
+      );
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent} {
+      @include cui-tag-style($white, map-get($cui-bg-color-map, $intent) );
+    }
+  }
+}

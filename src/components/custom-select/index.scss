@@ -1,0 +1,28 @@
+.cui-custom-select {
+  .cui-overlay {
+    position: relative;
+  }
+
+  .cui-popover {
+    width: 100%;
+    transform: none !important;
+  }
+
+  .cui-popover-content {
+    width: 100%;
+    border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 0;
+  }
+}
+
+
+.cui-custom-select-trigger.cui-active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.cui-custom-select-input {
+  display: none;
+}

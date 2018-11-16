@@ -1,0 +1,218 @@
+@import '../../_shared/variables';
+@import '../../_shared/mixins';
+
+@mixin cui-button-sizing($height, $padding, $font-size) {
+  @include cui-base-sizing($height, floor($padding * 1.2), $font-size);
+  $child-margin: floor($padding / 1.2);
+
+  &.cui-compact {
+    padding-left: $padding;
+    padding-right: $padding; 
+  }
+
+  .cui-icon:not(:last-child),
+  .cui-button-label:not(:last-child) {
+    margin-right: $child-margin;
+  }
+
+  .cui-button-sublabel:not(:last-child) {
+    margin-right: floor($padding / 2.5)
+  }
+
+  &.cui-button-icon {
+    width: $height;
+  }
+}
+
+@mixin cui-button-style(
+  $text-color, $text-color-hover, 
+  $gradient, $gradient-hover, $gradient-active, 
+  $border-color, $border-color-hover, $border-color-active,
+  $box-shadow, $box-shadow-active
+  ) {
+  color: $text-color;
+  background: $gradient;
+  border: solid 1px  $border-color;
+  box-shadow: $box-shadow;
+  font-weight: normal;
+
+  &:hover {
+    color: $text-color-hover;
+    background: $gradient-hover;
+    border: solid 1px $border-color-hover;
+    text-decoration: none;
+  }
+
+  &:active,
+  &.cui-active {
+    background: $gradient-active;
+    border: solid 1px  $border-color-active;
+    box-shadow: $box-shadow-active;
+  }
+
+  &[disabled],
+  &.cui-disabled {
+    color: $text-color;
+    background: $gradient;
+    border: solid 1px  $border-color;
+    box-shadow: $box-shadow;
+  }
+}
+
+.cui-button {
+  @include cui-button-sizing($cui-base-height, $cui-base-padding, $cui-font-size);
+  @include cui-button-style(
+    $cui-base-text-color, $cui-base-text-color-hover,
+    $cui-base-gradient, $cui-base-gradient-hover, $cui-base-gradient-active,
+    $cui-base-border-color, $cui-base-border-color-hover, $cui-base-border-color-active,
+    $cui-base-box-shadow, $cui-base-box-shadow-active
+  );
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+	position:relative;
+	text-decoration: none;
+	border-radius: $cui-border-radius;
+  cursor:pointer;
+  transition:
+    background $cui-transition-duration $cui-transition-ease,
+    border $cui-transition-duration $cui-transition-ease,
+    box-shadow $cui-transition-duration $cui-transition-ease;
+
+  &.cui-align-center {
+    justify-content: center;
+  }
+
+  &.cui-align-left {
+    justify-content: flex-start;
+
+    .cui-icon:last-child {
+      margin-left: auto !important;
+    }
+  }
+
+  &.cui-align-right {
+    justify-content: flex-end;
+
+    .cui-icon:first-child {
+      margin-right: auto !important;
+    }
+  }
+
+  .cui-button-label,
+  .cui-button-sublabel {
+    @include cui-overflow-ellipsis();
+    position:relative;
+    top: 0;
+    left: 0;
+    user-select: none;
+  }
+
+  .cui-button-sublabel {
+    color: $blue-grey300;
+  }
+
+  &.cui-button-icon {
+    // Fix center for IE11 https://stackoverflow.com/a/29270539
+    flex-direction: column;
+  }
+
+  &.cui-loading {
+  	pointer-events: none;
+
+    .cui-button-label,
+    .cui-button-sublabel,
+		svg { visibility: hidden }
+  }
+
+  &.cui-basic,
+  .cui-button-group.cui-basic & {
+    @include cui-button-style(
+      $cui-base-text-color, $cui-base-text-color,
+      transparent, shade($cui-base-bg-color-hover, 3%), shade($cui-base-bg-color-hover, 6%),
+      transparent, transparent, transparent,
+      none, none
+    );
+  }
+
+  &.cui-rounded,
+  .cui-button-group.cui-rounded & {
+		border-radius: $cui-border-radius-rounded;
+  }
+
+  &.cui-fluid,
+  .cui-button-group.cui-fluid & {
+    width:100%;
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size},
+    .cui-button-group.cui-#{$size} &,
+    .cui-menu.cui-#{$size} & {
+      @include cui-button-sizing(
+        map-get($cui-height-map, $size),
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)
+      )
+    }
+  }
+
+  &.cui-primary,
+  &.cui-positive,
+  &.cui-negative,
+  &.cui-warning {
+    .cui-button-sublabel {
+      color: $blue-grey50;
+    }
+
+    &.cui-basic .cui-button-sublabel {
+      color: $blue-grey200;
+    }
+
+    &:not(.cui-basic) .cui-spinner:after {
+      border-color: transparent;
+      border-top-color: $white !important;
+    }
+  }
+}
+
+@each $intent in $cui-intents {
+  .cui-button.cui-#{$intent},
+  .cui-button-group.cui-#{$intent} .cui-button {
+    @include cui-button-style(
+      white, white,
+      map-get($cui-gradient-map, $intent),
+      map-get($cui-gradient-hover-map, $intent),
+      map-get($cui-gradient-active-map, $intent),
+      map-get($cui-border-color-map, $intent),
+      map-get($cui-border-color-hover-map, $intent),
+      map-get($cui-border-color-active-map, $intent),
+      none,
+      inset 0px 4px 5px map-get($cui-bg-color-active-map, $intent)
+    );
+
+    .cui-icon { color: $white; }
+  }
+
+  .cui-button.cui-#{$intent}.cui-basic,
+  .cui-button-group.cui-#{$intent}.cui-basic .cui-button {
+    @include cui-button-style(
+      map-get($cui-bg-color-map, $intent), 
+      map-get($cui-bg-color-map, $intent),
+      transparent, 
+      tint(map-get($cui-bg-color-map, $intent), 90%),
+      tint(map-get($cui-bg-color-map, $intent), 80%),
+      transparent,
+      transparent,
+      transparent,
+      none, 
+      none
+    );
+
+    .cui-icon {
+      color: map-get($cui-bg-color-map, $intent),
+    }
+  }
+}

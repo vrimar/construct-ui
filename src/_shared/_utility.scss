@@ -1,0 +1,22 @@
+.cui-align-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cui-align-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cui-fluid {
+  width:100%;
+}
+
+.cui-disabled {
+  cursor: not-allowed !important;
+  opacity: 0.65 !important;
+}
+
+.cui-hidden {
+  display: none;
+}

@@ -1,0 +1,281 @@
+@import './_mixins';
+@import './_colors';
+
+// Base size
+
+$cui-base-size: 10px !default;
+
+// Body 
+
+$cui-body-bg: $blue-grey50 !default;
+$cui-body-color: $blue-grey800 !default;
+$cui-body-font-size: $cui-base-size * 1.6;
+
+// Links
+
+$cui-link-color:               $blue800 !default;
+$cui-link-decoration:           none !default;
+$cui-link-hover-color:          shade($cui-link-color, 25%) !default;
+$cui-link-hover-decoration:     underline !default;
+$cui-focus-outline-color: $blue300 !default;
+
+// Paragraphs and text
+
+$cui-paragraph-margin-bottom:   1rem !default;
+$cui-text-muted: $blue-grey300;
+$cui-text-disabled: $blue-grey100;
+
+// Spacing
+
+$cui-spacer: $cui-base-size * 1.5 !default;
+
+// Fonts
+
+$cui-font-family:           Helvetica, Arial, sans-serif !default;
+$cui-font-family-monospace: monospace !default;
+
+$cui-font-size:    floor($cui-base-size) * 1.4 !default;
+$cui-font-size-xs: floor($cui-base-size) * 1.2 !default;
+$cui-font-size-sm: floor($cui-base-size) * 1.3 !default;
+$cui-font-size-lg: floor($cui-base-size) * 1.6 !default;
+$cui-font-size-xl: floor($cui-base-size) * 1.8 !default;
+
+$cui-font-size-map: (
+  xs: $cui-font-size-xs,
+  sm: $cui-font-size-sm,
+  lg: $cui-font-size-lg,
+  xl: $cui-font-size-xl
+);
+
+$cui-font-weight-light:           300 !default;
+$cui-font-weight-normal:          400 !default;
+$cui-font-weight-bold:            700 !default;
+
+$cui-line-height: 1.5 !default;
+$cui-font-weight: $cui-font-weight-normal !default;
+
+$cui-headings-margin-bottom: $cui-spacer !default;
+$cui-headings-font-family: inherit !default;
+$cui-headings-font-weight: 400 !default;
+$cui-headings-line-height: 1.2 !default;
+$cui-headings-color: $cui-body-color !default;
+
+$cui-h1-font-size: $cui-font-size * 2.5  !default;
+$cui-h2-font-size: $cui-font-size * 2 !default;
+$cui-h3-font-size: $cui-font-size * 1.5 !default;
+$cui-h4-font-size: $cui-font-size * 1.25 !default;
+$cui-h5-font-size: $cui-font-size * 1 !default;
+$cui-h6-font-size: $cui-font-size * 0.75 !default;
+
+// UI colors
+
+$cui-intents: 'primary', 'positive', 'negative', 'warning';
+
+$cui-text-color:                $cui-body-color !default;
+$cui-placeholder-color:         $blue-grey200 !default;
+$cui-placeholder-color-focus:   $blue-grey300 !default;
+
+$cui-base-text-color:          $blue-grey500 !default;
+$cui-base-text-color-hover:    $blue-grey600 !default;
+$cui-base-bg-color:            $white !default;
+$cui-base-bg-color-hover:      tint($blue-grey50, 50%) !default;
+$cui-base-gradient:            linear-gradient(180deg, $white 10.5%, tint($blue-grey50, 42.5%) 100%) !default;
+$cui-base-gradient-hover:      linear-gradient(180deg, $white  10.5%, tint($blue-grey50, 10%) 100%) !default;
+$cui-base-gradient-active:     linear-gradient(180deg, tint($blue-grey50, 15%)  10.5%, tint($blue-grey50, 15%) 100%) !default;
+$cui-base-bg-color-active:     $blue-grey50 !default;
+$cui-base-border-color:        shade($blue-grey100, 5%) !default;
+$cui-base-border-color-hover:  $blue-grey200 !default;
+$cui-base-border-color-active: $blue-grey200 !default;
+$cui-base-box-shadow:          0px 1px 0px tint($blue-grey50, 10%);
+$cui-base-box-shadow-active:   $cui-base-box-shadow, inset 0px 4px 5px shade($blue-grey50, 7.5%);
+
+$cui-primary-bg-color:            $indigo400 !default;
+$cui-primary-bg-color-hover:      shade($cui-primary-bg-color, 10%) !default;
+$cui-primary-bg-color-active:     shade($cui-primary-bg-color, 20%) !default;
+$cui-primary-gradient:            linear-gradient(180deg, $indigo400 10.5%, shade($indigo400, 5%) 100%) !default;
+$cui-primary-gradient-hover:      linear-gradient(180deg, $indigo400  10.5%, $indigo500 100%) !default;
+$cui-primary-gradient-active:     linear-gradient(180deg, $indigo400  10.5%, $indigo600 100%) !default;
+$cui-primary-border-color:        shade($cui-primary-bg-color, 10%) !default;
+$cui-primary-border-color-hover:  shade($cui-primary-bg-color, 20%) !default;
+$cui-primary-border-color-active: shade($cui-primary-bg-color, 30%) !default;
+
+$cui-positive-bg-color:            $green500 !default;
+$cui-positive-bg-color-hover:      shade($cui-positive-bg-color, 10%) !default;
+$cui-positive-bg-color-active:     shade($cui-positive-bg-color, 20%) !default;
+$cui-positive-gradient:            linear-gradient(180deg, $green500 10.5%, $green600 100%) !default;
+$cui-positive-gradient-hover:      linear-gradient(180deg, $green500  10.5%, $green700 100%) !default;
+$cui-positive-gradient-active:     linear-gradient(180deg, $green500  10.5%, $green700 100%) !default;
+$cui-positive-border-color:        shade($cui-positive-bg-color, 20%) !default;
+$cui-positive-border-color-hover:  shade($cui-positive-bg-color, 30%)   !default;
+$cui-positive-border-color-active: shade($cui-positive-bg-color, 30%) !default;
+
+$cui-negative-bg-color:            $red500 !default;
+$cui-negative-bg-color-hover:      shade($cui-negative-bg-color, 10%) !default;
+$cui-negative-bg-color-active:     shade($cui-negative-bg-color, 20%) !default;
+$cui-negative-gradient:            linear-gradient(180deg, $red500 10.5%, $red600 100%) !default;
+$cui-negative-gradient-hover:      linear-gradient(180deg, $red500  10.5%, $red700 100%) !default;
+$cui-negative-gradient-active:     linear-gradient(180deg, $red500  10.5%, $red700 100%) !default;
+$cui-negative-border-color:        shade($cui-negative-bg-color, 10%) !default;
+$cui-negative-border-color-hover:  shade($cui-negative-bg-color, 20%) !default;
+$cui-negative-border-color-active: shade($cui-negative-bg-color, 30%) !default;
+
+$cui-warning-bg-color:            $orange700 !default;
+$cui-warning-bg-color-hover:      shade($cui-warning-bg-color, 10%) !default;
+$cui-warning-bg-color-active:     shade($cui-warning-bg-color, 20%) !default;
+$cui-warning-gradient:            linear-gradient(180deg, $orange600 10.5%, $orange700 100%) !default;
+$cui-warning-gradient-hover:      linear-gradient(180deg, $orange600  10.5%, $orange800 100%) !default;
+$cui-warning-gradient-active:     linear-gradient(180deg, $orange600  10.5%, $orange800 100%) !default;
+$cui-warning-border-color:        shade($cui-warning-bg-color, 10%) !default;
+$cui-warning-border-color-hover:  shade($cui-warning-bg-color, 20%) !default;
+$cui-warning-border-color-active: shade($cui-warning-bg-color, 30%) !default;
+
+$cui-bg-color-map: (
+  primary:  $cui-primary-bg-color,
+  positive: $cui-positive-bg-color,
+  negative: $cui-negative-bg-color,
+  warning:  $cui-warning-bg-color
+);
+
+$cui-bg-color-hover-map: (
+  primary:  $cui-primary-bg-color-hover,
+  positive: $cui-positive-bg-color-hover,
+  negative: $cui-negative-bg-color-hover,
+  warning:  $cui-warning-bg-color-hover
+);
+
+$cui-bg-color-active-map: (
+  primary:  $cui-primary-bg-color-active,
+  positive: $cui-positive-bg-color-active,
+  negative: $cui-negative-bg-color-active,
+  warning:  $cui-warning-bg-color-active
+);
+
+$cui-gradient-map: (
+  primary:  $cui-primary-gradient,
+  positive: $cui-positive-gradient,
+  negative: $cui-negative-gradient,
+  warning:  $cui-warning-gradient
+);
+
+$cui-gradient-hover-map: (
+  primary:  $cui-primary-gradient-hover,
+  positive: $cui-positive-gradient-hover,
+  negative: $cui-negative-gradient-hover,
+  warning:  $cui-warning-gradient-hover
+);
+
+$cui-gradient-active-map: (
+  primary:  $cui-primary-gradient-active,
+  positive: $cui-positive-gradient-active,
+  negative: $cui-negative-gradient-active,
+  warning:  $cui-warning-gradient-active
+);
+
+$cui-border-color-map: (
+  primary:  $cui-primary-border-color,
+  positive: $cui-positive-border-color,
+  negative: $cui-negative-border-color,
+  warning:  $cui-warning-border-color
+);
+
+$cui-border-color-hover-map: (
+  primary:  $cui-primary-border-color-hover,
+  positive: $cui-positive-border-color-hover,
+  negative: $cui-negative-border-color-hover,
+  warning:  $cui-warning-border-color-hover
+);
+
+$cui-border-color-active-map: (
+  primary:  $cui-primary-border-color-active,
+  positive: $cui-positive-border-color-active,
+  negative: $cui-negative-border-color-active,
+  warning:  $cui-warning-border-color-active
+);
+
+// Icons
+$cui-icon-color:       $blue-grey600 !default;
+$cui-icon-color-hover: $blue-grey900 !default;
+
+// Base dimensions
+$cui-sizes: 'xs', 'sm', 'lg', 'xl';
+
+$cui-base-height:     $cui-base-size * 4;
+$cui-base-height-xs:  $cui-base-size * 3;
+$cui-base-height-sm:  $cui-base-size * 3.5;
+$cui-base-height-lg:  $cui-base-size * 4.5 !default;
+$cui-base-height-xl:  $cui-base-size * 5 !default;
+
+$cui-height-map: (
+  xs: $cui-base-height-xs,
+  sm: $cui-base-height-sm,
+  lg: $cui-base-height-lg,
+  xl: $cui-base-height-xl
+);
+
+$cui-base-padding:      $cui-base-size * 1.2 !default;
+$cui-base-padding-xs:   $cui-base-size * 1 !default;
+$cui-base-padding-sm:   $cui-base-size * 1.1 !default;
+$cui-base-padding-lg:   $cui-base-size * 1.4 !default;
+$cui-base-padding-xl:   $cui-base-size * 1.6 !default;
+
+$cui-padding-map: (
+  xs: $cui-base-padding-xs,
+  sm: $cui-base-padding-sm,
+  lg: $cui-base-padding-lg,
+  xl: $cui-base-padding-xl
+);
+
+// Component shapes
+
+$cui-border-radius:         3px !default;
+$cui-border-radius-rounded: floor($cui-base-size * 3) !default;
+$cui-border-width:          1px !default;
+
+// Z-indexes
+
+$cui-z-index-base:    0 !default;
+$cui-z-index-content: 10 !default;
+$cui-z-index-overlay: 20 !default;
+
+// Transition styles
+
+$cui-transition-ease:        cubic-bezier(0.4, 1, 0.75, 0.9) !default;
+$cui-transition-ease-bounce: cubic-bezier(0.54, 1.12, 0.38, 1.11) !default;
+$cui-transition-duration:    200ms !default;
+
+// Media query breakpoints
+
+$cui-screen-size-xs: 0 !default;
+$cui-screen-size-sm: 576px !default;
+$cui-screen-size-md: 768px !default;
+$cui-screen-size-lg: 992px !default;
+$cui-screen-size-xl: 1200px !default;
+
+$cui-screen-size-xs-max: $cui-screen-size-xs - 1px !default;
+$cui-screen-size-sm-max: $cui-screen-size-sm - 1px !default;
+$cui-screen-size-md-max: $cui-screen-size-md - 1px !default;
+$cui-screen-size-lg-max: $cui-screen-size-lg - 1px !default;
+$cui-screen-size-xl-max: $cui-screen-size-xl - 1px !default;
+
+// Control components
+
+$cui-control-base: floor($cui-base-size * 1.6);
+$cui-control-xs:   floor($cui-base-size * 1.2);
+$cui-control-sm:   floor($cui-base-size * 1.4);
+$cui-control-lg:   floor($cui-base-size * 1.8);
+$cui-control-xl:   floor($cui-base-size * 2);
+
+$cui-control-map: (
+  xs: $cui-control-xs,
+  sm: $cui-control-sm,
+  lg: $cui-control-lg,
+  xl: $cui-control-xl
+);
+
+// Elevation shadows
+
+// TODO: switch to UI colors
+$cui-elevation-1: 0px 2px 4px -2px rgba(67, 90, 111, 0.3);
+$cui-elevation-2: 0px 5px 8px -4px rgba(67, 90, 111, 0.3);
+$cui-elevation-3: 0px 8px 10px -4px rgba(67, 90, 111, 0.3);
+$cui-elevation-4: 0px 16px 24px -8px rgba(67, 90, 111, 0.3);

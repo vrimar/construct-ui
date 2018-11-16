@@ -4,6 +4,7 @@ docs
 scripts
 test
 .editorconfig
+.travis.yml
 webpack.config.js
 tslint.json
 tsconfig*

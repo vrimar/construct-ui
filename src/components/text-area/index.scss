@@ -1,0 +1,26 @@
+@import '../../_shared/_mixins';
+@import '../../_shared/_variables';
+
+@mixin cui-textarea-sizing($padding) {
+  textarea {
+    padding-top: $padding;
+    padding-bottom: $padding;
+  }
+}
+
+.cui-text-area {
+  position: relative;
+  @include cui-textarea-sizing($cui-base-padding);
+
+  textarea {
+    resize: both;
+    height: initial !important;
+    line-height: initial !important;
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-textarea-sizing(map-get($cui-padding-map, $size))
+    }
+  }
+}

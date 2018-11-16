@@ -1,0 +1,93 @@
+@import '../../_shared/_mixins';
+@import '../../_shared/_variables';
+
+$cui-callout-text-color-map: (
+  primary: $indigo700,
+  positive: $green700,
+  negative: $red700,
+  warning: $orange700
+);
+
+$cui-callout-bg-color-map: (
+  primary: $indigo50,
+  positive: $green50,
+  negative: $red50,
+  warning: $orange50
+);
+
+@mixin cui-callout-sizing($padding, $font-size) {
+  padding: $padding;
+
+  .cui-callout-header {
+    font-size: $font-size;
+
+    &:not(:only-child) {
+      margin:0 0 floor($padding / 2.5) 0;
+    }
+  }
+
+  .cui-callout-content {
+    font-size: $font-size;
+  }
+
+  > .cui-icon {
+    top: floor($padding * 1.2);
+  }
+
+  &.cui-callout-icon .cui-callout-content,
+  &.cui-callout-icon .cui-callout-header {
+    padding-left: floor($padding * 2);
+  }
+}
+
+@mixin cui-callout-style($text-color, $bg-color, $border-color) {
+  color: $text-color;
+  background: $bg-color;
+  border: solid 1px $border-color;
+
+  .cui-icon {
+    color: $text-color;
+  }
+}
+
+.cui-callout {
+  @include cui-callout-sizing($cui-base-padding, $cui-font-size);
+  @include cui-callout-style($cui-text-color, tint($blue-grey50, 30%), $cui-base-border-color);
+
+	display: block;
+  position: relative;
+  width: 100%;
+	border-radius: $cui-border-radius;
+
+  .cui-callout-header {
+	  font-weight: bold;
+  }
+
+  .cui-icon {
+    position: absolute;
+  }
+
+	&.cui-fluid {
+		display:block;
+		width:100%;
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-callout-sizing(
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)
+      )
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent} {
+      @include cui-callout-style(
+        map-get($cui-callout-text-color-map, $intent),
+        map-get($cui-callout-bg-color-map, $intent),
+        map-get($cui-border-color-map, $intent)
+      );
+    }
+  }
+}

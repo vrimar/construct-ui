@@ -1,0 +1,74 @@
+@import '../../_shared/variables';
+
+@mixin cui-list-sizing($padding, $font-size) {
+  $item-padding: floor($padding / 1.2);
+
+  .cui-list-item {
+    padding: $item-padding;
+    font-size: $font-size;
+  }
+
+  .cui-list-item-content-left {
+    padding-right: $item-padding;
+  }
+
+  .cui-list-item-content-right {
+    padding-left: $item-padding;
+  }
+}
+
+.cui-list {
+  @include cui-list-sizing($cui-base-padding, $cui-font-size);
+  background:white;
+  position:relative;
+  width:100%;
+  overflow-y:auto;
+  max-height:400px;
+}
+
+.cui-list-item {
+  position:relative;
+  display:flex;
+  align-items: center;
+  border-bottom: solid 1px $cui-base-border-color;
+  color: $cui-text-color;
+  cursor:pointer;
+
+  &:hover,
+  &.cui-active {
+    background: tint($blue-grey50, 20%);
+  }
+
+  &.cui-selected {
+    color: $cui-primary-bg-color;
+    font-weight: bold;
+  }
+
+  &.cui-disabled {
+    opacity: 0.5 !important;
+    &:hover { background: none; }
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.cui-list-item-content-left {
+  .cui-icon {
+    display:block;
+  }
+}
+
+.cui-list-item-content-right {
+  margin-left: auto;
+}
+
+@each $size in $cui-sizes {
+  .cui-list.cui-#{$size} {
+    @include cui-list-sizing(
+      map-get($cui-padding-map, $size),
+      map-get($cui-font-size-map, $size)
+    )
+  }
+}

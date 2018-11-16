@@ -1,0 +1,101 @@
+@import '../../_shared/variables';
+
+$dialog-border-radius: $cui-border-radius * 1.5;
+$dialog-padding: $cui-base-size * 1.5;
+
+.cui-dialog {
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+  z-index: $cui-z-index-overlay;
+}
+
+.cui-dialog-content {
+  width:600px;
+	max-width:97%;
+	max-height:97%;
+	display:flex;
+	flex-direction: column;
+  overflow:auto;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0,0,0);
+  box-shadow: $cui-elevation-4;
+
+  .fade-enter & {
+    opacity: 0.01;
+    transform: scale(0.95);
+    transition: opacity $cui-transition-duration $cui-transition-ease,
+                transform $cui-transition-duration $cui-transition-ease-bounce;
+  }
+
+  .fade-enter-active & {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .fade-exit & {
+    transition: opacity $cui-transition-duration $cui-transition-ease,
+                transform $cui-transition-duration $cui-transition-ease-bounce;
+  }
+
+  .fade-exit-active & {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.cui-dialog-header {
+	display:flex;
+	flex:0 0 auto;
+	align-items:center;
+	border-radius: $dialog-border-radius $dialog-border-radius 0 0;
+	border-bottom: solid 1px $cui-base-border-color;
+	background: $blue-grey50;
+	min-height: 40px;
+	padding: $dialog-padding;
+
+	h4 {
+    font-weight:normal;
+		flex: 1 1 auto;
+		margin:0;
+    line-height:inherit;
+    color: $cui-text-color;
+	}
+}
+
+.cui-dialog-close-button {
+	flex:0 0 auto;
+}
+
+.cui-dialog-body {
+	flex: 1 1 auto;
+	padding: $dialog-padding;
+	overflow:auto;
+	background:white;
+}
+
+.cui-dialog-footer {
+	flex: 0 0 auto;
+  padding: $dialog-padding;
+  background: $blue-grey50;
+  border-radius:  0 0 $dialog-border-radius $dialog-border-radius;
+  border-top: solid 1px $cui-base-border-color;
+
+  .cui-button {
+    margin-right: 10px;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.cui-overlay-inline .cui-dialog {
+  position: absolute;
+}

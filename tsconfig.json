@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "lib": [
+      "dom",
+      "es7"
+    ],
+    "paths": {
+      "@/": [
+        "src/"
+      ],
+      "@shared/*": [
+        "src/_shared/*"
+      ],
+      "@test-utils": [
+        "src/_shared/test/utils"
+      ],
+    },
+    "module": "es2015",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./lib/esm",
+    "sourceMap": true,
+    "stripInternal": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5",
+  },
+  "include": [
+    "./src"
+  ]
+}

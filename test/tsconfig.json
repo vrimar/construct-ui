@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../",
+    "declaration": false,
+    "module": "commonjs",
+    "sourceMap": false,
+  },
+  "include": [
+    "./**/*.spec.ts"
+  ]
+}

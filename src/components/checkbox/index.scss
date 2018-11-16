@@ -1,0 +1,80 @@
+@import '../../_shared/variables';
+
+@mixin cui-checkbox-sizing($size) {
+  input:checked ~ .cui-control-indicator:after {
+    width: floor($size / 3);
+    height: floor($size / 2);
+    margin-top: -1px;
+  }
+
+  input:indeterminate ~.cui-control-indicator:after {
+    width: 10px;
+    height:2px;
+  }
+}
+
+@mixin cui-checkbox-style($bg-color-active, $border-color, $border-color-active) {
+  .cui-control-indicator, {
+    border: solid 1px $border-color;
+  }
+
+  input:checked ~ .cui-control-indicator,
+  input:indeterminate ~ .cui-control-indicator {
+    background: $bg-color-active;
+    border: solid 1px $border-color-active;
+  }
+}
+
+.cui-checkbox {
+  @include cui-checkbox-sizing($cui-control-base);
+  @include cui-checkbox-style(
+    $cui-primary-bg-color,
+    $cui-base-border-color,
+    $cui-primary-border-color-active
+  );
+
+  input:checked ~ .cui-control-indicator {
+    color:white;
+
+    &:after {
+      content: '\00a0';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      backface-visibility: hidden;
+      transform: translate(-50%, -50%) rotate(45deg);
+      border: solid white;
+      border-width: 0 2px 2px 0;
+    }
+  }
+
+  input:indeterminate ~ .cui-control-indicator {
+    color:white;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      backface-visibility: hidden;
+      transform: translate(-50%, -50%);
+      background:white;
+    }
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-checkbox-sizing(map-get($cui-control-map, $size))
+    }
+  }
+
+  @each $intent in $cui-intents {
+    &.cui-#{$intent} {
+      @include cui-checkbox-style(
+        map-get($cui-bg-color-map, $intent),
+        map-get($cui-border-color-map, $intent),
+        map-get($cui-border-color-active-map, $intent)
+      )
+    }
+  }
+}
