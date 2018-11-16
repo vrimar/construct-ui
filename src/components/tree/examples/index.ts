@@ -3,7 +3,7 @@ import { Tree, TreeNode, ITreeNodeAttrs, Popover, Icons, Menu, MenuItem, Classes
 import { Example } from '@shared/examples';
 import { data, IModel } from './data';
 
-const EXAMPLE_SRC = 'components/toast/examples/index.ts';
+const EXAMPLE_SRC = 'components/tree/examples/index.ts';
 
 export class TreeExample {
   private expandedMap: Map<string | number, boolean>;
