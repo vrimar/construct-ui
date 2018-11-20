@@ -28,5 +28,14 @@ function exportIconContents() {
   }`;
 }
 
+function generateIndex() {
+  return `import * as Icons from './IconNames';
+  import IconContents from './IconContents';
+
+  export { Icons, IconContents };
+  `;
+}
+
 writeLinesToFile('IconNames.ts', ...exportIconNames());
-writeLinesToFile('IconConents.ts', exportIconContents());
+writeLinesToFile('IconContents.ts', exportIconContents());
+writeLinesToFile('index.ts', generateIndex());
