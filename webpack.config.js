@@ -27,7 +27,7 @@ module.exports = {
     ]
   },
   plugins: [
-    // new UglifyJsPlugin()
+    new UglifyJsPlugin()
   ],
   resolve: {
     extensions: ['.ts', '.js'],
