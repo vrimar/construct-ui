@@ -90,5 +90,21 @@
     "webpack-dev-server": "^3.1.10"
   },
   "author": "Vasil Rimar",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vrimar/construct-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vrimar/construct-ui/issues"
+  },
+  "homepage": "https://vrimar.github.io/construct-ui",
+  "keywords": [
+    "ui-components",
+    "ui",
+    "mithril",
+    "mithril-component",
+    "mithriljs",
+    "typescript"
+  ]
 }
