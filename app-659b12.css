@@ -4263,6 +4263,8 @@ body {
   overflow: auto;
   visibility: hidden;
   outline: none; }
+  .Docs-nav.is-mobile {
+    visibility: visible; }
   .Docs-nav h4 {
     margin-bottom: 10px;
     font-size: 12px;
