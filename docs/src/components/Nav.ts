@@ -5,13 +5,14 @@ export interface INavAttrs {
   data: IDocumentationData;
   closeDrawer: Function;
   logo: m.Vnode;
+  isMobile: boolean;
 }
 
 export class Nav implements m.Component<INavAttrs> {
   public view({ attrs }: m.Vnode<INavAttrs>) {
-    const { data, closeDrawer, logo } = attrs;
+    const { data, isMobile, closeDrawer, logo } = attrs;
 
-    return m('.Docs-nav', m('.Docs-nav-content', [
+    return m('.Docs-nav', { class: isMobile ? 'is-mobile' : '' }, m('.Docs-nav-content', [
       m('.Docs-nav-header', [
         logo,
         m('', [
@@ -29,11 +30,11 @@ export class Nav implements m.Component<INavAttrs> {
         heading.children.map(child => [
           m('a', {
             class: `/${child.route}` === m.route.get() ? 'is-active' : '',
-            oncreate: m.route.link,
             onclick: () => {
-              window.requestAnimationFrame(() => closeDrawer());
+              closeDrawer();
+              m.route.set(`#/${child.route}`);
             },
-            href: `/${child.route}`
+            href: `#/${child.route}`
           }, child.title)
         ])
       ]))

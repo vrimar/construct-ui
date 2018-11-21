@@ -73,6 +73,10 @@ body {
   visibility: hidden;
   outline: none;
 
+  &.is-mobile {
+    visibility: visible;
+  }
+
   h4 {
     margin-bottom: 10px;
     font-size: 12px;

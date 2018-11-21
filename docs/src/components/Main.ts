@@ -17,7 +17,8 @@ export default class Main implements m.Component<IDocumentationData> {
     const nav = m(Nav, {
       data: attrs,
       closeDrawer: this.closeDrawer,
-      logo
+      logo,
+      isMobile
     });
 
     return m('.Docs', { class: isMobile ? 'is-mobile' : '' }, [
