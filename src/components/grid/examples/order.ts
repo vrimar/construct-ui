@@ -6,7 +6,7 @@ const EXAMPLE_SRC = 'components/grid/examples/order.ts';
 
 export class GridOrderExample {
   public view() {
-    return m(Example, { center: false, src: EXAMPLE_SRC }, [
+    return m(Example, { class: 'cui-example-grid', center: false, src: EXAMPLE_SRC }, [
       m(Grid, [
         m(Col, { span: 4, order: 3 }, m('.cui-example-grid-col', 'first')),
         m(Col, { span: 4, order: 1 }, m('.cui-example-grid-col', 'second')),
