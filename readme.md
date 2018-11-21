@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://vrimar.github.io/construct-ui" rel="noopener" target="_blank"><img width="60" src="./docs/src/logo.svg" alt="Construct-UI logo"></a></p>
+  <a href="https://vrimar.github.io/construct-ui" rel="noopener" target="_blank"><img width="60" src="https://raw.githubusercontent.com/vrimar/construct-ui/master/docs/src/logo.svg?sanitize=true" alt="Construct-UI logo"></a></p>
 </p>
 
 <h1 align="center">Construct-UI</h1>
