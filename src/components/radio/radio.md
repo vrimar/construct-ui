@@ -1,10 +1,10 @@
 @# Radio
-A Radio is a form control that allows for single select options. 
+A radio is a form control that allows for single select options. 
 
 @example RadioExample
 
 @## RadioGroup
-A RadioGroup arranges a list of radio controls.
+A radio group arranges a list of radio controls.
 @example RadioGroupExample
 
 @## Radio Attrs

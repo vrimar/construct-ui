@@ -1,5 +1,5 @@
 @# Table
-The Table component provides a simple wrapper over the HTML `table` element.
+The table component provides a simple wrapper over the HTML `table` element.
 
 @example TableExample
 

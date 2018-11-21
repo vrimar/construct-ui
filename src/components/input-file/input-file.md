@@ -3,5 +3,5 @@ A user file input.
 
 @example InputFileExample
 
-@## FileInput Attrs
+@## InputFile Attrs
 @interface IInputFileAttrs
