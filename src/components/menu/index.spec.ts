@@ -1,9 +1,7 @@
 import m from 'mithril';
 import assert from 'assert';
 import { Menu, MenuItem, IMenuAttrs, IMenuItemAttrs, Classes, IPopoverAttrs, Icons } from '@/';
-import { hasClass, hasChildClass } from '@test-utils';
-
-window.document.createRange = () => new Range();
+import { hasClass, hasChildClass, TIMEOUT } from '@test-utils';
 
 describe('menu', () => {
   const el = () => document.body.firstChild as HTMLElement;
@@ -52,23 +50,42 @@ describe('menu', () => {
       assert(hasChildClass(menuItem(), `${Classes.ICON}-${Icons.CHEVRON_RIGHT}`));
     });
 
-    it.skip('Renders submenu on mouse hover', (done) => {
+    // TODO: fix test
+    it.skip('Passes through Popover attrs to submenu popover', done => {
       const submenu = m(Menu, m(MenuItem));
 
-      mount({}, { submenu });
+      mount({}, {
+        submenu,
+        popoverMenuAttrs: {
+          class: Classes.POSITIVE,
+          style: 'color:red'
+        }
+      });
 
-      m.redraw();
+      setTimeout(() => {
+        menuItem().dispatchEvent(new MouseEvent('mouseenter'));
+        // const popover: HTMLElement = document.body.querySelector(`.${Classes.POPOVER}`);
+        // assert(hasClass(popover, Classes.POSITIVE));
+        done();
+      }, TIMEOUT);
+    });
 
-      // TODO: setup submenu
+    it('Triggers submenu popover on mouse hover', (done) => {
+      let count = 0;
+      const submenu = m(Menu, m(MenuItem));
 
-      // menuItem().dispatchEvent(new MouseEvent('mouseenter'));
+      mount({}, {
+        submenu,
+        popoverMenuAttrs: {
+          onOpened: () => count++
+        }
+      });
 
-      // setTimeout(() => {
-
-      //   m.redraw();
-      // }, 200);
-
-      setTimeout(done, 500);
+      setTimeout(() => {
+        menuItem().dispatchEvent(new MouseEvent('mouseenter'));
+        assert.equal(count, 1);
+        done();
+      }, TIMEOUT);
     });
   });
 
@@ -77,6 +94,7 @@ describe('menu', () => {
     // Transition duration is tested in the overlay component
     const popoverAttrs = {
       transitionDuration: 0,
+      addToStack: false,
       ...itemAttrs.popoverAttrs
     } as IPopoverAttrs;
 
@@ -90,5 +108,7 @@ describe('menu', () => {
     };
 
     m.mount(document.body, component);
+
+    return component;
   }
 });

@@ -26,6 +26,13 @@ describe('drawer', () => {
     assert(hasChildClass(drawer(), Classes.DRAWER_CONTENT));
   });
 
+  it('Sets correct position class', () => {
+    const position = 'top';
+    mount({ position });
+
+    assert(hasClass(drawer(), `${Classes.DRAWER}-${position}`));
+  });
+
   function mount(attrs: IDrawerAttrs) {
     const component = {
       view: () => m(Drawer, {
@@ -34,6 +41,7 @@ describe('drawer', () => {
         ...attrs
       })
     };
+
     m.mount(document.body, component);
   }
 });

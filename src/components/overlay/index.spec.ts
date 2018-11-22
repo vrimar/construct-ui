@@ -1,18 +1,15 @@
 import m from 'mithril';
 import assert from 'assert';
 import { Overlay, IOverlayAttrs, Classes, Input, Keys } from '@/';
-import { hasClass, hasChildClass } from '@test-utils';
-import { setTimeout } from 'timers';
+import { hasClass, hasChildClass, TIMEOUT } from '@test-utils';
 
-// TODO: look into race conditions
-describe.skip('overlay', () => {
-  const el = () => document.body.children[1] as HTMLElement;
+describe('overlay', () => {
+  const portal = () => document.body.querySelector(`.${Classes.PORTAL}`) as HTMLElement;
   const overlay = () => document.body.querySelector(`.${Classes.OVERLAY}`) as HTMLElement;
-  let container: HTMLElement;
 
   afterEach(() => {
-    m.mount(container, null);
     document.body.innerHTML = '';
+    m.mount(document.body, null);
   });
 
   it('Renders correctly', () => {
@@ -28,7 +25,7 @@ describe.skip('overlay', () => {
   it('Renders portal correctly', () => {
     mount({});
 
-    assert(hasClass(el(), Classes.PORTAL));
+    assert(hasClass(portal(), Classes.PORTAL));
   });
 
   it('Passes through attrs to portal', () => {
@@ -39,8 +36,8 @@ describe.skip('overlay', () => {
       }
     });
 
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert.equal(el().style.color, 'red');
+    assert(hasClass(portal(), Classes.POSITIVE));
+    assert.equal(portal().style.color, 'red');
   });
 
   it('Renders children', () => {
@@ -49,10 +46,10 @@ describe.skip('overlay', () => {
     assert(overlay().innerHTML.includes('content'));
   });
 
-  it.skip('Renders inline', () => {
+  it('Renders inline', () => {
     mount({ inline: true });
 
-    assert(!hasClass(el(), Classes.PORTAL));
+    assert(!portal());
   });
 
   it('Has backdrop by default', () => {
@@ -66,7 +63,7 @@ describe.skip('overlay', () => {
       backdropClass: Classes.POSITIVE
     });
 
-    const backdrop = el().querySelector(`.${Classes.OVERLAY_BACKDROP}`) as HTMLElement;
+    const backdrop = overlay().querySelector(`.${Classes.OVERLAY_BACKDROP}`) as HTMLElement;
 
     assert(hasClass(backdrop, Classes.POSITIVE));
   });
@@ -84,11 +81,11 @@ describe.skip('overlay', () => {
   it('hasBackdrop=false hides backdrop', () => {
     mount({ hasBackdrop: false });
 
-    const backdrop = el().querySelector(`.${Classes.OVERLAY_BACKDROP}`);
-    assert.equal(backdrop, null);
+    const backdrop = overlay().querySelector(`.${Classes.OVERLAY_BACKDROP}`);
+    assert(!backdrop);
   });
 
-  it('closeOnOutsideClick=true invokes onClose', done => {
+  it('closeOnOutsideClick=true invokes onClose', () => {
     let count = 0;
 
     mount({
@@ -96,15 +93,13 @@ describe.skip('overlay', () => {
       onClose: () => count++
     });
 
-    const backdrop = el().querySelector(`.${Classes.OVERLAY_BACKDROP}`);
+    const backdrop = overlay().querySelector(`.${Classes.OVERLAY_BACKDROP}`);
     backdrop.dispatchEvent(new Event('mousedown'));
 
     assert.equal(count, 1);
-
-    setTimeout(done, 65);
   });
 
-  it('Handles closeOnEscapeKey', done => {
+  it('Handles closeOnEscapeKey', () => {
     let count = 0;
 
     mount({
@@ -116,9 +111,10 @@ describe.skip('overlay', () => {
       which: Keys.ESCAPE
     } as any));
 
-    setTimeout(done, 65);
+    assert.equal(count, 1);
   });
 
+  // TODO: overlay lifecycle callbacks
   it('Handles lifecycle callbacks', done => {
     let count = 0;
 
@@ -130,30 +126,23 @@ describe.skip('overlay', () => {
     setTimeout(() => {
       component.isOpen = false;
       m.redraw();
-
-      setTimeout(() => {
-        assert.equal(count, 2);
-        done();
-      }, 10);
-    }, 65);
+      assert.equal(count, 2);
+      done();
+    }, TIMEOUT);
   });
 
   function mount(attrs: IOverlayAttrs) {
-    const div = document.createElement('div');
-    document.body.appendChild(div);
-    container = div;
-
     const component = {
       isOpen: true,
       view: (vnode: any) => m(Overlay, {
+        addToStack: false,
         isOpen: vnode.state.isOpen,
         transitionDuration: 0,
         ...attrs
       })
     };
 
-    m.mount(div, component);
-
+    m.mount(document.body, component);
     return component;
   }
 });

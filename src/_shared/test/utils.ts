@@ -5,3 +5,5 @@ export function hasClass(el: HTMLElement, className: string) {
 export function hasChildClass(el: HTMLElement, className: string) {
   return el.querySelector(`.${className}`);
 }
+
+export const TIMEOUT = 70;

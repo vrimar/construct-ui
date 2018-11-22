@@ -47,6 +47,7 @@ describe('empty-state', () => {
     const component = {
       view: () => m(EmptyState, { ...attrs })
     };
+
     m.mount(document.body, component);
   }
 });

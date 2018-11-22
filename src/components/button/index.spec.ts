@@ -9,22 +9,30 @@ describe('button', () => {
   beforeEach(() => m.mount(document.body, null));
 
   it('Renders correctly', () => {
+    const align = 'right';
+
     mount({
+      align,
       basic: true,
       class: Classes.POSITIVE,
       fluid: true,
       intent: 'primary',
       rounded: true,
-      label: 'test'
+      label: 'label',
+      sublabel: 'sublabel',
+      compact: true
     });
 
     assert(hasClass(el(), Classes.BUTTON));
+    assert(hasClass(el(), `${Classes.ALIGN}-${align}`));
     assert(hasClass(el(), Classes.PRIMARY));
     assert(hasClass(el(), Classes.POSITIVE));
     assert(hasClass(el(), Classes.BASIC));
     assert(hasClass(el(), Classes.ROUNDED));
     assert(hasClass(el(), Classes.FLUID));
-    assert.equal(el().textContent, 'test');
+    assert(hasClass(el(), Classes.COMPACT));
+    assert(el().textContent.includes('label'));
+    assert(el().textContent.includes('sublabel'));
   });
 
   it('Renders anchor', () => {
@@ -98,6 +106,7 @@ describe('button', () => {
     const component = {
       view: () => m(Button, { ...attrs })
     };
+
     m.mount(document.body, component);
   }
 });

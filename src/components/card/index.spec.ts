@@ -21,15 +21,11 @@ describe('card', () => {
     assert(hasClass(el(), Classes.CARD_INTERACTIVE));
     assert(hasClass(el(), `${Classes.ELEVATION}-2`));
     assert(hasClass(el(), Classes.XS));
-
     assert(el().hasAttribute('style'));
   });
 
   it('Passes through html attrs', () => {
-    mount({
-      id: 1,
-      name: 'name'
-    });
+    mount({ id: 1, name: 'name' });
 
     assert(el().hasAttribute('id'));
     assert(el().hasAttribute('name'));
@@ -39,6 +35,7 @@ describe('card', () => {
     const component = {
       view: () => m(Card, { ...attrs })
     };
+
     m.mount(document.body, component);
   }
 });

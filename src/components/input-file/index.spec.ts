@@ -74,6 +74,7 @@ describe('input-file', () => {
     const component = {
       view: () => m(InputFile, { ...attrs })
     };
+
     m.mount(document.body, component);
   }
 });

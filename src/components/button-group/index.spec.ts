@@ -54,6 +54,7 @@ describe('button-group', () => {
         m(Button, { label: 'label' })
       ])
     };
+
     m.mount(document.body, component);
   }
 });

@@ -1,7 +1,7 @@
 import m from 'mithril';
 import assert from 'assert';
 import { Dialog, IDialogAttrs, Classes } from '@/';
-import { hasChildClass } from '@test-utils';
+import { hasChildClass, hasClass } from '@test-utils';
 
 describe('dialog', () => {
   const el = () => document.body.firstChild as HTMLElement;
@@ -9,12 +9,14 @@ describe('dialog', () => {
 
   afterEach(() => m.mount(document.body, null));
 
-  // TODO: dialog doesn't pass class/style correctly
-  it.skip('Renders correctly', () => {
+  it('Renders correctly', () => {
     mount({
       class: Classes.POSITIVE,
       style: 'color: red'
     });
+
+    assert(hasClass(dialog(), Classes.POSITIVE));
+    assert.equal(dialog().style.color, 'red');
   });
 
   it('Renders children', () => {
@@ -29,7 +31,16 @@ describe('dialog', () => {
     assert(hasChildClass(dialog(), Classes.DIALOG_FOOTER));
   });
 
-  it('Header hidden when no title attrs', () => {
+  it('hasCloseButton=false hides close button', () => {
+    mount({
+      title: 'Title',
+      hasCloseButton: false
+    });
+
+    assert(!hasChildClass(dialog(), Classes.DIALOG_CLOSE_BUTTON));
+  });
+
+  it('Header hidden when no title attr', () => {
     mount({
       content: 'content',
       footer: 'footer'
@@ -51,6 +62,7 @@ describe('dialog', () => {
         ...attrs
       })
     };
+
     m.mount(document.body, component);
   }
 });
