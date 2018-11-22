@@ -33,8 +33,15 @@ export class ColorsExample {
   }
 
   private renderColorGrid(groups: string[][]) {
+    const colSpan = {
+      xs: 12,
+      md: 6,
+      sm: 6,
+      lg: 4
+    };
+
     return m(Grid, { gutter: 20 }, groups.map(colorGroup => [
-      m(Col, { span: 4 }, [
+      m(Col, { span: colSpan }, [
         m('.cui-example-colors-group', colorGroup.map(color => this.renderColorbar(color)))
       ])
     ]));
