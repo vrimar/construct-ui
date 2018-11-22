@@ -48,6 +48,10 @@ export function getScrollbarWidth() {
   return scrollbarWidth;
 }
 
+export function hasScrollbar(el: HTMLElement) {
+  return el.scrollHeight > window.innerHeight;
+}
+
 export function elementIsOrContains(element: HTMLElement, testElement: HTMLElement) {
   return element === testElement || element.contains(testElement);
 }

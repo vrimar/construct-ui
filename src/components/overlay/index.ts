@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import m from 'mithril';
-import { Classes, IAttrs, safeCall, Keys, getScrollbarWidth } from '../../_shared';
+import { Classes, IAttrs, safeCall, Keys, getScrollbarWidth, hasScrollbar } from '../../_shared';
 import { AbstractComponent } from '../abstract-component';
 import { Portal, IPortalAttrs } from '../portal';
 
@@ -74,7 +74,6 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
   private shouldRender: boolean = false;
   private contentEl: HTMLElement;
   private lastActiveElement: HTMLElement;
-  private scrollbarWidth: number;
 
   private static openStack: number[] = [];
   private static getLastOpened = () => Overlay.openStack[Overlay.openStack.length - 1];
@@ -94,10 +93,6 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
   public oninit(vnode: m.Vnode<IOverlayAttrs>) {
     super.oninit(vnode);
     this.shouldRender = vnode.attrs.isOpen;
-  }
-
-  public oncreate() {
-    this.scrollbarWidth = getScrollbarWidth();
   }
 
   public onbeforeupdate(vnode: m.Vnode<IOverlayAttrs>, old: m.VnodeDOM<IOverlayAttrs>) {
@@ -210,12 +205,17 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
       document.addEventListener('keydown', this.handleKeyDown);
     }
 
+    this.handleEnterTransition();
+
     if (hasBackdrop && !inline) {
       document.body.classList.add(Classes.OVERLAY_OPEN);
-      document.body.style.paddingRight = `${this.scrollbarWidth}px`;
+      const bodyHasScrollbar = hasScrollbar(document.body);
+
+      if (bodyHasScrollbar) {
+        document.body.style.paddingRight = `${getScrollbarWidth()}px`;
+      }
     }
 
-    this.handleEnterTransition();
     safeCall(onOpened);
     this.handleFocus();
   }
