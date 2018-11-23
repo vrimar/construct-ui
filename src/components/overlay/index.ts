@@ -26,8 +26,11 @@ export interface IOverlayableAttrs {
   /** Callback invoked after transition is complete and component is unmounted */
   onClosed?: () => void;
 
-  /** Callback invoked when component mounts and transition is complete */
-  onOpened?: () => void;
+  /**
+   * Callback invoked when component mounts and transition is complete
+   * Passed back DOM element container
+   */
+  onOpened?: (contentEl: HTMLElement) => void;
 
   /** Sets focus to first element that has a `autofocus` or `tabindex` attribute */
   autofocus?: boolean;
@@ -216,7 +219,8 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
       }
     }
 
-    safeCall(onOpened);
+    safeCall(onOpened, contentEl);
+
     this.handleFocus();
   }
 
