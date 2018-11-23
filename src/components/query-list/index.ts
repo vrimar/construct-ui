@@ -290,35 +290,37 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
   }
 
   private setControlledAttrs() {
-    if (this.attrs.query != null) {
-      this.query = this.attrs.query;
+    const { activeIndex, query } = this.attrs;
+
+    if (query != null) {
+      this.query = query;
     }
 
-    if (this.attrs.activeIndex != null) {
-      this.activeIndex = this.attrs.activeIndex;
+    if (activeIndex != null) {
+      this.activeIndex = activeIndex === -1 ? 0 : activeIndex;
     }
   }
 
   public scrollToActiveItem() {
-    const activeEl = this.activeEl;
+    const { listEl, activeIndex } = this;
 
-    if (this.listEl && activeEl) {
+    if (listEl) {
+      const activeEl = listEl.children[activeIndex] as HTMLElement;
+
+      if (!activeEl) return;
+
       const { offsetTop: activeTop, offsetHeight: activeHeight } = activeEl;
 
-      const { scrollTop: listScrollTop, clientHeight: listHeight } = this.listEl;
+      const { scrollTop: listScrollTop, clientHeight: listHeight } = listEl;
       const activeBottomEdge = activeTop + activeHeight;
       const activeTopEdge = activeTop;
 
       if (activeBottomEdge >= listScrollTop + listHeight) {
-        this.listEl.scrollTop = activeBottomEdge + activeHeight - listHeight;
+        listEl.scrollTop = activeBottomEdge + activeHeight - listHeight;
       } else if (activeTopEdge <= listScrollTop) {
-        this.listEl.scrollTop = activeTopEdge - activeHeight;
+        listEl.scrollTop = activeTopEdge - activeHeight;
       }
     }
-  }
-
-  private get activeEl() {
-    return this.listEl.children[this.activeIndex] as HTMLElement;
   }
 
   private get activeItem() {
