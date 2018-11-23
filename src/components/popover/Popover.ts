@@ -107,7 +107,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
   }
 
   public onremove() {
-    this.destroy();
+    this.destroyPopper();
   }
 
   public view() {
@@ -129,10 +129,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     ];
 
     this.popover = m('', {
-      class: classnames(
-        Classes.POPOVER,
-        this.popper && Classes.POPOVER_OPEN
-      ),
+      class: Classes.POPOVER,
       onclick: this.handlePopoverClick,
       onmouseenter: this.handleTriggerMouseEnter,
       onmouseleave: this.handleTriggerMouseLeave
@@ -142,6 +139,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
       this.trigger,
 
       m(Overlay, {
+        restoreFocus: this.isClickInteraction(),
         ...this.attrs as IOverlayableAttrs,
         backdropClass: classnames(Classes.POPOVER_BACKDROP, backdropClass),
         closeOnOutsideClick: interactionType !== 'click-trigger',
@@ -149,21 +147,21 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
         inline,
         isOpen: this.isOpen,
         onClose: this.handleOverlayClose,
-        onOpened: () => this.handleOpened(),
-        onClosed: () => this.handleClosed()
+        onOpened: this.handleOpened,
+        onClosed: this.handleClosed
       })
     ]);
   }
 
-  private handleOpened() {
+  private handleOpened = (contentEl: HTMLElement) => {
     if (this.popover.dom) {
       this.createPopper();
-      safeCall(this.attrs.onOpened);
+      safeCall(this.attrs.onOpened, contentEl);
     }
   }
 
-  private handleClosed() {
-    this.destroy();
+  private handleClosed = () => {
+    this.destroyPopper();
     safeCall(this.attrs.onClosed);
   }
 
@@ -176,12 +174,8 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     }
   }
 
-  private destroy() {
-    this.destroyPopper();
-  }
-
   private createPopper() {
-    const { position, hasArrow, boundariesEl } = this.attrs;
+    const { position, hasArrow, boundariesEl, modifiers } = this.attrs;
 
     const options = {
       placement: position,
@@ -199,7 +193,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
           boundariesElement: boundariesEl,
           padding: 0
         },
-        ...this.attrs.modifiers
+        ...modifiers
       }
     } as PopperJS.PopperOptions;
 
@@ -208,9 +202,6 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
       this.popover.dom,
       options
     );
-
-    this.updatePopper();
-    m.redraw();
   }
 
   private updatePopper() {

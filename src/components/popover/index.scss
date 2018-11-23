@@ -9,12 +9,13 @@ $cui-popover-arrow-offset: $cui-popover-arrow-size / 2 !default;
 .cui-popover {
   position: absolute;
   z-index: $cui-z-index-overlay;
-  visibility: hidden;
+  left: -9999px;
 
-  &.cui-popover-open {
-    visibility: visible;
+  &.fade-enter & {
+    opacity: 0.01;
+    transition: opacity $cui-transition-duration $cui-transition-ease;
   }
-  
+
   .fade-enter & {
     opacity: 0.01;
     transition: opacity $cui-transition-duration $cui-transition-ease;
