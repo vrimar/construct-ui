@@ -2747,9 +2747,10 @@ body.cui-overlay-open {
 .cui-popover {
   position: absolute;
   z-index: 20;
-  visibility: hidden; }
-  .cui-popover.cui-popover-open {
-    visibility: visible; }
+  left: -9999px; }
+  .cui-popover.fade-enter .cui-popover {
+    opacity: 0.01;
+    transition: opacity 200ms cubic-bezier(0.4, 1, 0.75, 0.9); }
   .fade-enter .cui-popover {
     opacity: 0.01;
     transition: opacity 200ms cubic-bezier(0.4, 1, 0.75, 0.9); }
@@ -4274,6 +4275,7 @@ body {
 .Docs-logo {
   display: block;
   height: 40px;
+  width: 36px;
   margin-right: 10px; }
 
 .Docs-nav-header {
