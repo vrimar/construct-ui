@@ -31,16 +31,16 @@ export class SelectList<T> extends AbstractComponent<ISelectListAttrs<T>> {
   private isOpen: boolean;
   private activeIndex: number = 0;
 
+  public static ofType<T>() {
+    return SelectList as new () => SelectList<T>;
+  }
+
   public getDefaultAttrs() {
     return {
       closeOnSelect: true,
       popoverAttrs: {},
       inputAttrs: {}
     } as ISelectListAttrs<T>;
-  }
-
-  public static ofType<T>() {
-    return SelectList as new () => SelectList<T>;
   }
 
   public oninit(vnode: m.Vnode<ISelectListAttrs<T>>) {
