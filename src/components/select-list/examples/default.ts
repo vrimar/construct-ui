@@ -25,7 +25,6 @@ export class SelectListExample {
         loading: this.loading,
         popoverAttrs: {
           hasArrow: false
-          // transitionDuration: 0
         },
         trigger: m(Button, {
           align: 'left',
