@@ -44,7 +44,9 @@ export class Button implements m.Component<IButtonAttrs> {
       fluid,
       href,
       iconLeft,
+      iconLeftAttrs,
       iconRight,
+      iconRightAttrs,
       intent,
       loading,
       label,
@@ -76,10 +78,10 @@ export class Button implements m.Component<IButtonAttrs> {
 
     const content = [
       loading && m(Spinner, { active: true, fill: true }),
-      iconLeft && m(Icon, { name: iconLeft }),
+      iconLeft && m(Icon, { name: iconLeft, ...iconLeftAttrs }),
       sublabel && m('span', { class: Classes.BUTTON_SUBLABEL }, sublabel),
       label && m('span', { class: Classes.BUTTON_LABEL }, label),
-      iconRight && m(Icon, { name: iconRight })
+      iconRight && m(Icon, { name: iconRight, ...iconRightAttrs })
     ];
 
     return m(tag, {

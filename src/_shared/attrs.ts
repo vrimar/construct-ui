@@ -1,5 +1,6 @@
 import m from 'mithril';
 import { IconName, Intent, Size } from '..';
+import { IIconAttrs } from '../components/icon';
 
 export type Style = string | Partial<CSSStyleDeclaration>;
 
@@ -34,8 +35,14 @@ export interface IActionItemAttrs {
   /** Left-justified icon */
   iconLeft?: IconName;
 
+  /** Attrs passed though to left-justified icon */
+  iconLeftAttrs?: IIconAttrs;
+
   /** Right-justified icon */
   iconRight?: IconName;
+
+  /** Attrs passed though to right-justified icon */
+  iconRightAttrs?: IIconAttrs;
 
   /** Callback invoked on click */
   onclick?: (e: Event) => void;
