@@ -107,9 +107,9 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
   }
 
   private renderItem = (item: Option) => {
-    const label = typeof (item) === 'string' ? item : item.label;
-    const value = typeof (item) === 'string' ? item : item.value;
-    const attrs = typeof (item) === 'string' ? {} : item;
+    const label = typeof (item) === 'object' ? item.label : item;
+    const value = typeof (item) === 'object' ? item.value : item;
+    const attrs = typeof (item) === 'object' ? item : {};
 
     return m(ListItem, {
       ...attrs,
@@ -125,7 +125,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
 
     this.isOpen = false;
 
-    safeCall(this.attrs.onSelect, this.selected);
+    safeCall(this.attrs.onSelect, item);
   }
 
   private handleActiveItemChange = (_activeItem: Option, index: number) => {
@@ -162,34 +162,24 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
 
   private get selectedValue() {
     const selected = this.selected;
-
-    if (selected == null) {
-      return '';
-    }
-
-    return typeof (selected) === 'string' ? selected : selected.value;
+    return selected != null ? typeof selected === 'object' ? selected.value : selected : '';
   }
 
   private get selectedLabel() {
     const selected = this.selected;
-
-    if (selected == null) {
-      return '';
-    }
-
-    return typeof (selected) === 'string' ? selected : selected.label;
+    return selected != null ? typeof selected === 'object' ? selected.label : selected : '';
   }
 
   private setSelected() {
     const { options, value, defaultValue } = this.attrs;
 
     if (options.length) {
-      const selectedValue = value || defaultValue || '';
       const firstOption = options[0];
+      const selectedValue = value || defaultValue || '';
 
-      this.selected = typeof firstOption === 'string'
-        ? selectedValue
-        : (options as IOption[]).find(x => x.value === selectedValue);
+      this.selected = typeof firstOption === 'object'
+        ? (options as IOption[]).find(x => x.value === selectedValue)
+        : selectedValue;
 
       const index = (options as any).indexOf(this.selected);
       this.activeIndex = index;
