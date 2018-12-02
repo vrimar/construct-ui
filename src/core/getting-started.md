@@ -36,3 +36,4 @@ import 'path/to/node_modules/construct-ui/lib/index.css'
 + Firefox >= 52
 + Edge >= 14
 + IE 11 (requires a polyfill for  `Array.findIndex`, `Array.find` and `Array.includes`)
++ Safari 9 +
