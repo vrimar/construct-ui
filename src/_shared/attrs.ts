@@ -36,13 +36,13 @@ export interface IActionItemAttrs {
   iconLeft?: IconName;
 
   /** Attrs passed though to left-justified icon */
-  iconLeftAttrs?: IIconAttrs;
+  iconLeftAttrs?: Partial<IIconAttrs>;
 
   /** Right-justified icon */
   iconRight?: IconName;
 
   /** Attrs passed though to right-justified icon */
-  iconRightAttrs?: IIconAttrs;
+  iconRightAttrs?: Partial<IIconAttrs>;
 
   /** Callback invoked on click */
   onclick?: (e: Event) => void;
