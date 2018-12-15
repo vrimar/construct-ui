@@ -1,3 +1,9 @@
+# 0.1.6
++ [Styles] Fix line height styles
++ [Button] Set `iconLeftAttrs` and `iconRightAttrs` as partials
++ [Popover] Set `restoreFocus` to `false` as default
++ [QueryList] Check if `activeIndex` is positive before scrolling to active item
+
 # 0.1.5
 + [Docs] Update getting started
 + [Button] Add `iconLeftAttrs` and `iconRightAttrs` attrs
