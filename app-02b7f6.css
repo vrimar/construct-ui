@@ -527,7 +527,7 @@ pre code {
   font-size: 14px;
   height: 40px;
   min-height: 40px;
-  line-height: 39px;
+  line-height: 40px;
   color: #607d8b;
   background: linear-gradient(180deg, #ffffff 10.5%, #f4f6f7 100%);
   border: solid 1px #c5cdd1;
@@ -638,7 +638,7 @@ pre code {
     font-size: 12px;
     height: 30px;
     min-height: 30px;
-    line-height: 29px; }
+    line-height: 30px; }
     .cui-button.cui-xs.cui-compact,
     .cui-button-group.cui-xs .cui-button.cui-compact,
     .cui-menu.cui-xs .cui-button.cui-compact {
@@ -666,7 +666,7 @@ pre code {
     font-size: 13px;
     height: 35px;
     min-height: 35px;
-    line-height: 34px; }
+    line-height: 35px; }
     .cui-button.cui-sm.cui-compact,
     .cui-button-group.cui-sm .cui-button.cui-compact,
     .cui-menu.cui-sm .cui-button.cui-compact {
@@ -694,7 +694,7 @@ pre code {
     font-size: 16px;
     height: 45px;
     min-height: 45px;
-    line-height: 44px; }
+    line-height: 45px; }
     .cui-button.cui-lg.cui-compact,
     .cui-button-group.cui-lg .cui-button.cui-compact,
     .cui-menu.cui-lg .cui-button.cui-compact {
@@ -722,7 +722,7 @@ pre code {
     font-size: 18px;
     height: 50px;
     min-height: 50px;
-    line-height: 49px; }
+    line-height: 50px; }
     .cui-button.cui-xl.cui-compact,
     .cui-button-group.cui-xl .cui-button.cui-compact,
     .cui-menu.cui-xl .cui-button.cui-compact {
@@ -2199,7 +2199,7 @@ pre code {
     font-size: 14px;
     height: 40px;
     min-height: 40px;
-    line-height: 39px; }
+    line-height: 40px; }
     .cui-input input:not(:first-child), .cui-input textarea:not(:first-child) {
       padding-left: 36px; }
     .cui-input input:not(:last-child), .cui-input textarea:not(:last-child) {
@@ -2219,7 +2219,7 @@ pre code {
     font-size: 11px;
     height: 28px;
     min-height: 28px;
-    line-height: 27px; }
+    line-height: 28px; }
   .cui-input input, .cui-input textarea {
     border: solid 1px #c5cdd1; }
     .cui-input input:focus, .cui-input textarea:focus {
@@ -2281,7 +2281,7 @@ pre code {
     font-size: 12px;
     height: 30px;
     min-height: 30px;
-    line-height: 29px; }
+    line-height: 30px; }
     .cui-input.cui-xs input:not(:first-child), .cui-input.cui-xs textarea:not(:first-child) {
       padding-left: 30px; }
     .cui-input.cui-xs input:not(:last-child), .cui-input.cui-xs textarea:not(:last-child) {
@@ -2301,13 +2301,13 @@ pre code {
     font-size: 10px;
     height: 21px;
     min-height: 21px;
-    line-height: 20px; }
+    line-height: 21px; }
   .cui-input.cui-sm input, .cui-input.cui-sm textarea {
     padding: 0 11px;
     font-size: 13px;
     height: 35px;
     min-height: 35px;
-    line-height: 34px; }
+    line-height: 35px; }
     .cui-input.cui-sm input:not(:first-child), .cui-input.cui-sm textarea:not(:first-child) {
       padding-left: 33px; }
     .cui-input.cui-sm input:not(:last-child), .cui-input.cui-sm textarea:not(:last-child) {
@@ -2327,13 +2327,13 @@ pre code {
     font-size: 10px;
     height: 25px;
     min-height: 25px;
-    line-height: 24px; }
+    line-height: 25px; }
   .cui-input.cui-lg input, .cui-input.cui-lg textarea {
     padding: 0 14px;
     font-size: 16px;
     height: 45px;
     min-height: 45px;
-    line-height: 44px; }
+    line-height: 45px; }
     .cui-input.cui-lg input:not(:first-child), .cui-input.cui-lg textarea:not(:first-child) {
       padding-left: 42px; }
     .cui-input.cui-lg input:not(:last-child), .cui-input.cui-lg textarea:not(:last-child) {
@@ -2353,13 +2353,13 @@ pre code {
     font-size: 13px;
     height: 32px;
     min-height: 32px;
-    line-height: 31px; }
+    line-height: 32px; }
   .cui-input.cui-xl input, .cui-input.cui-xl textarea {
     padding: 0 16px;
     font-size: 18px;
     height: 50px;
     min-height: 50px;
-    line-height: 49px; }
+    line-height: 50px; }
     .cui-input.cui-xl input:not(:first-child), .cui-input.cui-xl textarea:not(:first-child) {
       padding-left: 48px; }
     .cui-input.cui-xl input:not(:last-child), .cui-input.cui-xl textarea:not(:last-child) {
@@ -2379,7 +2379,7 @@ pre code {
     font-size: 15px;
     height: 35px;
     min-height: 35px;
-    line-height: 34px; }
+    line-height: 35px; }
   .cui-input.cui-primary input, .cui-input.cui-primary textarea {
     border: solid 1px #5360ad; }
     .cui-input.cui-primary input:focus, .cui-input.cui-primary textarea:focus {
@@ -2412,7 +2412,7 @@ pre code {
     font-size: 14px;
     height: 40px;
     min-height: 40px;
-    line-height: 39px; }
+    line-height: 40px; }
     .cui-input-file .cui-input-file-content:not(:nth-child(2)) {
       padding-left: 36px; }
     .cui-input-file .cui-input-file-content:not(:last-child) {
@@ -2432,7 +2432,7 @@ pre code {
     font-size: 11px;
     height: 28px;
     min-height: 28px;
-    line-height: 27px; }
+    line-height: 28px; }
   .cui-input-file .cui-input-file-content {
     border: solid 1px #c5cdd1; }
     .cui-input-file .cui-input-file-content:focus {
@@ -2482,7 +2482,7 @@ pre code {
     font-size: 12px;
     height: 30px;
     min-height: 30px;
-    line-height: 29px; }
+    line-height: 30px; }
     .cui-input-file.cui-xs .cui-input-file-content:not(:nth-child(2)) {
       padding-left: 30px; }
     .cui-input-file.cui-xs .cui-input-file-content:not(:last-child) {
@@ -2502,13 +2502,13 @@ pre code {
     font-size: 10px;
     height: 21px;
     min-height: 21px;
-    line-height: 20px; }
+    line-height: 21px; }
   .cui-input-file.cui-sm .cui-input-file-content {
     padding: 0 11px;
     font-size: 13px;
     height: 35px;
     min-height: 35px;
-    line-height: 34px; }
+    line-height: 35px; }
     .cui-input-file.cui-sm .cui-input-file-content:not(:nth-child(2)) {
       padding-left: 33px; }
     .cui-input-file.cui-sm .cui-input-file-content:not(:last-child) {
@@ -2528,13 +2528,13 @@ pre code {
     font-size: 10px;
     height: 25px;
     min-height: 25px;
-    line-height: 24px; }
+    line-height: 25px; }
   .cui-input-file.cui-lg .cui-input-file-content {
     padding: 0 14px;
     font-size: 16px;
     height: 45px;
     min-height: 45px;
-    line-height: 44px; }
+    line-height: 45px; }
     .cui-input-file.cui-lg .cui-input-file-content:not(:nth-child(2)) {
       padding-left: 42px; }
     .cui-input-file.cui-lg .cui-input-file-content:not(:last-child) {
@@ -2554,13 +2554,13 @@ pre code {
     font-size: 13px;
     height: 32px;
     min-height: 32px;
-    line-height: 31px; }
+    line-height: 32px; }
   .cui-input-file.cui-xl .cui-input-file-content {
     padding: 0 16px;
     font-size: 18px;
     height: 50px;
     min-height: 50px;
-    line-height: 49px; }
+    line-height: 50px; }
     .cui-input-file.cui-xl .cui-input-file-content:not(:nth-child(2)) {
       padding-left: 48px; }
     .cui-input-file.cui-xl .cui-input-file-content:not(:last-child) {
@@ -2580,7 +2580,7 @@ pre code {
     font-size: 15px;
     height: 35px;
     min-height: 35px;
-    line-height: 34px; }
+    line-height: 35px; }
   .cui-input-file.cui-primary .cui-input-file-content {
     border: solid 1px #5360ad; }
     .cui-input-file.cui-primary .cui-input-file-content:focus {
@@ -2952,7 +2952,7 @@ body.cui-overlay-open {
     font-size: 14px;
     height: 40px;
     min-height: 40px;
-    line-height: 39px; }
+    line-height: 40px; }
     .cui-select select:not(:first-child) {
       padding-left: 36px; }
     .cui-select select:not(:last-child) {
@@ -2972,7 +2972,7 @@ body.cui-overlay-open {
     font-size: 11px;
     height: 28px;
     min-height: 28px;
-    line-height: 27px; }
+    line-height: 28px; }
   .cui-select select {
     color: #607d8b;
     background: linear-gradient(180deg, #ffffff 10.5%, #f4f6f7 100%);
@@ -3044,7 +3044,7 @@ body.cui-overlay-open {
     font-size: 12px;
     height: 30px;
     min-height: 30px;
-    line-height: 29px; }
+    line-height: 30px; }
     .cui-select.cui-xs select:not(:first-child) {
       padding-left: 30px; }
     .cui-select.cui-xs select:not(:last-child) {
@@ -3064,13 +3064,13 @@ body.cui-overlay-open {
     font-size: 10px;
     height: 21px;
     min-height: 21px;
-    line-height: 20px; }
+    line-height: 21px; }
   .cui-select.cui-sm select {
     padding: 0 11px;
     font-size: 13px;
     height: 35px;
     min-height: 35px;
-    line-height: 34px; }
+    line-height: 35px; }
     .cui-select.cui-sm select:not(:first-child) {
       padding-left: 33px; }
     .cui-select.cui-sm select:not(:last-child) {
@@ -3090,13 +3090,13 @@ body.cui-overlay-open {
     font-size: 10px;
     height: 25px;
     min-height: 25px;
-    line-height: 24px; }
+    line-height: 25px; }
   .cui-select.cui-lg select {
     padding: 0 14px;
     font-size: 16px;
     height: 45px;
     min-height: 45px;
-    line-height: 44px; }
+    line-height: 45px; }
     .cui-select.cui-lg select:not(:first-child) {
       padding-left: 42px; }
     .cui-select.cui-lg select:not(:last-child) {
@@ -3116,13 +3116,13 @@ body.cui-overlay-open {
     font-size: 13px;
     height: 32px;
     min-height: 32px;
-    line-height: 31px; }
+    line-height: 32px; }
   .cui-select.cui-xl select {
     padding: 0 16px;
     font-size: 18px;
     height: 50px;
     min-height: 50px;
-    line-height: 49px; }
+    line-height: 50px; }
     .cui-select.cui-xl select:not(:first-child) {
       padding-left: 48px; }
     .cui-select.cui-xl select:not(:last-child) {
@@ -3142,7 +3142,7 @@ body.cui-overlay-open {
     font-size: 15px;
     height: 35px;
     min-height: 35px;
-    line-height: 34px; }
+    line-height: 35px; }
   .cui-select.cui-primary select {
     color: #5c6bc0;
     background: linear-gradient(180deg, #ffffff 10.5%, #f4f6f7 100%);
@@ -3573,7 +3573,7 @@ body.cui-overlay-open {
     font-size: 14px;
     height: 40px;
     min-height: 40px;
-    line-height: 39px; }
+    line-height: 40px; }
     .cui-tag-input .cui-tag-input-values:not(:first-child) {
       padding-left: 36px; }
     .cui-tag-input .cui-tag-input-values:not(:last-child) {
@@ -3593,7 +3593,7 @@ body.cui-overlay-open {
     font-size: 11px;
     height: 28px;
     min-height: 28px;
-    line-height: 27px; }
+    line-height: 28px; }
   .cui-tag-input > .cui-icon {
     top: 9px; }
   .cui-tag-input .cui-tag-input-values {
@@ -3648,7 +3648,7 @@ body.cui-overlay-open {
     font-size: 12px;
     height: 30px;
     min-height: 30px;
-    line-height: 29px; }
+    line-height: 30px; }
     .cui-tag-input.cui-xs .cui-tag-input-values:not(:first-child) {
       padding-left: 30px; }
     .cui-tag-input.cui-xs .cui-tag-input-values:not(:last-child) {
@@ -3668,7 +3668,7 @@ body.cui-overlay-open {
     font-size: 10px;
     height: 21px;
     min-height: 21px;
-    line-height: 20px; }
+    line-height: 21px; }
   .cui-tag-input.cui-xs > .cui-icon {
     top: 7px; }
   .cui-tag-input.cui-xs .cui-tag-input-values {
@@ -3683,7 +3683,7 @@ body.cui-overlay-open {
     font-size: 13px;
     height: 35px;
     min-height: 35px;
-    line-height: 34px; }
+    line-height: 35px; }
     .cui-tag-input.cui-sm .cui-tag-input-values:not(:first-child) {
       padding-left: 33px; }
     .cui-tag-input.cui-sm .cui-tag-input-values:not(:last-child) {
@@ -3703,7 +3703,7 @@ body.cui-overlay-open {
     font-size: 10px;
     height: 25px;
     min-height: 25px;
-    line-height: 24px; }
+    line-height: 25px; }
   .cui-tag-input.cui-sm > .cui-icon {
     top: 8px; }
   .cui-tag-input.cui-sm .cui-tag-input-values {
@@ -3718,7 +3718,7 @@ body.cui-overlay-open {
     font-size: 16px;
     height: 45px;
     min-height: 45px;
-    line-height: 44px; }
+    line-height: 45px; }
     .cui-tag-input.cui-lg .cui-tag-input-values:not(:first-child) {
       padding-left: 42px; }
     .cui-tag-input.cui-lg .cui-tag-input-values:not(:last-child) {
@@ -3738,7 +3738,7 @@ body.cui-overlay-open {
     font-size: 13px;
     height: 32px;
     min-height: 32px;
-    line-height: 31px; }
+    line-height: 32px; }
   .cui-tag-input.cui-lg > .cui-icon {
     top: 11px; }
   .cui-tag-input.cui-lg .cui-tag-input-values {
@@ -3753,7 +3753,7 @@ body.cui-overlay-open {
     font-size: 18px;
     height: 50px;
     min-height: 50px;
-    line-height: 49px; }
+    line-height: 50px; }
     .cui-tag-input.cui-xl .cui-tag-input-values:not(:first-child) {
       padding-left: 48px; }
     .cui-tag-input.cui-xl .cui-tag-input-values:not(:last-child) {
@@ -3773,7 +3773,7 @@ body.cui-overlay-open {
     font-size: 15px;
     height: 35px;
     min-height: 35px;
-    line-height: 34px; }
+    line-height: 35px; }
   .cui-tag-input.cui-xl > .cui-icon {
     top: 13px; }
   .cui-tag-input.cui-xl .cui-tag-input-values {
