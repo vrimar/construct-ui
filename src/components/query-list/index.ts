@@ -304,7 +304,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
   public scrollToActiveItem() {
     const { listEl, activeIndex } = this;
 
-    if (listEl) {
+    if (listEl && activeIndex >= 0) {
       const activeEl = listEl.children[activeIndex] as HTMLElement;
 
       if (!activeEl) return;
