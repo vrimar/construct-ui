@@ -24,7 +24,7 @@
   font-size: $font-size;
   height: $height;
   min-height: $height;
-  line-height: $height - 1px;
+  line-height: $height;
 }
 
 @mixin cui-content-group-sizing($selectors, $height, $padding, $font-size) {
