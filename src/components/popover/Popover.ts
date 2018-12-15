@@ -74,6 +74,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
   public getDefaultAttrs() {
     return {
       boundariesEl: 'window',
+      restoreFocus: false,
       hasBackdrop: false,
       hoverCloseDelay: 100,
       hoverOpenDelay: 0,
