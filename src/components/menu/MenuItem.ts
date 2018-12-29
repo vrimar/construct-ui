@@ -35,25 +35,24 @@ export class MenuItem implements m.Component<IMenuItemAttrs> {
     );
 
     const button = m(Button, {
-      ...buttonAttrs,
       align: 'left',
       compact: true,
       iconRight: submenu ? Icons.CHEVRON_RIGHT : undefined,
+      ...buttonAttrs,
       class: classes
     });
 
     return submenu ? m(PopoverMenu, {
-      ...popoverMenuAttrs,
-      class: Classes.POPOVER_MENU,
-      closeOnContentClick: closeOnSubmenuClick,
-      addToStack: false,
       hasArrow: false,
-      content: submenu,
-      inline: true,
-      restoreFocus: false,
       interactionType: 'hover',
       openOnTriggerFocus: true,
       position: 'right-start',
+      ...popoverMenuAttrs,
+      closeOnContentClick: closeOnSubmenuClick,
+      addToStack: false,
+      content: submenu,
+      inline: true,
+      restoreFocus: false,
       trigger: button
     }) : button;
   }
