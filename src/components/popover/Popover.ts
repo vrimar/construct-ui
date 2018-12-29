@@ -1,7 +1,7 @@
 import m from 'mithril';
 import classnames from 'classnames';
 import PopperJS, { Boundary } from 'popper.js';
-import { Classes, IAttrs, safeCall, getClosest, elementIsOrContains } from '../../_shared';
+import { Classes, IAttrs, Style, safeCall, getClosest, elementIsOrContains } from '../../_shared';
 import { AbstractComponent } from '../abstract-component';
 import { IOverlayableAttrs, Overlay } from '../overlay';
 import { PopoverInteraction, PopoverPosition } from './popoverTypes';
@@ -54,6 +54,12 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
 
   /** Duration of open delay on hover interaction */
   hoverOpenDelay?: number;
+
+  /** Overlay HTML container styles */
+  overlayStyle: Style;
+
+  /** Overlay HTML container class */
+  overlayClass: string;
 }
 
 export interface IPopoverTriggerAttrs extends IAttrs {
@@ -113,12 +119,16 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
 
   public view() {
     const {
+      class: className,
+      style,
       content,
       hasArrow,
       trigger,
       interactionType,
       inline,
-      backdropClass
+      backdropClass,
+      overlayClass,
+      overlayStyle
     } = this.attrs;
 
     this.trigger = trigger as m.VnodeDOM;
@@ -130,10 +140,11 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     ];
 
     this.popover = m('', {
-      class: Classes.POPOVER,
+      class: classnames(Classes.POPOVER, className),
       onclick: this.handlePopoverClick,
       onmouseenter: this.handleTriggerMouseEnter,
-      onmouseleave: this.handleTriggerMouseLeave
+      onmouseleave: this.handleTriggerMouseLeave,
+      style
     }, innertContent) as m.VnodeDOM<IPopoverAttrs, Popover>;
 
     return m.fragment({}, [
@@ -143,13 +154,15 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
         restoreFocus: this.isClickInteraction(),
         ...this.attrs as IOverlayableAttrs,
         backdropClass: classnames(Classes.POPOVER_BACKDROP, backdropClass),
+        class: overlayClass,
         closeOnOutsideClick: interactionType !== 'click-trigger',
         content: this.popover,
         inline,
         isOpen: this.isOpen,
         onClose: this.handleOverlayClose,
         onOpened: this.handleOpened,
-        onClosed: this.handleClosed
+        onClosed: this.handleClosed,
+        style: overlayStyle
       })
     ]);
   }
