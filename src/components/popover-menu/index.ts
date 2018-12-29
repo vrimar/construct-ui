@@ -14,8 +14,8 @@ export class PopoverMenu implements m.ClassComponent<IPopoverMenuAttrs> {
     const { class: className, menuAttrs, content, ...popoverAttrs } = attrs;
 
     return m(Popover, {
-      class: classnames(Classes.POPOVER_MENU, className),
       ...popoverAttrs,
+      class: classnames(Classes.POPOVER_MENU, className),
       content: m(Menu, { ...menuAttrs }, content)
     });
   }
