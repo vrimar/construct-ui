@@ -20,7 +20,10 @@ export interface IOverlayableAttrs {
   /** Renders component relative to parent container */
   inline?: boolean;
 
-  /** Callback invoked on initial close */
+  /**
+   * Callback invoked on initial close
+   * Passes back event that triggered close
+   */
   onClose?: (e: Event) => void;
 
   /** Callback invoked after transition is complete and component is unmounted */
@@ -28,7 +31,7 @@ export interface IOverlayableAttrs {
 
   /**
    * Callback invoked when component mounts and transition is complete
-   * Passed back DOM element container
+   * Passes back DOM element container
    */
   onOpened?: (contentEl: HTMLElement) => void;
 
