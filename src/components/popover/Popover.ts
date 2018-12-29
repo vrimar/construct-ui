@@ -56,10 +56,10 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
   hoverOpenDelay?: number;
 
   /** Overlay HTML container styles */
-  overlayStyle: Style;
+  overlayStyle?: Style;
 
   /** Overlay HTML container class */
-  overlayClass: string;
+  overlayClass?: string;
 }
 
 export interface IPopoverTriggerAttrs extends IAttrs {
