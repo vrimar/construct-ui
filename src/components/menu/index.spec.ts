@@ -50,8 +50,7 @@ describe('menu', () => {
       assert(hasChildClass(menuItem(), `${Classes.ICON}-${Icons.CHEVRON_RIGHT}`));
     });
 
-    // TODO: fix test
-    it.skip('Passes through Popover attrs to submenu popover', done => {
+    it('Passes through Popover attrs to submenu', done => {
       const submenu = m(Menu, m(MenuItem));
 
       mount({}, {
@@ -64,8 +63,9 @@ describe('menu', () => {
 
       setTimeout(() => {
         menuItem().dispatchEvent(new MouseEvent('mouseenter'));
-        // const popover: HTMLElement = document.body.querySelector(`.${Classes.POPOVER}`);
-        // assert(hasClass(popover, Classes.POSITIVE));
+        const popover: HTMLElement = document.body.querySelector(`.${Classes.POPOVER}`);
+        assert(hasClass(popover, Classes.POSITIVE));
+        assert.equal(popover.style.color, 'red');
         done();
       }, TIMEOUT);
     });
