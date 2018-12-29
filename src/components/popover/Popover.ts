@@ -22,6 +22,15 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
   /** Initial open when in uncontrolled mode */
   defaultIsOpen?: boolean;
 
+  /** Toggles arrow visiblity */
+  hasArrow?: boolean;
+
+  /** Duration of close delay on hover interaction */
+  hoverCloseDelay?: number;
+
+  /** Duration of open delay on hover interaction */
+  hoverOpenDelay?: number;
+
   /** Trigger interaction to toggle visiblity */
   interactionType?: PopoverInteraction;
 
@@ -37,29 +46,20 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
   /** Position relative to trigger element */
   position?: PopoverPosition;
 
-  /** Trigger element */
-  trigger?: m.Vnode;
-
-  /** Toggles arrow visiblity */
-  hasArrow?: boolean;
-
   /** Callback invoked in controlled mode when a popover action will modify the open state */
   onInteraction?: (nextOpenState: boolean, e: Event) => void;
 
   /** Toggles visibilty when trigger is keyboard focused */
   openOnTriggerFocus?: boolean;
 
-  /** Duration of close delay on hover interaction */
-  hoverCloseDelay?: number;
-
-  /** Duration of open delay on hover interaction */
-  hoverOpenDelay?: number;
+  /** Overlay HTML container class */
+  overlayClass?: string;
 
   /** Overlay HTML container styles */
   overlayStyle?: Style;
 
-  /** Overlay HTML container class */
-  overlayClass?: string;
+  /** Trigger element */
+  trigger?: m.Vnode;
 }
 
 export interface IPopoverTriggerAttrs extends IAttrs {
