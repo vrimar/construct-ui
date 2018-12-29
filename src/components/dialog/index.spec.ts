@@ -40,6 +40,20 @@ describe('dialog', () => {
     assert(!hasChildClass(dialog(), Classes.DIALOG_CLOSE_BUTTON));
   });
 
+  it('Close button click calls onClose', () => {
+    let count = 0;
+
+    mount({
+      title: 'Title',
+      onClose: () => count++
+    });
+
+    const backdrop = dialog().querySelector(`.${Classes.DIALOG_CLOSE_BUTTON}`);
+    backdrop.dispatchEvent(new Event('click'));
+
+    assert.equal(count, 1);
+  });
+
   it('Header hidden when no title attr', () => {
     mount({
       content: 'content',
