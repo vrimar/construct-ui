@@ -40,7 +40,7 @@ describe('overlay', () => {
     assert.equal(portal().style.color, 'red');
   });
 
-  it('Renders children', () => {
+  it('Renders content', () => {
     mount({ content: 'content' });
 
     assert(overlay().innerHTML.includes('content'));
@@ -114,7 +114,6 @@ describe('overlay', () => {
     assert.equal(count, 1);
   });
 
-  // TODO: overlay lifecycle callbacks
   it('Handles lifecycle callbacks', done => {
     let count = 0;
 
@@ -128,6 +127,27 @@ describe('overlay', () => {
       m.redraw();
       assert.equal(count, 2);
       done();
+    }, TIMEOUT);
+  });
+
+  it('onClosed called when transitionDuration finishes', done => {
+    let count = 0;
+    const transitionDuration = 50;
+
+    const component = mount({
+      onClosed: () => count++,
+      transitionDuration
+    });
+
+    setTimeout(() => {
+      component.isOpen = false;
+      m.redraw();
+
+      setTimeout(() => {
+        assert.equal(count, 1);
+        done();
+      }, transitionDuration);
+
     }, TIMEOUT);
   });
 
