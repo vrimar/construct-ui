@@ -34,7 +34,12 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
   /** Trigger interaction to toggle visiblity */
   interactionType?: PopoverInteraction;
 
-  /** Toggles visibility */
+  /**
+   * Toggles visibility;
+   * Specifying this attr will place the Popover in controlled mode
+   * and will invoke the `onInteraction` callback for each open/close state change
+   */
+
   isOpen?: boolean;
 
   /**
@@ -49,7 +54,10 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
   /** Callback invoked in controlled mode when a popover action will modify the open state */
   onInteraction?: (nextOpenState: boolean, e: Event) => void;
 
-  /** Toggles visibilty when trigger is keyboard focused */
+  /**
+   * Toggles visibilty when trigger is keyboard focused;
+   * Only works when interactionType is hover or hover-trigger
+   */
   openOnTriggerFocus?: boolean;
 
   /** Overlay HTML container class */
