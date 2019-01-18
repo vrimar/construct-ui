@@ -1,11 +1,12 @@
 import m from 'mithril';
 import assert from 'assert';
 import { Overlay, IOverlayAttrs, Classes, Input, Keys } from '@/';
-import { hasClass, hasChildClass, TIMEOUT } from '@test-utils';
+import { hasClass, TIMEOUT, triggerEvent, timeoutRedraw } from '@test-utils';
 
 describe('overlay', () => {
   const portal = () => document.body.querySelector(`.${Classes.PORTAL}`) as HTMLElement;
   const overlay = () => document.body.querySelector(`.${Classes.OVERLAY}`) as HTMLElement;
+  const backdrop = () => overlay().querySelector(`.${Classes.OVERLAY_BACKDROP}`) as HTMLElement;
 
   afterEach(() => {
     document.body.innerHTML = '';
@@ -55,7 +56,7 @@ describe('overlay', () => {
   it('Has backdrop by default', () => {
     mount({});
 
-    assert(hasChildClass(overlay(), Classes.OVERLAY_BACKDROP));
+    assert(backdrop());
   });
 
   it('Sets backdrop class', () => {
@@ -63,9 +64,12 @@ describe('overlay', () => {
       backdropClass: Classes.POSITIVE
     });
 
-    const backdrop = overlay().querySelector(`.${Classes.OVERLAY_BACKDROP}`) as HTMLElement;
+    assert(hasClass(backdrop(), Classes.POSITIVE));
+  });
 
-    assert(hasClass(backdrop, Classes.POSITIVE));
+  it('hasBackdrop=false hides backdrop', () => {
+    mount({ hasBackdrop: false });
+    assert(!backdrop());
   });
 
   it('Sets autofocus', () => {
@@ -78,14 +82,7 @@ describe('overlay', () => {
     assert(input.autofocus);
   });
 
-  it('hasBackdrop=false hides backdrop', () => {
-    mount({ hasBackdrop: false });
-
-    const backdrop = overlay().querySelector(`.${Classes.OVERLAY_BACKDROP}`);
-    assert(!backdrop);
-  });
-
-  it('closeOnOutsideClick=true invokes onClose', () => {
+  it('closeOnOutsideClick=true invokes onClose', (done) => {
     let count = 0;
 
     mount({
@@ -93,10 +90,10 @@ describe('overlay', () => {
       onClose: () => count++
     });
 
-    const backdrop = overlay().querySelector(`.${Classes.OVERLAY_BACKDROP}`);
-    backdrop.dispatchEvent(new Event('mousedown'));
-
-    assert.equal(count, 1);
+    triggerEvent(backdrop(), 'mousedown', () => {
+      assert.equal(count, 1);
+      done();
+    });
   });
 
   it('Handles closeOnEscapeKey', () => {
@@ -107,9 +104,7 @@ describe('overlay', () => {
       closeOnEscapeKey: true
     });
 
-    document.dispatchEvent(new KeyboardEvent('keydown', {
-      which: Keys.ESCAPE
-    } as any));
+    document.dispatchEvent(new KeyboardEvent('keydown', { which: Keys.ESCAPE } as any));
 
     assert.equal(count, 1);
   });
@@ -122,12 +117,13 @@ describe('overlay', () => {
       onClosed: () => count++
     });
 
-    setTimeout(() => {
-      component.isOpen = false;
-      m.redraw();
-      assert.equal(count, 2);
-      done();
-    }, TIMEOUT);
+    timeoutRedraw(
+      () => component.isOpen = false,
+      () => {
+        assert.equal(count, 2);
+        done();
+      }
+    );
   });
 
   it('onClosed called when transitionDuration finishes', done => {
