@@ -55,7 +55,7 @@ export class Select implements m.Component<ISelectAttrs> {
       contentRight,
       fluid,
       intent,
-      options,
+      options = [],
       size,
       style,
       ...htmlAttrs
