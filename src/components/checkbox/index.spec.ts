@@ -77,29 +77,31 @@ describe('checkbox', () => {
     assert.equal(count, 1);
   });
 
-  it('Handles controlled: checked', () => {
-    let checked = false;
+  describe('controlled mode', () => {
+    it('Handles checked', () => {
+      let checked = false;
 
-    mount({
-      checked,
-      onchange: () => checked = !checked
+      mount({
+        checked,
+        onchange: () => checked = !checked
+      });
+
+      assert(!input().checked);
+
+      input().dispatchEvent(new Event('click'));
+
+      assert(input().checked);
     });
 
-    assert(!input().checked);
+    it('Handles indeterminate', () => {
+      mount({ indeterminate: true });
 
-    input().dispatchEvent(new Event('click'));
+      assert(input().indeterminate);
 
-    assert(input().checked);
-  });
+      input().dispatchEvent(new Event('click'));
 
-  it('Handles controlled: indeterminate', () => {
-    mount({ indeterminate: true });
-
-    assert(input().indeterminate);
-
-    input().dispatchEvent(new Event('click'));
-
-    assert(input().indeterminate);
+      assert(input().indeterminate);
+    });
   });
 
   function mount(attrs: ICheckboxAttrs) {

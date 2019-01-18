@@ -1,11 +1,12 @@
 import m from 'mithril';
 import assert from 'assert';
-import { Input, ITextAreaAttrs, Classes, Tag, Icon, Icons } from '@/';
+import { Input, IInputAttrs, Classes, Tag } from '@/';
 import { hasClass, hasChildClass } from '@test-utils';
 
 describe('input', () => {
   const el = () => document.body.firstChild as HTMLElement;
   const input = () => el().querySelector('input');
+  const tag = () => el().querySelector(`.${Classes.TAG}`) as HTMLElement;
 
   afterEach(() => m.mount(document.body, null));
 
@@ -27,25 +28,17 @@ describe('input', () => {
   });
 
   it('Renders left content', () => {
-    mount({
-      contentLeft: m(Tag)
-    });
-
-    const tag = el().querySelector(`.${Classes.TAG}`) as HTMLElement;
+    mount({ contentLeft: m(Tag) });
 
     assert(hasChildClass(el(), Classes.TAG));
-    assert(el().firstChild === tag);
+    assert(el().firstChild === tag());
   });
 
   it('Renders right content', () => {
-    mount({
-      contentRight: m(Icon, { name: Icons.ACTIVITY })
-    });
+    mount({ contentRight: m(Tag) });
 
-    const icon = el().querySelector(`.${Classes.ICON}`) as HTMLElement;
-
-    assert(hasChildClass(el(), Classes.ICON));
-    assert(el().lastChild === icon);
+    assert(hasChildClass(el(), Classes.TAG));
+    assert(el().lastChild === tag());
   });
 
   it('Passes through html attrs', () => {
@@ -60,7 +53,7 @@ describe('input', () => {
     assert.equal(input().value, 'defaultValue');
   });
 
-  function mount(attrs: ITextAreaAttrs) {
+  function mount(attrs: IInputAttrs) {
     const component = {
       view: () => m(Input, { ...attrs })
     };
