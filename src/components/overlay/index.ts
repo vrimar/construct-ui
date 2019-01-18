@@ -126,8 +126,10 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
   }
 
   public onremove() {
-    this.handleClose();
-    this.handleClosed();
+    if (this.shouldRender === true) {
+      this.handleClose();
+      this.handleClosed();
+    }
   }
 
   public view() {
