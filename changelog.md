@@ -1,3 +1,13 @@
+# 0.1.7
++ [Popover] pass class/style to container, add overlayStyle and overlayClass attrs
++ [PopoverMenu] update attrs passed to Popover
++ [MenuItem] update submenu attrs
++ [Button] fix line-height for label/sublabel
++ [Select] add default case for `options` attr
++ [Overlay] call `onClose/onClosed` in onremove only if currently open
++ [CustomSelect] prevent selection in controlled mode (when `value` attrs is passed), prevent initial selection when `value/defaultValue` is not specified
++ Allow `number` type for CustomSelect, Radio, Select `options/value/defaultValue`
+
 # 0.1.6
 + [Styles] Fix line height styles
 + [Button] Set `iconLeftAttrs` and `iconRightAttrs` as partials
