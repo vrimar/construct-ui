@@ -58,8 +58,8 @@ export class RadioGroup implements m.Component<IRadioGroupAttrs> {
   }
 
   private renderRadioButton(option: Option, attrs: IRadioGroupAttrs) {
-    const label = typeof (option) === 'string' ? option : option.label;
-    const value = typeof (option) === 'string' ? option : option.value;
+    const label = typeof (option) === 'object' ? option.label : option;
+    const value = typeof (option) === 'object' ? option.value : option;
 
     return m(Radio, {
       checked: value === attrs.value,

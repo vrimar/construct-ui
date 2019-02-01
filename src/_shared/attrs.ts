@@ -59,4 +59,4 @@ export interface IOption {
   value?: string | number;
 }
 
-export type Option = IOption | string;
+export type Option = IOption | string | number;

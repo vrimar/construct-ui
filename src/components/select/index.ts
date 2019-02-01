@@ -81,9 +81,9 @@ export class Select implements m.Component<ISelectAttrs> {
   }
 
   private renderOption(option: Option, { defaultValue }: ISelectAttrs) {
-    const label = typeof (option) === 'string' ? option : option.label;
-    const value = typeof (option) === 'string' ? option : option.value;
-    const attrs = typeof (option) === 'string' ? {} : option;
+    const label = typeof (option) === 'object' ? option.label : option;
+    const value = typeof (option) === 'object' ? option.value : option;
+    const attrs = typeof (option) === 'object' ? option : {};
 
     return m('option', {
       ...attrs,
