@@ -9,13 +9,13 @@ import { Icons } from '../icon';
 
 export interface ICustomSelectAttrs extends IAttrs, ISizeAttrs {
   /** Initially selected value (uncontrolled mode) */
-  defaultValue?: string;
+  defaultValue?: string | number;
 
   /** Array of list options */
   options: Option[];
 
   /** Value of the selected option */
-  value?: string;
+  value?: string | number;
 
   /** Callback invoked when selection changes */
   onSelect?: (option: Option) => void;
@@ -29,7 +29,7 @@ export interface ICustomSelectAttrs extends IAttrs, ISizeAttrs {
 
 export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
   private activeIndex: number = 0;
-  private selected: Option = '';
+  private selected: Option;
   private isOpen: boolean = false;
 
   public getDefaultAttrs() {
@@ -119,13 +119,11 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
   }
 
   private handleSelect = (item: Option) => {
-    if (this.attrs.value == null) {
-      this.selected = item;
-    }
+    if ('value' in this.attrs) {
+      safeCall(this.attrs.onSelect, item);
+    } else this.selected = item;
 
     this.isOpen = false;
-
-    safeCall(this.attrs.onSelect, item);
   }
 
   private handleActiveItemChange = (_activeItem: Option, index: number) => {
@@ -167,7 +165,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
 
   private get selectedLabel() {
     const selected = this.selected;
-    return selected != null ? typeof selected === 'object' ? selected.label : selected : '';
+    return selected != null ? typeof selected === 'object' ? selected.label : selected : undefined;
   }
 
   private setSelected() {
@@ -175,18 +173,14 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
 
     if (options.length) {
       const firstOption = options[0];
-      const selectedValue = value || defaultValue || '';
+      const selectedValue = value || defaultValue || undefined;
 
       this.selected = typeof firstOption === 'object'
         ? (options as IOption[]).find(x => x.value === selectedValue)
         : selectedValue;
 
-      const index = (options as any).indexOf(this.selected);
+      const index = options.indexOf(this.selected);
       this.activeIndex = index;
-
-      if (!this.selected) {
-        this.selected = firstOption;
-      }
     }
   }
 }
