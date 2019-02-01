@@ -23,8 +23,8 @@
     "build:css": "node-sass src/ -o lib/ && npm run clean:css",
     "build": "npm run lint && npm run test && npm-run-all --parallel build:cjs build:esm build:umd build:css",
     "clean:docs": "cd docs && rimraf public/*",
-    "build:docs": "npm run generate:docs && npm run clean:docs && cd docs && cross-env NODE_ENV=production webpack --mode=production",
-    "watch:docs": "cd docs && webpack-dev-server --mode=development --hot",
+    "build:docs": "npm run generate:docs && npm run clean:docs && cd docs && cross-env NODE_ENV=production webpack",
+    "watch:docs": "cd docs && webpack-dev-server --hot",
     "generate:docs": "documentalist src/**/* > docs/generated/docs.json",
     "generate:icons": "node scripts/generateIcons.js",
     "build:all": "npm run build && npm run build:docs",
@@ -63,18 +63,19 @@
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "documentalist": "^1.5.0",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^3.0.1",
     "gh-pages": "^2.0.1",
     "highlight.js": "^9.13.1",
     "html-webpack-plugin": "^3.2.0",
     "jsdom": "^13.0.0",
     "jsdom-global": "^3.0.2",
+    "mini-css-extract-plugin": "^0.5.0",
     "mithril": "^1.1.6",
     "mocha": "^5.2.0",
     "mq-polyfill": "^1.1.8",
     "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.5",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "resolve-url-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
@@ -108,5 +109,10 @@
     "mithril-component",
     "mithriljs",
     "typescript"
+  ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
   ]
 }

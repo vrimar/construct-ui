@@ -1,5 +1,7 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -11,50 +13,56 @@ const isProduction = process.env.NODE_ENV === 'production';
 const PORT = 9000;
 
 const plugins = {
-  production: [
-    new ExtractTextPlugin('app-[hash:6].css'),
-    new UglifyJsPlugin(),
+  common: [
     new HtmlWebpackPlugin({
       title: APP_TITLE,
-      template: TEMPLATE_PATH,
-      favicon: 'src/favicon.ico'
+      template: TEMPLATE_PATH
     })
   ],
-  development: [
-    new HtmlWebpackPlugin({
-      template: TEMPLATE_PATH,
-      title: APP_TITLE,
-      favicon: 'src/favicon.ico'
+  production: [
+    new MiniCssExtractPlugin({
+      filename: "[name].[hash].css",
+      chunkFilename: "[id].[hash].css"
     }),
-    new CheckerPlugin()
+    new OptimizeCSSAssetsPlugin(),
+    new UglifyJsPlugin(),
+  ],
+  development: [
+    new CheckerPlugin(),
   ]
 }
 
 const cssLoader = {
-  production: ExtractTextPlugin.extract({
-    fallback: 'style-loader',
-    use: [
-      { loader: 'css-loader', options: { minimize: true, importLoaders: 1 } },
-      {
-        loader: 'postcss-loader',
-        options: {
-          sourceMap: true,
-          plugins: () => [require('autoprefixer')]
-        }
-      },
-      'resolve-url-loader',
-      'sass-loader?sourceMap'
-    ]
-  }),
-  development: ['style-loader', 'css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
+  production: [
+    {
+      loader: MiniCssExtractPlugin.loader,
+    },
+    'css-loader',
+    'resolve-url-loader',
+    'sass-loader',
+    {
+      loader: 'postcss-loader',
+      options: {
+        plugins: () => [require('autoprefixer')]
+      }
+    }
+  ],
+  development: [
+    'style-loader',
+    'css-loader',
+    'resolve-url-loader',
+    'sass-loader?sourceMap'
+  ]
 }
 
 module.exports = {
-  entry: './src/index.ts',
+  mode: isProduction ? 'production' : 'development',
+  entry: {
+    app: './src/index.ts'
+  },
   output: {
-    filename: isProduction ? 'app-[hash:6].js' : 'app.js',
-    path: path.resolve(__dirname, 'public'),
-    pathinfo: isProduction ? true : false
+    filename: isProduction ? 'app-[hash].js' : 'app.js',
+    path: path.resolve(__dirname, 'public')
   },
   module: {
     rules: [
@@ -72,13 +80,14 @@ module.exports = {
         use: {
           loader: 'awesome-typescript-loader',
           options: {
-            useCache: isProduction ? false : true,
+            useCache: true,
+            forceIsolatedModules: true
           }
         }
       }
     ]
   },
-  plugins: isProduction ? plugins.production : plugins.development,
+  plugins: plugins.common.concat(isProduction ? plugins.production : plugins.development),
   devtool: isProduction ? undefined : 'cheap-eval-source-map',
   resolve: {
     extensions: ['.ts', '.js'],
