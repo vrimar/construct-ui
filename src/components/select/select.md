@@ -1,5 +1,5 @@
 @# Select
-A select displays a list of options.
+A select displays a list of selectable options.
 
 @example SelectDefaultExample
 

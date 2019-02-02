@@ -1,5 +1,5 @@
 @# Query List
-A QueryList allows an array of items to be filtered by a query string. It is composed of a `ControlGroup`, `Input` and `List` component and allows for a number of keyboard interactions:
+A query list allows an array of items to be filtered by a query string. It is composed of a `ControlGroup`, `Input` and `List` component and allows for a number of keyboard interactions:
   + The `UP` and `DOWN` arrow keys navigate through the list. 
   + The `ENTER` key selects an item. 
   + The `ESCAPE` key clears the query value in the input field.
