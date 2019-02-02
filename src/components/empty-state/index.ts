@@ -5,7 +5,7 @@ import { Icon, IconName } from '../icon';
 
 export interface IEmptyStateAttrs extends IAttrs {
   /** Icon name */
-  icon?: IconName | undefined;
+  icon?: IconName | m.Children | undefined;
 
   /** Header content */
   header?: m.Children;
@@ -33,7 +33,11 @@ export class EmptyState implements m.Component<IEmptyStateAttrs> {
     );
 
     const container = [
-      icon && m(`.${Classes.EMPTY_STATE_ICON}`, m(Icon, { name: icon })),
+      icon && m(`.${Classes.EMPTY_STATE_ICON}`, [
+        typeof icon === 'string'
+          ? m(Icon, { name: icon as IconName })
+          : icon
+      ]),
       header && m(`.${Classes.EMPTY_STATE_HEADER}`, header),
       content && m(`.${Classes.EMPTY_STATE_CONTENT}`, content)
     ];
