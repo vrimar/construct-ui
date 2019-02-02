@@ -47,6 +47,12 @@ describe('callout', () => {
     assert(el().hasAttribute('name'));
   });
 
+  it('Renders dismiss icon when onDismiss set', () => {
+    mount({ onDismiss: console.log });
+
+    assert(hasChildClass(el(), Classes.CALLOUT_DISMISS_ICON));
+  });
+
   function mount(attrs: ICalloutAttrs) {
     const component = {
       view: () => m(Callout, { ...attrs })

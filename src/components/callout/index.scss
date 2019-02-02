@@ -34,6 +34,10 @@ $cui-callout-bg-color-map: (
     top: floor($padding * 1.2);
   }
 
+  .cui-callout-dismiss {
+    right: $padding;
+  }
+
   &.cui-callout-icon .cui-callout-content,
   &.cui-callout-icon .cui-callout-header {
     padding-left: floor($padding * 2);
@@ -59,12 +63,12 @@ $cui-callout-bg-color-map: (
   width: 100%;
 	border-radius: $cui-border-radius;
 
-  .cui-callout-header {
-	  font-weight: bold;
+  .cui-icon, .cui-callout-dismiss {
+    position: absolute;
   }
 
-  .cui-icon {
-    position: absolute;
+  .cui-callout-header {
+    font-weight: bold;
   }
 
 	&.cui-fluid {

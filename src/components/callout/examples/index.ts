@@ -4,21 +4,25 @@ import { SizeSelect, IntentSelect, Example } from '@shared/examples';
 
 const EXAMPLE_SRC = 'components/callout/examples/index.ts';
 
+const content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla rhoncus tempor neque, sed malesuada eros dapibus vel. Aliquam in ligula vitae tortor porttitor laoreet iaculis finibus est.';
+
 export class CalloutExample {
   private size: Size;
   private intent: Intent;
-  private showIcon = false;
+  private showIcon = true;
   private showHeader = true;
   private showContent = true;
+  private dismissable = true;
 
   public view() {
     return m(Example, { options: this.renderOptions(), src: EXAMPLE_SRC }, [
       m(Callout, {
         header: this.showHeader && 'Callout header',
-        content: this.showContent && 'Callout content',
+        content: this.showContent && content,
         icon: this.showIcon ? Icons.ALERT_CIRCLE : undefined,
         size: this.size,
-        intent: this.intent
+        intent: this.intent,
+        onDismiss: this.dismissable ? console.log : undefined
       })
     ]);
   }
@@ -43,6 +47,11 @@ export class CalloutExample {
         checked: this.showContent,
         label: 'Show content',
         onchange: () => this.showContent = !this.showContent
+      }),
+      m(Switch, {
+        checked: this.dismissable,
+        label: 'Dismissable',
+        onchange: () => this.dismissable = !this.dismissable
       })
     ];
   }

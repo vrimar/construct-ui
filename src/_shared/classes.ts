@@ -64,6 +64,7 @@ export const Classes = {
   CALLOUT_HEADER: 'cui-callout-header',
   CALLOUT_CONTENT: 'cui-callout-content',
   CALLOUT_ICON: 'cui-callout-icon',
+  CALLOUT_DISMISS_ICON: 'cui-callout-dismiss',
 
   CHECKBOX: 'cui-checkbox',
 
