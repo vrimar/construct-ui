@@ -1,3 +1,34 @@
+# 0.1.8
++ Update Feather icons
++ Add TransitionManager
++ Normalize CSS hover styles
++ [FormGroup] set nested CustomSelect to fluid
++ [Callout] add `onDismiss` icon
++ [EmptyState] allow arbitrary icons, center `content` text
++ [CustomSelect]
+  + change to `inline-block` style
+  + handle keyboard navigation for disabled options
++ [BaseControl] add optional `containerAttrs` attr
++ [Button] add `outlined` attr
++ [ButtonGroup] add `outlined` attr
++ [QueryList] 
+  + prevent `onSelect` when item has disabled=true attrs
+  + update empty list message styles
+  + remove bottom border from list items
++ [Toast] 
+  + fix dismiss icon hover color
+  + pass through style attr to Overlay
++ [Overlay] set `restoreFocus=false` by default, set `shouldRender=false` in `onremove`
++ [Tree] pass through html attrs
++ [SelectList] pass through popover class
++ [List] add `interactive` attr
++ [Tag] 
+    + lighten default bg color and add border
+    + allow children to be passed to `label` attr
++ [Icon] fix intent class specificity
++ [TagInput] prevent tab focus when disabled
+
+
 # 0.1.7
 + [Popover] pass class/style to container, add overlayStyle and overlayClass attrs
 + [PopoverMenu] update attrs passed to Popover
