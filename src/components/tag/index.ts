@@ -5,7 +5,7 @@ import { Icon, Icons } from '../icon';
 
 export interface ITagAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
   /** Text label */
-  label?: string;
+  label?: m.Children;
 
   /**
    * Callback invoked when "remove" icon is clicked;
