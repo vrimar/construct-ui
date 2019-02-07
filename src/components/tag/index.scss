@@ -27,7 +27,7 @@
   @include cui-tag-sizing($cui-base-height, $cui-base-padding, $cui-font-size);
   @include cui-tag-style(
     $cui-base-text-color, 
-    tint($blue-grey50, 20%),
+    $cui-hover-color,
     tint($blue-grey100, 10%)
   );
 

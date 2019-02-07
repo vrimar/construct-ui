@@ -75,6 +75,8 @@ $cui-text-color:                $cui-body-color !default;
 $cui-placeholder-color:         $blue-grey200 !default;
 $cui-placeholder-color-focus:   $blue-grey300 !default;
 
+$cui-hover-color: tint($blue-grey50, 25%);
+
 $cui-base-text-color:          $blue-grey500 !default;
 $cui-base-text-color-hover:    $blue-grey600 !default;
 $cui-base-bg-color:            $white !default;

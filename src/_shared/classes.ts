@@ -18,6 +18,7 @@ export const Classes = {
   ROUNDED: 'cui-rounded',
   READONLY: 'cui-readonly',
   SELECTED: 'cui-selected',
+  INTERACTIVE: 'cui-interactive',
 
   ELEVATION: 'cui-elevation',
 

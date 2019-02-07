@@ -11,7 +11,7 @@
     width: 100%;
   }
 
-  th, td, {
+  th, td {
     border-bottom: solid 1px $cui-base-border-color;
     padding: $cui-base-size;
     font-size: $cui-font-size;
@@ -26,7 +26,7 @@
 
   &.cui-table-striped {
     tr:nth-of-type(odd) {
-      background: tint($blue-grey50, 20%);
+      background: $cui-hover-color;
     }
   }
 
@@ -36,11 +36,11 @@
     }
 
     tr:hover {
-      background: $blue-grey50;
+      background: $cui-hover-color;
     }
 
     tr:active {
-      background: $blue-grey100;
+      background: $blue-grey50;
     }
   }
 }
