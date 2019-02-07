@@ -14,10 +14,12 @@ describe('list', () => {
   it('Renders correctly', () => {
     mount({
       class: Classes.POSITIVE,
+      interactive: true,
       style: 'margin:0'
     });
 
     assert(hasClass(el(), Classes.LIST));
+    assert(hasClass(el(), Classes.INTERACTIVE));
     assert(hasClass(el(), Classes.POSITIVE));
     assert(el().hasAttribute('style'));
   });

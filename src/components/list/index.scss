@@ -24,6 +24,16 @@
   width:100%;
   overflow-y:auto;
   max-height:400px;
+
+  .cui-list-item:hover { 
+    background: none;
+    cursor: default;
+  }
+
+  &.cui-interactive .cui-list-item:hover { 
+    background: $cui-hover-color;
+    cursor: pointer;
+  }
 }
 
 .cui-list-item {
@@ -36,7 +46,7 @@
 
   &:hover,
   &.cui-active {
-    background: tint($blue-grey50, 20%);
+    background: $cui-hover-color;
   }
 
   &.cui-selected {
