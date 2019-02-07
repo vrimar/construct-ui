@@ -17,14 +17,19 @@
   }
 }
 
-@mixin cui-tag-style($color, $bg-color) {
+@mixin cui-tag-style($color, $bg-color, $border-color) {
   color: $color;
   background: $bg-color;
+  border: solid 1px $border-color;
 }
 
 .cui-tag {
   @include cui-tag-sizing($cui-base-height, $cui-base-padding, $cui-font-size);
-  @include cui-tag-style($cui-base-text-color, tint($blue-grey100, 45%));
+  @include cui-tag-style(
+    $cui-base-text-color, 
+    tint($blue-grey50, 20%),
+    tint($blue-grey100, 10%)
+  );
 
 	position: relative;
   display: inline-flex;
@@ -61,7 +66,13 @@
 
   @each $intent in $cui-intents {
     &.cui-#{$intent} {
-      @include cui-tag-style($white, map-get($cui-bg-color-map, $intent) );
+      $color: map-get($cui-bg-color-map, $intent);
+
+      @include cui-tag-style(
+        $white, 
+        $color,
+        shade($color, 20%)
+      );
     }
   }
 }
