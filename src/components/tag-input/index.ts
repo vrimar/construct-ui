@@ -73,6 +73,7 @@ export class TagInput extends AbstractComponent<ITagInputAttrs> {
     );
 
     const input = m('input', {
+      disabled,
       ...inputAttrs,
       onfocus: this.handleInputFocus,
       onblur: this.handleInputBlur,
