@@ -59,7 +59,7 @@ $cui-icon-size-map: (
 
   @each $intent in $cui-intents {
     &.cui-#{$intent},
-    .cui-#{$intent} & {
+    .cui-#{$intent} > & {
       @include cui-icon-style(map-get($cui-bg-color-map, $intent));
     }
   }
