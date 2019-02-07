@@ -56,6 +56,28 @@ describe('button', () => {
     assert(el().hasAttribute('style'));
   });
 
+  it('Passes through iconLeft/iconRight attrs', () => {
+    let count = 0;
+
+    mount({
+      iconLeft: Icons.ARROW_LEFT,
+      iconLeftAttrs: {
+        onclick: () => count++
+      },
+      iconRight: Icons.ARROW_RIGHT,
+      iconRightAttrs: {
+        onclick: () => count++
+      }
+    });
+
+    const iconLeft = el().firstChild;
+    const iconRight = el().lastChild;
+    iconLeft.dispatchEvent(new Event('click'));
+    iconRight.dispatchEvent(new Event('click'));
+
+    assert.equal(count, 2);
+  });
+
   it('Has left icon', () => {
     mount({ iconLeft: Icons.ACTIVITY });
 
