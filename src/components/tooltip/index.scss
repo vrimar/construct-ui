@@ -17,29 +17,21 @@
     font-size: $font-size;
   }
 
-  [x-placement^="top"] {
-		.cui-popover-arrow {
-      bottom: -$arrow-offset;
-		}
-	}
+  &[x-placement^="top"] .cui-popover-arrow {
+    bottom: -$arrow-offset;
+  }
 
-	[x-placement^="bottom"] {
-		.cui-popover-arrow {
-      top: -$arrow-offset;
-		}
-	}
+  &[x-placement^="bottom"] .cui-popover-arrow {
+    top: -$arrow-offset;
+  }
 
-	[x-placement^="right"] {
-		.cui-popover-arrow {
-      left: -$arrow-offset;
-		}
-	}
+	&[x-placement^="right"] .cui-popover-arrow {
+    left: -$arrow-offset;
+  }
 
-	[x-placement^="left"] {
-		.cui-popover-arrow {
-      right: -$arrow-offset;
-    }
-	}
+	&[x-placement^="left"] .cui-popover-arrow {
+    right: -$arrow-offset;
+  }
 }
 
 .cui-tooltip {
