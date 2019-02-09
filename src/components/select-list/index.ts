@@ -65,7 +65,7 @@ export class SelectList<T> extends AbstractComponent<ISelectListAttrs<T>> {
   public view() {
     const {
       class: className,
-      popoverAttrs,
+      popoverAttrs = {},
       header,
       footer,
       trigger,
@@ -101,7 +101,7 @@ export class SelectList<T> extends AbstractComponent<ISelectListAttrs<T>> {
       position: 'bottom-start',
       closeOnEscapeKey: false,
       ...popoverAttrs,
-      class: classnames(Classes.SELECT_LIST, className),
+      class: classnames(Classes.SELECT_LIST, className, popoverAttrs.class),
       isOpen: this.isOpen,
       content,
       onInteraction: this.handlePopoverInteraction,
