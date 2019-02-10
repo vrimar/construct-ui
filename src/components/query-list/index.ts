@@ -7,7 +7,7 @@ import debounce from 'lodash.debounce';
 import { Classes, isFunction, Keys, safeCall, IAttrs, getClosest } from '../../_shared';
 import { AbstractComponent } from '../abstract-component';
 import { Icon, Icons } from '../icon';
-import { List, IListAttrs, IListItemAttrs } from '../list';
+import { List, IListAttrs, IListItemAttrs, ListItem } from '../list';
 import { Input, IInputAttrs } from '../input';
 import { ControlGroup, IControlGroupAttrs } from '../control-group';
 
@@ -44,13 +44,9 @@ export interface IQueryableAttrs<T> extends IAttrs {
   /** Current index position (controlled mode)  */
   activeIndex?: number;
 
-  // TODO: explain chached items
-
   /**
-   * When true, mutating the `items` array (i.e. via Array.push())
-   * If false, items will be filtered on every redraw
-   * via itemPredicate or itemListPredicate is specified. If true, items will be "cached"
-   * on query change
+   * When true, items will be "cached" when a query is specified.
+   * When false, every redraw will call itemPredicate or itemListPredicate if a query is specified
    */
   cacheItems?: boolean;
 
@@ -76,7 +72,10 @@ export interface IQueryableAttrs<T> extends IAttrs {
 
   itemListRender?: (items: T[]) => m.Vnode;
 
-  /** Predicate function used to filter all items. */
+  /**
+   * Predicate function used to filter all items.
+   * Takes predecent over `itemPredicate`
+   */
   itemListPredicate?: (query: string, items: T[]) => T[];
 
   /** Render function applied to each item  */
@@ -260,8 +259,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
 
     return m(List, {
       ...listAttrs,
-      class: classes,
-      onclick: this.handleSelect
+      class: classes
     }, content);
   }
 
@@ -270,6 +268,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
     const listItem = itemRender(item, index) as m.Vnode<IListItemAttrs>;
 
     listItem.attrs = listItem.attrs || {};
+    listItem.attrs.onclick = (e) => this.handleSelect(item, e, index);
 
     if (this.activeIndex === index) {
       listItem.attrs.class = classnames(
@@ -279,11 +278,13 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
       );
     }
 
-    if (listItem.attrs.selected && checkmark) {
-      listItem.attrs.contentLeft = m(Icon, {
-        name: Icons.CHECK,
-        size: listAttrs.size
-      });
+    if (listItem.tag === ListItem) {
+      if (listItem.attrs.selected && checkmark) {
+        listItem.attrs.contentLeft = m(Icon, {
+          name: Icons.CHECK,
+          size: listAttrs.size
+        });
+      }
     }
 
     return listItem;
@@ -360,32 +361,24 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
     }
   }
 
-  private handleSelect = (e: Event) => {
+  private handleSelect = (item: T & { disabled?: boolean }, e: Event, index: number) => {
     const { onSelect } = this.attrs;
     const target = e.target as HTMLElement;
-    const listItemEl = getClosest(target, `.${Classes.LIST_ITEM}`);
+    const selectedItem = this.filteredItems[index];
     const actionsEl = getClosest(target, `.${Classes.LIST_ITEM_CONTENT_RIGHT}`);
-    const isDisabled = listItemEl.classList.contains(Classes.DISABLED);
 
-    if (listItemEl && !actionsEl && !isDisabled) {
-      const index = Array.prototype.indexOf.call(this.listEl.children, listItemEl);
-      const selectedItem = this.filteredItems[index];
-
+    if (selectedItem && !actionsEl && !item.disabled) {
       this.updateActiveIndex(index);
-
-      if (selectedItem != null) {
-        safeCall(onSelect, this.filteredItems[index], e, index);
-      }
+      safeCall(onSelect, selectedItem, e, index);
     } else (e as any).redraw = false;
   }
 
   private handleKeyDown = (e: KeyboardEvent) => {
-    const key = e.keyCode;
+    const key = e.which;
 
     switch (key) {
       case Keys.ARROW_UP:
       case Keys.ARROW_DOWN:
-        e.preventDefault();
         e.preventDefault();
         this.moveActiveIndex(key === Keys.ARROW_UP ? 'up' : 'down');
         m.redraw();
@@ -457,7 +450,8 @@ export function getNextIndex(currentIndex: number, vnodes: Array<m.Vnode<IListIt
       ? index === 0 ? maxIndex : index - 1
       : index === maxIndex ? 0 : index + 1;
 
-    const attrs = vnodes[index].attrs;
+    const vnode = vnodes[index];
+    const attrs = vnode && vnode.attrs;
 
     if (attrs && !attrs.disabled) {
       flag = false;
