@@ -7,8 +7,8 @@ export interface ITreeNodeAttrs extends IAttrs {
   key: number | string;
 
   /** Right-justified content */
-
   contentRight?: m.Children;
+
   /** Left-justified content */
   contentLeft?: m.Children;
 
