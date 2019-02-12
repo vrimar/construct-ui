@@ -131,7 +131,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
   }
 
   private handleTriggerKeyDown = (e: KeyboardEvent) => {
-    const key = e.keyCode;
+    const key = e.which;
 
     if (key === Keys.ARROW_UP || key === Keys.ARROW_DOWN) {
       e.preventDefault();
