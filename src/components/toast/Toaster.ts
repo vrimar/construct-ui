@@ -66,7 +66,8 @@ export class Toaster extends AbstractComponent<IToasterAttrs> {
       position,
       inline,
       toasts,
-      clearOnEscapeKey
+      clearOnEscapeKey,
+      style
     } = this.attrs;
 
     const classes = classnames(
@@ -88,8 +89,10 @@ export class Toaster extends AbstractComponent<IToasterAttrs> {
       hasBackdrop: false,
       inline,
       isOpen: renderedToasts.length > 0,
+      transitionDuration: 0,
       addToStack: false,
-      onClose: () => this.clear()
+      onClose: () => this.clear(),
+      style
     });
   }
 
