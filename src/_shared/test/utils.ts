@@ -24,3 +24,7 @@ export function timeoutRedraw(initial: Function, done: Function) {
     setTimeout(done, TIMEOUT);
   }, TIMEOUT);
 }
+
+export function keyboardEvent(el: HTMLElement, key: number) {
+  el.dispatchEvent(new KeyboardEvent('keydown', { which: key, bubbles: true } as any));
+}

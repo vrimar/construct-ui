@@ -12,6 +12,8 @@ export function safeCall(func: Function, ...args: any[]) {
 }
 
 export function getClosest(el: any, selector: string): HTMLElement | null {
+  if (el.matches(selector)) return el;
+
   if (!Element.prototype.matches) {
     Element.prototype.matches =
       (Element as any).prototype.msMatchesSelector ||

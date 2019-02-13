@@ -4,7 +4,7 @@ import { Popover, Classes, IPopoverAttrs, Button, IButtonAttrs } from '@/';
 import { hasClass, hasChildClass, triggerEvent } from '@test-utils';
 
 const triggerClass = 'TRIGGER';
-const content = 'content';
+const content = 'popover-test-content';
 
 describe('popover', () => {
   const overlay = () => document.body.querySelector(`.${Classes.OVERLAY}`) as HTMLElement;

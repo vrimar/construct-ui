@@ -195,7 +195,6 @@ export const Classes = {
   TREE_NODE_CARET_OPEN: 'cui-tree-node-caret-open',
   TREE_NODE_CARET_CLOSED: 'cui-tree-node-caret-closed',
   TREE_NODE_CARET_NONE: 'cui-tree-node-caret-none',
-  TREE_NODE_ICON: 'cui-tree-node-icon',
   TREE_NODE_SELECTED: 'cui-tree-node-selected',
   TREE_NODE_EXPANDED: 'cui-tree-node-expanded',
   TREE_NODE_LABEL: 'cui-tree-node-label',
