@@ -90,7 +90,6 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
       closeOnOutsideClick: true,
       hasBackdrop: true,
       addToStack: true,
-      restoreFocus: true,
       transitionName: 'fade',
       transitionDuration: 200
     };
@@ -129,6 +128,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
     if (this.shouldRender === true) {
       this.handleClose();
       this.handleClosed();
+      this.shouldRender = false;
     }
   }
 
