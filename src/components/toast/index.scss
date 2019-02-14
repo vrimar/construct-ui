@@ -80,6 +80,23 @@
   @include cui-toast-sizing($cui-base-padding, $cui-font-size);
   @include cui-toast-style($cui-base-text-color, $cui-base-bg-color, $cui-base-border-color);
 
+  &.cui-primary,
+  &.cui-positive,
+  &.cui-negative,
+  &.cui-warning {
+    > .cui-icon { color: $white; }
+    > .cui-icon-x {
+        color: $blue-grey50;
+      }
+    > .cui-icon-x:hover {
+      color: $white;
+    }
+  }
+
+  .cui-toast-message {
+    flex: 1 1 auto;
+  }
+
   @each $size in $cui-sizes {
     &.cui-#{$size} {
       @include cui-toast-sizing(
@@ -92,18 +109,10 @@
   @each $intent in $cui-intents {
     &.cui-#{$intent} {
       @include cui-toast-style(
-        white,
+        $white,
         map-get($cui-bg-color-map, $intent),
         map-get($cui-border-color-map, $intent)
       );
-
-      > .cui-icon {
-        color:white;
-      }
     }
-  }
-
-  .cui-toast-message {
-    flex: 1 1 auto;
   }
 }
