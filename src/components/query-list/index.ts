@@ -268,7 +268,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
     const listItem = itemRender(item, index) as m.Vnode<IListItemAttrs>;
 
     listItem.attrs = listItem.attrs || {};
-    listItem.attrs.onclick = (e) => this.handleSelect(item, e, index);
+    listItem.attrs.onclick = (e) => this.handleSelect(index, listItem.attrs.disabled, e);
 
     if (this.activeIndex === index) {
       listItem.attrs.class = classnames(
@@ -361,13 +361,13 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
     }
   }
 
-  private handleSelect = (item: T & { disabled?: boolean }, e: Event, index: number) => {
+  private handleSelect = (index: number, isDisabled: boolean, e: Event) => {
     const { onSelect } = this.attrs;
     const target = e.target as HTMLElement;
     const selectedItem = this.filteredItems[index];
     const actionsEl = getClosest(target, `.${Classes.LIST_ITEM_CONTENT_RIGHT}`);
 
-    if (selectedItem && !actionsEl && !item.disabled) {
+    if (selectedItem && !actionsEl && !isDisabled) {
       this.updateActiveIndex(index);
       safeCall(onSelect, selectedItem, e, index);
     } else (e as any).redraw = false;
