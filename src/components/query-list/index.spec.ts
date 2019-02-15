@@ -172,6 +172,30 @@ describe('query-list', () => {
     assert.equal(list().children.length, 1);
   });
 
+  it('item click calls onSelect', () => {
+    let count = 0;
+    mount({ onSelect: () => count++ });
+
+    const itemEl = getItem(0);
+    itemEl.dispatchEvent(new Event('click'));
+
+    assert.equal(count, 1);
+  });
+
+  it('disabled item click does not trigger onSelect', () => {
+    let count = 0;
+
+    mount({
+      onSelect: () => count++,
+      itemRender: () => m('', { disabled: true })
+    });
+
+    const itemEl = getItem(0);
+    itemEl.dispatchEvent(new Event('click'));
+
+    assert.equal(count, 0);
+  });
+
   describe('Keyboard navigation', () => {
     it('ARROW_DOWN updates active item', (done) => {
       mount();
