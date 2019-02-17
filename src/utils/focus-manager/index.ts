@@ -1,9 +1,6 @@
 import { Keys, Classes } from '../../_shared';
 
 class FocusManager {
-  /** testing */
-
-  public test: boolean;
   /** Focus outline is shown only when tabbing through elements */
   public showFocusOnlyOnTab() {
     const body = document.body;

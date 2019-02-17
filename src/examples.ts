@@ -38,3 +38,4 @@ export * from './components/tree/examples';
 export * from './core/examples';
 export * from './utils/focus-manager/examples';
 export * from './utils/responsive-manager/examples';
+export * from './utils/transition-manager/examples';

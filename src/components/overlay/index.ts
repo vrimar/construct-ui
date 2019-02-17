@@ -3,6 +3,7 @@ import m from 'mithril';
 import { Classes, IAttrs, safeCall, Keys, getScrollbarWidth, hasScrollbar } from '../../_shared';
 import { AbstractComponent } from '../abstract-component';
 import { Portal, IPortalAttrs } from '../portal';
+import { TransitionManager } from '../../utils';
 
 export interface IOverlayableAttrs {
   /** Class added to backdrop element */
@@ -91,7 +92,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
       hasBackdrop: true,
       addToStack: true,
       transitionName: 'fade',
-      transitionDuration: 200
+      transitionDuration: TransitionManager.isEnabled ? 200 : 0
     };
   }
 

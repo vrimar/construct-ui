@@ -5,3 +5,4 @@ title: 'Utils'
 
 @page focus-manager
 @page responsive-manager
+@page transition-manager
