@@ -1,14 +1,11 @@
 {
-  "extends": "./tsconfig.base.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "es2015",
     "outDir": "./lib/esm",
   },
-  "include": [
-    "./src"
-  ],
   "exclude": [
-    "../node_modules",
-    "../**/*.spec.ts"
+    "**/*.spec.ts",
+    "**/examples"
   ]
 }
