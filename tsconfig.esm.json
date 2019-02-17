@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "./lib/cjs"
+    "module": "es2015",
+    "outDir": "./lib/esm",
   },
   "include": [
     "./src"

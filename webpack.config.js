@@ -22,6 +22,9 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'awesome-typescript-loader',
+          options: {
+            configFileName: 'tsconfig.umd.json'
+          }
         }
       }
     ]
