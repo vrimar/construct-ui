@@ -136,15 +136,11 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
     if (key === Keys.ARROW_UP || key === Keys.ARROW_DOWN) {
       e.preventDefault();
       const { options } = this.attrs;
-      const maxIndex = options.length - 1;
       const index = this.attrs.options.indexOf(this.selected);
-
-      const newIndex = key === Keys.ARROW_UP
-        ? index === 0 ? maxIndex : index - 1
-        : index === maxIndex ? 0 : index + 1;
-
-      this.selected = options[newIndex];
-      this.activeIndex = newIndex;
+      const direction = key === Keys.ARROW_UP ? 'up' : 'down';
+      const nextIndex = getNextIndex(index, options, direction);
+      this.selected = options[nextIndex];
+      this.activeIndex = nextIndex;
     }
 
     if (key === Keys.SPACE) {
@@ -183,4 +179,27 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
       this.activeIndex = index;
     }
   }
+}
+
+type Direction = 'up' | 'down';
+
+// TODO: Combine with QueryList getNextIndex
+function getNextIndex(currentIndex: number, options: Option[], direction: Direction) {
+  const maxIndex = options.length - 1;
+  let index = currentIndex;
+  let flag = true;
+
+  while (flag) {
+    index = direction === 'up'
+      ? index === 0 ? maxIndex : index - 1
+      : index === maxIndex ? 0 : index + 1;
+
+    const option = options[index];
+
+    if (typeof option === 'object' && !option.disabled) {
+      flag = false;
+    }
+  }
+
+  return index;
 }
