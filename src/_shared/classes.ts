@@ -15,6 +15,7 @@ export const Classes = {
   DISABLED: 'cui-disabled',
   LOADING: 'cui-loading',
   BASIC: 'cui-basic',
+  OUTLINED: 'cui-outlined',
   ROUNDED: 'cui-rounded',
   READONLY: 'cui-readonly',
   SELECTED: 'cui-selected',

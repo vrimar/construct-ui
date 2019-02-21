@@ -130,7 +130,7 @@
 
   &.cui-basic,
   .cui-button-group.cui-basic & {
-    @include cui-button-style(
+   @include cui-button-style(
       $cui-base-text-color, $cui-base-text-color,
       transparent, shade($cui-base-bg-color-hover, 3%), shade($cui-base-bg-color-hover, 6%),
       transparent, transparent, transparent,
@@ -146,6 +146,11 @@
   &.cui-fluid,
   .cui-button-group.cui-fluid & {
     width:100%;
+  }
+
+  &.cui-outlined,
+  .cui-button-group.cui-outlined & {
+    background: none;
   }
 
   @each $size in $cui-sizes {
@@ -208,6 +213,26 @@
       transparent,
       transparent,
       transparent,
+      none, 
+      none
+    );
+
+    .cui-icon {
+      color: map-get($cui-bg-color-map, $intent),
+    }
+  }
+
+  .cui-button.cui-#{$intent}.cui-outlined,
+  .cui-button-group.cui-#{$intent}.cui-outlined .cui-button {
+    @include cui-button-style(
+      map-get($cui-bg-color-map, $intent), 
+      map-get($cui-bg-color-map, $intent),
+      transparent, 
+      tint(map-get($cui-bg-color-map, $intent), 95%),
+      tint(map-get($cui-bg-color-map, $intent), 90%),
+      map-get($cui-border-color-map, $intent),
+      map-get($cui-border-color-hover-map, $intent),
+      map-get($cui-border-color-active-map, $intent),
       none, 
       none
     );

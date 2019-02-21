@@ -17,6 +17,7 @@ export class ButtonExample {
   private label = true;
   private rounded = false;
   private basic = false;
+  private outlined = false;
   private fluid = false;
   private sublabel = false;
 
@@ -36,6 +37,7 @@ export class ButtonExample {
         iconRight: this.iconRight ? Icons.CHEVRON_DOWN : undefined,
         intent: this.intent,
         rounded: this.rounded,
+        outlined: this.outlined,
         size: this.size,
         style: 'margin-bottom: 10px'
       }),
@@ -54,6 +56,7 @@ export class ButtonExample {
         iconRight: this.iconRight ? Icons.CHEVRON_RIGHT : undefined,
         intent: this.intent,
         rounded: this.rounded,
+        outlined: this.outlined,
         size: this.size,
         href: 'https://google.com',
         target: '_blank'
@@ -113,7 +116,18 @@ export class ButtonExample {
       m(Switch, {
         checked: this.basic,
         label: 'Basic',
-        onchange: () => this.basic = !this.basic
+        onchange: () => {
+          this.basic = !this.basic;
+          this.outlined = false;
+        }
+      }),
+      m(Switch, {
+        checked: this.outlined,
+        label: 'Outlined',
+        onchange: () => {
+          this.outlined = !this.outlined;
+          this.basic = false;
+        }
       }),
       m(Switch, {
         checked: this.rounded,

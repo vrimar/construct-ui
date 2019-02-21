@@ -26,6 +26,9 @@ export interface IButtonAttrs extends IAttrs, IActionItemAttrs, ISizeAttrs, IInt
   /** Fills width of parent container */
   fluid?: boolean;
 
+  /** Toggles outlined styling */
+  outlined?: boolean;
+
   /** Sublabel */
   sublabel?: m.Child;
 
@@ -51,6 +54,7 @@ export class Button implements m.Component<IButtonAttrs> {
       loading,
       label,
       onclick,
+      outlined,
       rounded,
       size,
       sublabel,
@@ -72,6 +76,7 @@ export class Button implements m.Component<IButtonAttrs> {
       intent && `cui-${intent}`,
       rounded && Classes.ROUNDED,
       basic && Classes.BASIC,
+      outlined && Classes.OUTLINED,
       !label && !sublabel && (!iconLeft || !iconRight) && Classes.BUTTON_ICON,
       className
     );
