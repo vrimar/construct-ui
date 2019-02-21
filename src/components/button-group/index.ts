@@ -17,7 +17,7 @@ export interface IButtonGroupAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
 
 export class ButtonGroup implements m.Component<IButtonGroupAttrs> {
   public view({ attrs, children }: m.Vnode<IButtonGroupAttrs>) {
-    const { class: className, size, fluid, intent, rounded, basic, ...htmlAttrs } = attrs;
+    const { class: className, size, fluid, intent, rounded, outlined, basic, ...htmlAttrs } = attrs;
 
     return m('', {
       ...htmlAttrs,
@@ -26,6 +26,7 @@ export class ButtonGroup implements m.Component<IButtonGroupAttrs> {
         rounded && Classes.ROUNDED,
         fluid && Classes.FLUID,
         basic && Classes.BASIC,
+        outlined && Classes.OUTLINED,
         intent && `cui-${intent}`,
         size && `cui-${size}`,
         className

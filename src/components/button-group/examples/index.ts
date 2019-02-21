@@ -10,6 +10,7 @@ export class ButtonGroupExample {
   private intent: Intent;
   private label = true;
   private rounded = false;
+  private outlined = false;
   private basic = false;
 
   public view() {
@@ -18,7 +19,8 @@ export class ButtonGroupExample {
       intent: this.intent,
       rounded: this.rounded,
       basic: this.basic,
-      fluid: this.fluid
+      fluid: this.fluid,
+      outlined: this.outlined
     };
 
     return m(Example, { options: this.renderOptions(), src: EXAMPLE_SRC }, [
@@ -61,7 +63,19 @@ export class ButtonGroupExample {
       m(Switch, {
         checked: this.basic,
         label: 'Basic',
-        onchange: () => this.basic = !this.basic
+        onchange: () => {
+          this.basic = !this.basic;
+          this.outlined = false;
+        }
+      }),
+
+      m(Switch, {
+        checked: this.outlined,
+        label: 'Outlined',
+        onchange: () => {
+          this.outlined = !this.outlined;
+          this.basic = false;
+        }
       }),
 
       m(Switch, {
