@@ -15,6 +15,7 @@ describe('button-group', () => {
       fluid: true,
       intent: 'primary',
       rounded: true,
+      outlined: true,
       size: 'xs',
       style: 'margin: 0'
     });

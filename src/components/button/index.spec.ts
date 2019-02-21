@@ -18,6 +18,7 @@ describe('button', () => {
       fluid: true,
       intent: 'primary',
       rounded: true,
+      outlined: true,
       label: 'label',
       sublabel: 'sublabel',
       compact: true
@@ -31,6 +32,7 @@ describe('button', () => {
     assert(hasClass(el(), Classes.ROUNDED));
     assert(hasClass(el(), Classes.FLUID));
     assert(hasClass(el(), Classes.COMPACT));
+    assert(hasClass(el(), Classes.OUTLINED));
     assert(el().textContent.includes('label'));
     assert(el().textContent.includes('sublabel'));
   });

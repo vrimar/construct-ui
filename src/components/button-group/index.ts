@@ -9,6 +9,9 @@ export interface IButtonGroupAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
   /** Adds rounded styling (no borders/background) */
   rounded?: boolean;
 
+  /** Toggles outline styling on children (no background) */
+  outlined: boolean;
+
   /** Fills width of parent container */
   fluid?: boolean;
 
