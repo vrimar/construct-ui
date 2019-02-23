@@ -1,5 +1,5 @@
 @# Transition Manager
-A simple utility class to enable/disable CSS transitions. Components affected are: `Dialog`, `Popover`, and `Tooltip`. `TransitionManager.disable()` is equivalent to setting `transitionDuration=0`.
+A simple utility class to enable/disable CSS open/close transitions. Components affected are: `Dialog`, `Popover`, and `Tooltip`. `TransitionManager.disable()` is equivalent to passing `transitionDuration=0`.
 
 @example TransitionManagerExample
 

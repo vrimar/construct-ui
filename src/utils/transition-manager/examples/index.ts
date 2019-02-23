@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { TransitionManager, Switch, Button, Popover, Tooltip, Dialog, Classes } from '@/';
+import { TransitionManager, Switch, Button, Popover, Tooltip, Dialog, Classes, ButtonGroup } from '@/';
 import { Example } from '@shared/examples';
 
 const EXAMPLE_SRC = 'utils/transition-manager/examples/index.ts';
@@ -13,20 +13,22 @@ export class TransitionManagerExample {
 
   public view() {
     return m(Example, { options: this.renderOptions(), src: EXAMPLE_SRC }, [
-      m(Popover, {
-        content: 'Content',
-        trigger: m(Button, { label: 'Popover trigger' })
-      }),
+      m(ButtonGroup, [
+        m(Popover, {
+          content: 'Content',
+          trigger: m(Button, { label: 'Popover trigger' })
+        }),
 
-      m(Tooltip, {
-        content: 'Content',
-        trigger: m(Button, { label: 'Tooltip trigger' })
-      }),
+        m(Tooltip, {
+          content: 'Content',
+          trigger: m(Button, { label: 'Tooltip trigger' })
+        }),
 
-      m(Button, {
-        label: 'Show dialog',
-        onclick: () => this.isDialogOpen = !this.isDialogOpen
-      }),
+        m(Button, {
+          label: 'Show dialog',
+          onclick: () => this.isDialogOpen = !this.isDialogOpen
+        })
+      ]),
 
       m(Dialog, {
         content: 'Content',
