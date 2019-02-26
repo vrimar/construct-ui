@@ -15,7 +15,7 @@ export interface ISelectListAttrs<T> extends IQueryListAttrs<T> {
 
   /**
    * Attrs passed through to Popover component
-   * @default true
+   * @default {}
    */
   popoverAttrs?: IPopoverAttrs;
 
