@@ -1,24 +1,26 @@
 import m from 'mithril';
 import { Content, Nav } from './';
 import { IDocumentationData } from '..';
-import { ResponsiveManager, Drawer, Icons, Button } from '@/';
+import { ResponsiveManager, Drawer, Icons, Button, getClosest } from '@/';
 
 // tslint:disable-next-line:no-var-requires
 const logoSrc = require('../logo.svg');
 
 export default class Main implements m.Component<IDocumentationData> {
   private isDrawerOpen: boolean = false;
+  private scrollPosition: number;
 
   public view({ attrs }: m.Vnode<IDocumentationData>) {
     const isMobile = ResponsiveManager.is('xs') || ResponsiveManager.is('sm');
 
     const logo = m('img.Docs-logo', { src: logoSrc });
 
-    const nav = m(Nav, {
+    const nav = Nav({
       data: attrs,
       closeDrawer: this.closeDrawer,
       logo,
-      isMobile
+      isMobile,
+      onLinkClick: this.handleLinkClick
     });
 
     return m('.Docs', { class: isMobile ? 'is-mobile' : '' }, [
@@ -38,13 +40,24 @@ export default class Main implements m.Component<IDocumentationData> {
           isOpen: this.isDrawerOpen,
           position: 'left',
           content: nav,
-          onClose: this.closeDrawer
+          onClose: this.closeDrawer,
+          onOpened: this.handleDrawerOnOpened
         })
         : nav,
 
-      m('.Docs-container', m(Content, { ...attrs, key: attrs.page }))
+      m('.Docs-container', Content({ ...attrs }))
     ]);
   }
 
   private closeDrawer = () => this.isDrawerOpen = false;
+
+  private handleLinkClick = (e: Event) => {
+    const contentEl = getClosest(e.target, '.Docs-nav');
+    this.scrollPosition = contentEl.scrollTop;
+  }
+
+  private handleDrawerOnOpened = (el: HTMLElement) => {
+    const contentEl = el.querySelector('.Docs-nav');
+    contentEl.scrollTop = this.scrollPosition;
+  }
 }
