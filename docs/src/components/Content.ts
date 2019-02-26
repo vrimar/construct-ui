@@ -12,23 +12,33 @@ ResponsiveManager.initialize();
 export function Content(attrs: IDocumentationData) {
   const pageData = attrs.docs.pages[attrs.page];
 
-  return m(`section.Docs-content.Docs-${pageData.reference}`, pageData.contents.map((contentBlock => {
-    if (typeof (contentBlock) === 'string') {
-      return m.trust(contentBlock);
-    }
+  const contentAttrs = {
+    class: [
+      'Docs-content',
+      `Docs-content-${pageData.reference}`
+    ].join(' '),
+    key: pageData.reference
+  };
 
-    const content = contentBlock as ITag & INavigable;
+  return m('section', contentAttrs, [
+    pageData.contents.map((contentBlock => {
+      if (typeof (contentBlock) === 'string') {
+        return m.trust(contentBlock);
+      }
 
-    switch (content.tag) {
-      case 'heading':
-        return m(`h${content.level}`, content.value);
-      case 'methods':
-        return m(MethodsTable, { api: content.value, data: attrs });
-      case 'interface':
-        return m(InterfaceTable, { api: content.value, data: attrs });
-      case 'example':
-        const example = Examples[content.value];
-        return example ? m(Examples[content.value]) : 'RENDER ERROR';
-    }
-  })));
+      const content = contentBlock as ITag & INavigable;
+
+      switch (content.tag) {
+        case 'heading':
+          return m(`h${content.level}`, content.value);
+        case 'methods':
+          return MethodsTable({ api: content.value, data: attrs });
+        case 'interface':
+          return InterfaceTable({ api: content.value, data: attrs });
+        case 'example':
+          const example = Examples[content.value];
+          return example ? m(Examples[content.value]) : 'RENDER ERROR';
+      }
+    }))
+  ]);
 }

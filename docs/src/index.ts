@@ -3,11 +3,13 @@ import './style.scss';
 import './favicon.ico';
 import m from 'mithril';
 import Main from './components/Main';
-import { IMarkdownPluginData, ITypescriptPluginData } from 'documentalist/dist/client';
+import { IMarkdownPluginData, ITypescriptPluginData, Kind } from 'documentalist/dist/client';
 import { highlightCode } from './utils/highlightCode';
 
+type Data = IMarkdownPluginData & ITypescriptPluginData;
+
 // tslint:disable-next-line:no-var-requires
-const docs = require('../generated/docs.json') as IMarkdownPluginData & ITypescriptPluginData;
+const docs = normalizeDocs(require('../generated/docs.json') as Data);
 
 export interface IDocumentationData {
   docs: IMarkdownPluginData & ITypescriptPluginData;
@@ -53,3 +55,30 @@ if (module.hot) {
 }
 
 requestAnimationFrame(() => highlightCode());
+
+function normalizeDocs(data: Data) {
+  Object.keys(data.typescript).map(key => {
+    const prop = data.typescript[key];
+
+    if (prop.kind === Kind.Interface || prop.kind === Kind.Class) {
+      prop.properties.sort((a, b) => {
+        const textA = a.name;
+        const textB = b.name;
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      });
+
+      prop.methods.sort((a, b) => {
+        const textA = a.name;
+        const textB = b.name;
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      });
+    }
+
+    if (prop.kind === Kind.Enum) {
+      prop.members = prop.members
+        .filter(member => !member.name.includes('NONE') && !member.name.includes('DEFAULT'));
+    }
+  });
+
+  return data;
+}

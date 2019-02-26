@@ -1,72 +1,62 @@
 import m from 'mithril';
 import { IDocumentationData } from '..';
-import { Table } from '@/';
-import { ITsInterface, ITsProperty } from 'documentalist/dist/client';
+import { Table, Popover } from '@/';
+import { ITsInterface, ITsProperty, Kind } from 'documentalist/dist/client';
 
 export interface IInterfaceTableAttrs {
   data: IDocumentationData;
   api: string;
 }
 
-// TODO: Add basic type filters
-// const basicTypes = [
-//   'boolean',
-//   'string',
-//   'number',
-//   'm.Children',
-//   'm.Child',
-//   'm.Vnode',
-//   '=> void'
-// ];
+export function InterfaceTable(attrs: IInterfaceTableAttrs) {
+  const { api, data } = attrs;
+  const interfaceProps = (data.docs.typescript[api] as ITsInterface).properties;
 
-export class InterfaceTable implements m.Component<IInterfaceTableAttrs> {
-  private docAttrs: ITsProperty[] = [];
+  return m(Table, { class: 'Docs-interface-table' }, [
+    m('tr', [
+      m('th[style=max-width:175px; min-width: 175px]', 'Name'),
+      m('th', 'Description')
+    ]),
+    interfaceProps.map(prop => renderPropRow(prop, data))
+  ]);
+}
 
-  public oninit({ attrs }: m.Vnode<IInterfaceTableAttrs>) {
-    const tsData = attrs.data.docs.typescript;
-    const apiData = tsData[attrs.api] as ITsInterface;
-
-    this.docAttrs = apiData.properties.sort((a, b) => {
-      const textA = a.name;
-      const textB = b.name;
-      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-    });
+function renderPropRow(prop: ITsProperty, data: IDocumentationData) {
+  if (prop.documentation == null) {
+    return;
   }
 
-  public view({ attrs }: m.Vnode<IInterfaceTableAttrs>) {
-    return this.renderTable(this.docAttrs, attrs.data);
-  }
+  return m('tr', [
+    m('td', m('code', prop.name)),
+    m('td', [
+      m('', renderPropType(prop, data)),
+      m.trust(prop.documentation.contentsRaw)
+    ])
+  ]);
+}
 
-  private renderTable(attrs: ITsProperty[], data: IDocumentationData) {
-    return m(Table, { class: 'Docs-interface-table' }, [
-      m('tr', [
-        m('th[style=max-width:175px; min-width: 175px]', 'Name'),
-        m('th', 'Description')
-      ]),
-      attrs.map(attr => this.renderRow(attr, data))
-    ]);
-  }
+function renderPropType(prop: ITsProperty, data: IDocumentationData) {
+  const { type, defaultValue } = prop;
+  const typeDetails = data.docs.typescript[type];
+  const isPopover = typeDetails && typeDetails.kind === Kind.Enum;
 
-  private renderRow(attr: ITsProperty, data: IDocumentationData) {
-    if (attr.documentation == null) {
-      return;
-    }
+  const trigger = m('.Docs-interface-type', { class: isPopover ? 'is-popover' : '' }, [
+    type,
+    defaultValue && ` = ${defaultValue}`
+  ]);
 
-    return m('tr', [
-      m('td', m('code', attr.name)),
-      m('td', [
-        this.renderTypePopover(attr, data),
-        m.trust(attr.documentation.contentsRaw)
-      ])
-    ]);
-  }
-
-  private renderTypePopover(attr: ITsProperty, _data: IDocumentationData) {
-    const { type, defaultValue } = attr;
-
-    return m('.Docs-code-type', [
-      type,
-      defaultValue && ` = ${defaultValue}`
-    ]);
-  }
+  return isPopover
+    ? m(Popover, {
+      class: 'Docs-interface-popover',
+      content: [
+        typeDetails.kind === Kind.Enum && typeDetails.members.map((member, index) => [
+          m('span.Docs-interface-member', `${member.defaultValue}`),
+          (index !== typeDetails.members.length - 1) && m('span', '|')
+        ])
+      ],
+      hasArrow: true,
+      position: 'bottom-start',
+      trigger
+    })
+    : trigger;
 }
