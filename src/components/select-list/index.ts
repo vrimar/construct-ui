@@ -7,10 +7,16 @@ import { Spinner } from '../spinner';
 import { QueryList, IQueryListAttrs } from '../query-list';
 
 export interface ISelectListAttrs<T> extends IQueryListAttrs<T> {
-  /** Closes popover on item select */
+  /**
+   * Closes popover on item select
+   * @default true
+   */
   closeOnSelect?: boolean;
 
-  /** Attrs passed through to Popover component */
+  /**
+   * Attrs passed through to Popover component
+   * @default true
+   */
   popoverAttrs?: IPopoverAttrs;
 
   /** Trigger element */

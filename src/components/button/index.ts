@@ -5,7 +5,10 @@ import { Spinner } from '../spinner';
 import { Classes, IActionItemAttrs, IAttrs, ISizeAttrs, IIntentAttrs, Align } from '../../_shared';
 
 export interface IButtonAttrs extends IAttrs, IActionItemAttrs, ISizeAttrs, IIntentAttrs {
-  /** Content alignment; Used to align left/right icon when fluid=true  */
+  /**
+   * Content alignment; Used to align left/right icon when fluid=true
+   * @default 'center'
+   */
   align?: Align;
 
   /** Toggles basic styling (no borders/background) */

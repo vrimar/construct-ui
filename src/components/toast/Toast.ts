@@ -14,7 +14,10 @@ export interface IToastAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
   /** Callback invoked when toast is dismissed or timeout expires */
   onDismiss?: (key: number | string, timedOut: boolean) => void;
 
-  /** Duration of dismiss timeout */
+  /**
+   * Duration of dismiss timeout
+   * @default 3000
+   */
   timeout?: number;
 
   /** Toast key; necessary when used in controlled mode */

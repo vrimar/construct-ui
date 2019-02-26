@@ -10,10 +10,16 @@ export interface ITooltipAttrs extends IAttrs, ISizeAttrs {
   /** Content to trigger tooltip */
   trigger?: m.Child;
 
-  /** Position of content relative to trigger */
+  /**
+   * Position of content relative to trigger
+   * @default 'auto'
+   */
   position?: PopoverPosition;
 
-  /** Displays an arrow pointing to trigger */
+  /**
+   * Displays an arrow pointing to trigger
+   * @default true
+   */
   hasArrow?: boolean;
 
   /** Duration of close delay on hover interaction */
@@ -22,7 +28,10 @@ export interface ITooltipAttrs extends IAttrs, ISizeAttrs {
   /** Duration of open delay on hover interaction */
   hoverOpenDelay?: number;
 
-  /** Transition duration */
+  /**
+   * Transition duration
+   * @default 300
+   */
   transitionDuration?: number;
 }
 

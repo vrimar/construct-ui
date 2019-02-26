@@ -7,7 +7,10 @@ import { Button } from '../button';
 import { Icons } from '../icon';
 
 export interface IDialogAttrs extends IOverlayableAttrs, IAttrs {
-  /** Wether closed button is present in header */
+  /**
+   * Wether closed button is present in header
+   * @default true
+   */
   hasCloseButton?: boolean;
 
   /** Toggles visibility */

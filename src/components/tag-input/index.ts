@@ -9,7 +9,10 @@ export interface ITagInputAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
   /** Triggers onAdd when input loses focus  */
   addOnBlur?: boolean;
 
-  /** Array of Tag components  */
+  /**
+   * Array of Tag components
+   * @default []
+   */
   tags: Array<m.Vnode<ITagAttrs>>;
 
   /** Left-justified content */
@@ -24,7 +27,10 @@ export interface ITagInputAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
   /** Fills width of parent container */
   fluid?: boolean;
 
-  /** Attrs passed through to input */
+  /**
+   * Attrs passed through to input
+   * @default {}
+   */
   inputAttrs?: IInputAttrs;
 
   /** Function invoked when new tag is added (via enter key or addOnBlur) */

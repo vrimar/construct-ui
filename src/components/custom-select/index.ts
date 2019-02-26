@@ -11,7 +11,10 @@ export interface ICustomSelectAttrs extends IAttrs, ISizeAttrs {
   /** Initially selected value (uncontrolled mode) */
   defaultValue?: string | number;
 
-  /** Array of list options */
+  /**
+   * Array of list options
+   * @default []
+   */
   options: Option[];
 
   /** Value of the selected option */
@@ -20,7 +23,10 @@ export interface ICustomSelectAttrs extends IAttrs, ISizeAttrs {
   /** Callback invoked when selection changes */
   onSelect?: (option: Option) => void;
 
-  /** Attrs passed through to trigger */
+  /**
+   * Attrs passed through to trigger
+   * @default {}
+   */
   triggerAttrs?: IButtonAttrs;
 
   /** Name attr of hidden input (useful for HTML forms) */

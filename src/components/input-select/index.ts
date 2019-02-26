@@ -9,10 +9,16 @@ import { Spinner } from '../spinner';
 import { safeCall, Classes, getClosest, Keys } from '../../_shared';
 
 export interface IInputSelectAttrs<T> extends IQueryableAttrs<T> {
-  /** Closes popover on item selectSS */
+  /**
+   * Closes popover on item select
+   * @default true
+   */
   closeOnSelect?: boolean;
 
-  /** Attrs passed through to Popover component */
+  /**
+   * Attrs passed through to Popover component
+   * @default {}
+   */
   popoverAttrs?: IPopoverAttrs;
 
   /** Header content */
@@ -27,7 +33,10 @@ export interface IInputSelectAttrs<T> extends IQueryableAttrs<T> {
   /** Input value;  */
   value?: number | string;
 
-  /** Opens popover on input down key */
+  /**
+   * Opens popover on input down key
+   * @default true
+   */
   openOnDownKey?: boolean;
 }
 

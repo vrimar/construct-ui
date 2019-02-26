@@ -7,7 +7,10 @@ export interface ICollapseAttrs extends IAttrs {
   /** Toggles visibility */
   isOpen?: boolean;
 
-  /** Duration of the slide-in/slide-out animation */
+  /**
+   * Duration of the slide-in/slide-out animation
+   * @default 300
+   */
   duration?: number;
 }
 

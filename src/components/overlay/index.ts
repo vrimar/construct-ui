@@ -12,7 +12,10 @@ export interface IOverlayableAttrs {
   /** Whether component can be closed on outer click */
   closeOnOutsideClick?: boolean;
 
-  /** Whether component can be closed on Escape key */
+  /**
+   * Whether component can be closed on Escape key
+   * @default true
+   */
   closeOnEscapeKey?: boolean;
 
   /** Whether to show backdrop element */
@@ -56,12 +59,14 @@ export interface IOverlayableAttrs {
    * Name of transition. The name is used to apply CSS transition classes on open and close.
    * On open, ${name}-enter and ${name}-enter-active are added. On close, ${name}-exit
    * and ${name}-exit-active are added.
+   * @default 'fade'
    */
   transitionName?: string;
 
   /**
    * Duration of the animation. Note: the CSS transition duration must match the
    * custom duration passed to this component
+   * @default 200
    */
   transitionDuration?: number;
 }

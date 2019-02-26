@@ -18,7 +18,10 @@ export interface IQueryListEvents {
 }
 
 export interface IFilterableAttrs {
-  /** Attrs passed through to the ControlGroup component  */
+  /**
+   * Attrs passed through to the ControlGroup component
+   * @default {}
+   */
   controlGroupAttrs?: IControlGroupAttrs;
 
   /** Right-justified content in relation to Input component  */
@@ -30,7 +33,10 @@ export interface IFilterableAttrs {
   /** Initial query value (uncontrolled mode) */
   defaultQuery?: string;
 
-  /** Toggles search input */
+  /**
+   * Toggles search input
+   * @default true
+   */
   filterable?: boolean;
 
   /** Callback invoked on input query change; only called when `query` is defined */
@@ -47,10 +53,14 @@ export interface IQueryableAttrs<T> extends IAttrs {
   /**
    * When true, items will be "cached" when a query is specified.
    * When false, every redraw will call itemPredicate or itemListPredicate if a query is specified
+   * @default true
    */
   cacheItems?: boolean;
 
-  /** Wether to show a checkmark for selected item(s) */
+  /**
+   * Wether to show a checkmark for selected item(s)
+   * @default true
+   */
   checkmark?: boolean;
 
   /** Initial active index (uncontrolled mode)  */
@@ -62,7 +72,10 @@ export interface IQueryableAttrs<T> extends IAttrs {
    */
   initialContent?: m.Children;
 
-  /** Attrs passed through to Input component. */
+  /**
+   * Attrs passed through to Input component.
+   * @default {}
+   */
   inputAttrs?: IInputAttrs;
 
   /**
@@ -87,7 +100,10 @@ export interface IQueryableAttrs<T> extends IAttrs {
   /** Array of T items */
   items: T[];
 
-  /** Element(s) shown when input query returns empty */
+  /**
+   * Element(s) shown when input query returns empty
+   * @default 'No items available'
+   */
   emptyContent?: m.Children;
 
   /** Callback invoked on active item change; only called when `activeIndex` is defined */
@@ -96,7 +112,10 @@ export interface IQueryableAttrs<T> extends IAttrs {
   /** Callback invoked when child item is clicked */
   onSelect?: (item: T, e: Event, index: number) => void;
 
-  /** Attrs passed through to List component */
+  /**
+   * Attrs passed through to List component
+   * @default {}
+   */
   listAttrs?: IListAttrs;
 
   eventCallbacks?: (events: IQueryListEvents) => void;

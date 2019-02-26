@@ -36,13 +36,19 @@ export interface IToaster {
 }
 
 export interface IToasterAttrs extends IAttrs {
-  /** Clears all toasts on ESCAPE key */
+  /**
+   *  Clears all toasts on ESCAPE key
+   * @default true
+   */
   clearOnEscapeKey?: boolean;
 
   /** Renders component relative to parent container */
   inline?: boolean;
 
-  /** Position of each toast item */
+  /**
+   * Position of each toast item
+   * @default 'top'
+   */
   position?: ToasterPosition;
 
   /** Array of `Toast` items when used in declarative mode */

@@ -13,7 +13,10 @@ export interface IEmptyStateAttrs extends IAttrs {
   /** Main content */
   content?: m.Children;
 
-  /** Fills the height/width of parent container */
+  /**
+   * Fills the height/width of parent container
+   * @default true
+   */
   fill?: boolean;
 
   [htmlAttrs: string]: any;

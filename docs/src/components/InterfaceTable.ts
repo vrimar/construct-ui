@@ -62,9 +62,11 @@ export class InterfaceTable implements m.Component<IInterfaceTableAttrs> {
   }
 
   private renderTypePopover(attr: ITsProperty, _data: IDocumentationData) {
-    const type = attr.type;
-    const typeVnode = m('.Docs-code-type', type);
+    const { type, defaultValue } = attr;
 
-    return typeVnode;
+    return m('.Docs-code-type', [
+      type,
+      defaultValue && ` = ${defaultValue}`
+    ]);
   }
 }

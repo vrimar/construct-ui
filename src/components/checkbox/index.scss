@@ -14,7 +14,7 @@
 }
 
 @mixin cui-checkbox-style($bg-color-active, $border-color, $border-color-active) {
-  .cui-control-indicator, {
+  .cui-control-indicator {
     border: solid 1px $border-color;
   }
 

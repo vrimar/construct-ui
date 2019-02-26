@@ -10,6 +10,7 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
   /**
    * Set the bounding box.
    * see <a href="https://popper.js.org/popper-documentation.html#modifiers..preventOverflow">Here</a> for more details
+   * @default 'window'
    */
   boundariesEl?: Boundary | Element;
 
@@ -22,16 +23,28 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
   /** Initial open when in uncontrolled mode */
   defaultIsOpen?: boolean;
 
-  /** Toggles arrow visiblity */
+  /**
+   * Toggles arrow visiblity
+   * @default true
+   */
   hasArrow?: boolean;
 
-  /** Duration of close delay on hover interaction */
+  /**
+   * Duration of close delay on hover interaction
+   * @default 100
+   */
   hoverCloseDelay?: number;
 
-  /** Duration of open delay on hover interaction */
+  /**
+   * Duration of open delay on hover interaction
+   * @default 0
+   */
   hoverOpenDelay?: number;
 
-  /** Trigger interaction to toggle visiblity */
+  /**
+   * Trigger interaction to toggle visiblity
+   * @default 'click'
+   */
   interactionType?: PopoverInteraction;
 
   /**
@@ -48,7 +61,10 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
    */
   modifiers?: PopperJS.Modifiers;
 
-  /** Position relative to trigger element */
+  /**
+   * Position relative to trigger element
+   * @default 'bottom'
+   */
   position?: PopoverPosition;
 
   /** Callback invoked in controlled mode when a popover action will modify the open state */
