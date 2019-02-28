@@ -6,6 +6,11 @@ export interface IControlAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
   /** Toggles checked state */
   checked?: boolean;
 
+  /**
+   * Attrs passed through to container element
+   */
+  containerAttrs?: any;
+
   /** Initially sets control to checked state (uncontrolled mode) */
   defaultChecked?: boolean;
 
@@ -32,6 +37,7 @@ export class BaseControl implements m.Component<IControlAttrs> {
   public view({ attrs }: m.Vnode<IControlAttrs>) {
     const {
       class: className,
+      containerAttrs = {},
       intent,
       label,
       size,
@@ -60,6 +66,10 @@ export class BaseControl implements m.Component<IControlAttrs> {
       label
     ];
 
-    return m('label', { class: classes, style }, content);
+    return m('label', {
+      class: classes,
+      style,
+      ...containerAttrs
+    }, content);
   }
 }
