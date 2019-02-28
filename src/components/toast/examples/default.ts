@@ -12,6 +12,7 @@ export class ToastDefaultExample {
   private intent: Intent;
   private position: ToasterPosition = 'top';
   private size: Size;
+  private timeout: number = 3000;
 
   public view() {
     return m(Example, { options: this.renderOptions(), direction: 'column', src: EXAMPLE_SRC }, [
@@ -49,7 +50,7 @@ export class ToastDefaultExample {
       icon: this.icon ? Icons.ALERT_TRIANGLE : undefined,
       intent: this.intent,
       size: this.size,
-      timeout: 3000
+      timeout: this.timeout
     });
   }
 
@@ -92,6 +93,12 @@ export class ToastDefaultExample {
         checked: this.icon,
         label: 'Icon',
         onchange: () => this.icon = !this.icon
+      }),
+
+      m(Switch, {
+        checked: this.timeout === 0,
+        label: 'Timeout = 0',
+        onchange: () => this.timeout = this.timeout === 0 ? 3000 : 0
       })
     ];
   }
