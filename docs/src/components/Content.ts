@@ -16,8 +16,7 @@ export function Content(attrs: IDocumentationData) {
     class: [
       'Docs-content',
       `Docs-content-${pageData.reference}`
-    ].join(' '),
-    key: pageData.reference
+    ].join(' ')
   };
 
   return m('section', contentAttrs, [
