@@ -1,7 +1,7 @@
 import m from 'mithril';
 import { IDocumentationData } from '..';
 import { Table, Popover } from '@/';
-import { ITsInterface, ITsProperty, Kind } from 'documentalist/dist/client';
+import { ITsInterface, ITsProperty } from 'documentalist/dist/client';
 
 export interface IInterfaceTableAttrs {
   data: IDocumentationData;
@@ -38,7 +38,7 @@ function renderPropRow(prop: ITsProperty, data: IDocumentationData) {
 function renderPropType(prop: ITsProperty, data: IDocumentationData) {
   const { type, defaultValue } = prop;
   const typeDetails = data.docs.typescript[type];
-  const isPopover = typeDetails && typeDetails.kind === Kind.Enum;
+  const isPopover = typeDetails && typeDetails.kind === 'enum';
 
   const trigger = m('.Docs-interface-type', { class: isPopover ? 'is-popover' : '' }, [
     type,
@@ -49,7 +49,7 @@ function renderPropType(prop: ITsProperty, data: IDocumentationData) {
     ? m(Popover, {
       class: 'Docs-interface-popover',
       content: [
-        typeDetails.kind === Kind.Enum && typeDetails.members.map((member, index) => [
+        typeDetails.kind === 'enum' && typeDetails.members.map((member, index) => [
           m('span.Docs-interface-member', `${member.defaultValue}`),
           (index !== typeDetails.members.length - 1) && m('span', '|')
         ])

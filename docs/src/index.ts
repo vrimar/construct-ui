@@ -3,7 +3,7 @@ import './style.scss';
 import './favicon.ico';
 import m from 'mithril';
 import Main from './components/Main';
-import { IMarkdownPluginData, ITypescriptPluginData, Kind } from 'documentalist/dist/client';
+import { IMarkdownPluginData, ITypescriptPluginData } from 'documentalist/dist/client';
 import { highlightCode } from './utils/highlightCode';
 
 type Data = IMarkdownPluginData & ITypescriptPluginData;
@@ -60,7 +60,7 @@ function normalizeDocs(data: Data) {
   Object.keys(data.typescript).map(key => {
     const prop = data.typescript[key];
 
-    if (prop.kind === Kind.Interface || prop.kind === Kind.Class) {
+    if (prop.kind === 'interface' || prop.kind === 'class') {
       prop.properties.sort((a, b) => {
         const textA = a.name;
         const textB = b.name;
@@ -74,7 +74,7 @@ function normalizeDocs(data: Data) {
       });
     }
 
-    if (prop.kind === Kind.Enum) {
+    if (prop.kind === 'enum') {
       prop.members = prop.members
         .filter(member => !member.name.includes('NONE') && !member.name.includes('DEFAULT'));
     }
