@@ -1,6 +1,6 @@
 {
   "name": "construct-ui",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A Mithril.js UI library",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
