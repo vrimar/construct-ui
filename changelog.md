@@ -1,3 +1,6 @@
+# 0.1.9
++ Set "Arial" as default font
+
 # 0.1.8
 + Update Feather icons
 + Add TransitionManager
