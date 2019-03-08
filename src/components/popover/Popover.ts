@@ -98,7 +98,6 @@ export interface IPopoverTriggerAttrs extends IAttrs {
 export class Popover extends AbstractComponent<IPopoverAttrs> {
   private isOpen: boolean;
   private popper: PopperJS & { options?: PopperJS.PopperOptions };
-  private popover: m.VnodeDOM<IPopoverAttrs, Popover>;
   private trigger: m.VnodeDOM<IPopoverTriggerAttrs, any>;
 
   public getDefaultAttrs() {
@@ -134,7 +133,10 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
   }
 
   public onupdate() {
-    this.updatePopper();
+    if (this.popper) {
+      this.popper.options.placement = this.attrs.position as PopperJS.Placement;
+      this.popper.scheduleUpdate();
+    }
   }
 
   public onremove() {
@@ -158,18 +160,16 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     this.trigger = trigger as m.VnodeDOM;
     this.setTriggerAttrs();
 
-    const innertContent = [
-      hasArrow && m(`.${Classes.POPOVER_ARROW}`),
-      m(`.${Classes.POPOVER_CONTENT}`, content)
-    ];
-
-    this.popover = m('', {
+    const innerContent = m('', {
       class: classnames(Classes.POPOVER, className),
       onclick: this.handlePopoverClick,
       onmouseenter: this.handleTriggerMouseEnter,
       onmouseleave: this.handleTriggerMouseLeave,
       style
-    }, innertContent) as m.VnodeDOM<IPopoverAttrs, Popover>;
+    }, [
+        hasArrow && m(`.${Classes.POPOVER_ARROW}`),
+        m(`.${Classes.POPOVER_CONTENT}`, content)
+      ]);
 
     return m.fragment({}, [
       this.trigger,
@@ -180,7 +180,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
         backdropClass: classnames(Classes.POPOVER_BACKDROP, backdropClass),
         class: overlayClass,
         closeOnOutsideClick: interactionType !== 'click-trigger',
-        content: this.popover,
+        content: innerContent,
         inline,
         isOpen: this.isOpen,
         onClose: this.handleOverlayClose,
@@ -192,8 +192,8 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
   }
 
   private handleOpened = (contentEl: HTMLElement) => {
-    if (this.popover.dom) {
-      this.createPopper();
+    if (!this.popper && contentEl) {
+      this.createPopper(contentEl.children[0] as HTMLElement);
       safeCall(this.attrs.onOpened, contentEl);
     }
   }
@@ -212,7 +212,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     }
   }
 
-  private createPopper() {
+  private createPopper(el: HTMLElement) {
     const { position, hasArrow, boundariesEl, modifiers } = this.attrs;
 
     const options = {
@@ -224,7 +224,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
         },
         offset: {
           enabled: hasArrow,
-          fn: this.getContentOffset
+          fn: (data) => this.getContentOffset(data, el)
         },
         preventOverflow: {
           enabled: true,
@@ -237,16 +237,9 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
 
     this.popper = new PopperJS(
       this.trigger.dom,
-      this.popover.dom,
+      el,
       options
     );
-  }
-
-  private updatePopper() {
-    if (this.popper) {
-      this.popper.options.placement = this.attrs.position as PopperJS.Placement;
-      this.popper.scheduleUpdate();
-    }
   }
 
   private destroyPopper() {
@@ -399,7 +392,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     return this.attrs.isOpen != null;
   }
 
-  private getContentOffset = (data: PopperJS.Data) => {
+  private getContentOffset = (data: PopperJS.Data, containerEl: HTMLElement) => {
     if (!this.attrs.hasArrow) {
       return data;
     }
@@ -407,7 +400,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     const placement = data.placement;
     const isHorizontal = placement.includes('left') || placement.includes('right');
     const position = isHorizontal ? 'left' : 'top';
-    const arrowSize = this.popover.dom && (this.popover.dom.childNodes[0] as HTMLElement).clientHeight + 1;
+    const arrowSize = (containerEl.children[0] as HTMLElement).clientHeight + 1;
 
     const offset = placement.includes('top') || placement.includes('left') ? -arrowSize : arrowSize;
 
