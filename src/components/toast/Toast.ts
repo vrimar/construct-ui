@@ -15,13 +15,16 @@ export interface IToastAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
   onDismiss?: (key: number | string, timedOut: boolean) => void;
 
   /**
-   * Duration of dismiss timeout
+   * Duration of dismiss timeout;
+   * A value of `0` will prevent the toast from timing out
    * @default 3000
    */
   timeout?: number;
 
   /** Toast key; necessary when used in controlled mode */
   key?: number | string;
+
+  [htmlAttrs: string]: any;
 }
 
 export class Toast extends AbstractComponent<IToastAttrs> {
@@ -46,7 +49,7 @@ export class Toast extends AbstractComponent<IToastAttrs> {
   }
 
   public view() {
-    const { class: className, intent, size, icon, message } = this.attrs;
+    const { class: className, intent, size, icon, message, ...htmlAttrs } = this.attrs;
 
     const classes = classnames(
       Classes.TOAST,
@@ -70,6 +73,7 @@ export class Toast extends AbstractComponent<IToastAttrs> {
       onfocus: this.clearTimeouts,
       onmouseenter: this.clearTimeouts,
       onmouseleave: this.startTimeout,
+      ...htmlAttrs,
       tabindex: 0
     }, content);
   }
