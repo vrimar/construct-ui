@@ -17,9 +17,9 @@ export function triggerEvent(el: Element, type: string, callback: Function) {
   }, TIMEOUT);
 }
 
-export function timeoutRedraw(initial: Function, done: Function) {
+export function timeoutRedraw(fn: Function, done: Function) {
   setTimeout(() => {
-    initial();
+    fn();
     m.redraw();
     setTimeout(done, TIMEOUT);
   }, TIMEOUT);
