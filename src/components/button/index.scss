@@ -140,7 +140,7 @@
 
   &.cui-rounded,
   .cui-button-group.cui-rounded & {
-		border-radius: $cui-border-radius-rounded;
+    border-radius: $cui-border-radius-rounded;
   }
 
   &.cui-fluid,
@@ -173,7 +173,8 @@
       color: $blue-grey50;
     }
 
-    &.cui-basic .cui-button-sublabel {
+    &.cui-basic .cui-button-sublabel,
+    &.cui-outlined .cui-button-sublabel {
       color: $blue-grey200;
     }
 
