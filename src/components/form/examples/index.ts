@@ -40,6 +40,7 @@ export class FormExample {
           m(FormLabel, { for: 'selection' }, 'User'),
           m(CustomSelect, {
             options: ['John', 'Jessica', 'Billy bob'],
+            defaultValue: 'Jessica',
             name: 'users',
             triggerAttrs: {
               iconLeft: Icons.USERS,
