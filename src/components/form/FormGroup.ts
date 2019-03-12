@@ -1,17 +1,15 @@
 import m from 'mithril';
 import classnames from 'classnames';
-import { Classes, IAttrs } from '../../_shared';
+import { Classes } from '../../_shared';
 import { FormLabel } from './FormLabel';
+import { IColAttrs, Col } from '../grid';
 
-export interface IFormGroupAttrs extends IAttrs {
+export interface IFormGroupAttrs extends IColAttrs {
   /** Text label */
   label?: string;
 
   /** Inner content; can be used instead of passing children */
   content?: m.Children;
-
-  /** Width of form group; between 1-12 */
-  span?: number;
 
   /** Disables interaction */
   disabled?: boolean;
@@ -24,13 +22,11 @@ export class FormGroup implements m.Component<IFormGroupAttrs> {
       content,
       disabled,
       label,
-      span,
       ...htmlAttrs
     } = attrs;
 
     const classes = classnames(
       Classes.FORM_GROUP,
-      `${Classes.COL}-${span || 12}`,
       disabled && Classes.DISABLED,
       className
     );
@@ -40,9 +36,6 @@ export class FormGroup implements m.Component<IFormGroupAttrs> {
       content || children
     ];
 
-    return m('', {
-      class: classes,
-      ...htmlAttrs
-    }, innerContent);
+    return m(Col, { class: classes, ...htmlAttrs }, innerContent);
   }
 }

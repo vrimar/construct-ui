@@ -8,9 +8,15 @@ export class FormExample {
   private isSubmitting: boolean = false;
 
   public view() {
+    const span = {
+      xs: 12,
+      sm: 12,
+      md: 6
+    };
+
     return m(Example, { src: EXAMPLE_SRC }, [
       m(Form, { gutter: 15, onsubmit: this.handleSubmit }, [
-        m(FormGroup, { span: 6 }, [
+        m(FormGroup, { span }, [
           m(FormLabel, { for: 'username' }, 'Username'),
           m(Input, {
             contentLeft: m(Icon, { name: Icons.USER }),
@@ -20,7 +26,7 @@ export class FormExample {
           })
         ]),
 
-        m(FormGroup, { span: 6 }, [
+        m(FormGroup, { span }, [
           m(FormLabel, { for: 'password' }, 'Password'),
           m(Input, {
             contentLeft: m(Icon, { name: Icons.LOCK }),
@@ -30,7 +36,7 @@ export class FormExample {
           })
         ]),
 
-        m(FormGroup, { span: 6 }, [
+        m(FormGroup, { span }, [
           m(FormLabel, { for: 'selection' }, 'User'),
           m(CustomSelect, {
             options: ['John', 'Jessica', 'Billy bob'],
@@ -43,7 +49,7 @@ export class FormExample {
           })
         ]),
 
-        m(FormGroup, { span: 6 }, [
+        m(FormGroup, { span }, [
           m(FormLabel, { for: 'occupation' }, 'Occupation'),
           m(Input, {
             contentLeft: m(Icon, { name: Icons.BRIEFCASE }),
