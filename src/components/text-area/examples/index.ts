@@ -5,6 +5,7 @@ import { IntentSelect, SizeSelect, Example } from '@shared/examples';
 const EXAMPLE_SRC = 'components/text-area/examples/index.ts';
 
 export class TextAreaExample {
+  private basic: boolean = false;
   private disabled: boolean = false;
   private fluid: boolean = false;
   private intent: Intent;
@@ -14,6 +15,7 @@ export class TextAreaExample {
   public view() {
     return m(Example, { options: this.renderOptions(), center: false, src: EXAMPLE_SRC }, [
       m(TextArea, {
+        basic: this.basic,
         disabled: this.disabled,
         fluid: this.fluid,
         intent: this.intent,
@@ -40,6 +42,12 @@ export class TextAreaExample {
         checked: this.readonly,
         label: 'Readonly',
         onchange: () => this.readonly = !this.readonly
+      }),
+
+      m(Switch, {
+        checked: this.basic,
+        label: 'Basic',
+        onchange: () => this.basic = !this.basic
       }),
 
       m(Switch, {

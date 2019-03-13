@@ -3,7 +3,7 @@ import assert from 'assert';
 import { TextArea, ITextAreaAttrs, Classes } from '@/';
 import { hasClass } from '@test-utils';
 
-describe.only('textarea', () => {
+describe('textarea', () => {
   const el = () => document.body.firstChild as HTMLElement;
   const textarea = () => el().querySelector('textarea');
 
@@ -11,6 +11,7 @@ describe.only('textarea', () => {
 
   it('Renders correctly', () => {
     mount({
+      basic: true,
       class: Classes.POSITIVE,
       style: 'color:red',
       intent: 'primary',
@@ -19,6 +20,7 @@ describe.only('textarea', () => {
     });
 
     assert(hasClass(el(), Classes.INPUT));
+    assert(hasClass(el(), Classes.BASIC));
     assert(hasClass(el(), Classes.POSITIVE));
     assert(hasClass(el(), Classes.PRIMARY));
     assert(hasClass(el(), Classes.XS));
