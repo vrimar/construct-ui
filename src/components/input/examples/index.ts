@@ -5,6 +5,7 @@ import { ContentSelect, ContentType, IntentSelect, SizeSelect, renderContent, Ex
 const EXAMPLE_SRC = 'components/input/examples/index.ts';
 
 export class InputExample {
+  private basic: boolean = false;
   private contentLeft: ContentType;
   private contentRight: ContentType;
   private disabled: boolean = false;
@@ -16,6 +17,7 @@ export class InputExample {
   public view() {
     return m(Example, { options: this.renderOptions(), src: EXAMPLE_SRC }, [
       m(Input, {
+        basic: this.basic,
         contentLeft: renderContent(this.contentLeft, Icons.CALENDAR),
         contentRight: renderContent(this.contentRight, Icons.ALERT_CIRCLE),
         disabled: this.disabled,
@@ -44,6 +46,12 @@ export class InputExample {
         checked: this.readonly,
         label: 'Readonly',
         onchange: () => this.readonly = !this.readonly
+      }),
+
+      m(Switch, {
+        checked: this.basic,
+        label: 'Basic',
+        onchange: () => this.basic = !this.basic
       }),
 
       m(Switch, {

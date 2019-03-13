@@ -38,16 +38,6 @@
 
   @include cui-content-group-children();
 
-  &.cui-disabled {
-    input,
-    textarea,
-    .cui-button,
-    .cui-icon {
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-  }
-
   @each $size in $cui-sizes {
     &.cui-#{$size} {
       @include cui-content-group-sizing(
@@ -67,5 +57,25 @@
         map-get($cui-border-color-hover-map, $intent)
       );
     }
+  }
+
+  &.cui-disabled {
+    input,
+    textarea,
+    .cui-button,
+    .cui-icon {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  &.cui-basic input,
+  &.cui-basic input:focus,
+  &.cui-basic textarea,
+  &.cui-basic textarea:focus {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
   }
 }

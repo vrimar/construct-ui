@@ -3,6 +3,9 @@ import classnames from 'classnames';
 import { Classes, IAttrs, ISizeAttrs, IIntentAttrs, updateElementGroupPadding } from '../../_shared';
 
 export interface IInputAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
+  /** Toggles basic styling (only bottom border) */
+  basic?: boolean;
+
   /** Left-justified content */
   contentLeft?: m.Vnode;
 
@@ -38,6 +41,7 @@ export class Input implements m.Component<IInputAttrs> {
 
   public view({ attrs }: m.Vnode<IInputAttrs>) {
     const {
+      basic,
       class: className,
       contentLeft,
       contentRight,
@@ -51,6 +55,7 @@ export class Input implements m.Component<IInputAttrs> {
 
     const classes = classnames(
       Classes.INPUT,
+      basic && Classes.BASIC,
       disabled && Classes.DISABLED,
       fluid && Classes.FLUID,
       intent && `cui-${intent}`,

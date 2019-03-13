@@ -12,6 +12,7 @@ describe('input', () => {
 
   it('Renders correctly', () => {
     mount({
+      basic: true,
       class: Classes.POSITIVE,
       style: 'margin:0',
       intent: 'primary',
@@ -20,6 +21,7 @@ describe('input', () => {
     });
 
     assert(hasClass(el(), Classes.INPUT));
+    assert(hasClass(el(), Classes.BASIC));
     assert(hasClass(el(), Classes.POSITIVE));
     assert(hasClass(el(), Classes.PRIMARY));
     assert(hasClass(el(), Classes.XS));
