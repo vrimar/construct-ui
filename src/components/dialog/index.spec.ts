@@ -11,10 +11,12 @@ describe('dialog', () => {
 
   it('Renders correctly', () => {
     mount({
+      basic: true,
       class: Classes.POSITIVE,
       style: 'color: red'
     });
 
+    assert(hasClass(dialog(), Classes.BASIC));
     assert(hasClass(dialog(), Classes.POSITIVE));
     assert.equal(dialog().style.color, 'red');
   });

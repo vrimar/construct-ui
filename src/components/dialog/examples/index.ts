@@ -6,6 +6,7 @@ const EXAMPLE_SRC = 'components/dialog/examples/index.ts';
 
 export class DialogExample {
   private autofocus = true;
+  private basic = false;
   private closeOnEscapeKey = true;
   private closeOnOutsideClick = true;
   private hasBackdrop = true;
@@ -25,6 +26,7 @@ export class DialogExample {
 
       m(Dialog, {
         autofocus: this.autofocus,
+        basic: this.basic,
         closeOnEscapeKey: this.closeOnEscapeKey,
         closeOnOutsideClick: this.closeOnOutsideClick,
         content: m(Input, { autofocus: true, fluid: true }),
@@ -98,6 +100,12 @@ export class DialogExample {
         checked: this.transition,
         label: 'Transition',
         onchange: () => this.transition = !this.transition
+      }),
+
+      m(Switch, {
+        checked: this.basic,
+        label: 'Basic',
+        onchange: () => this.basic = !this.basic
       })
     ];
   }

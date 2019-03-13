@@ -13,6 +13,12 @@ $dialog-padding: $cui-base-size * 1.5;
 	bottom:0;
 	left:0;
   z-index: $cui-z-index-overlay;
+
+  &.cui-basic .cui-dialog-header,
+  &.cui-basic .cui-dialog-footer {
+    border: none;
+    background: $white;
+  }
 }
 
 .cui-dialog-content {
@@ -60,11 +66,13 @@ $dialog-padding: $cui-base-size * 1.5;
 	min-height: 40px;
 	padding: $dialog-padding;
 
-	h4 {
+	h3 {
     font-weight:normal;
-		flex: 1 1 auto;
-		margin:0;
-    line-height:inherit;
+    flex: 1 1 auto;
+    
+    // Prevent text shifting on transition open
+		margin-bottom: 1px;
+    line-height: inherit;
     color: $cui-text-color;
 	}
 }

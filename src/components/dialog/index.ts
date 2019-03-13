@@ -7,6 +7,9 @@ import { Button } from '../button';
 import { Icons } from '../icon';
 
 export interface IDialogAttrs extends IOverlayableAttrs, IAttrs {
+  /** Toggles basic styling (no header/footer border and background) */
+  basic?: boolean;
+
   /**
    * Wether closed button is present in header
    * @default true
@@ -36,6 +39,7 @@ export class Dialog extends AbstractComponent<IDialogAttrs> {
 
   public view() {
     const {
+      basic,
       onClose,
       hasCloseButton,
       class: className,
@@ -54,7 +58,7 @@ export class Dialog extends AbstractComponent<IDialogAttrs> {
     });
 
     const header = m('', { class: Classes.DIALOG_HEADER }, [
-      m('h4', title),
+      m('h3', title),
       hasCloseButton && closeButton
     ]);
 
@@ -65,7 +69,11 @@ export class Dialog extends AbstractComponent<IDialogAttrs> {
     ]);
 
     const container = m('', {
-      class: classnames(Classes.DIALOG, className),
+      class: classnames(
+        Classes.DIALOG,
+        basic && Classes.BASIC,
+        className
+      ),
       onclick: this.handleContainerClick,
       style
     }, innerContent);
