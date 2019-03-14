@@ -22,6 +22,7 @@ export class FormGroup implements m.Component<IFormGroupAttrs> {
       content,
       disabled,
       label,
+      span = 12,
       ...htmlAttrs
     } = attrs;
 
@@ -36,6 +37,10 @@ export class FormGroup implements m.Component<IFormGroupAttrs> {
       content || children
     ];
 
-    return m(Col, { class: classes, ...htmlAttrs }, innerContent);
+    return m(Col, {
+      class: classes,
+      span,
+      ...htmlAttrs
+    }, innerContent);
   }
 }
