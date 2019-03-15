@@ -6,6 +6,9 @@ export interface ICardAttrs extends IAttrs, ISizeAttrs {
   /** Degree of card shadow */
   elevation?: number;
 
+  /** Fills width of parent container */
+  fluid?: boolean;
+
   /** Adds interactive hover/active styling */
   interactive?: boolean;
 
@@ -14,13 +17,21 @@ export interface ICardAttrs extends IAttrs, ISizeAttrs {
 
 export class Card implements m.Component<ICardAttrs> {
   public view({ attrs, children }: m.Vnode<ICardAttrs>) {
-    const { class: className, elevation, interactive, size, ...htmlAttrs } = attrs;
+    const {
+      class: className,
+      elevation,
+      fluid,
+      interactive,
+      size,
+      ...htmlAttrs
+    } = attrs;
 
     return m('', {
       ...htmlAttrs,
       class: classnames(
         Classes.CARD,
         elevation && `cui-elevation-${elevation || 1}`,
+        fluid && Classes.FLUID,
         interactive && Classes.CARD_INTERACTIVE,
         size && `cui-${size}`,
         className

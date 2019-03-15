@@ -7,16 +7,18 @@ const elevations = ['0', '1', '2', '3', '4'];
 
 export class CardExample {
   private elevation = 1;
+  private fluid: boolean;
   private interactive = false;
   private size: Size;
 
   public view() {
-    return m(Example, { options: this.renderOptions(), src: EXAMPLE_SRC }, [
+    return m(Example, { options: this.renderOptions(), center: true, src: EXAMPLE_SRC }, [
       m(Card, {
         elevation: this.elevation,
+        fluid: this.fluid,
         interactive: this.interactive,
         size: this.size,
-        style: 'width:300px'
+        style: 'min-width: 300px'
       },
         m('h4', 'Card title'),
         m('', 'Card content')
@@ -34,6 +36,10 @@ export class CardExample {
       m(Switch, {
         label: 'Interactive',
         onchange: () => this.interactive = !this.interactive
+      }),
+      m(Switch, {
+        label: 'Fluid',
+        onchange: () => this.fluid = !this.fluid
       }),
       m('h5', 'Elevation'),
       m(RadioGroup, {

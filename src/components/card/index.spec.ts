@@ -12,6 +12,7 @@ describe('card', () => {
     mount({
       class: Classes.POSITIVE,
       elevation: 2,
+      fluid: true,
       interactive: true,
       size: 'xs',
       style: 'margin: 0'
@@ -19,6 +20,7 @@ describe('card', () => {
 
     assert(hasClass(el(), Classes.CARD));
     assert(hasClass(el(), Classes.CARD_INTERACTIVE));
+    assert(hasClass(el(), Classes.FLUID));
     assert(hasClass(el(), `${Classes.ELEVATION}-2`));
     assert(hasClass(el(), Classes.XS));
     assert(el().hasAttribute('style'));

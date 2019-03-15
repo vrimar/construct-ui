@@ -50,4 +50,8 @@
       box-shadow: $cui-elevation-1;
     }
   }
+
+  &.cui-fluid {
+    max-width: none;
+  }
 }
