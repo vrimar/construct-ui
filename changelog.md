@@ -1,3 +1,13 @@
+# 0.1.10
++ [Popover] fix `onOpened` passing null container element
++ [Toast] pass through html attrs
++ [Button] fix sublabel color when `outlined` and `intent` is set
++ [FormGroup] wrap in a `Col` component
++ [Input] add `basic` attr
++ [Textarea] add `basic` attr
++ [Dialog] add `basic` attr, increase heading font-size
++ [Card] add `fluid` attr ([#2](https://github.com/vrimar/construct-ui/issues/2))
+
 # 0.1.9
 + Set "Arial" as default font
 
