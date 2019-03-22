@@ -12,7 +12,7 @@ export interface IPortalAttrs extends IAttrs {
 
 export class Portal implements m.Component<IPortalAttrs> {
   private rootElement: HTMLElement;
-  private content: m.Component<any, any>;
+  private content: m.Component;
 
   public oncreate({ attrs, children }: m.Vnode<IPortalAttrs>) {
     const rootElement = document.createElement('div');

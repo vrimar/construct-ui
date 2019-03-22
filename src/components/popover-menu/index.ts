@@ -9,7 +9,7 @@ export interface IPopoverMenuAttrs extends IPopoverAttrs {
   menuAttrs?: IMenuAttrs;
 }
 
-export class PopoverMenu implements m.ClassComponent<IPopoverMenuAttrs> {
+export class PopoverMenu implements m.Component<IPopoverMenuAttrs> {
   public view({ attrs }: m.Vnode<IPopoverMenuAttrs>) {
     const { class: className, menuAttrs, content, ...popoverAttrs } = attrs;
 

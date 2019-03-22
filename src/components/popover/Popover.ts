@@ -98,7 +98,7 @@ export interface IPopoverTriggerAttrs extends IAttrs {
 export class Popover extends AbstractComponent<IPopoverAttrs> {
   private isOpen: boolean;
   private popper: PopperJS & { options?: PopperJS.PopperOptions };
-  private trigger: m.VnodeDOM<IPopoverTriggerAttrs, any>;
+  private trigger: m.VnodeDOM<IPopoverTriggerAttrs>;
 
   public getDefaultAttrs() {
     return {

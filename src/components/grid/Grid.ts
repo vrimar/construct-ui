@@ -76,7 +76,7 @@ export class Grid implements m.Component<IGridAttrs> {
   }
 
   private renderCols(children: m.ChildArray, gutter: number): any {
-    return children.map((col: m.Vnode<IColAttrs, any>) => {
+    return children.map((col: m.Vnode<IColAttrs>) => {
       if (col == null || col.tag === '#') return;
 
       if (col.tag === '[') {
