@@ -178,7 +178,7 @@
       color: $blue-grey200;
     }
 
-    &:not(.cui-basic) .cui-spinner:after {
+    &:not(.cui-basic):not(.cui-outlined) .cui-spinner:after{
       border-color: transparent;
       border-top-color: $white !important;
     }
