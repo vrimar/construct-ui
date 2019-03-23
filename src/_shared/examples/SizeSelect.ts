@@ -2,7 +2,7 @@ import m from 'mithril';
 import { ISelectAttrs, Select, Size } from '../../';
 
 export interface ISizeSelectAttrs extends ISelectAttrs {
-  onSelect: (size: Size) => void;
+  onSelect: (size?: Size) => void;
 }
 
 export class SizeSelect implements m.Component<ISizeSelectAttrs> {

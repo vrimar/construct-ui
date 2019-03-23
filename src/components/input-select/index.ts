@@ -63,15 +63,15 @@ export class InputSelect<T> extends AbstractComponent<IInputSelectAttrs<T>>  {
 
   public oninit(vnode: m.Vnode<IInputSelectAttrs<T>>) {
     super.oninit(vnode);
-    const { isOpen, defaultIsOpen } = vnode.attrs.popoverAttrs;
+    const { isOpen, defaultIsOpen } = vnode.attrs.popoverAttrs!;
 
     this.isOpen = isOpen != null ? isOpen : defaultIsOpen != null ? defaultIsOpen : false;
   }
 
   public onbeforeupdate(vnode: m.Vnode<IInputSelectAttrs<T>>, old: m.VnodeDOM<IInputSelectAttrs<T>>) {
     super.onbeforeupdate(vnode, old);
-    const isOpen = vnode.attrs.popoverAttrs.isOpen;
-    const wasOpen = old.attrs.popoverAttrs.isOpen;
+    const isOpen = vnode.attrs.popoverAttrs!.isOpen;
+    const wasOpen = old.attrs.popoverAttrs!.isOpen;
 
     if (isOpen && !wasOpen) {
       this.isOpen = true;
@@ -148,7 +148,7 @@ export class InputSelect<T> extends AbstractComponent<IInputSelectAttrs<T>>  {
 
   private handleInputFocus = (e: Event) => {
     this.isOpen = true;
-    safeCall(this.attrs.inputAttrs.onfocus, e);
+    safeCall(this.attrs.inputAttrs!.onfocus, e);
   }
 
   private handleInputKeyDown = (e: KeyboardEvent) => {
@@ -164,7 +164,7 @@ export class InputSelect<T> extends AbstractComponent<IInputSelectAttrs<T>>  {
       this.handleQueryListKeyDown(e);
     }
 
-    safeCall(this.attrs.inputAttrs.onkeydown, e);
+    safeCall(this.attrs.inputAttrs!.onkeydown, e);
     (e as any).redraw = false;
   }
 
@@ -172,7 +172,7 @@ export class InputSelect<T> extends AbstractComponent<IInputSelectAttrs<T>>  {
     const value = (e.target as HTMLInputElement).value;
     this.query = value;
     this.activeIndex = 0;
-    safeCall(this.attrs.inputAttrs.oninput, e);
+    safeCall(this.attrs.inputAttrs!.oninput, e);
     m.redraw();
   }, 200);
 
@@ -195,19 +195,18 @@ export class InputSelect<T> extends AbstractComponent<IInputSelectAttrs<T>>  {
   }
 
   private handlePopoverInteraction = (nextOpenState: boolean, e: Event) => {
-    const { onInteraction } = this.attrs.popoverAttrs;
     const isClickOnInput = getClosest(e.target, `.${Classes.INPUT}`);
 
     if (!isClickOnInput) {
       this.isOpen = false;
     }
 
-    safeCall(onInteraction, nextOpenState, e);
+    safeCall(this.attrs.popoverAttrs!, nextOpenState, e);
   }
 
   private handlePopoverClosed = () => {
     this.query = '';
-    safeCall(this.attrs.popoverAttrs.onClosed);
+    safeCall(this.attrs.popoverAttrs!.onClosed);
   }
 
   private get inputEl() {

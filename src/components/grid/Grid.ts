@@ -12,7 +12,6 @@ export interface IBreakpointMap {
   md?: number;
   lg?: number;
   xl?: number;
-  [key: string]: number;
 }
 
 export interface IGridAttrs extends IAttrs {

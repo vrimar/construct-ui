@@ -20,7 +20,7 @@ export class Col implements m.Component<IColAttrs> {
   public view({ attrs, children }: m.Vnode<IColAttrs>) {
     const { span, order, offset, class: className, ...htmlAttrs } = attrs;
 
-    let breakpointClasses: string;
+    let breakpointClasses: string = '';
 
     Object.keys(Breakpoints).map(breakpoint => {
       breakpointClasses = classnames(

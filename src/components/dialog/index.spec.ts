@@ -50,7 +50,7 @@ describe('dialog', () => {
       onClose: () => count++
     });
 
-    const backdrop = dialog().querySelector(`.${Classes.DIALOG_CLOSE_BUTTON}`);
+    const backdrop = dialog().querySelector(`.${Classes.DIALOG_CLOSE_BUTTON}`)!;
     backdrop.dispatchEvent(new Event('click'));
 
     assert.equal(count, 1);

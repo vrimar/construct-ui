@@ -5,7 +5,7 @@ export function isFunction(value: any): value is Function {
   return typeof value === 'function';
 }
 
-export function safeCall(func: Function, ...args: any[]) {
+export function safeCall(func: any, ...args: any[]) {
   if (isFunction(func)) {
     return func(...args);
   }
@@ -58,7 +58,7 @@ export function elementIsOrContains(element: HTMLElement, testElement: HTMLEleme
   return element === testElement || element.contains(testElement);
 }
 
-export function normalizeStyle(style: Style) {
+export function normalizeStyle(style?: Style) {
   if (typeof style === 'string') {
     const result = {} as Object;
     const attributes = style.replace(/\s/g, '').split(';');
@@ -71,7 +71,11 @@ export function normalizeStyle(style: Style) {
   } else return style;
 }
 
-export function updateElementGroupPadding(containerEl: HTMLElement, contentLeft: m.Vnode, contentRight: m.Vnode) {
+export function updateElementGroupPadding(
+  containerEl: HTMLElement,
+  contentLeft?: m.Vnode,
+  contentRight?: m.Vnode
+) {
   if (!containerEl) return;
 
   const containerPadding = Math.floor(containerEl.clientHeight / 1.6);

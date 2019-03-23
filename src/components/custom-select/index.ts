@@ -35,7 +35,7 @@ export interface ICustomSelectAttrs extends IAttrs, ISizeAttrs {
 
 export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
   private activeIndex: number = 0;
-  private selected: Option;
+  private selected?: Option;
   private isOpen: boolean = false;
 
   public getDefaultAttrs() {
@@ -142,7 +142,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
     if (key === Keys.ARROW_UP || key === Keys.ARROW_DOWN) {
       e.preventDefault();
       const { options } = this.attrs;
-      const index = this.attrs.options.indexOf(this.selected);
+      const index = this.attrs.options.indexOf(this.selected!);
       const direction = key === Keys.ARROW_UP ? 'up' : 'down';
       const nextIndex = getNextIndex(index, options, direction);
       this.selected = options[nextIndex];
@@ -153,7 +153,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
       this.isOpen = true;
     }
 
-    safeCall(this.attrs.triggerAttrs.onkeydown, e);
+    safeCall(this.attrs.triggerAttrs!.onkeydown, e);
   }
 
   private handlePopoverInteraction = (nextOpenState: boolean) => {
@@ -167,7 +167,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
 
   private get selectedLabel() {
     const selected = this.selected;
-    return selected != null ? typeof selected === 'object' ? selected.label : selected : undefined;
+    return selected != null ? typeof selected === 'object' ? selected.label : selected : '';
   }
 
   private setSelected() {
@@ -175,13 +175,13 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
 
     if (options.length) {
       const firstOption = options[0];
-      const selectedValue = value || defaultValue || undefined;
+      const selectedValue = value || defaultValue;
 
       this.selected = typeof firstOption === 'object'
         ? (options as IOption[]).find(x => x.value === selectedValue)
         : selectedValue;
 
-      const index = options.indexOf(this.selected);
+      const index = options.indexOf(this.selected!);
       this.activeIndex = index;
     }
   }

@@ -5,7 +5,7 @@ import { hasClass } from '@test-utils';
 
 describe('textarea', () => {
   const el = () => document.body.firstChild as HTMLElement;
-  const textarea = () => el().querySelector('textarea');
+  const textarea = () => el().querySelector('textarea') as HTMLTextAreaElement;
 
   afterEach(() => m.mount(document.body, null));
 

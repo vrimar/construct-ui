@@ -8,7 +8,7 @@ import { Tag } from '../tag';
 describe('tree', () => {
   const el = () => document.body.firstChild as HTMLElement;
   const node = () => el().firstChild as HTMLElement;
-  const nodeCaret = () => node().querySelector(`.${Classes.TREE_NODE_CARET}`);
+  const nodeCaret = () => node().querySelector(`.${Classes.TREE_NODE_CARET}`) as HTMLElement;
 
   afterEach(() => m.mount(document.body, null));
 

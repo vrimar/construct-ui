@@ -84,7 +84,7 @@ export class Toaster extends AbstractComponent<IToasterAttrs> {
     );
 
     const renderedToasts = this.isControlled()
-      ? toasts
+      ? toasts || []
       : this.toasts.map(toastOptions => this.renderToast(toastOptions));
 
     return m(Overlay, {

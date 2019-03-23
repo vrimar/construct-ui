@@ -63,7 +63,7 @@ export class ListItem implements m.Component<IListItemAttrs> {
     }, content);
   }
 
-  private handleClick(e: Event, onclick: (e: Event) => void) {
+  private handleClick(e: Event, onclick?: (e: Event) => void) {
     const el = e.target as HTMLElement;
     const isClickOnLeftContent = getClosest(el, `.${Classes.LIST_ITEM_CONTENT_LEFT}`);
     const isClickOnRightContent = getClosest(el, `.${Classes.LIST_ITEM_CONTENT_RIGHT}`);

@@ -2,7 +2,7 @@ import m from 'mithril';
 import { Intent, ISelectAttrs, Select } from '../../';
 
 export interface IIntentSelectAttrs extends ISelectAttrs {
-  onSelect: (e: Intent) => void;
+  onSelect: (intent?: Intent) => void;
 }
 
 export class IntentSelect implements m.Component<IIntentSelectAttrs> {

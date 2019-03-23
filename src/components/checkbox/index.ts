@@ -14,7 +14,7 @@ export class Checkbox implements m.Component<ICheckboxAttrs> {
   private input: HTMLInputElement;
 
   public oncreate({ attrs, dom }: m.VnodeDOM<ICheckboxAttrs>) {
-    this.input = dom.querySelector('input');
+    this.input = dom.querySelector('input') as HTMLInputElement;
 
     if (attrs.defaultIndeterminate != null) {
       this.input.indeterminate = attrs.defaultIndeterminate;
@@ -23,7 +23,7 @@ export class Checkbox implements m.Component<ICheckboxAttrs> {
   }
 
   public onupdate({ attrs, dom }: m.VnodeDOM<ICheckboxAttrs>) {
-    this.input = dom.querySelector('input');
+    this.input = dom.querySelector('input') as HTMLInputElement;
     this.updateIndeterminate(attrs);
   }
 

@@ -5,7 +5,7 @@ import { hasClass, hasChildClass } from '@test-utils';
 
 describe('input', () => {
   const el = () => document.body.firstChild as HTMLElement;
-  const input = () => el().querySelector('input');
+  const input = () => el().querySelector('input') as HTMLInputElement;
   const tag = () => el().querySelector(`.${Classes.TAG}`) as HTMLElement;
 
   afterEach(() => m.mount(document.body, null));

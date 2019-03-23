@@ -31,7 +31,7 @@ describe('tag', () => {
       label: 'label'
     });
 
-    assert(el().textContent.includes('label'));
+    assert(el().textContent!.includes('label'));
   });
 
   it('Passes through html attrs', () => {
@@ -54,7 +54,7 @@ describe('tag', () => {
     mount({ onRemove: () => count++ });
 
     const icon = el().querySelector(`.${Classes.ICON}`);
-    icon.dispatchEvent(new Event('click'));
+    icon!.dispatchEvent(new Event('click'));
 
     assert.equal(count, 1);
   });

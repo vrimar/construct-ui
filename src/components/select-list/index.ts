@@ -51,15 +51,15 @@ export class SelectList<T> extends AbstractComponent<ISelectListAttrs<T>> {
 
   public oninit(vnode: m.Vnode<ISelectListAttrs<T>>) {
     super.oninit(vnode);
-    const { isOpen, defaultIsOpen } = vnode.attrs.popoverAttrs;
+    const { isOpen, defaultIsOpen } = vnode.attrs.popoverAttrs!;
 
     this.isOpen = isOpen != null ? isOpen : defaultIsOpen != null ? defaultIsOpen : false;
   }
 
   public onbeforeupdate(vnode: m.Vnode<ISelectListAttrs<T>>, old: m.VnodeDOM<ISelectListAttrs<T>>) {
     super.onbeforeupdate(vnode, old);
-    const isOpen = vnode.attrs.popoverAttrs.isOpen;
-    const wasOpen = old.attrs.popoverAttrs.isOpen;
+    const isOpen = vnode.attrs.popoverAttrs!.isOpen;
+    const wasOpen = old.attrs.popoverAttrs!.isOpen;
 
     if (isOpen && !wasOpen) {
       this.isOpen = true;
@@ -131,7 +131,7 @@ export class SelectList<T> extends AbstractComponent<ISelectListAttrs<T>> {
   }
 
   private handlePopoverInteraction = (nextOpenState: boolean, e: Event) => {
-    const { isOpen, onInteraction } = this.attrs.popoverAttrs;
+    const { isOpen, onInteraction } = this.attrs.popoverAttrs!;
 
     if (isOpen != null) {
       safeCall(onInteraction, nextOpenState, e);

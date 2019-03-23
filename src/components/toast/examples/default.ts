@@ -56,7 +56,7 @@ export class ToastDefaultExample {
 
   private updateFirst = () => {
     const toast = AppToaster.getToasts()[0];
-    AppToaster.update(toast.key, {
+    AppToaster.update(toast.key!, {
       message: 'UPDATED MESSAGE',
       intent: 'primary'
     });
@@ -64,7 +64,7 @@ export class ToastDefaultExample {
 
   private dismissFirst = () => {
     const toast = AppToaster.getToasts()[0];
-    AppToaster.dismiss(toast.key, false);
+    AppToaster.dismiss(toast.key!, false);
   }
 
   private renderOptions() {

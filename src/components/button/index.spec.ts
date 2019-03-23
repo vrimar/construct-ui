@@ -33,8 +33,8 @@ describe('button', () => {
     assert(hasClass(el(), Classes.FLUID));
     assert(hasClass(el(), Classes.COMPACT));
     assert(hasClass(el(), Classes.OUTLINED));
-    assert(el().textContent.includes('label'));
-    assert(el().textContent.includes('sublabel'));
+    assert(el().textContent!.includes('label'));
+    assert(el().textContent!.includes('sublabel'));
   });
 
   it('Renders anchor', () => {
@@ -72,8 +72,8 @@ describe('button', () => {
       }
     });
 
-    const iconLeft = el().firstChild;
-    const iconRight = el().lastChild;
+    const iconLeft = el().firstChild!;
+    const iconRight = el().lastChild!;
     iconLeft.dispatchEvent(new Event('click'));
     iconRight.dispatchEvent(new Event('click'));
 

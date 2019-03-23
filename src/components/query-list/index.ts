@@ -124,7 +124,7 @@ export interface IQueryableAttrs<T> extends IAttrs {
 export interface IQueryListAttrs<T> extends IQueryableAttrs<T>, IFilterableAttrs { }
 
 export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
-  public filteredItems?: T[] = [];
+  private filteredItems: T[] = [];
   private activeIndex: number;
   private itemNodes: Array<m.Vnode<IListItemAttrs>>;
   private inputEl: HTMLElement;
@@ -158,8 +158,8 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
   }
 
   public oncreate({ dom }: m.VnodeDOM<IQueryListAttrs<T>>) {
-    this.listEl = dom.querySelector(`.${Classes.LIST}`);
-    this.inputEl = dom.querySelector(`.${Classes.INPUT}`);
+    this.listEl = dom.querySelector(`.${Classes.LIST}`) as HTMLElement;
+    this.inputEl = dom.querySelector(`.${Classes.INPUT}`) as HTMLElement;
 
     this.scrollToActiveItem();
   }
@@ -234,7 +234,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
 
     return m(ControlGroup, {
       ...this.attrs.controlGroupAttrs,
-      class: classnames(Classes.FLUID, controlGroupAttrs.class)
+      class: classnames(Classes.FLUID, controlGroupAttrs!.class)
     }, [
         contentLeft,
 
@@ -247,7 +247,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
               name: Icons.X,
               onclick: this.handleInputClear
             })
-            : inputAttrs.contentRight,
+            : inputAttrs!.contentRight,
           value: this.query
         }),
 
@@ -264,7 +264,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
     const classes = classnames(
       isEmpty && Classes.QUERY_LIST_EMPTY,
       hasInitialContent && Classes.QUERY_LIST_INITIAL,
-      listAttrs.class
+      listAttrs!.class
     );
 
     const emptyOrInitialContent = m(`.${Classes.QUERY_LIST_MESSAGE}`,
@@ -287,7 +287,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
     const listItem = itemRender(item, index) as m.Vnode<IListItemAttrs>;
 
     listItem.attrs = listItem.attrs || {};
-    listItem.attrs.onclick = (e) => this.handleSelect(index, listItem.attrs.disabled, e);
+    listItem.attrs.onclick = (e) => this.handleSelect(index, listItem.attrs.disabled!, e);
 
     if (this.activeIndex === index) {
       listItem.attrs.class = classnames(
@@ -301,7 +301,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
       if (listItem.attrs.selected && checkmark) {
         listItem.attrs.contentLeft = m(Icon, {
           name: Icons.CHECK,
-          size: listAttrs.size
+          size: listAttrs!.size
         });
       }
     }

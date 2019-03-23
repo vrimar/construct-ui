@@ -78,7 +78,7 @@ describe('toaster', () => {
 
       setTimeout(() => {
         m.redraw();
-        const dismissIcon = toast().querySelector(`.${Classes.ICON}-${Icons.X}`);
+        const dismissIcon = toast().querySelector(`.${Classes.ICON}-${Icons.X}`)!;
         dismissIcon.dispatchEvent(new Event('click'));
         assert.equal(count, 1);
         done();

@@ -17,7 +17,7 @@ export class TagExample {
         intent: this.intent,
         rounded: this.rounded,
         size: this.size,
-        onRemove: this.removable && console.log
+        onRemove: this.removable ? console.log : undefined
       })
     ]);
   }

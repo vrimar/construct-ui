@@ -30,7 +30,7 @@ export class InputFileExample {
 
   private handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement;
-    this.text = target.files[0].name;
+    this.text = target.files![0].name;
   }
 
   private renderOptions() {

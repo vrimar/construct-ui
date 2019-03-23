@@ -77,7 +77,7 @@ describe('overlay', () => {
       content: m(Input, { autofocus: true })
     });
 
-    const input = overlay().querySelector('input');
+    const input = overlay().querySelector('input') as HTMLInputElement;
 
     assert(input.autofocus);
   });

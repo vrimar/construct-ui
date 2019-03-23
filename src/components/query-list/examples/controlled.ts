@@ -6,7 +6,7 @@ const EXAMPLE_SRC = 'components/query-list/examples/controlled.ts';
 const countryQueryList = QueryList.ofType<ICountryModel>();
 
 export class QueryListControlledExample {
-  private selectedItem: ICountryModel;
+  private selectedItem?: ICountryModel;
   private activeIndex: number = 5;
   private query: string = 'Al';
 
@@ -64,7 +64,7 @@ export class QueryListControlledExample {
 
   private resetAll = () => {
     this.activeIndex = 0;
-    this.selectedItem = null;
+    this.selectedItem = undefined;
     this.query = '';
   }
 

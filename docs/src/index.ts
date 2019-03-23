@@ -38,7 +38,7 @@ const resolveRoute = (wrapper: m.Component) => ({
 }) as m.RouteResolver<IDocumentationData>;
 
 const initRoutes = (layout: any) => {
-  m.route(document.getElementById('Docs'), DEFAULT_ROOT, {
+  m.route(document.getElementById('Docs')!, DEFAULT_ROOT, {
     '/introduction/:page': resolveRoute(layout),
     '/components/:page...': resolveRoute(layout),
     '/utils/:page...': resolveRoute(layout)

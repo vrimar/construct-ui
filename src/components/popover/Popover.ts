@@ -97,7 +97,7 @@ export interface IPopoverTriggerAttrs extends IAttrs {
 
 export class Popover extends AbstractComponent<IPopoverAttrs> {
   private isOpen: boolean;
-  private popper: PopperJS & { options?: PopperJS.PopperOptions };
+  private popper?: PopperJS & { options?: PopperJS.PopperOptions };
   private trigger: m.VnodeDOM<IPopoverTriggerAttrs>;
 
   public getDefaultAttrs() {
@@ -245,7 +245,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
   private destroyPopper() {
     if (this.popper) {
       this.popper.destroy();
-      this.popper = null;
+      this.popper = undefined;
     }
   }
 
@@ -344,7 +344,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     }
 
     if (!this.isOpen && this.isHoverInteraction()) {
-      if (hoverOpenDelay > 0) {
+      if (hoverOpenDelay! > 0) {
         this.setTimeout(() => {
           this.isOpen = true;
           m.redraw();
@@ -364,7 +364,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     this.clearTimeouts();
 
     if (this.isOpen && this.isHoverInteraction()) {
-      if (hoverCloseDelay > 0) {
+      if (hoverCloseDelay! > 0) {
         this.setTimeout(() => {
           this.isOpen = false;
           m.redraw();

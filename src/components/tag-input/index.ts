@@ -51,7 +51,7 @@ export class TagInput extends AbstractComponent<ITagInputAttrs> {
   }
 
   public oncreate({ dom }: m.VnodeDOM<ITagInputAttrs>) {
-    this.inputEl = dom.querySelector('input');
+    this.inputEl = dom.querySelector('input')!;
   }
 
   public view() {
@@ -114,18 +114,16 @@ export class TagInput extends AbstractComponent<ITagInputAttrs> {
   }
 
   private handleInputKeyDown = (e: KeyboardEvent) => {
-    const { inputAttrs } = this.attrs;
-
     if (e.which === Keys.ENTER) {
       this.handleOnAdd(e);
     }
 
-    safeCall(inputAttrs.onkeydown, e);
+    safeCall(this.attrs.inputAttrs!.onkeydown, e);
   }
 
   private handleInputFocus = (e: FocusEvent) => {
     this.isActive = true;
-    safeCall(this.attrs.inputAttrs.onfocus, e);
+    safeCall(this.attrs.inputAttrs!.onfocus, e);
   }
 
   private handleInputBlur = (e: FocusEvent) => {
@@ -137,7 +135,7 @@ export class TagInput extends AbstractComponent<ITagInputAttrs> {
       this.handleOnAdd(e);
     }
 
-    safeCall(inputAttrs.onblur, e);
+    safeCall(inputAttrs!.onblur, e);
   }
 
   private handleOnAdd(e: Event) {

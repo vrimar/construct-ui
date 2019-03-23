@@ -12,7 +12,7 @@ export const ContentType = {
 export type ContentType = typeof ContentType[keyof typeof ContentType];
 
 export interface IContentSelectAttrs {
-  onSelect: (contenType: ContentType) => void;
+  onSelect: (contentType?: ContentType) => void;
 }
 
 export class ContentSelect implements m.Component<IContentSelectAttrs> {
@@ -48,6 +48,6 @@ export function renderContent(contentType: ContentType, icon: IconName) {
   }
 
   if (contentType === 'none') {
-    return null;
+    return undefined;
   }
 }

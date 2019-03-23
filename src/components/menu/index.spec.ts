@@ -63,7 +63,7 @@ describe('menu', () => {
 
       setTimeout(() => {
         menuItem().dispatchEvent(new MouseEvent('mouseenter'));
-        const popover: HTMLElement = document.body.querySelector(`.${Classes.POPOVER}`);
+        const popover = document.body.querySelector(`.${Classes.POPOVER}`) as HTMLElement;
         assert(hasClass(popover, Classes.POSITIVE));
         assert.equal(popover.style.color, 'red');
         done();

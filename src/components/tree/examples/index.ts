@@ -7,7 +7,7 @@ const EXAMPLE_SRC = 'components/tree/examples/index.ts';
 
 export class TreeExample {
   private expandedMap: Map<string | number, boolean>;
-  private selectedId: string | number;
+  private selectedId: string | number | undefined;
 
   public oninit() {
     this.expandedMap = new Map();
@@ -77,6 +77,6 @@ export class TreeExample {
 
   private handleClick = (node: ITreeNodeAttrs) => {
     const id = node.key;
-    this.selectedId = this.selectedId === id ? null : id;
+    this.selectedId = this.selectedId === id ? undefined : id;
   }
 }

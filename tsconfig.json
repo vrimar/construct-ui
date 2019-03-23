@@ -25,8 +25,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": false,
+    "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "es5",
+    "target": "es5"
   },
   "include": [
     "./src"

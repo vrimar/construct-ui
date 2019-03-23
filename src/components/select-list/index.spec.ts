@@ -43,7 +43,7 @@ describe('select-list', () => {
   it('closeOnSelect=true closes popover on item click', (done) => {
     mount({ closeOnSelect: true });
 
-    const item = el().querySelector(`.${Classes.LIST}`).firstChild;
+    const item = el().querySelector(`.${Classes.LIST}`)!.firstChild!;
     item.dispatchEvent(new Event('click'));
 
     setTimeout(() => {

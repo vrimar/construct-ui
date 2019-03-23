@@ -5,7 +5,7 @@ export abstract class AbstractComponent<A> implements m.Component<A> {
   protected attrs: A = {} as A;
   protected prevAttrs: A;
 
-  public abstract view(vnode: m.Vnode<A>): m.Vnode;
+  public abstract view(vnode: m.Vnode<A>): m.Children | null | void;
   public abstract getDefaultAttrs(): A;
 
   public oninit(vnode: m.Vnode<A>) {

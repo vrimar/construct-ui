@@ -174,7 +174,7 @@ describe('popover', () => {
       })
     });
 
-    const button = popover().querySelector(`.${Classes.POPOVER_DISSMISS}`);
+    const button = popover().querySelector(`.${Classes.POPOVER_DISSMISS}`)!;
 
     triggerEvent(button, 'click', () => {
       assert(!popover());
@@ -230,7 +230,7 @@ describe('popover', () => {
       view: () => m(Popover, {
         content: m('', 'Test'),
         transitionDuration: 0,
-        trigger: m(`.${triggerClass}`, triggerAttrs),
+        trigger: m(`.${triggerClass}`, triggerAttrs || {}),
         ...attrs
       })
     };

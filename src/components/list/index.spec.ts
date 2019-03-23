@@ -6,8 +6,8 @@ import { hasClass, hasChildClass } from '@test-utils';
 describe('list', () => {
   const el = () => document.body.firstChild as HTMLElement;
   const listItem = () => el().firstChild as HTMLElement;
-  const leftContent = () => listItem().querySelector(`.${Classes.LIST_ITEM_CONTENT_LEFT}`);
-  const rightContent = () => listItem().querySelector(`.${Classes.LIST_ITEM_CONTENT_RIGHT}`);
+  const leftContent = () => listItem().querySelector(`.${Classes.LIST_ITEM_CONTENT_LEFT}`) as HTMLElement;
+  const rightContent = () => listItem().querySelector(`.${Classes.LIST_ITEM_CONTENT_RIGHT}`) as HTMLElement;
 
   afterEach(() => m.mount(document.body, null));
 

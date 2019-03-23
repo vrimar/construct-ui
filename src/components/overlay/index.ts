@@ -103,7 +103,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
 
   public oninit(vnode: m.Vnode<IOverlayAttrs>) {
     super.oninit(vnode);
-    this.shouldRender = vnode.attrs.isOpen;
+    this.shouldRender = !!vnode.attrs.isOpen;
   }
 
   public onbeforeupdate(vnode: m.Vnode<IOverlayAttrs>, old: m.VnodeDOM<IOverlayAttrs>) {
@@ -115,7 +115,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
       this.clearTimeouts();
       this.shouldRender = true;
     } else if (!isOpen && wasOpen) {
-      if (transitionDuration > 0) {
+      if (transitionDuration! > 0) {
         this.handleClose();
         this.setTimeout(() => {
           this.shouldRender = false;

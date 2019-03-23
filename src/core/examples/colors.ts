@@ -16,7 +16,7 @@ const colorGroups = colors
     colorGroup[groupIndex].push(color);
 
     return colorGroup;
-  }, []) as string[][];
+  }, [] as any);
 
 const greyScaleColors = colorGroups.slice(0, 2);
 const coreColors = colorGroups.slice(2, colorGroups.length);

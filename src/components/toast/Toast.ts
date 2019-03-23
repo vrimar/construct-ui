@@ -41,9 +41,9 @@ export class Toast extends AbstractComponent<IToastAttrs> {
   public onbeforeupdate(vnode: m.Vnode<IToastAttrs>, prev: m.VnodeDOM<IToastAttrs>) {
     super.onbeforeupdate(vnode, prev);
 
-    if (prev.attrs.timeout <= 0 && vnode.attrs.timeout > 0) {
+    if (prev.attrs.timeout! <= 0 && vnode.attrs.timeout! > 0) {
       this.startTimeout();
-    } else if (prev.attrs.timeout > 0 && vnode.attrs.timeout <= 0) {
+    } else if (prev.attrs.timeout! > 0 && vnode.attrs.timeout! <= 0) {
       this.clearTimeouts();
     }
   }
@@ -95,7 +95,7 @@ export class Toast extends AbstractComponent<IToastAttrs> {
   private startTimeout = () => {
     const timeout = this.attrs.timeout;
 
-    if (timeout > 0) {
+    if (timeout! > 0) {
       this.setTimeout(() => this.triggerDismiss(true), timeout);
     }
   }

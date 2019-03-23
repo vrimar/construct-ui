@@ -28,6 +28,6 @@ function renderRow(method: ITsMethod) {
   return m('tr', [
     m('td', m('code', method.name)),
     m('td', signature.type),
-    m('td', m.trust(signature.documentation.contentsRaw))
+    m('td', m.trust(signature.documentation!.contentsRaw))
   ]);
 }

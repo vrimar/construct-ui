@@ -104,7 +104,7 @@ export class Collapse implements m.Component<ICollapseAttrs> {
   private getContentHeight(element: HTMLElement) {
     if (!element) return 0;
     const styles = window.getComputedStyle(element);
-    const margin = parseFloat(styles.marginTop) + parseFloat(styles.marginBottom);
+    const margin = parseFloat(styles.marginTop!) + parseFloat(styles.marginBottom!);
     return Math.ceil(element.offsetHeight + margin);
   }
 }

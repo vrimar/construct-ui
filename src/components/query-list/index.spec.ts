@@ -87,6 +87,23 @@ describe('query-list', () => {
     }, TIMEOUT);
   });
 
+  it('ESCAPE key clears input value', done => {
+    const defaultQuery = 'testing';
+
+    mount({ defaultQuery });
+
+    assert.equal(input().value, defaultQuery);
+    input().focus();
+
+    keyboardEvent(el(), Keys.ESCAPE);
+
+    setTimeout(() => {
+      m.redraw();
+      assert(!input().value);
+      done();
+    }, TIMEOUT);
+  });
+
   it('filterable=false hides filter input', () => {
     mount({ filterable: false });
     assert(!hasChildClass(el(), Classes.INPUT));
@@ -153,7 +170,7 @@ describe('query-list', () => {
     assert(hasClass(getItem(endIndex), Classes.ACTIVE));
   });
 
-  it('handles filtering when itemPredicate specified', () => {
+  it('Handles filtering when itemPredicate specified', () => {
     mount({
       itemPredicate: (query: string, item: string) => item.includes(query),
       defaultQuery: '1'
@@ -162,7 +179,7 @@ describe('query-list', () => {
     assert.equal(list().children.length, 1);
   });
 
-  it('handles itemListPredicate', () => {
+  it('Handles itemListPredicate', () => {
     mount({
       itemListPredicate: (query: string, arr: string[]) =>
         arr.filter(item => item.includes(query)),
@@ -172,7 +189,7 @@ describe('query-list', () => {
     assert.equal(list().children.length, 1);
   });
 
-  it('item click calls onSelect', () => {
+  it('Item click calls onSelect', () => {
     let count = 0;
     mount({ onSelect: () => count++ });
 
@@ -182,7 +199,7 @@ describe('query-list', () => {
     assert.equal(count, 1);
   });
 
-  it('disabled item click does not trigger onSelect', () => {
+  it('Disabled item click does not trigger onSelect', () => {
     let count = 0;
 
     mount({
@@ -241,7 +258,7 @@ describe('query-list', () => {
       }, TIMEOUT);
     });
 
-    it('ENTER key press on active item calls onSelect', () => {
+    it('ENTER on active item calls onSelect', () => {
       let count = 0;
       mount({ onSelect: () => count++ });
 
@@ -270,19 +287,22 @@ describe('query-list', () => {
     });
 
     it('Sets input query', () => {
-      mount({ query: '1' });
+      const query = 'testing';
 
-      assert.equal(input().value, '1');
+      mount({ query });
+
+      assert.equal(input().value, query);
     });
 
     it('Input value change calls onQueryChange', (done) => {
+      const query = 'testing';
       let count = 0;
       mount({
-        query: '1',
+        query,
         onQueryChange: () => count++
       });
 
-      input().value = '1';
+      input().value = query;
       input().dispatchEvent(new Event('input'));
 
       // onChange is debounced at 200 ms
@@ -295,7 +315,6 @@ describe('query-list', () => {
 
   // TODO: Add test for vertical-scroll to item
   // TODO: Test for cache items
-  // TODO: Test for ESCAPE key clears input value
 
   function mount(attrs?: Partial<IQueryListAttrs<any>>) {
     const component = {

@@ -5,7 +5,7 @@ import { Icon, IconName } from '../icon';
 
 export interface IEmptyStateAttrs extends IAttrs {
   /** Icon name */
-  icon?: IconName | m.Children | undefined;
+  icon?: IconName | m.Children;
 
   /** Header content */
   header?: m.Children;

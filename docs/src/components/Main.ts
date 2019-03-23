@@ -53,11 +53,11 @@ export default class Main implements m.Component<IDocumentationData> {
 
   private handleLinkClick = (e: Event) => {
     const contentEl = getClosest(e.target, '.Docs-nav');
-    this.scrollPosition = contentEl.scrollTop;
+    this.scrollPosition = contentEl!.scrollTop;
   }
 
   private handleDrawerOnOpened = (el: HTMLElement) => {
     const contentEl = el.querySelector('.Docs-nav');
-    contentEl.scrollTop = this.scrollPosition;
+    contentEl!.scrollTop = this.scrollPosition;
   }
 }

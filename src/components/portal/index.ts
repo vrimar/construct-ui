@@ -52,6 +52,9 @@ export class Portal implements m.Component<IPortalAttrs> {
   private setStyles(attrs: IPortalAttrs) {
     this.rootElement.className = classnames(Classes.PORTAL, attrs.class);
     this.rootElement.style.cssText = '';
-    Object.assign(this.rootElement.style, normalizeStyle(attrs.style));
+
+    if (attrs.style) {
+      Object.assign(this.rootElement.style, normalizeStyle(attrs.style));
+    }
   }
 }
