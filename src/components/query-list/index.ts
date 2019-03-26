@@ -459,7 +459,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
   }
 }
 
-export function getNextIndex(currentIndex: number, vnodes: Array<m.Vnode<IListItemAttrs>>, direction: Direction) {
+function getNextIndex(currentIndex: number, vnodes: Array<m.Vnode<IListItemAttrs>>, direction: Direction) {
   const maxIndex = vnodes.length - 1;
   let index = currentIndex;
   let flag = true;
