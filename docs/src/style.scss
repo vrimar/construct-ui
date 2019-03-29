@@ -70,7 +70,6 @@ body {
   height: 100%;
   width: $cui-docs-nav-width;
   overflow: auto;
-  visibility: hidden;
   outline: none;
 
   &.is-mobile {
@@ -84,7 +83,6 @@ body {
     font-weight: bold;
   }
 }
-
 
 .Docs-logo {
   display: block;
@@ -113,12 +111,6 @@ body {
   padding: 20px;
   border-right:solid 1px $blue-grey100;
   background: tint($blue-grey50, 50%);
-}
-
-.Docs-nav-content,
-.Docs-nav:focus,
-.Docs-nav:hover {
-  visibility: visible;
 }
 
 .Docs-nav-section {
