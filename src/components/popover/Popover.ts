@@ -193,7 +193,8 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
 
   private handleOpened = (contentEl: HTMLElement) => {
     if (!this.popper && contentEl) {
-      this.createPopper(contentEl.children[0] as HTMLElement);
+      const popoverEl = contentEl.querySelector(`.${Classes.POPOVER}`)!;
+      this.createPopper(popoverEl as HTMLElement);
       safeCall(this.attrs.onOpened, contentEl);
     }
   }
