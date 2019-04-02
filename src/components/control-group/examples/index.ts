@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { ControlGroup, Button, Input, Icon, Icons, Select, Spinner } from '@/';
+import { ControlGroup, Button, Input, Icon, Icons, Select, Spinner, CustomSelect } from '@/';
 import { Example } from '@shared/examples';
 
 const EXAMPLE_SRC = 'components/control-group/examples/index.ts';
@@ -30,7 +30,10 @@ export class ControlGroupExample {
           contentRight: m(Spinner, { active: true }),
           placeholder: 'Enter name...'
         }),
-        m(Select, { options })
+        m(CustomSelect, {
+          options,
+          defaultValue: 'Option 2'
+        })
       ])
     ]);
   }
