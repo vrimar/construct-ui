@@ -60,7 +60,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
   }
 
   public view() {
-    const { options, class: className, name, triggerAttrs } = this.attrs;
+    const { options, class: className, name, triggerAttrs, size } = this.attrs;
 
     const classes = classnames(
       Classes.CUSTOM_SELECT,
@@ -83,6 +83,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
         this.selectedLabel
       ],
       iconRight: Icons.CHEVRON_DOWN,
+      size,
       ...triggerAttrs,
       onkeydown: this.handleTriggerKeyDown
     });
@@ -95,6 +96,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
       activeIndex: this.activeIndex,
       closeOnSelect: false,
       onActiveItemChange: this.handleActiveItemChange,
+      listAttrs: { size },
       popoverAttrs: {
         isOpen: this.isOpen,
         hasArrow: false,
