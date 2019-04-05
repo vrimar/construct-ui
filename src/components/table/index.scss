@@ -18,6 +18,10 @@
     text-align:left;
   }
 
+  &:not(.cui-table-bordered) tr:last-child {
+    td { border-bottom: none}
+  }
+
   &.cui-table-bordered {
     td, th {
       border: solid 1px $cui-base-border-color;
