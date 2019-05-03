@@ -52,7 +52,7 @@ export class Input implements m.Component<IInputAttrs> {
       style,
 
       // Prevent lifecycle methods from being passed through
-      oninput,
+      oninit,
       oncreate,
       onbeforeupdate,
       onupdate,
