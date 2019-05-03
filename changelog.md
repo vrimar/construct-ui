@@ -1,3 +1,13 @@
+# 0.1.11
++ [Button] fix `loading` style when `intent` set
++ [Input]: fix `basic` styling
++ [Popover]: fix `hasBackdrop=true` bug
++ [ControlGroup]: fix styling for `CustomSelect`
++ [CustomSelect]: add `size` attr
++ [List]: set `font-weight:normal` as default
++ [Table]: remove last row border
++ [Input]: prevent lifecycle methods from being passed through to `input` el
+
 # 0.1.10
 + [Popover] fix `onOpened` passing null container element
 + [Toast] pass through html attrs
