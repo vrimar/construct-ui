@@ -50,6 +50,15 @@ export class Input implements m.Component<IInputAttrs> {
       intent,
       size,
       style,
+
+      // Prevent lifecycle methods from being passed through
+      oninput,
+      oncreate,
+      onbeforeupdate,
+      onupdate,
+      onbeforeremove,
+      onremove,
+
       ...htmlAttrs
     } = attrs;
 
