@@ -4,4 +4,4 @@
 --require tsconfig-paths/register
 --require ./test/setup.js
 --extension ts
-./src/components/input-select/index.spec.ts
+./src/**/*.spec.ts
