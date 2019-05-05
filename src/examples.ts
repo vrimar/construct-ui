@@ -28,6 +28,7 @@ export * from './components/select/examples';
 export * from './components/select-list/examples';
 export * from './components/spinner/examples';
 export * from './components/switch/examples';
+export * from './components/tabs/examples';
 export * from './components/table/examples';
 export * from './components/tag/examples';
 export * from './components/tag-input/examples';
