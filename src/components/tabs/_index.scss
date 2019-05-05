@@ -1,0 +1,58 @@
+
+@mixin cui-tabs-size($padding, $font-size) {
+  .cui-tabs-item { 
+    font-size: $font-size;
+    padding: $padding;  
+  }
+}
+
+.cui-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include cui-tabs-size($cui-base-padding, $cui-font-size);
+
+  &.cui-tabs-bordered { 
+    border-bottom: solid 1px $cui-base-border-color;
+  }
+
+  &.cui-align-left {
+    justify-content: flex-start;
+  }
+
+  &.cui-align-right {
+    justify-content: flex-end;
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} {
+      @include cui-tabs-size(
+        map-get($cui-padding-map, $size),
+        map-get($cui-font-size-map, $size)
+      )
+    }
+  }
+}
+
+.cui-tabs-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: $blue-grey300;
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: solid 2px transparent;
+
+  &:hover { color: $blue-grey500; }
+
+  &.cui-active {
+    color: $cui-primary-bg-color;
+    border-bottom: solid 2px $cui-primary-bg-color;
+  }
+
+  &.cui-loading {
+  	pointer-events: none;
+    visibility: hidden;
+  }
+}

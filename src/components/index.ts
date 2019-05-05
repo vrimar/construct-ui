@@ -29,6 +29,7 @@ export * from './select-list';
 export * from './spinner';
 export * from './switch';
 export * from './table';
+export * from './tabs';
 export * from './tag';
 export * from './tag-input';
 export * from './text-area';

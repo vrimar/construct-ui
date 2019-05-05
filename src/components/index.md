@@ -33,6 +33,7 @@ title: 'Components'
 @page select-list
 @page spinner
 @page switch
+@page tabs
 @page table
 @page tag
 @page tag-input
