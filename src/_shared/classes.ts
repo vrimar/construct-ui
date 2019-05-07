@@ -117,6 +117,9 @@ export const Classes = {
   INPUT: 'cui-input',
   INPUT_GROUP: 'cui-input-group',
 
+  INPUT_POPOVER: 'cui-input-popover',
+  INPUT_POPOVER_CONTENT: 'cui-input-popover-content',
+
   INPUT_SELECT: 'cui-input-select',
 
   LIST: 'cui-list',
@@ -179,6 +182,10 @@ export const Classes = {
 
   TAG_INPUT: 'cui-tag-input',
   TAG_INPUT_VALUES: 'cui-tag-input-values',
+
+  TABS: 'cui-tabs',
+  TABS_BORDERED: 'cui-tabs-bordered',
+  TABS_ITEM: 'cui-tabs-item',
 
   TEXT_AREA: 'cui-text-area',
 

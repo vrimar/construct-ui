@@ -15,6 +15,7 @@ export * from './grid';
 export * from './icon';
 export * from './input';
 export * from './input-file';
+export * from './input-popover';
 export * from './input-select';
 export * from './list';
 export * from './menu';

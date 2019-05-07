@@ -20,6 +20,7 @@ title: 'Components'
 @page icon
 @page input
 @page input-file
+@page input-popover
 @page input-select
 @page list
 @page menu

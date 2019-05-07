@@ -15,6 +15,7 @@ export * from './components/grid/examples';
 export * from './components/icon/examples';
 export * from './components/input/examples';
 export * from './components/input-file/examples';
+export * from './components/input-popover/examples';
 export * from './components/input-select/examples';
 export * from './components/list/examples';
 export * from './components/menu/examples';
