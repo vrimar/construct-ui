@@ -83,7 +83,7 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
   overlayStyle?: Style;
 
   /** Trigger element */
-  trigger?: m.Vnode;
+  trigger?: m.Vnode<any, any>;
 }
 
 export interface IPopoverTriggerAttrs extends IAttrs {

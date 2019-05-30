@@ -73,8 +73,8 @@ export function normalizeStyle(style?: Style) {
 
 export function updateElementGroupPadding(
   containerEl: HTMLElement,
-  contentLeft?: m.Vnode,
-  contentRight?: m.Vnode
+  contentLeft?: m.Vnode<any, any>,
+  contentRight?: m.Vnode<any, any>
 ) {
   if (!containerEl) return;
 

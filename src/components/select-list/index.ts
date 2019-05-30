@@ -20,7 +20,7 @@ export interface ISelectListAttrs<T> extends IQueryListAttrs<T> {
   popoverAttrs?: IPopoverAttrs;
 
   /** Trigger element */
-  trigger: m.Vnode;
+  trigger: m.Vnode<any, any>;
 
   /** Header content */
   header?: m.Children;

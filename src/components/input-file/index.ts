@@ -5,10 +5,10 @@ import { Button } from '../button';
 
 export interface IInputFileAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
   /** Left-justified content */
-  contentLeft?: m.Vnode;
+  contentLeft?: m.Vnode<any, any>;
 
   /** Right-justified content */
-  contentRight?: m.Vnode;
+  contentRight?: m.Vnode<any, any>;
 
   /** Disables file selection */
   disabled?: boolean;

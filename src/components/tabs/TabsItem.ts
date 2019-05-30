@@ -17,7 +17,7 @@ export interface ITabItemAttrs extends IAttrs {
 }
 
 export class TabItem implements m.ClassComponent<ITabItemAttrs> {
-  view({ attrs }: m.Vnode<ITabItemAttrs>) {
+  public view({ attrs }: m.Vnode<ITabItemAttrs>) {
     const {
       active,
       label,

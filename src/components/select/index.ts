@@ -8,10 +8,10 @@ export interface ISelectAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
   basic?: boolean;
 
   /** Left-justified content */
-  contentLeft?: m.Vnode;
+  contentLeft?: m.Vnode<any, any>;
 
   /** Right-justified content */
-  contentRight?: m.Vnode;
+  contentRight?: m.Vnode<any, any>;
 
   /** Disables selection */
   disabled?: boolean;

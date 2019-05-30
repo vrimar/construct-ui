@@ -92,7 +92,7 @@ export interface IQueryableAttrs<T> extends IAttrs {
   itemListPredicate?: (query: string, items: T[]) => T[];
 
   /** Render function applied to each item  */
-  itemRender: (item: T, index: number) => m.Vnode;
+  itemRender: (item: T, index: number) => m.Vnode<any, any>;
 
   /** Predicate function applied to filter individual items  */
   itemPredicate?: (query: string, item: T, index: number) => boolean;

@@ -1,4 +1,3 @@
-
 @mixin cui-tabs-size($padding, $font-size) {
   .cui-tabs-item { 
     font-size: $font-size;
@@ -43,12 +42,25 @@
   font-weight: bold;
   cursor: pointer;
   border-bottom: solid 2px transparent;
+  transition:
+    color $cui-transition-duration $cui-transition-ease,
+    border $cui-transition-duration $cui-transition-ease;
 
-  &:hover { color: $blue-grey500; }
+  .cui-icon {
+    color: $blue-grey300;
+  }
+
+  &:hover, &:hover .cui-icon { 
+    color: $blue-grey500; 
+  }
 
   &.cui-active {
     color: $cui-primary-bg-color;
     border-bottom: solid 2px $cui-primary-bg-color;
+  }
+
+  &.cui-active .cui-icon {
+    color: $cui-primary-bg-color;
   }
 
   &.cui-loading {

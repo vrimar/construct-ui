@@ -19,7 +19,7 @@ export interface ITabsAttrs extends IAttrs, ISizeAttrs {
 }
 
 export class Tabs implements m.ClassComponent<ITabsAttrs> {
-  view({ attrs, children }: m.Vnode<ITabsAttrs>) {
+  public view({ attrs, children }: m.Vnode<ITabsAttrs>) {
     const { align, bordered, fluid, size, class: classname, ...htmlAttrs } = attrs;
 
     return m('', {

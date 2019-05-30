@@ -13,7 +13,7 @@ export interface ITagInputAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
    * Array of Tag components
    * @default []
    */
-  tags: Array<m.Vnode<ITagAttrs>>;
+  tags: Array<m.Vnode<ITagAttrs, any>>;
 
   /** Left-justified content */
   contentLeft?: m.Child;

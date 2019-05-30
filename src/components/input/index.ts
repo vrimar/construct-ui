@@ -7,10 +7,10 @@ export interface IInputAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
   basic?: boolean;
 
   /** Left-justified content */
-  contentLeft?: m.Vnode;
+  contentLeft?: m.Vnode<any, any>;
 
   /** Right-justified content */
-  contentRight?: m.Vnode;
+  contentRight?: m.Vnode<any, any>;
 
   /** Initial value to display (uncontrolled mode) */
   defaultValue?: string;
