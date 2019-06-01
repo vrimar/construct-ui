@@ -1,7 +1,7 @@
 import m from 'mithril';
 import { IDocumentationData } from '..';
 import { Table } from '@/';
-import { ITsMethod, ITsInterface } from 'documentalist/dist/client';
+import { ITsMethod, ITsInterface } from '@documentalist/client';
 
 export interface IMethodTableAttrs {
   data: IDocumentationData;

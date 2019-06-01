@@ -1,7 +1,7 @@
 import m from 'mithril';
 import { IDocumentationData } from '..';
 import { Table, Popover } from '@/';
-import { ITsInterface, ITsProperty } from 'documentalist/dist/client';
+import { ITsInterface, ITsProperty } from '@documentalist/client';
 
 export interface IInterfaceTableAttrs {
   data: IDocumentationData;

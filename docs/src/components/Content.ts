@@ -1,10 +1,10 @@
 import m from 'mithril';
 import { IDocumentationData } from '..';
-import { ITag, INavigable } from 'documentalist/dist/client';
 import { InterfaceTable } from './InterfaceTable';
 import { MethodsTable } from './MethodsTable';
 import * as Examples from '../../../src/examples';
 import { FocusManager, ResponsiveManager } from '@/';
+import { ITag, INavigable } from '@documentalist/client';
 
 FocusManager.showFocusOnlyOnTab();
 ResponsiveManager.initialize();

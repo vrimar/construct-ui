@@ -3,8 +3,8 @@ import './style.scss';
 import './favicon.ico';
 import m from 'mithril';
 import Main from './components/Main';
-import { IMarkdownPluginData, ITypescriptPluginData } from 'documentalist/dist/client';
 import { highlightCode } from './utils/highlightCode';
+import { IMarkdownPluginData, ITypescriptPluginData } from '@documentalist/client';
 
 type Data = IMarkdownPluginData & ITypescriptPluginData;
 

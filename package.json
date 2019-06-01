@@ -45,6 +45,8 @@
     "tslib": "^1.9.3"
   },
   "devDependencies": {
+    "@documentalist/client": "^2.0.1",
+    "@documentalist/compiler": "^2.1.1",
     "@types/classnames": "^2.2.7",
     "@types/element-resize-event": "^2.0.0",
     "@types/jsdom": "^12.2.3",
@@ -62,7 +64,6 @@
     "copy-webpack-plugin": "^5.0.3",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
-    "documentalist": "^1.6.0",
     "file-loader": "^3.0.1",
     "gh-pages": "^2.0.1",
     "highlight.js": "^9.15.6",
