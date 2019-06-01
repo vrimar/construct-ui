@@ -68,7 +68,7 @@ describe('switch', () => {
     let count = 0;
     mount({ onchange: () => count++ });
 
-    el().dispatchEvent(new Event('click'));
+    el().click();
 
     assert.equal(count, 1);
   });
@@ -84,7 +84,7 @@ describe('switch', () => {
 
       assert(!input().checked);
 
-      input().dispatchEvent(new Event('click'));
+      el().click();
 
       assert(input().checked);
     });
