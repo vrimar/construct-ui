@@ -9,8 +9,8 @@
     "*.css"
   ],
   "scripts": {
-    "lint": "tslint src/**/*.ts docs/**/*.ts test/**/*.ts",
-    "lint:fix": "tslint --fix src/**/*.ts docs/**/*.ts test/**/*.ts",
+    "lint": "tslint src/**/*.ts docs/**/*.ts",
+    "lint:fix": "tslint --fix src/**/*.ts docs/**/*.ts",
     "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha",
     "test:watch": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --watch",
     "watch": "npm-run-all --parallel watch:js watch:css",
