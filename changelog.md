@@ -1,3 +1,9 @@
+# 0.2.0
++ Update to typescript 3.5.1
++ [NEW]
+  + [Tabs] component
+  + [InputPopover] component
+
 # 0.1.11
 + [Button] fix `loading` style when `intent` set
 + [Input]: fix `basic` styling
