@@ -10,6 +10,8 @@ body {
 
 .Docs {
   display:flex;
+  max-width: 1020px;
+  margin: 0 auto;
 
   &.is-mobile {
     flex-direction: column;
@@ -19,6 +21,29 @@ body {
       padding-top: 60px;
       margin-left: 0;
     }
+  }
+
+
+  &:before {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 50%;
+    background: tint($blue-grey50, 50%);
+    height: 100%;
+  }
+
+  &:after {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    width: 50%;
+    background:white;
+    height: 100%;
   }
 }
 
@@ -108,6 +133,7 @@ body {
 }
 
 .Docs-nav-content {
+  height: 100%;
   padding: 20px;
   border-right:solid 1px $blue-grey100;
   background: tint($blue-grey50, 50%);
@@ -138,10 +164,11 @@ body {
 }
 
 .Docs-container {
-  margin-left: $cui-docs-nav-width;
   width:100%;
   max-width: 800px;
   padding: 40px;
+  margin-left: $cui-docs-nav-width;
+  background: white;
 }
 
 .Docs-content {
