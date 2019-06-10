@@ -12,31 +12,32 @@ $cui-spinner-transition-duration: 300ms;
   }
 }
 
-@mixin cui-spinner-sizing($height) {
-  $size: floor($height / 2);
-  height: $size;
-  width: $size;
-
-  &:after {
-    width: $size;
+@mixin cui-spinner-sizing($height, $font-size) {
+  .cui-spinner-icon {
+    $size: floor($height / 2);
     height: $size;
-    margin-left: -($size / 2);
-    margin-top: -($size / 2);
+    width: $size;
+  }
+
+  .cui-spinner-message {
+    font-size: $font-size;
   }
 }
 
 @mixin cui-spinner-style($color) {
-  &:after {
+  .cui-spinner-icon {
     border-top-color: $color !important;
   }
 }
 
 .cui-spinner {
-  @include cui-spinner-sizing($cui-base-height);
+  @include cui-spinner-sizing($cui-base-height, $cui-font-size);
   @include cui-spinner-style($cui-primary-bg-color);
 
-  display:inline-block;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 	opacity: 0;
   transition: 
     opacity $cui-spinner-transition-duration ease-in-out,
@@ -49,20 +50,7 @@ $cui-spinner-transition-duration: 300ms;
 	&.cui-spinner-active {
 		opacity: 1;
     visibility: visible;
-    transition-delay:0s;
-  }
-
-  &:after {
-    content: "";
-    position:absolute;
-    border-width: 2px;
-    border-radius: 50%;
-    border-style: solid;
-    top:50%;
-    left:50%;
-    border-color: $cui-base-border-color;
-    animation: loading $cui-spinner-animation-duration infinite linear;
-    z-index: 1;
+    transition-delay: 0s;
   }
 
   &.cui-spinner-fill {
@@ -81,7 +69,10 @@ $cui-spinner-transition-duration: 300ms;
   @each $size in $cui-sizes {
     &.cui-#{$size},
     .cui-#{$size} & {
-      @include cui-spinner-sizing(map-get($cui-height-map, $size));
+      @include cui-spinner-sizing(
+        map-get($cui-height-map, $size),
+        map-get($cui-font-size-map, $size)
+      );
     }
   }
 
@@ -91,4 +82,26 @@ $cui-spinner-transition-duration: 300ms;
       @include cui-spinner-style(map-get($cui-bg-color-map, $intent))
     }
   }
+}
+
+.cui-spinner-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cui-spinner-icon {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  border: 2px solid $cui-base-border-color; 
+  border-top-color: red !important;
+  border-radius: 50%;
+  animation: loading $cui-spinner-animation-duration infinite linear;
+}
+
+.cui-spinner-message {
+  margin-top: 10px;
+  color: $blue-grey500;
 }

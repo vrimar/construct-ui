@@ -10,6 +10,7 @@ export class SpinnerExample {
   private active: boolean = true;
   private fill: boolean;
   private background: boolean;
+  private hasMessage: boolean = false;
 
   public view() {
     return m(Example, { options: this.renderOptions(), center: false, src: EXAMPLE_SRC }, [
@@ -18,7 +19,8 @@ export class SpinnerExample {
         background: this.background,
         fill: this.fill,
         intent: this.intent,
-        size: this.size
+        size: this.size,
+        message: this.hasMessage ? 'Uploading files...' : undefined
       })
     ]);
   }
@@ -45,6 +47,12 @@ export class SpinnerExample {
         checked: this.background,
         label: 'Has background',
         onchange: () => this.background = !this.background
+      }),
+
+      m(Switch, {
+        checked: this.hasMessage,
+        label: 'Message',
+        onchange: () => this.hasMessage = !this.hasMessage
       })
     ];
   }

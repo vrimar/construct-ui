@@ -12,12 +12,31 @@ export interface ISpinnerAttrs extends IAttrs, ISizeAttrs, IIntentAttrs {
   /** Shows background when fill=true */
   background?: boolean;
 
+  /** Optional message to show under icon */
+  message?: string;
+
   [htmlAttrs: string]: any;
 }
 
 export class Spinner implements m.Component<ISpinnerAttrs> {
   public view({ attrs }: m.Vnode<ISpinnerAttrs>) {
-    const { active, background, class: className, fill, intent, size, ...otherAttrs } = attrs;
+    const {
+      active,
+      background,
+      class: className,
+      fill,
+      intent,
+      message,
+      size,
+      ...otherAttrs
+    } = attrs;
+
+    const content = [
+      m(`.${Classes.SPINNER_CONTENT}`, [
+        m(`.${Classes.SPINNER_ICON}`),
+        message && m(`.${Classes.SPINNER_MESSAGE}`, message)
+      ])
+    ];
 
     return m('', {
       ...otherAttrs,
@@ -30,6 +49,6 @@ export class Spinner implements m.Component<ISpinnerAttrs> {
         size && `cui-${attrs.size}`,
         className
       )
-    });
+    }, content);
   }
 }

@@ -165,7 +165,9 @@ export const Classes = {
   SELECT_LIST: 'cui-select-list',
 
   SPINNER: 'cui-spinner',
+  SPINNER_CONTENT: 'cui-spinner-content',
   SPINNER_ICON: 'cui-spinner-icon',
+  SPINNER_MESSAGE: 'cui-spinner-message',
   SPINNER_FILL: 'cui-spinner-fill',
   SPINNER_ACTIVE: 'cui-spinner-active',
   SPINNER_BG: 'cui-spinner-bg',

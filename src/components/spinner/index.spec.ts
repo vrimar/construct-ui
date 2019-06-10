@@ -1,7 +1,7 @@
 import m from 'mithril';
 import assert from 'assert';
 import { Spinner, ISpinnerAttrs, Classes } from '@/';
-import { hasClass } from '@test-utils';
+import { hasClass, hasChildClass } from '@test-utils';
 
 describe('spinner', () => {
   const el = () => document.body.firstChild as HTMLElement;
@@ -26,6 +26,19 @@ describe('spinner', () => {
     assert(hasClass(el(), Classes.PRIMARY));
     assert(hasClass(el(), Classes.XS));
     assert(el().hasAttribute('style'));
+
+    assert(hasChildClass(el(), Classes.SPINNER_CONTENT));
+    assert(hasChildClass(el(), Classes.SPINNER_ICON));
+  });
+
+  it('Renders message', () => {
+    const message = 'Uploading files';
+    mount({ message });
+
+    assert(hasChildClass(el(), Classes.SPINNER_MESSAGE));
+
+    const messageEl = el().querySelector(`.${Classes.SPINNER_MESSAGE}`) as HTMLElement;
+    assert.equal(messageEl.innerHTML, message);
   });
 
   it('Passes through html attrs', () => {
