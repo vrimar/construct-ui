@@ -225,7 +225,7 @@ describe('popover', () => {
 
   // TODO: add controlled mode tests
 
-  function mount(attrs: IPopoverAttrs, triggerAttrs?: IButtonAttrs) {
+  function mount(attrs: Partial<IPopoverAttrs>, triggerAttrs?: IButtonAttrs) {
     const component = {
       view: () => m(Popover, {
         content: m('', 'Test'),

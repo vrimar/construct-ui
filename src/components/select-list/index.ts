@@ -17,7 +17,7 @@ export interface ISelectListAttrs<T> extends IQueryListAttrs<T> {
    * Attrs passed through to Popover component
    * @default {}
    */
-  popoverAttrs?: IPopoverAttrs;
+  popoverAttrs?: Partial<IPopoverAttrs>;
 
   /** Trigger element */
   trigger: m.Vnode<any, any>;
@@ -71,7 +71,7 @@ export class SelectList<T> extends AbstractComponent<ISelectListAttrs<T>> {
   public view() {
     const {
       class: className,
-      popoverAttrs = {},
+      popoverAttrs,
       header,
       footer,
       trigger,
@@ -107,7 +107,7 @@ export class SelectList<T> extends AbstractComponent<ISelectListAttrs<T>> {
       position: 'bottom-start',
       closeOnEscapeKey: false,
       ...popoverAttrs,
-      class: classnames(Classes.SELECT_LIST, className, popoverAttrs.class),
+      class: classnames(Classes.SELECT_LIST, className, popoverAttrs!.class),
       isOpen: this.isOpen,
       content,
       onInteraction: this.handlePopoverInteraction,

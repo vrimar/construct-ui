@@ -9,7 +9,7 @@ import { Classes, safeCall, Keys, getClosest } from '../../_shared';
 
 const HIGHLIGHT_TIMEOUT = 25;
 
-export interface IInputPopoverAttrs extends IPopoverAttrs {
+export interface IInputPopoverAttrs extends Omit<IPopoverAttrs, 'content'> {
   /**
    * Attrs passed through to wrapper container
    * @default {}

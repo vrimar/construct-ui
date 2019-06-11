@@ -20,11 +20,12 @@ describe('popover-menu', () => {
     assert(hasChildClass(popover(), Classes.MENU));
   });
 
-  function mount(attrs: IPopoverMenuAttrs) {
+  function mount(attrs: Partial<IPopoverMenuAttrs>) {
     const component = {
       view: () => m(PopoverMenu, {
         transitionDuration: 0,
         trigger: m(``),
+        content: '',
         ...attrs
       })
     };

@@ -13,7 +13,7 @@ export interface IMenuItemAttrs extends IButtonAttrs {
   closeOnSubmenuClick?: boolean;
 
   /** Attrs passed through to Popover (if submenu exists) */
-  popoverMenuAttrs?: IPopoverMenuAttrs;
+  popoverMenuAttrs?: Partial<IPopoverMenuAttrs>;
 
   [htmlAttrs: string]: any;
 }

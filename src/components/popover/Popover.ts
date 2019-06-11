@@ -18,7 +18,7 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
   closeOnContentClick?: boolean;
 
   /** Inner content */
-  content?: m.Children;
+  content: m.Children;
 
   /** Initial open when in uncontrolled mode */
   defaultIsOpen?: boolean;
@@ -83,7 +83,7 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
   overlayStyle?: Style;
 
   /** Trigger element */
-  trigger?: m.Vnode<any, any>;
+  trigger: m.Vnode<any, any>;
 }
 
 export interface IPopoverTriggerAttrs extends IAttrs {

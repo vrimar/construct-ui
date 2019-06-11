@@ -19,7 +19,7 @@ export interface IInputSelectAttrs<T> extends IQueryableAttrs<T> {
    * Attrs passed through to Popover component
    * @default {}
    */
-  popoverAttrs?: IPopoverAttrs;
+  popoverAttrs?: Partial<IPopoverAttrs>;
 
   /** Header content */
   header?: m.Children;
