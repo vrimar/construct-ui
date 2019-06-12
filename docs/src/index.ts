@@ -5,8 +5,9 @@ import m from 'mithril';
 import Main from './components/Main';
 import { highlightCode } from './utils/highlightCode';
 import { IMarkdownPluginData, ITypescriptPluginData } from '@documentalist/client';
+import { normalizeDocs } from './utils/normalizeDocs';
 
-type Data = IMarkdownPluginData & ITypescriptPluginData;
+export type Data = IMarkdownPluginData & ITypescriptPluginData;
 
 // tslint:disable-next-line:no-var-requires
 const docs = normalizeDocs(require('../generated/docs.json') as Data);
@@ -55,30 +56,3 @@ if (module.hot) {
 }
 
 requestAnimationFrame(() => highlightCode());
-
-function normalizeDocs(data: Data) {
-  Object.keys(data.typescript).map(key => {
-    const prop = data.typescript[key];
-
-    if (prop.kind === 'interface' || prop.kind === 'class') {
-      prop.properties.sort((a, b) => {
-        const textA = a.name;
-        const textB = b.name;
-        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-      });
-
-      prop.methods.sort((a, b) => {
-        const textA = a.name;
-        const textB = b.name;
-        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-      });
-    }
-
-    if (prop.kind === 'enum') {
-      prop.members = prop.members
-        .filter(member => !member.name.includes('NONE') && !member.name.includes('DEFAULT'));
-    }
-  });
-
-  return data;
-}

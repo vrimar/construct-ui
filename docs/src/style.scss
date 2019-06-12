@@ -183,6 +183,11 @@ body {
 
 .Docs-interface-table td {
   border-bottom: solid 1px $blue-grey100;
+
+  code.is-required {
+    border: solid 1px $green500;
+    color: $green800;
+  }
 }
 
 .Docs-interface-type {

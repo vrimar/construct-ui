@@ -1,7 +1,7 @@
 import m from 'mithril';
 import { IDocumentationData } from '..';
 import { Table, Popover } from '@/';
-import { ITsInterface, ITsProperty } from '@documentalist/client';
+import { ITsInterface, ITsProperty, Kind } from '@documentalist/client';
 
 export interface IInterfaceTableAttrs {
   data: IDocumentationData;
@@ -26,8 +26,12 @@ function renderPropRow(prop: ITsProperty, data: IDocumentationData) {
     return;
   }
 
+  const isRequired = prop.flags && !prop.flags.isOptional;
+
+  console.log(isRequired);
+
   return m('tr', [
-    m('td', m('code', prop.name)),
+    m('td', m('code', { class: isRequired ? 'is-required' : undefined }, prop.name)),
     m('td', [
       m('', renderPropType(prop, data)),
       m.trust(prop.documentation.contentsRaw)
@@ -38,9 +42,10 @@ function renderPropRow(prop: ITsProperty, data: IDocumentationData) {
 function renderPropType(prop: ITsProperty, data: IDocumentationData) {
   const { type, defaultValue } = prop;
   const typeDetails = data.docs.typescript[type];
-  const isPopover = typeDetails && typeDetails.kind === 'enum';
 
-  const trigger = m('.Docs-interface-type', { class: isPopover ? 'is-popover' : '' }, [
+  const isPopover = typeDetails && (typeDetails.kind === Kind.TypeAlias || typeDetails.kind === Kind.Enum);
+
+  const trigger = m('.Docs-interface-type', { class: isPopover ? 'is-popover' : undefined }, [
     type,
     defaultValue && ` = ${defaultValue}`
   ]);
@@ -49,13 +54,15 @@ function renderPropType(prop: ITsProperty, data: IDocumentationData) {
     ? m(Popover, {
       class: 'Docs-interface-popover',
       content: [
-        typeDetails.kind === 'enum' && typeDetails.members.map((member, index) => [
+        typeDetails.kind === Kind.Enum && typeDetails.members.map((member, index) => [
           m('span.Docs-interface-member', `${member.defaultValue}`),
           (index !== typeDetails.members.length - 1) && m('span', '|')
-        ])
+        ]),
+
+        typeDetails.kind === Kind.TypeAlias && typeDetails.type
       ],
       hasArrow: true,
-      position: 'bottom-start',
+      position: 'top',
       trigger
     })
     : trigger;
