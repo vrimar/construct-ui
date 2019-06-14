@@ -23,6 +23,9 @@ export interface ICustomSelectAttrs extends IAttrs, ISizeAttrs {
   /** Callback invoked when selection changes */
   onSelect?: (option: Option) => void;
 
+  /** Testing  */
+  itemRender?: (item: Option, isSelected: boolean, index: number) => m.Vnode<any, any>;
+
   /**
    * Attrs passed through to trigger
    * @default {}
@@ -114,14 +117,19 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
     return m('', { class: classes }, selectList);
   }
 
-  private renderItem = (item: Option) => {
+  private renderItem = (item: Option, index: number) => {
     const label = typeof (item) === 'object' ? item.label : item;
     const value = typeof (item) === 'object' ? item.value : item;
     const attrs = typeof (item) === 'object' ? item : {};
+    const isSelected = this.selectedValue === value;
+
+    if (this.attrs.itemRender) {
+      return this.attrs.itemRender(item, isSelected, index);
+    }
 
     return m(ListItem, {
       ...attrs,
-      selected: this.selectedValue === value,
+      selected: isSelected,
       label
     });
   }

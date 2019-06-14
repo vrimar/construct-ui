@@ -5,5 +5,8 @@ A custom select is composed of a `SelectList` and `Button` component. Functional
 
 @example CustomSelectExample
 
+@## Custom item render
+@example CustomSelectRenderExample
+
 @## CustomSelect Attrs
 @interface ICustomSelectAttrs

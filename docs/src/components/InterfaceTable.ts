@@ -28,8 +28,6 @@ function renderPropRow(prop: ITsProperty, data: IDocumentationData) {
 
   const isRequired = prop.flags && !prop.flags.isOptional;
 
-  console.log(isRequired);
-
   return m('tr', [
     m('td', m('code', { class: isRequired ? 'is-required' : undefined }, prop.name)),
     m('td', [
