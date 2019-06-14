@@ -49,6 +49,7 @@
     "@documentalist/compiler": "^2.2.0",
     "@types/classnames": "^2.2.9",
     "@types/element-resize-event": "^2.0.0",
+    "@types/highlight.js": "^9.12.3",
     "@types/jsdom": "^12.2.4",
     "@types/lodash.debounce": "^4.0.6",
     "@types/mithril": "^1.1.16",
