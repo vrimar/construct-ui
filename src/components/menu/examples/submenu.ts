@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { Icons, Menu, MenuDivider, MenuItem, Switch } from '@/';
+import { Icons, Menu, MenuDivider, MenuItem, Switch, MenuHeading } from '@/';
 import { Example } from '@shared/examples';
 
 const EXAMPLE_SRC = 'components/menu/examples/submenu.ts';
@@ -38,6 +38,8 @@ export class MenuSubExample {
 
     return m(Example, { options: this.renderOptions(), src: EXAMPLE_SRC }, [
       m(Menu, [
+        m(MenuHeading, 'Actions'),
+
         m(MenuItem, {
           iconLeft: Icons.COPY,
           label: 'Copy'

@@ -17,6 +17,10 @@ $cui-menu-max-width-map: (
   .cui-menu-divider {
     margin: $spacing 0;
   }
+
+  .cui-menu-heading {
+    padding: $spacing $padding;
+  }
 }
 
 .cui-menu {
@@ -33,6 +37,12 @@ $cui-menu-max-width-map: (
 
   .cui-menu-divider {
     border-bottom: solid 1px $cui-base-border-color;
+  }
+
+  .cui-menu-heading {
+    color: $blue-grey900;
+    font-weight: bold;
+    font-size: 12px;
   }
 
   &.cui-basic {

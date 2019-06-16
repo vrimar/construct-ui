@@ -131,6 +131,7 @@ export const Classes = {
   MENU: 'cui-menu',
   MENU_ITEM: 'cui-menu-item',
   MENU_DIVIDER: 'cui-menu-divider',
+  MENU_HEADING: 'cui-menu-heading',
 
   OVERLAY: 'cui-overlay',
   OVERLAY_CONTENT: 'cui-overlay-content',
