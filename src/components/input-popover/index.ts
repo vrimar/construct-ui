@@ -25,6 +25,9 @@ export interface IInputPopoverAttrs extends Omit<IPopoverAttrs, 'content'> {
   /** Elements added after content */
   footer?: m.Children;
 
+  /** Whether to highlight input text on open */
+  hightlightOnOpen?: boolean;
+
   /**
    * Attrs passed through to input/textarea element
    * @default {}
@@ -165,11 +168,14 @@ export class InputPopover extends AbstractComponent<IInputPopoverAttrs> {
   }
 
   private handleOnOpened = (content: HTMLElement) => {
-    const { type, onOpened } = this.attrs;
+    const { type, hightlightOnOpen, onOpened } = this.attrs;
     const inputEl = content.querySelector(type!) as HTMLInputElement;
     this.value = this.attrs.value || '';
 
-    setTimeout(() => inputEl.select(), HIGHLIGHT_TIMEOUT);
+    if (hightlightOnOpen) {
+      setTimeout(() => inputEl.select(), HIGHLIGHT_TIMEOUT);
+    }
+
     safeCall(onOpened);
   }
 
