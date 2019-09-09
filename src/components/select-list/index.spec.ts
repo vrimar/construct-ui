@@ -47,7 +47,6 @@ describe('select-list', () => {
     item.dispatchEvent(new Event('click'));
 
     setTimeout(() => {
-      m.redraw();
       assert(!el());
       done();
     }, TIMEOUT);

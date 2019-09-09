@@ -1,7 +1,17 @@
 require('jsdom-global')(undefined, { pretendToBeVisual: true });
 const matchMediaPolyfill = require('mq-polyfill').default;
 
-global.requestAnimationFrame = () => { }
+let lastTime = 0;
+
+global.requestAnimationFrame = (callback, element) => {
+  var currTime = new Date().getTime();
+  var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+  var id = window.setTimeout(function () { callback(currTime + timeToCall); },
+    timeToCall);
+  lastTime = currTime + timeToCall;
+  return id;
+};
+
 global.cancelAnimationFrame = () => { }
 
 matchMediaPolyfill(window);

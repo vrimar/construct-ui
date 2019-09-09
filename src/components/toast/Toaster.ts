@@ -109,6 +109,7 @@ export class Toaster extends AbstractComponent<IToasterAttrs> {
   public show(attrs: IToastAttrs) {
     const toastOptions = { ...attrs, key: `cui-toast-${this.toastId++}` };
     this.toasts.push(toastOptions);
+    m.redraw();
     return toastOptions.key;
   }
 
@@ -119,6 +120,8 @@ export class Toaster extends AbstractComponent<IToasterAttrs> {
       ...this.toasts[index],
       ...attrs
     };
+
+    m.redraw();
   }
 
   public dismiss = (key: string | number, timedOut: boolean = false) => {
@@ -129,11 +132,14 @@ export class Toaster extends AbstractComponent<IToasterAttrs> {
       safeCall(toast.onDismiss, timedOut);
       this.toasts.splice(index, 1);
     }
+
+    m.redraw();
   }
 
   public clear() {
     this.toasts.map((x) => safeCall(x.onDismiss, false));
     this.toasts.length = 0;
+    m.redraw();
   }
 
   public getToasts() {

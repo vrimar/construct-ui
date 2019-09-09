@@ -9,31 +9,6 @@
     "**/docs.json": true,
     "**/lib": true
   },
-  "todo-tree.flat": true,
-  "todo-tree.expanded": false,
-  "cSpell.enabledLanguageIds": [
-    "asciidoc",
-    "c",
-    "cpp",
-    "csharp",
-    "css",
-    "go",
-    "handlebars",
-    "html",
-    "jade",
-    "javascript",
-    "javascriptreact",
-    "latex",
-    "less",
-    "markdown",
-    "php",
-    "plaintext",
-    "pub",
-    "python",
-    "restructuredtext",
-    "rust",
-    "text",
-    "typescriptreact",
-    "yml"
-  ]
+  "todo-tree.tree.expanded": false,
+  "todo-tree.tree.flat": true
 }

@@ -81,7 +81,6 @@ describe('query-list', () => {
     inputClearIcon().dispatchEvent(new Event('click'));
 
     setTimeout(() => {
-      m.redraw();
       assert.equal(input().value, '');
       done();
     }, TIMEOUT);
@@ -98,7 +97,6 @@ describe('query-list', () => {
     keyboardEvent(el(), Keys.ESCAPE);
 
     setTimeout(() => {
-      m.redraw();
       assert(!input().value);
       done();
     }, TIMEOUT);
@@ -219,7 +217,6 @@ describe('query-list', () => {
       keyboardEvent(el(), Keys.ARROW_DOWN);
 
       setTimeout(() => {
-        m.redraw();
         assert(hasClass(getItem(1), Classes.ACTIVE));
         done();
       }, TIMEOUT);
@@ -230,7 +227,6 @@ describe('query-list', () => {
       keyboardEvent(el(), Keys.ARROW_UP);
 
       setTimeout(() => {
-        m.redraw();
         assert(hasClass(getItem(endIndex), Classes.ACTIVE));
         done();
       }, TIMEOUT);
@@ -241,7 +237,6 @@ describe('query-list', () => {
       keyboardEvent(el(), Keys.ARROW_DOWN);
 
       setTimeout(() => {
-        m.redraw();
         assert(hasClass(getItem(0), Classes.ACTIVE));
         done();
       }, TIMEOUT);
@@ -252,7 +247,6 @@ describe('query-list', () => {
       keyboardEvent(el(), Keys.ARROW_UP);
 
       setTimeout(() => {
-        m.redraw();
         assert(hasClass(getItem(endIndex), Classes.ACTIVE));
         done();
       }, TIMEOUT);

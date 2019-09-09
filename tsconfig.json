@@ -18,7 +18,7 @@
       ],
       "@test-utils": [
         "src/_shared/test/utils"
-      ],
+      ]
     },
     "moduleResolution": "node",
     "noImplicitAny": true,

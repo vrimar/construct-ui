@@ -48,7 +48,7 @@ class ResponsiveManager {
           ...this.breakpoints,
           [breakpoint]: false
         };
-        m.redraw();
+        m.redraw.sync();
       },
       // tslint:disable-next-line:no-empty
       destroy: () => { }

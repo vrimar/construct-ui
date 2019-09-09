@@ -21,7 +21,7 @@ export interface IDocumentationData {
 export const GITHUB_ROOT = 'https://github.com/vasilrimar/construct-ui';
 export const DEFAULT_ROOT = '/introduction/getting-started';
 
-m.route.prefix('#');
+m.route.prefix = '#';
 
 const resolveRoute = (wrapper: m.Component) => ({
   onmatch(attrs, requestedPath) {

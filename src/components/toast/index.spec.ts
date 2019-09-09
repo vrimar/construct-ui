@@ -24,7 +24,6 @@ describe('toaster', () => {
     toaster.show({ message });
 
     setTimeout(() => {
-      m.redraw();
       assert(hasClass(el(), Classes.TOASTER));
       assert(hasClass(el(), Classes.POSITIVE));
       assert(hasClass(el(), Classes.TOASTER_INLINE));
@@ -51,7 +50,6 @@ describe('toaster', () => {
       });
 
       setTimeout(() => {
-        m.redraw();
         assert(hasClass(toast(), Classes.TOAST));
         assert(hasClass(toast(), Classes.POSITIVE));
 
@@ -77,7 +75,6 @@ describe('toaster', () => {
       });
 
       setTimeout(() => {
-        m.redraw();
         const dismissIcon = toast().querySelector(`.${Classes.ICON}-${Icons.X}`)!;
         dismissIcon.dispatchEvent(new Event('click'));
         assert.equal(count, 1);
@@ -93,7 +90,6 @@ describe('toaster', () => {
       toaster.show({ message: 'toast' });
 
       setTimeout(() => {
-        m.redraw();
         assert(toast());
         done();
       }, TIMEOUT);
@@ -105,15 +101,11 @@ describe('toaster', () => {
       const key = toaster.show({ timeout: 1000 });
 
       setTimeout(() => {
-        m.redraw();
         assert(el());
-
-        setTimeout(() => {
-          toaster.dismiss(key);
-          m.redraw();
-          assert(!el());
-          done();
-        }, TIMEOUT);
+        toaster.dismiss(key);
+        m.redraw.sync();
+        assert(!el());
+        done();
       }, TIMEOUT);
     });
 
@@ -124,14 +116,10 @@ describe('toaster', () => {
       const key = toaster.show({});
 
       setTimeout(() => {
-        m.redraw();
-
-        setTimeout(() => {
-          toaster.update(key, { message });
-          m.redraw();
-          assert(toast().innerHTML.includes(message));
-          done();
-        }, TIMEOUT);
+        toaster.update(key, { message });
+        m.redraw.sync();
+        assert(toast().innerHTML.includes(message));
+        done();
       }, TIMEOUT);
     });
 
@@ -141,14 +129,10 @@ describe('toaster', () => {
       toaster.show({});
 
       setTimeout(() => {
-        m.redraw();
-
-        setTimeout(() => {
-          toaster.clear();
-          m.redraw();
-          assert(!el());
-          done();
-        }, TIMEOUT);
+        toaster.clear();
+        m.redraw.sync();
+        assert(!el());
+        done();
       }, TIMEOUT);
     });
   });
@@ -160,7 +144,7 @@ describe('toaster', () => {
     toaster.show({ timeout });
 
     setTimeout(() => {
-      m.redraw();
+      m.redraw.sync();
       assert(toast());
 
       setTimeout(() => {
