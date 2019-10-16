@@ -11,10 +11,12 @@ export class QueryListExample {
   private initialContent = false;
   private selectedItem: ICountryModel;
   private size: Size;
+  private disableArrowKeys: boolean = false;
 
   public view() {
     return m(Example, { options: this.renderOptions(), src: EXAMPLE_SRC }, [
       m(countryQueryList, {
+        disableArrowKeys: this.disableArrowKeys,
         checkmark: this.checkmark,
         initialContent: this.initialContent ? 'Search...' : undefined,
         items: countries,
@@ -72,6 +74,12 @@ export class QueryListExample {
         checked: this.initialContent,
         label: 'Has initial content',
         onchange: () => this.initialContent = !this.initialContent
+      }),
+
+      m(Switch, {
+        checked: this.disableArrowKeys,
+        label: 'Disable arrow keys',
+        onchange: () => this.disableArrowKeys = !this.disableArrowKeys
       })
     ];
   }

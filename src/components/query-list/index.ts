@@ -66,6 +66,9 @@ export interface IQueryableAttrs<T> extends IAttrs {
   /** Initial active index (uncontrolled mode)  */
   defaultActiveIndex?: number;
 
+  /** Disables arrow key navigation and prevents highlighting of active item */
+  disableArrowKeys?: boolean;
+
   /**
    * Content rendered when input query is empty. If defined, items will only be rendered
    * when a search query is provided.
@@ -240,23 +243,23 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
       ...this.attrs.controlGroupAttrs,
       class: classnames(Classes.FLUID, controlGroupAttrs!.class)
     }, [
-        contentLeft,
+      contentLeft,
 
-        m(Input, {
-          placeholder: 'Search items...',
-          ...inputAttrs,
-          oninput: this.handleInput,
-          contentRight: (this.query.length !== 0)
-            ? m(Icon, {
-              name: Icons.X,
-              onclick: this.handleInputClear
-            })
-            : inputAttrs!.contentRight,
-          value: this.query
-        }),
+      m(Input, {
+        placeholder: 'Search items...',
+        ...inputAttrs,
+        oninput: this.handleInput,
+        contentRight: (this.query.length !== 0)
+          ? m(Icon, {
+            name: Icons.X,
+            onclick: this.handleInputClear
+          })
+          : inputAttrs!.contentRight,
+        value: this.query
+      }),
 
-        contentRight
-      ]);
+      contentRight
+    ]);
   }
 
   private renderList() {
@@ -287,13 +290,13 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
   }
 
   private renderItem = (item: T, index: number) => {
-    const { itemRender, checkmark, listAttrs } = this.attrs;
+    const { itemRender, disableArrowKeys, checkmark, listAttrs } = this.attrs;
     const listItem = itemRender(item, index) as m.Vnode<IListItemAttrs>;
 
     listItem.attrs = listItem.attrs || {};
     listItem.attrs.onclick = (e) => this.handleSelect(index, listItem.attrs.disabled!, e);
 
-    if (this.activeIndex === index) {
+    if (!disableArrowKeys && this.activeIndex === index) {
       listItem.attrs.class = classnames(
         listItem.attrs.className,
         listItem.attrs.class,
@@ -402,9 +405,11 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
     switch (key) {
       case Keys.ARROW_UP:
       case Keys.ARROW_DOWN:
-        e.preventDefault();
-        this.moveActiveIndex(key === Keys.ARROW_UP ? 'up' : 'down');
-        m.redraw();
+        if (!this.attrs.disableArrowKeys) {
+          e.preventDefault();
+          this.moveActiveIndex(key === Keys.ARROW_UP ? 'up' : 'down');
+          m.redraw();
+        }
         break;
       case Keys.ESCAPE:
         if (this.query) {
@@ -467,6 +472,10 @@ function getNextIndex(currentIndex: number, vnodes: Array<m.Vnode<IListItemAttrs
   const maxIndex = vnodes.length - 1;
   let index = currentIndex;
   let flag = true;
+
+  if (index < 0 || maxIndex <= 0) {
+    return 0;
+  }
 
   while (flag) {
     index = direction === 'up'
