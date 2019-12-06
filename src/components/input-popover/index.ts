@@ -114,18 +114,18 @@ export class InputPopover extends AbstractComponent<IInputPopoverAttrs> {
         ...contentAttrs,
         onkeydown: this.handleOnKeyDown
       }, [
-          header,
-          this.renderInput(),
-          m(Button, {
-            class: Classes.POPOVER_DISSMISS,
-            fluid: true,
-            intent: 'primary',
-            label: submitButtonLabel,
-            onclick: this.handleOnSubmit,
-            ...submitButtonAttrs
-          }),
-          footer
-        ]),
+        header,
+        this.renderInput(),
+        m(Button, {
+          class: Classes.POPOVER_DISSMISS,
+          fluid: true,
+          intent: 'primary',
+          label: submitButtonLabel,
+          onclick: this.handleOnSubmit,
+          ...submitButtonAttrs
+        }),
+        footer
+      ]),
       onClosed: this.handleOnClosed,
       onOpened: this.handleOnOpened
     });
@@ -151,9 +151,8 @@ export class InputPopover extends AbstractComponent<IInputPopoverAttrs> {
 
     if (e.which === Keys.ENTER && type === 'input' && submitOnEnter) {
       const contentEl = getClosest(e.target, `.${Classes.INPUT_POPOVER_CONTENT}`)!;
-      const dismissEl = contentEl.querySelector(`.${Classes.POPOVER_DISSMISS}`) as HTMLElement;
-      this.handleOnSubmit(e);
-      dismissEl.click();
+      const submitBtnEl = contentEl.querySelector(`.${Classes.POPOVER_DISSMISS}`) as HTMLElement;
+      submitBtnEl.click();
 
       m.redraw();
     }

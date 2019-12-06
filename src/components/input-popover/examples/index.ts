@@ -8,6 +8,7 @@ export class InputPopoverExample {
   private type: 'input' | 'textarea' = 'input';
   private header: boolean;
   private footer: boolean;
+  private highlightOnOpen: boolean = false;
   private submitOnEnter: boolean = true;
   private value: string = 'Value';
 
@@ -18,8 +19,9 @@ export class InputPopoverExample {
         header: this.header && 'Header',
         footer: this.footer && 'Footer',
         submitOnEnter: this.submitOnEnter,
+        hightlightOnOpen: this.highlightOnOpen,
         placeholder: 'Enter value',
-        onSubmit: (value) => this.value = value as string,
+        onSubmit: (value) => this.value = value,
         value: this.value,
         trigger: m(Button, {
           sublabel: 'Trigger: ',
@@ -54,6 +56,12 @@ export class InputPopoverExample {
         checked: this.submitOnEnter,
         label: 'Submit on enter',
         onchange: () => this.submitOnEnter = !this.submitOnEnter
+      }),
+
+      m(Switch, {
+        checked: this.highlightOnOpen,
+        label: 'Highlight on open',
+        onchange: () => this.highlightOnOpen = !this.highlightOnOpen
       })
     ];
   }
