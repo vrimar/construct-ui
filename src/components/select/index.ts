@@ -87,7 +87,7 @@ export class Select implements m.Component<ISelectAttrs> {
 
     return m('option', {
       ...attrs,
-      selected: defaultValue != null && value === defaultValue,
+      selectedValue: defaultValue != null && value === defaultValue,
       value
     }, label);
   }
