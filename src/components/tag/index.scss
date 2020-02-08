@@ -26,13 +26,14 @@
 .cui-tag {
   @include cui-tag-sizing($cui-base-height, $cui-base-padding, $cui-font-size);
   @include cui-tag-style(
-    $cui-base-text-color, 
+    $cui-base-text-color,
     $cui-hover-color,
     tint($blue-grey100, 10%)
   );
 
 	position: relative;
   display: inline-flex;
+  vertical-align: middle;
   align-items: center;
   border-radius: $cui-border-radius;
 
@@ -69,7 +70,7 @@
       $color: map-get($cui-bg-color-map, $intent);
 
       @include cui-tag-style(
-        $white, 
+        $white,
         $color,
         shade($color, 20%)
       );

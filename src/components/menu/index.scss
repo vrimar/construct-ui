@@ -29,6 +29,7 @@ $cui-menu-max-width-map: (
   background:white;
   border: solid 1px $cui-base-border-color;
   display: inline-flex;
+  vertical-align: middle;
   flex-direction: column;
 
   .cui-menu-item {

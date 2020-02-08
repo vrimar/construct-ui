@@ -33,6 +33,7 @@ $cui-icon-size-map: (
 .cui-icon {
 	position: relative;
   display: inline-flex;
+  vertical-align: middle;
   color: $cui-icon-color;
   @include cui-icon-sizing($cui-icon-base);
 

@@ -36,10 +36,11 @@ $cui-spinner-transition-duration: 300ms;
 
   position: relative;
   display: inline-flex;
+  vertical-align: middle;
   align-items: center;
   justify-content: center;
 	opacity: 0;
-  transition: 
+  transition:
     opacity $cui-spinner-transition-duration ease-in-out,
     visibility 0s ease-in-out $cui-spinner-transition-duration,
     background $cui-spinner-transition-duration ease-in-out;
@@ -95,7 +96,7 @@ $cui-spinner-transition-duration: 300ms;
   height: 100%;
   width: 100%;
   z-index: 1;
-  border: 2px solid $cui-base-border-color; 
+  border: 2px solid $cui-base-border-color;
   border-top-color: red !important;
   border-radius: 50%;
   animation: loading $cui-spinner-animation-duration infinite linear;
