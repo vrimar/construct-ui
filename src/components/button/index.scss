@@ -7,7 +7,7 @@
 
   &.cui-compact {
     padding-left: $padding;
-    padding-right: $padding; 
+    padding-right: $padding;
   }
 
   .cui-icon:not(:last-child),
@@ -25,8 +25,8 @@
 }
 
 @mixin cui-button-style(
-  $text-color, $text-color-hover, 
-  $gradient, $gradient-hover, $gradient-active, 
+  $text-color, $text-color-hover,
+  $gradient, $gradient-hover, $gradient-active,
   $border-color, $border-color-hover, $border-color-active,
   $box-shadow, $box-shadow-active
   ) {
@@ -69,6 +69,7 @@
   );
 
   display: inline-flex;
+  vertical-align: middle;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -206,15 +207,15 @@
   .cui-button.cui-#{$intent}.cui-basic,
   .cui-button-group.cui-#{$intent}.cui-basic .cui-button {
     @include cui-button-style(
-      map-get($cui-bg-color-map, $intent), 
       map-get($cui-bg-color-map, $intent),
-      transparent, 
+      map-get($cui-bg-color-map, $intent),
+      transparent,
       tint(map-get($cui-bg-color-map, $intent), 90%),
       tint(map-get($cui-bg-color-map, $intent), 80%),
       transparent,
       transparent,
       transparent,
-      none, 
+      none,
       none
     );
 
@@ -226,15 +227,15 @@
   .cui-button.cui-#{$intent}.cui-outlined,
   .cui-button-group.cui-#{$intent}.cui-outlined .cui-button {
     @include cui-button-style(
-      map-get($cui-bg-color-map, $intent), 
       map-get($cui-bg-color-map, $intent),
-      transparent, 
+      map-get($cui-bg-color-map, $intent),
+      transparent,
       tint(map-get($cui-bg-color-map, $intent), 95%),
       tint(map-get($cui-bg-color-map, $intent), 90%),
       map-get($cui-border-color-map, $intent),
       map-get($cui-border-color-hover-map, $intent),
       map-get($cui-border-color-active-map, $intent),
-      none, 
+      none,
       none
     );
 

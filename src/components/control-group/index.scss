@@ -2,6 +2,7 @@
 
 .cui-control-group {
   display: inline-flex;
+  vertical-align: middle;
   margin-right: $cui-base-size;
 
   &:last-child {

@@ -4,7 +4,7 @@
 @mixin cui-select-style(
   $text-color, $text-color-hover,
   $bg-color-hover, $bg-color-active,
-  $gradient, $gradient-hover, $gradient-active, 
+  $gradient, $gradient-hover, $gradient-active,
   $border-color, $border-color-hover, $border-color-active,
   $box-shadow, $box-shadow-active
   ) {
@@ -27,7 +27,7 @@
       box-shadow: $box-shadow-active;
     }
 
-    &[disabled], 
+    &[disabled],
     .cui-disabled {
       color: $text-color;
       background: $gradient;
@@ -66,7 +66,8 @@
   );
 
   position:relative;
-  display:inline-block;
+  display:inline-flex;
+  vertical-align: middle;
   background:white;
 
   #{$selector} {
@@ -117,7 +118,7 @@
   @each $intent in $cui-intents {
     &.cui-#{$intent} {
       @include cui-select-style(
-        map-get($cui-bg-color-map, $intent), 
+        map-get($cui-bg-color-map, $intent),
         map-get($cui-bg-color-map, $intent),
         tint(map-get($cui-bg-color-map, $intent), 90%),
         tint(map-get($cui-bg-color-map, $intent), 80%),

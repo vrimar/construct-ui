@@ -3,6 +3,7 @@
 .cui-empty-state {
   position: relative;
   display: inline-flex;
+  vertical-align: middle;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -29,7 +30,7 @@
 .cui-empty-state-header {
   font-weight: bold;
   font-size: $cui-body-font-size;
-  
+
   &:not(:last-child) {
     margin-bottom: 10px;
   }

@@ -8,7 +8,8 @@
   @include cui-input-style($selector, $cui-base-border-color, $cui-primary-border-color);
 
   position:relative;
-  display: inline-block;
+  display: inline-flex;
+  vertical-align: middle;
   background:white;
 
   #{$selector} {
@@ -18,6 +19,7 @@
     outline: none;
     color: $cui-text-color;
     border-radius: $cui-border-radius;
+    box-shadow: $cui-base-box-shadow;
     transition:
       border $cui-transition-duration $cui-transition-ease,
       background $cui-transition-duration $cui-transition-ease,

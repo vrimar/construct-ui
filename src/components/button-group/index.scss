@@ -1,7 +1,8 @@
 @import '../../_shared/_variables';
 
 .cui-button-group {
-	display: inline-flex;
+  display: inline-flex;
+  vertical-align: middle;
 
   .cui-button {
 		flex: 1 0 auto;
