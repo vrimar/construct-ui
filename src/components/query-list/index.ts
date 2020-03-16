@@ -393,7 +393,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
     const selectedItem = this.filteredItems[index];
     const actionsEl = getClosest(target, `.${Classes.LIST_ITEM_CONTENT_RIGHT}`);
 
-    if (selectedItem && !actionsEl && !isDisabled) {
+    if (selectedItem != null && !actionsEl && !isDisabled) {
       this.updateActiveIndex(index);
       safeCall(onSelect, selectedItem, e, index);
     } else (e as any).redraw = false;
@@ -448,7 +448,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
   private handleEnterKey(e: KeyboardEvent) {
     const item = this.activeItem;
 
-    if (item) {
+    if (item != null) {
       safeCall(this.attrs.onSelect, item, e);
     }
   }
