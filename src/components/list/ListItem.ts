@@ -7,6 +7,9 @@ export interface IListItemAttrs extends IAttrs {
   /** Toggles active state */
   active?: boolean;
 
+  /** Allow onclick event to be processed for contentLeft/contentRight */
+  allowOnContentClick?: boolean;
+
   /** Left-justified content */
   contentLeft?: m.Children;
 
@@ -59,16 +62,18 @@ export class ListItem implements m.Component<IListItemAttrs> {
     return m('', {
       ...htmlAttrs,
       class: classes,
-      onclick: (e: Event) => this.handleClick(e, onclick)
+      onclick: (e: Event) => this.handleClick(e, attrs)
     }, content);
   }
 
-  private handleClick(e: Event, onclick?: (e: Event) => void) {
+  private handleClick(e: Event, attrs: IListItemAttrs) {
+    const { allowOnContentClick, onclick } = attrs;
     const el = e.target as HTMLElement;
-    const isClickOnLeftContent = getClosest(el, `.${Classes.LIST_ITEM_CONTENT_LEFT}`);
-    const isClickOnRightContent = getClosest(el, `.${Classes.LIST_ITEM_CONTENT_RIGHT}`);
+    const isLeftContentClick = getClosest(el, `.${Classes.LIST_ITEM_CONTENT_LEFT}`);
+    const isRightContentClick = getClosest(el, `.${Classes.LIST_ITEM_CONTENT_RIGHT}`);
+    const allowContentClick = allowOnContentClick || (!isLeftContentClick && !isRightContentClick);
 
-    if (isFunction(onclick) && !isClickOnLeftContent && !isClickOnRightContent) {
+    if (isFunction(onclick) && allowContentClick) {
       safeCall(onclick, e);
     } else (e as any).redraw = false;
   }

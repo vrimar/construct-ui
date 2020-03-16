@@ -81,11 +81,27 @@ describe('list', () => {
         onclick: () => count++
       });
 
-      listItem().dispatchEvent(new Event('click'));
-      leftContent().dispatchEvent(new Event('click'));
-      rightContent().dispatchEvent(new Event('click'));
+      listItem().dispatchEvent(new Event('click', { bubbles: true }));
+      leftContent().dispatchEvent(new Event('click', { bubbles: true }));
+      rightContent().dispatchEvent(new Event('click', { bubbles: true }));
 
       assert.equal(count, 1);
+    });
+
+    it('Clicking right/left content should call onclick callback when allowOnContentClick=true', () => {
+      let count = 0;
+
+      mount({}, {
+        contentLeft: 'contentLeft',
+        contentRight: 'contentRight',
+        allowOnContentClick: true,
+        onclick: () => count++
+      });
+
+      listItem().dispatchEvent(new Event('click', { bubbles: true }));
+      leftContent().dispatchEvent(new Event('click', { bubbles: true }));
+      rightContent().dispatchEvent(new Event('click', { bubbles: true }));
+      assert.equal(count, 3);
     });
   });
 
