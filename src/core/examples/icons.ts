@@ -46,6 +46,6 @@ export class IconsExample {
 
     const query = this.searchQuery.toLowerCase();
 
-    return iconNames.filter(iconName => iconName.toLowerCase().includes(query));
+    return iconNames.filter(iconName => Icons[iconName].toLowerCase().includes(query));
   }
 }
