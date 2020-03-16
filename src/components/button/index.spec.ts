@@ -126,6 +126,40 @@ describe('button', () => {
     assert.equal(count, 3);
   });
 
+  it('Correctly handle 0/empty/false/null label/sublabel values', () => {
+    mount({
+      label: 0,
+      sublabel: 0
+    });
+
+    assert(el().querySelector(`.${Classes.BUTTON_LABEL}`));
+    assert(el().querySelector(`.${Classes.BUTTON_SUBLABEL}`));
+
+    mount({
+      label: '',
+      sublabel: ''
+    });
+
+    assert(!el().querySelector(`.${Classes.BUTTON_LABEL}`));
+    assert(!el().querySelector(`.${Classes.BUTTON_SUBLABEL}`));
+
+    mount({
+      label: false,
+      sublabel: false
+    });
+
+    assert(!el().querySelector(`.${Classes.BUTTON_LABEL}`));
+    assert(!el().querySelector(`.${Classes.BUTTON_SUBLABEL}`));
+
+    mount({
+      label: undefined,
+      sublabel: undefined
+    });
+
+    assert(!el().querySelector(`.${Classes.BUTTON_LABEL}`));
+    assert(!el().querySelector(`.${Classes.BUTTON_SUBLABEL}`));
+  });
+
   function mount(attrs: IButtonAttrs) {
     const component = {
       view: () => m(Button, { ...attrs })

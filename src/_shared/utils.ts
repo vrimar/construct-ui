@@ -105,3 +105,7 @@ function shouldAddPadding(element: HTMLElement) {
     !element.classList.contains(Classes.SPINNER) &&
     !element.classList.contains(Classes.BUTTON_ICON);
 }
+
+export function isNullOrEmpty(item: any) {
+  return item == null || item === '' || item === false;
+}

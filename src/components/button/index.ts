@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import m from 'mithril';
 import { Icon } from '../icon';
 import { Spinner } from '../spinner';
-import { Classes, IActionItemAttrs, IAttrs, ISizeAttrs, IIntentAttrs, Align } from '../../_shared';
+import { Classes, IActionItemAttrs, IAttrs, ISizeAttrs, IIntentAttrs, Align, isNullOrEmpty } from '../../_shared';
 
 export interface IButtonAttrs extends IAttrs, IActionItemAttrs, ISizeAttrs, IIntentAttrs {
   /**
@@ -80,15 +80,15 @@ export class Button implements m.Component<IButtonAttrs> {
       rounded && Classes.ROUNDED,
       basic && Classes.BASIC,
       outlined && Classes.OUTLINED,
-      !label && !sublabel && (!iconLeft || !iconRight) && Classes.BUTTON_ICON,
+      isNullOrEmpty(label) && isNullOrEmpty(sublabel) && (!iconLeft || !iconRight) && Classes.BUTTON_ICON,
       className
     );
 
     const content = [
       loading && m(Spinner, { active: true, fill: true }),
       iconLeft && m(Icon, { name: iconLeft, ...iconLeftAttrs }),
-      sublabel && m('span', { class: Classes.BUTTON_SUBLABEL }, sublabel),
-      label && m('span', { class: Classes.BUTTON_LABEL }, label),
+      !isNullOrEmpty(sublabel) && m('span', { class: Classes.BUTTON_SUBLABEL }, sublabel),
+      !isNullOrEmpty(label) && m('span', { class: Classes.BUTTON_LABEL }, label),
       iconRight && m(Icon, { name: iconRight, ...iconRightAttrs })
     ];
 
