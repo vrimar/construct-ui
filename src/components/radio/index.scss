@@ -1,4 +1,5 @@
 @import '../../_shared/variables';
+@import '../../_shared/mixins';
 
 @mixin cui-radio-sizing($size) {
   input:checked ~ .cui-control-indicator:after {
@@ -8,10 +9,10 @@
 }
 
 @mixin cui-radio-style($bg-color-active, $border-color) {
-  .cui-control-indicator, {
+  .cui-control-indicator {
     border: solid 1px $border-color;
   }
-  
+
   input:checked ~ .cui-control-indicator {
     border: solid 1px $bg-color-active;
 
@@ -64,6 +65,21 @@
 
 .cui-radio-group {
   .cui-radio {
-    margin-right: $cui-base-size * 2;
+    margin-right: floor($cui-control-base * 1.5);
+  }
+
+  @each $size in $cui-sizes {
+    &.cui-#{$size} .cui-control {
+      @include cui-control-sizing(
+        map-get($cui-control-map, $size),
+        map-get($cui-font-size-map, $size)
+      );
+
+      @include cui-radio-sizing(map-get($cui-control-map, $size));
+    }
+
+    &.cui-#{$size} .cui-radio {
+      margin-right: floor(map-get($cui-control-map, $size) * 1.5);
+    }
   }
 }

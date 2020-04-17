@@ -64,7 +64,7 @@
   > .cui-button {
     @include cui-base-sizing(
       floor($height / 1.4),
-      floor($padding / 2), 
+      floor($padding / 2),
       floor($font-size / 1.2)
     );
   }
@@ -98,5 +98,17 @@
     &:focus {
       border: solid 1px $border-color-focus;
     }
+  }
+}
+
+@mixin cui-control-sizing($size, $font-size) {
+  min-height: $size;
+  line-height: $size;
+  font-size: $font-size;
+  padding-left: floor($size * 1.5);
+
+  .cui-control-indicator {
+    height: $size;
+    width: $size;
   }
 }
