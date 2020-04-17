@@ -1,17 +1,6 @@
 @import '../../_shared/variables';
 @import '../../_shared/mixins';
 
-@mixin cui-control-sizing($size, $font-size) {
-  min-height: $size;
-  line-height: $size;
-  font-size: $font-size;
-  padding-left: floor($size * 1.5);
-
-  .cui-control-indicator {
-    height: $size;
-    width: $size;
-  }
-}
 
 @mixin cui-control-style($text-color) {
   color: $text-color;
