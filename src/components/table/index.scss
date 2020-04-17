@@ -19,7 +19,7 @@
   }
 
   &:not(.cui-table-bordered) tr:last-child {
-    td { border-bottom: none}
+    td, th { border-bottom: none}
   }
 
   &.cui-table-bordered {
