@@ -49,7 +49,7 @@ $cui-callout-bg-color-map: (
   background: $bg-color;
   border: solid 1px $border-color;
 
-  .cui-icon {
+  > .cui-icon {
     color: $text-color;
   }
 }
@@ -63,7 +63,7 @@ $cui-callout-bg-color-map: (
   width: 100%;
 	border-radius: $cui-border-radius;
 
-  .cui-icon, .cui-callout-dismiss {
+  > .cui-icon, .cui-callout-dismiss {
     position: absolute;
   }
 
