@@ -45,6 +45,9 @@ export class Toast extends AbstractComponent<IToastAttrs> {
       this.startTimeout();
     } else if (prev.attrs.timeout! > 0 && vnode.attrs.timeout! <= 0) {
       this.clearTimeouts();
+    } else if (vnode.attrs.timeout! !== prev.attrs.timeout) {
+      this.clearTimeouts();
+      this.startTimeout();
     }
   }
 
