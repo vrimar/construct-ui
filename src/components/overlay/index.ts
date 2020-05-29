@@ -9,11 +9,15 @@ export interface IOverlayableAttrs {
   /** Class added to backdrop element */
   backdropClass?: string;
 
-  /** Whether component can be closed on outer click */
+  /**
+   * Whether component can be closed on outer click.
+   * Triggers the <code>onClose</code> attribute when <code>true</code>
+   */
   closeOnOutsideClick?: boolean;
 
   /**
-   * Whether component can be closed on Escape key
+   * Whether component can be closed on Escape key.
+   * Triggers the <code>onClose</code> attribute when <code>true</code>
    * @default true
    */
   closeOnEscapeKey?: boolean;
@@ -39,7 +43,7 @@ export interface IOverlayableAttrs {
    */
   onOpened?: (contentEl: HTMLElement) => void;
 
-  /** Sets focus to first element that has a `autofocus` or `tabindex` attribute */
+  /** Sets focus to first element that has a <code>autofocus</code> or <code>tabindex</code> attribute */
   autofocus?: boolean;
 
   /** Wether last active element should be focused on close  */
