@@ -72,7 +72,12 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|ico|svg)$/i,
-        use: "file-loader",
+        use: {
+          loader: 'file-loader',
+          options: {
+            esModule: false
+          }
+        }
       },
       {
         test: /\.ts?$/,

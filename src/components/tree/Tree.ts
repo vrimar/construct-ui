@@ -4,7 +4,7 @@ import { Classes, IAttrs } from '../../_shared';
 
 export interface ITreeAttrs extends IAttrs {
   /** An array of child nodes */
-  nodes?: Array<m.Vnode<ITreeAttrs, any>>;
+  nodes?: m.Vnode<ITreeAttrs, any>[];
 
   [htmlAttrs: string]: any;
 }

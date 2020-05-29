@@ -255,7 +255,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
 
     if (hasBackdrop && !inline) {
       document.body.classList.remove(Classes.OVERLAY_OPEN);
-      document.body.style.paddingRight = null;
+      document.body.style.paddingRight = '';
     }
 
     safeCall(onClosed);
