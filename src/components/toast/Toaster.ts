@@ -52,7 +52,7 @@ export interface IToasterAttrs extends IAttrs {
   position?: ToasterPosition;
 
   /** Array of `Toast` items when used in declarative mode */
-  toasts?: Array<m.Vnode<IToastAttrs, any>>;
+  toasts?: m.Vnode<IToastAttrs, any>[];
 }
 
 export class Toaster extends AbstractComponent<IToasterAttrs> {

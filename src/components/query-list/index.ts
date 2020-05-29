@@ -129,7 +129,7 @@ export interface IQueryListAttrs<T> extends IQueryableAttrs<T>, IFilterableAttrs
 export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
   private filteredItems: T[] = [];
   private activeIndex: number;
-  private itemNodes: Array<m.Vnode<IListItemAttrs>>;
+  private itemNodes: m.Vnode<IListItemAttrs>[];
   private inputEl: HTMLElement;
   private query: string;
   private listEl: HTMLElement;
@@ -468,7 +468,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
   }
 }
 
-function getNextIndex(currentIndex: number, vnodes: Array<m.Vnode<IListItemAttrs>>, direction: Direction) {
+function getNextIndex(currentIndex: number, vnodes: m.Vnode<IListItemAttrs>[], direction: Direction) {
   const maxIndex = vnodes.length - 1;
   let index = currentIndex;
   let flag = true;

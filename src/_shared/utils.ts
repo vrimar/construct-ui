@@ -85,18 +85,18 @@ export function updateElementGroupPadding(
 
     containerEl.style.paddingLeft = shouldAddPadding(contentLeftEl)
       ? `${contentLeftEl.clientWidth + containerPadding}px`
-      : null;
+      : '';
 
-  } else containerEl.style.paddingLeft = null;
+  } else containerEl.style.paddingLeft = '';
 
   if (contentRight) {
     const contentRightEl = (contentRight as m.VnodeDOM).dom as HTMLElement;
 
     containerEl.style.paddingRight = shouldAddPadding(contentRightEl)
       ? `${contentRightEl.clientWidth + containerPadding}px`
-      : null;
+      : '';
 
-  } else containerEl.style.paddingRight = null;
+  } else containerEl.style.paddingRight = '';
 }
 
 function shouldAddPadding(element: HTMLElement) {
