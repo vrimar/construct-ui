@@ -11,12 +11,12 @@ export class BreadcrumbExample {
     return m(Example, { options: this.renderOptions(), src: EXAMPLE_SRC }, [
       m(Breadcrumb, {
         size: this.size,
-        seperator: m(Icon, { name: Icons.CHEVRON_RIGHT })
+        separator: m(Icon, { name: Icons.CHEVRON_RIGHT })
       }, [
-          m(BreadcrumbItem, { href: '#' }, m(Icon, { name: Icons.HOME })),
-          m(BreadcrumbItem, { href: '#' }, 'Application'),
-          m(BreadcrumbItem, 'Section 1')
-        ])
+        m(BreadcrumbItem, { href: '#' }, m(Icon, { name: Icons.HOME })),
+        m(BreadcrumbItem, { href: '#' }, 'Application'),
+        m(BreadcrumbItem, 'Section 1')
+      ])
     ]);
   }
 

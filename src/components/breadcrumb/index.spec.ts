@@ -23,10 +23,10 @@ describe('breadcrumb', () => {
     mount({});
 
     const childrenLength = el().querySelectorAll(`.${Classes.BREADCRUMB_ITEM}`).length;
-    const seperatorLength = el().querySelectorAll(`.${Classes.BREADCRUMB_SEPERATOR}`).length;
+    const separatorLength = el().querySelectorAll(`.${Classes.BREADCRUMB_SEPARATOR}`).length;
 
     assert.equal(childrenLength, 2);
-    assert.equal(seperatorLength, 2);
+    assert.equal(separatorLength, 2);
   });
 
   it('Passes through html attrs', () => {
@@ -39,9 +39,9 @@ describe('breadcrumb', () => {
     assert(el().hasAttribute('name'));
   });
 
-  it('Renders custom seperator', () => {
+  it('Renders custom separator', () => {
     mount({
-      seperator: m(Icon, { name: Icons.ACTIVITY })
+      separator: m(Icon, { name: Icons.ACTIVITY })
     });
 
     assert(hasChildClass(el(), `${Classes.ICON}-${Icons.ACTIVITY}`));

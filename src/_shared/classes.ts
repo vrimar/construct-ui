@@ -49,7 +49,7 @@ export const Classes = {
 
   BREADCRUMB: 'cui-breadcrumb',
   BREADCRUMB_ITEM: 'cui-breadcrumb-item',
-  BREADCRUMB_SEPERATOR: 'cui-breadcrumb-seperator',
+  BREADCRUMB_SEPARATOR: 'cui-breadcrumb-separator',
 
   BUTTON: 'cui-button',
   BUTTON_LABEL: 'cui-button-label',
