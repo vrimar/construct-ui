@@ -26,11 +26,11 @@ export class GridBasicExample {
     return m(Example, exampleAttrs, [
       m(Grid, { ...gridAttrs }, [
         m(Col, { span: 8 }, m('.cui-example-grid-col', 'col-8')),
-        m(Col, { span: 4 }, m('.cui-example-grid-col', 'col-6'))
+        m(Col, { span: 4 }, m('.cui-example-grid-col', 'col-4'))
       ]),
 
       m(Grid, { ...gridAttrs }, [
-        m(Col, { span: 4 }, m('.cui-example-grid-col', 'col-5')),
+        m(Col, { span: 4 }, m('.cui-example-grid-col', 'col-4')),
         m(Col, { span: 4 }, m('.cui-example-grid-col[style=height:100px]', 'col-4')),
         m(Col, { span: 3 }, m('.cui-example-grid-col', 'col-3'))
       ])
