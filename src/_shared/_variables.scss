@@ -5,11 +5,11 @@
 
 $cui-base-size: 10px !default;
 
-// Body 
+// Body
 
 $cui-body-bg: $blue-grey50 !default;
 $cui-body-color: $blue-grey800 !default;
-$cui-body-font-size: $cui-base-size * 1.6;
+$cui-body-font-size: $cui-base-size * 1.6 !default;
 
 // Links
 
@@ -22,8 +22,8 @@ $cui-focus-outline-color: $blue300 !default;
 // Paragraphs and text
 
 $cui-paragraph-margin-bottom:   1rem !default;
-$cui-text-muted: $blue-grey300;
-$cui-text-disabled: $blue-grey100;
+$cui-text-muted: $blue-grey300 !default;
+$cui-text-disabled: $blue-grey100 !default;
 
 // Spacing
 
@@ -88,8 +88,8 @@ $cui-base-bg-color-active:     $blue-grey50 !default;
 $cui-base-border-color:        shade($blue-grey100, 5%) !default;
 $cui-base-border-color-hover:  $blue-grey200 !default;
 $cui-base-border-color-active: $blue-grey200 !default;
-$cui-base-box-shadow:          0px 1px 0px tint($blue-grey50, 10%);
-$cui-base-box-shadow-active:   $cui-base-box-shadow, inset 0px 4px 5px shade($blue-grey50, 7.5%);
+$cui-base-box-shadow:          0px 1px 0px tint($blue-grey50, 10%) !default;
+$cui-base-box-shadow-active:   $cui-base-box-shadow, inset 0px 4px 5px shade($blue-grey50, 7.5%) !default;
 
 $cui-primary-bg-color:            $indigo400 !default;
 $cui-primary-bg-color-hover:      shade($cui-primary-bg-color, 10%) !default;
@@ -108,7 +108,7 @@ $cui-positive-gradient:            linear-gradient(180deg, $green500 10.5%, $gre
 $cui-positive-gradient-hover:      linear-gradient(180deg, $green500  10.5%, $green700 100%) !default;
 $cui-positive-gradient-active:     linear-gradient(180deg, $green500  10.5%, $green700 100%) !default;
 $cui-positive-border-color:        shade($cui-positive-bg-color, 20%) !default;
-$cui-positive-border-color-hover:  shade($cui-positive-bg-color, 30%)   !default;
+$cui-positive-border-color-hover:  shade($cui-positive-bg-color, 30%) !default;
 $cui-positive-border-color-active: shade($cui-positive-bg-color, 30%) !default;
 
 $cui-negative-bg-color:            $red500 !default;
@@ -201,9 +201,9 @@ $cui-icon-color-hover: $blue-grey900 !default;
 // Base dimensions
 $cui-sizes: 'xs', 'sm', 'lg', 'xl';
 
-$cui-base-height:     $cui-base-size * 4;
-$cui-base-height-xs:  $cui-base-size * 3;
-$cui-base-height-sm:  $cui-base-size * 3.5;
+$cui-base-height:     $cui-base-size * 4 !default;
+$cui-base-height-xs:  $cui-base-size * 3 !default;
+$cui-base-height-sm:  $cui-base-size * 3.5 !default;
 $cui-base-height-lg:  $cui-base-size * 4.5 !default;
 $cui-base-height-xl:  $cui-base-size * 5 !default;
 
@@ -261,11 +261,11 @@ $cui-screen-size-xl-max: $cui-screen-size-xl - 1px !default;
 
 // Control components
 
-$cui-control-base: floor($cui-base-size * 1.6);
-$cui-control-xs:   floor($cui-base-size * 1.2);
-$cui-control-sm:   floor($cui-base-size * 1.4);
-$cui-control-lg:   floor($cui-base-size * 1.8);
-$cui-control-xl:   floor($cui-base-size * 2);
+$cui-control-base: floor($cui-base-size * 1.6) !default;
+$cui-control-xs:   floor($cui-base-size * 1.2) !default;
+$cui-control-sm:   floor($cui-base-size * 1.4) !default;
+$cui-control-lg:   floor($cui-base-size * 1.8) !default;
+$cui-control-xl:   floor($cui-base-size * 2) !default;
 
 $cui-control-map: (
   xs: $cui-control-xs,
@@ -277,7 +277,7 @@ $cui-control-map: (
 // Elevation shadows
 
 // TODO: switch to UI colors
-$cui-elevation-1: 0px 2px 4px -2px rgba(67, 90, 111, 0.3);
-$cui-elevation-2: 0px 5px 8px -4px rgba(67, 90, 111, 0.3);
-$cui-elevation-3: 0px 8px 10px -4px rgba(67, 90, 111, 0.3);
-$cui-elevation-4: 0px 16px 24px -8px rgba(67, 90, 111, 0.3);
+$cui-elevation-1: 0px 2px 4px -2px rgba(67, 90, 111, 0.3) !default;
+$cui-elevation-2: 0px 5px 8px -4px rgba(67, 90, 111, 0.3) !default;
+$cui-elevation-3: 0px 8px 10px -4px rgba(67, 90, 111, 0.3) !default;
+$cui-elevation-4: 0px 16px 24px -8px rgba(67, 90, 111, 0.3) !default;
