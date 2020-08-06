@@ -135,10 +135,11 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
   }
 
   private handleSelect = (item: Option) => {
-    if ('value' in this.attrs) {
-      safeCall(this.attrs.onSelect, item);
-    } else this.selected = item;
+    if (!('value' in this.attrs)) {
+      this.selected = item;
+    }
 
+    safeCall(this.attrs.onSelect, item);
     this.isOpen = false;
   }
 
