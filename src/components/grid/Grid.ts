@@ -78,6 +78,9 @@ export class Grid implements m.Component<IGridAttrs> {
     return children.map((col: m.Vnode<IColAttrs>) => {
       if (col == null || col.tag === '#') return;
 
+      if (typeof (col) !== 'object')
+        return col;
+
       if (col.tag === '[') {
         return this.renderCols(col.children as m.ChildArray, gutter);
       }
