@@ -65,7 +65,7 @@ export class Grid implements m.Component<IGridAttrs> {
   }
 
   private getGutter(attrs: IGridAttrs) {
-    const breakPoints = ResponsiveManager.breakpoints;
+    const breakPoints = ResponsiveManager.activeBreakpoints;
 
     if (typeof attrs.gutter === 'object' && breakPoints) {
       const activeBreakpoints = Object.keys(breakPoints).filter((x) => breakPoints[x]);

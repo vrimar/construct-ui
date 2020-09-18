@@ -37,11 +37,11 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "enquire.js": "^2.1.6",
     "feather-icons": "^4.28.0",
     "lodash.debounce": "^4.0.8",
     "mithril-transition-group": "^0.1.7",
     "popper.js": "^1.16.1",
+    "simplestatemanager": "^4.1.1",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
