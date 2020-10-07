@@ -4,8 +4,7 @@ import { Drawer, IDrawerAttrs, Classes } from '@/';
 import { hasChildClass, hasClass } from '@test-utils';
 
 describe('drawer', () => {
-  const el = () => document.body.firstChild as HTMLElement;
-  const drawer = () => el().querySelector(`.${Classes.DRAWER}`) as HTMLElement;
+  const drawer = () => document.body.querySelector(`.${Classes.DRAWER}`) as HTMLElement;
 
   afterEach(() => m.mount(document.body, null));
 

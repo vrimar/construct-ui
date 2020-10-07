@@ -61,8 +61,9 @@ describe('menu', () => {
         }
       });
 
+      menuItem().dispatchEvent(new MouseEvent('mouseenter'));
+
       setTimeout(() => {
-        menuItem().dispatchEvent(new MouseEvent('mouseenter'));
         const popover = document.body.querySelector(`.${Classes.POPOVER}`) as HTMLElement;
         assert(hasClass(popover, Classes.POSITIVE));
         assert.equal(popover.style.color, 'red');
@@ -81,8 +82,9 @@ describe('menu', () => {
         }
       });
 
+      menuItem().dispatchEvent(new MouseEvent('mouseenter'));
+
       setTimeout(() => {
-        menuItem().dispatchEvent(new MouseEvent('mouseenter'));
         assert.equal(count, 1);
         done();
       }, TIMEOUT);

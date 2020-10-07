@@ -4,8 +4,7 @@ import { Dialog, IDialogAttrs, Classes } from '@/';
 import { hasChildClass, hasClass } from '@test-utils';
 
 describe('dialog', () => {
-  const el = () => document.body.firstChild as HTMLElement;
-  const dialog = () => el().querySelector(`.${Classes.DIALOG}`) as HTMLElement;
+  const dialog = () => document.body.querySelector(`.${Classes.DIALOG}`) as HTMLElement;
 
   afterEach(() => m.mount(document.body, null));
 

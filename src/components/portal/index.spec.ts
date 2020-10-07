@@ -1,7 +1,7 @@
 import m from 'mithril';
 import assert from 'assert';
 import { Button, Portal, IPortalAttrs, Classes } from '@/';
-import { hasClass, hasChildClass, timeoutRedraw } from '@test-utils';
+import { hasClass, hasChildClass, TIMEOUT } from '@test-utils';
 
 describe('portal', () => {
   const portal = () => document.body.querySelector(`.${Classes.PORTAL}`) as HTMLElement;
@@ -47,13 +47,13 @@ describe('portal', () => {
     const hasButton = () => hasChildClass(portal(), Classes.BUTTON);
     assert(hasButton());
 
-    timeoutRedraw(
-      () => component.showChildren = false,
-      () => {
-        assert(!hasButton());
-        done();
-      }
-    );
+    component.showChildren = false;
+    m.redraw();
+
+    setTimeout(() => {
+      assert(!hasButton());
+      done();
+    }, TIMEOUT);
   });
 
   it('Removes div from body on unmount', () => {

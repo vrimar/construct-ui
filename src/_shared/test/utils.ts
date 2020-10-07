@@ -1,4 +1,3 @@
-import m from 'mithril';
 export const TIMEOUT = 70;
 
 export function hasClass(el: HTMLElement, className: string) {
@@ -14,14 +13,6 @@ export function triggerEvent(el: Element, type: string, callback: Function) {
     el.dispatchEvent(new Event(type, { bubbles: true }));
 
     setTimeout(callback, TIMEOUT);
-  }, TIMEOUT);
-}
-
-export function timeoutRedraw(fn: Function, done: Function) {
-  setTimeout(() => {
-    fn();
-    m.redraw();
-    setTimeout(done, TIMEOUT);
   }, TIMEOUT);
 }
 

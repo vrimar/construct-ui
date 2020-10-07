@@ -53,7 +53,6 @@ describe('input-select', () => {
     input().focus();
 
     setTimeout(() => {
-      m.redraw();
       assert(el());
       done();
     }, TIMEOUT);

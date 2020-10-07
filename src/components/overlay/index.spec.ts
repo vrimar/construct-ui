@@ -1,7 +1,7 @@
 import m from 'mithril';
 import assert from 'assert';
 import { Overlay, IOverlayAttrs, Classes, Input, Keys } from '@/';
-import { hasClass, TIMEOUT, triggerEvent, timeoutRedraw } from '@test-utils';
+import { hasClass, TIMEOUT, triggerEvent } from '@test-utils';
 
 describe('overlay', () => {
   const portal = () => document.body.querySelector(`.${Classes.PORTAL}`) as HTMLElement;
@@ -117,34 +117,31 @@ describe('overlay', () => {
       onClosed: () => count++
     });
 
-    timeoutRedraw(
-      () => component.isOpen = false,
-      () => {
-        assert.equal(count, 2);
-        done();
-      }
-    );
+    component.isOpen = false;
+    m.redraw();
+
+    setTimeout(() => {
+      assert.equal(count, 2);
+      done();
+    }, TIMEOUT);
   });
 
   it('onClosed called when transitionDuration finishes', done => {
     let count = 0;
-    const transitionDuration = 50;
+    const transitionDuration = 100;
 
     const component = mount({
       onClosed: () => count++,
       transitionDuration
     });
 
+    component.isOpen = false;
+    m.redraw();
+
     setTimeout(() => {
-      component.isOpen = false;
-      m.redraw();
-
-      setTimeout(() => {
-        assert.equal(count, 1);
-        done();
-      }, transitionDuration);
-
-    }, TIMEOUT);
+      assert.equal(count, 1);
+      done();
+    }, transitionDuration + TIMEOUT);
   });
 
   function mount(attrs: IOverlayAttrs) {

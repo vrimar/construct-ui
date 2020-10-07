@@ -5,6 +5,7 @@ import { MethodsTable } from './MethodsTable';
 import * as Examples from '../../../src/examples';
 import { FocusManager, ResponsiveManager } from '@/';
 import { ITag, INavigable } from '@documentalist/client';
+import { highlightCode } from '../utils/highlightCode';
 
 FocusManager.showFocusOnlyOnTab();
 ResponsiveManager.initialize();
@@ -16,7 +17,10 @@ export function Content(attrs: IDocumentationData) {
     class: [
       'Docs-content',
       `Docs-content-${pageData.reference}`
-    ].join(' ')
+    ].join(' '),
+    key: attrs.page,
+    id: attrs.page,
+    oncreate: () => highlightCode()
   };
 
   return m('section', contentAttrs, [

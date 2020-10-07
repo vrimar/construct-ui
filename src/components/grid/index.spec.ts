@@ -59,7 +59,6 @@ describe('grid', () => {
     mount({ gutter });
 
     setTimeout(() => {
-
       // Resize to xs
       window.resizeTo(100, 100);
 

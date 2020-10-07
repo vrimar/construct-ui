@@ -1,7 +1,0 @@
---inline-diffs true
---colors
---require ts-node/register
---require tsconfig-paths/register
---require ./test/setup.js
---extension ts
-./src/**/*.spec.ts
