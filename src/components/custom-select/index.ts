@@ -63,7 +63,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
   }
 
   public view() {
-    const { options, class: className, name, triggerAttrs, size } = this.attrs;
+    const { options, class: className, name, triggerAttrs, size, style } = this.attrs;
 
     const classes = classnames(
       Classes.CUSTOM_SELECT,
@@ -114,7 +114,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
       trigger
     });
 
-    return m('', { class: classes }, selectList);
+    return m('', { class: classes, style: style }, selectList);
   }
 
   private renderItem = (item: Option, index: number) => {
