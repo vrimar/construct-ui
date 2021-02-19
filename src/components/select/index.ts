@@ -71,7 +71,7 @@ export class Select implements m.Component<ISelectAttrs> {
       className
     );
 
-    const selectOptions = (options as Option[]).map((option) => this.renderOption(option, attrs));
+    const selectOptions = options.map((option) => this.renderOption(option, attrs));
 
     return m('', { class: classes, style }, [
       contentLeft,
@@ -84,10 +84,11 @@ export class Select implements m.Component<ISelectAttrs> {
     const label = typeof (option) === 'object' ? option.label : option;
     const value = typeof (option) === 'object' ? option.value : option;
     const attrs = typeof (option) === 'object' ? option : {};
+    const selected = defaultValue === value ? true : undefined;
 
     return m('option', {
       ...attrs,
-      selected: defaultValue != null && value === defaultValue,
+      selected,
       value
     }, label);
   }

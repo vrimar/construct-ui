@@ -25,8 +25,7 @@ export class SelectDefaultExample {
         intent: this.intent,
         options: this.options,
         size: this.size,
-        defaultValue: 'Third',
-        onchange: () => null
+        defaultValue: 'Third'
       })
     ]);
   }

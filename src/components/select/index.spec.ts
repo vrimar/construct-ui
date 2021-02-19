@@ -1,9 +1,11 @@
 import m from 'mithril';
 import assert from 'assert';
 import { Select, Tag, ISelectAttrs, Classes, IOption } from '@/';
-import { hasClass, hasChildClass } from '@test-utils';
+import { hasClass, hasChildClass, TIMEOUT } from '@test-utils';
 
 const options = ['1', '2'];
+const firstOption = options[0];
+const secondOption = options[1];
 const objOptions: IOption[] = [
   { label: '1', value: '1' },
   { label: '2', value: '2' }
@@ -12,6 +14,7 @@ const objOptions: IOption[] = [
 describe('select', () => {
   const el = () => document.body.firstChild as HTMLElement;
   const select = () => el().querySelector('select') as HTMLSelectElement;
+  const selectedValue = () => select().options[select().selectedIndex].value;
   const tag = () => el().querySelector(`.${Classes.TAG}`) as HTMLElement;
 
   afterEach(() => m.mount(document.body, null));
@@ -72,16 +75,41 @@ describe('select', () => {
     assert(el().lastChild === tag());
   });
 
-  it('Handles defaultValue', () => {
+  it('Correctly sets defaultValue', () => {
     mount({
       options,
-      defaultValue: '1'
+      defaultValue: secondOption
     });
 
-    assert.equal(select().options[select().selectedIndex].value, '1');
+    assert.equal(selectedValue(), secondOption);
   });
 
-  // TODO: test disabled, onchange and value
+  it('Correctly sets value', () => {
+    mount({
+      options,
+      value: secondOption
+    });
+
+    assert.equal(selectedValue(), secondOption);
+  });
+
+  it('Handles onChange', (done) => {
+    let value = secondOption;
+
+    mount({
+      options,
+      value,
+      onchange: (e) => value = (e.currentTarget as HTMLSelectElement).value
+    });
+
+    select().value = firstOption;
+    select().dispatchEvent(new Event('change'));
+
+    setTimeout(() => {
+      assert.equal(value, firstOption);
+      done();
+    }, TIMEOUT);
+  });
 
   function mount(attrs?: ISelectAttrs) {
     const component = {
