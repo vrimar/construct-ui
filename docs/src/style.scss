@@ -109,17 +109,18 @@ body {
   }
 }
 
+.Docs-nav-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
 .Docs-logo {
   display: block;
   height: 40px;
   width: 36px;
   margin-right: 10px;
-}
-
-.Docs-nav-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
+  align-self: flex-start;
 }
 
 .Docs-nav-title {
@@ -127,9 +128,17 @@ body {
   font-size: 14px;
 }
 
+.Docs-nav-version {
+  font-size: 11px;
+  color: $blue-grey400;
+  display: inline-block;
+}
+
 .Docs-nav-title-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 12px;
-  display: block;
 }
 
 .Docs-nav-content {

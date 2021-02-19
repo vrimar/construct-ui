@@ -17,10 +17,13 @@ export function Nav(attrs: INavAttrs) {
       logo,
       m('', [
         m('.Docs-nav-title', 'Construct-ui'),
-        m('a.Docs-nav-title-meta', {
-          href: 'https://github.com/vrimar/construct-ui',
-          target: '_blank'
-        }, 'Github')
+        m('.Docs-nav-title-meta', [
+          m('a', {
+            href: 'https://github.com/vrimar/construct-ui',
+            target: '_blank'
+          }, 'Github'),
+          m('.Docs-nav-version', `(v${VERSION})`)
+        ])
       ])
     ]),
 

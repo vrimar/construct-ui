@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -16,6 +17,9 @@ const plugins = {
     new HtmlWebpackPlugin({
       title: APP_TITLE,
       template: TEMPLATE_PATH
+    }),
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(packageJson.version),
     })
   ],
   production: [

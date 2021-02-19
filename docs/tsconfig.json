@@ -4,10 +4,11 @@
     "baseUrl": "../",
     "declaration": false,
     "outDir": "./dist",
-    "module": "commonjs"
+    "module": "commonjs",
   },
   "include": [
-    "./src"
+    "./src",
+    "./global.d.ts"
   ],
   "exclude": [
     "../node_modules"
