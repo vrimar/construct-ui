@@ -1,10 +1,9 @@
 const path = require('path');
-const webpack = require('webpack');
+const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const packageJson = require('../package.json');
 
 const APP_TITLE = `Construct-ui: ${packageJson.description} - v${packageJson.version}`;
@@ -25,7 +24,7 @@ const plugins = {
       chunkFilename: "[id].[hash].css"
     }),
     new OptimizeCSSAssetsPlugin(),
-    new UglifyJsPlugin(),
+    new TerserPlugin()
   ],
   development: [
     new CheckerPlugin(),
