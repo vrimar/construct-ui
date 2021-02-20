@@ -23,7 +23,7 @@ export class SelectControlledExample {
       m(Button, {
         label: 'Set to "Second"',
         size: 'xs',
-        onclick: () => this.value = 'First',
+        onclick: () => this.value = 'Second',
         style: 'margin-bottom: 10px'
       }),
 
