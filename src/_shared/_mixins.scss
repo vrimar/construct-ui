@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import './colors';
 
 @mixin cui-overflow-ellipsis {
@@ -63,9 +65,9 @@
 
   > .cui-button {
     @include cui-base-sizing(
-      floor($height / 1.4),
-      floor($padding / 2),
-      floor($font-size / 1.2)
+      floor(math.div($height, 1.4)),
+      floor($padding * 0.5),
+      floor(math.div($font-size, 1.2))
     );
   }
 }

@@ -16,7 +16,7 @@
 .cui-tree-node-content {
 	display: flex;
 	align-items: center;
-  padding: $cui-base-size / 2;
+  padding: $cui-base-size * 0.5;
 
 	&:hover {
 		background-color: $cui-base-bg-color-hover;

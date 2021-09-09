@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import '../../_shared/variables';
 
 $cui-grid-columns: 12 !default;
@@ -64,7 +66,7 @@ $cui-grid-breakpoints: (
 }
 
 @function get-col-percent($column-number) {
-  @return $column-number / $cui-grid-columns * 100%;
+  @return math.div($column-number, $cui-grid-columns) * 100%;
 }
 
 @mixin cui-generate-cols($breakpoint: null){

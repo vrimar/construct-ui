@@ -4,7 +4,7 @@ $cui-popover-min-width: 140px !default;
 $cui-popover-arrow-color: white !default;
 $cui-popover-arrow-border-color: shade($cui-base-border-color, 5%) !default;
 $cui-popover-arrow-size: 14px !default;
-$cui-popover-arrow-offset: $cui-popover-arrow-size / 2 !default;
+$cui-popover-arrow-offset: $cui-popover-arrow-size * 0.5 !default;
 
 .cui-popover {
   position: absolute;

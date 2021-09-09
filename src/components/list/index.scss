@@ -1,7 +1,9 @@
+@use "sass:math";
+
 @import '../../_shared/variables';
 
 @mixin cui-list-sizing($padding, $font-size) {
-  $item-padding: floor($padding / 1.2);
+  $item-padding: floor(math.div($padding, 1.2));
 
   .cui-list-item {
     padding: $item-padding;

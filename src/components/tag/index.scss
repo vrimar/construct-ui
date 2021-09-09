@@ -1,10 +1,12 @@
+@use "sass:math";
+
 @import '../../_shared/variables';
 @import '../../_shared//mixins';
 
 @mixin cui-tag-sizing($height, $padding, $font-size) {
-  $tag-padding-x: floor($padding / 1.5);
-  $tag-padding-y: floor($padding / 6);
-  $tag-font-size: floor($font-size / 1.05);
+  $tag-padding-x: floor(math.div($padding, 1.5));
+  $tag-padding-y: floor(math.div($padding, 6));
+  $tag-font-size: floor(math.div($font-size, 1.05));
 
 	font-size: $font-size;
   padding: $tag-padding-y $tag-padding-x;

@@ -3,7 +3,7 @@
 
 @mixin cui-tag-input-sizing($selector, $height, $padding, $font-size)  {
   @include cui-content-group-sizing($selector, $height, $padding, $font-size);
-  $margin: floor($padding / 2);
+  $margin: floor($padding * 0.5);
 
   > .cui-icon {
     top: $padding - 3px;

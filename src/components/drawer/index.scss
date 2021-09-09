@@ -53,7 +53,7 @@ $cui-drawer-min-size: 320px;
 
   .cui-drawer-content {
     width: 100%;
-    min-height: $cui-drawer-min-size / 2;
+    min-height: $cui-drawer-min-size * 0.5;
     max-height: 97%;
   }
 }

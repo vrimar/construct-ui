@@ -1,8 +1,10 @@
+@use "sass:math";
+
 @import '../../_shared/mixins';
 @import '../../_shared/variables';
 
 @function cui-input-file-padding($padding) {
-  @return floor($padding / 3);
+  @return floor(math.div($padding, 3));
 }
 
 @mixin cui-input-file-style($border-color, $border-color-focus) {

@@ -1,11 +1,13 @@
+@use "sass:math";
+
 @import '../../_shared/mixins';
 @import '../../_shared/variables';
 
 
 @mixin cui-tooltip-sizing($padding, $font-size) {
-  $arrow-size: floor($padding / 1.2);
-  $arrow-offset: floor($arrow-size / 2);
-  $font-size: floor($font-size / 1.05);
+  $arrow-size: floor(math.div($padding, 1.2));
+  $arrow-offset: floor($arrow-size * 0.5);
+  $font-size: floor(math.div($font-size, 1.05));
 
   .cui-popover-arrow {
     width: $arrow-size;
@@ -13,7 +15,7 @@
   }
 
   .cui-popover-content {
-    padding: floor($padding / 1.5);
+    padding: floor(math.div($padding, 1.5));
     font-size: $font-size;
   }
 

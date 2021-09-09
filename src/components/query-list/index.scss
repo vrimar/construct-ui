@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import '../../_shared/variables';
 
 @mixin cui-query-list-sizing($padding) {
@@ -6,7 +8,7 @@
   }
 
   .cui-list-item-content-left {
-    left: floor($padding / 1.2);
+    left: floor(math.div($padding, 1.2));
   }
 }
 

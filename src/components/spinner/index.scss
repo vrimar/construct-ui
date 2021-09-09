@@ -14,7 +14,7 @@ $cui-spinner-transition-duration: 300ms;
 
 @mixin cui-spinner-sizing($height, $font-size) {
   .cui-spinner-icon {
-    $size: floor($height / 2);
+    $size: floor($height * 0.5);
     height: $size;
     width: $size;
   }

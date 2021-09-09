@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import '../../_shared/_mixins';
 @import '../../_shared/_variables';
 
@@ -22,7 +24,7 @@ $cui-callout-bg-color-map: (
     font-size: $font-size;
 
     &:not(:only-child) {
-      margin:0 0 floor($padding / 2.5) 0;
+      margin:0 0 floor(math.div($padding, 2.5)) 0;
     }
   }
 
