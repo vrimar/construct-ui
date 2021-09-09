@@ -33,7 +33,7 @@
     border-radius: $cui-border-radius;
 
     &:not(:last-child):after {
-      margin: $cui-base-size / 2;
+      margin: $cui-base-size * 0.5;
       background: $cui-base-border-color;
       width: $cui-border-width;
       display: inline-block;

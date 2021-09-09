@@ -1,9 +1,11 @@
+@use "sass:math";
+
 @import '../../_shared/variables';
 @import '../../_shared/mixins';
 
 @mixin cui-button-sizing($height, $padding, $font-size) {
   @include cui-base-sizing($height, floor($padding * 1.2), $font-size);
-  $child-margin: floor($padding / 1.2);
+  $child-margin: floor(math.div($padding, 1.2));
 
   &.cui-compact {
     padding-left: $padding;
@@ -16,7 +18,7 @@
   }
 
   .cui-button-sublabel:not(:last-child) {
-    margin-right: floor($padding / 2.5)
+    margin-right: floor(math.div($padding, 2.5))
   }
 
   &.cui-button-icon {

@@ -3,8 +3,8 @@
 
 @mixin cui-radio-sizing($size) {
   input:checked ~ .cui-control-indicator:after {
-    height: floor($size / 2);
-    width: floor($size / 2);
+    height: floor($size * 0.5);
+    width: floor($size * 0.5);
   }
 }
 

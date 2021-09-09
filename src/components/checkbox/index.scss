@@ -1,9 +1,11 @@
+@use "sass:math";
+
 @import '../../_shared/variables';
 
 @mixin cui-checkbox-sizing($size) {
   input:checked ~ .cui-control-indicator:after {
-    width: floor($size / 3);
-    height: floor($size / 2);
+    width: floor(math.div($size, 3));
+    height: floor($size * 0.5);
     margin-top: -1px;
   }
 

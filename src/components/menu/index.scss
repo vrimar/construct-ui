@@ -9,7 +9,7 @@ $cui-menu-max-width-map: (
 );
 
 @mixin menu-sizing($padding, $max-width) {
-  $spacing: floor($padding / 2);
+  $spacing: floor($padding * 0.5);
   max-width: $max-width;
   min-width: $max-width - 40;
   padding: $spacing 0;
