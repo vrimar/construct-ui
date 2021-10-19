@@ -7,8 +7,6 @@ import { IPopoverAttrs, Popover } from '../popover';
 import { TextArea } from '../text-area';
 import { Classes, safeCall, Keys, getClosest } from '../../_shared';
 
-const HIGHLIGHT_TIMEOUT = 25;
-
 export interface IInputPopoverAttrs extends Omit<IPopoverAttrs, 'content'> {
   /**
    * Attrs passed through to wrapper container
@@ -135,6 +133,8 @@ export class InputPopover extends AbstractComponent<IInputPopoverAttrs> {
     const { type, inputAttrs, placeholder } = this.attrs;
     const component = type === 'textarea' ? TextArea : Input;
 
+    console.log(this.value);
+
     return m(component, {
       autofocus: true,
       rows: 5,
@@ -168,11 +168,11 @@ export class InputPopover extends AbstractComponent<IInputPopoverAttrs> {
 
   private handleOnOpened = (content: HTMLElement) => {
     const { type, hightlightOnOpen, onOpened } = this.attrs;
-    const inputEl = content.querySelector(type!) as HTMLInputElement;
     this.value = this.attrs.value || '';
 
     if (hightlightOnOpen) {
-      setTimeout(() => inputEl.select(), HIGHLIGHT_TIMEOUT);
+      const inputEl = content.querySelector(type!) as HTMLInputElement;
+      requestAnimationFrame(() => inputEl.select());
     }
 
     safeCall(onOpened);
@@ -180,7 +180,6 @@ export class InputPopover extends AbstractComponent<IInputPopoverAttrs> {
 
   private handleOnClosed = () => {
     const { onClosed } = this.attrs;
-    this.value = '';
 
     safeCall(onClosed);
   }
