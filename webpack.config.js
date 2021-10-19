@@ -1,6 +1,6 @@
 const path = require('path');
-const TerserPlugin = require("terser-webpack-plugin");
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
   entry: {
     'construct-ui.min': './src/index.ts'
@@ -20,18 +20,13 @@ module.exports = {
       {
         test: /\.ts?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'awesome-typescript-loader',
-          options: {
-            configFileName: 'tsconfig.umd.json'
-          }
+        loader: 'ts-loader',
+        options: {
+          configFile: 'tsconfig.umd.json'
         }
       }
     ]
   },
-  plugins: [
-    new TerserPlugin()
-  ],
   resolve: {
     extensions: ['.ts', '.js'],
   }

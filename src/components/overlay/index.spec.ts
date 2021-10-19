@@ -79,7 +79,7 @@ describe('overlay', () => {
 
     const input = overlay().querySelector('input') as HTMLInputElement;
 
-    assert(input.autofocus);
+    assert((input as any).autofocus);
   });
 
   it('closeOnOutsideClick=true invokes onClose', (done) => {

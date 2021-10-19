@@ -1,10 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CheckerPlugin } = require('awesome-typescript-loader');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const HTMLPlugin = require('html-webpack-plugin');
 const packageJson = require('../package.json');
 
 const APP_TITLE = `Construct-ui: ${packageJson.description} - v${packageJson.version}`;
@@ -14,24 +12,31 @@ const PORT = 9000;
 
 const plugins = {
   common: [
-    new HtmlWebpackPlugin({
+    new HTMLPlugin({
       title: APP_TITLE,
       template: TEMPLATE_PATH
     }),
     new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(isProduction ? "production" : "development"),
+      'process.env.NODE_DEBUG': JSON.stringify(isProduction ? "production" : "development"),
       VERSION: JSON.stringify(packageJson.version),
     })
   ],
   production: [
     new MiniCssExtractPlugin({
-      filename: "[name].[hash].css",
-      chunkFilename: "[id].[hash].css"
+      filename: "[name].[fullhash].css",
+      chunkFilename: "[id].[fullhash].css"
     }),
-    new OptimizeCSSAssetsPlugin(),
-    new TerserPlugin()
   ],
   development: [
-    new CheckerPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+      },
+    })
   ]
 }
 
@@ -58,17 +63,23 @@ const cssLoader = {
     'style-loader',
     'css-loader',
     'resolve-url-loader',
-    'sass-loader?sourceMap'
+    {
+      loader: 'sass-loader',
+      options: {
+        sourceMap: true
+      }
+    }
   ]
 }
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   entry: {
     app: './src/index.ts'
   },
   output: {
-    filename: isProduction ? 'app-[hash].js' : 'app.js',
+    filename: isProduction ? 'app-[fullhash].js' : 'app.js',
     path: path.resolve(__dirname, 'public')
   },
   module: {
@@ -89,18 +100,15 @@ module.exports = {
       {
         test: /\.ts?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'awesome-typescript-loader',
-          options: {
-            useCache: true,
-            forceIsolatedModules: true
-          }
+        loader: 'ts-loader',
+        options: {
+          transpileOnly: true
         }
       }
     ]
   },
   plugins: plugins.common.concat(isProduction ? plugins.production : plugins.development),
-  devtool: isProduction ? undefined : 'cheap-eval-source-map',
+  devtool: isProduction ? 'source-map' : 'eval-cheap-source-map',
   resolve: {
     extensions: ['.ts', '.js'],
     alias: {
@@ -108,17 +116,12 @@ module.exports = {
       '@': path.resolve(__dirname, '../src')
     }
   },
-  optimization: isProduction ? {} : {
-    removeAvailableModules: false,
-    removeEmptyChunks: false,
-    splitChunks: false
-  },
+  stats: isProduction ? undefined : "minimal",
   devServer: {
     port: PORT,
-    stats: 'errors-only',
     open: true,
-    watchOptions: {
-      ignored: /node_modules/
-    }
+  },
+  watchOptions: {
+    ignored: '**/node_modules'
   }
 }

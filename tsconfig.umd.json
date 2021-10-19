@@ -3,6 +3,12 @@
   "compilerOptions": {
     "module": "commonjs",
     "declaration": false,
-    "removeComments": true
-  }
+    "removeComments": true,
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "**/*.spec.ts",
+    "**/examples.ts",
+    "**/examples/*.ts"
+  ]
 }

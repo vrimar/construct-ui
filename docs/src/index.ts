@@ -21,7 +21,7 @@ export const DEFAULT_ROOT = '/introduction/getting-started';
 
 m.route.prefix = '#';
 
-const resolveRoute = (wrapper: m.Component) => ({
+const resolveRoute = (wrapper: m.Component<IDocumentationData>) => ({
   onmatch(attrs, requestedPath) {
     attrs.docs = docs;
     attrs.requestedPath = requestedPath;
