@@ -1,7 +1,6 @@
 import m from 'mithril';
 import classnames from 'classnames';
-import { Classes, IAttrs, getClosest, safeCall } from '../../_shared';
-import { isFunction } from 'util';
+import { Classes, IAttrs, getClosest, safeCall, isFunction } from '../../_shared';
 
 export interface IListItemAttrs extends IAttrs {
   /** Toggles active state */
