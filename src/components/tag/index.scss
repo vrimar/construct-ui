@@ -1,14 +1,14 @@
 @use "sass:math";
 
 @import '../../_shared/variables';
-@import '../../_shared//mixins';
+@import '../../_shared/mixins';
 
 @mixin cui-tag-sizing($height, $padding, $font-size) {
   $tag-padding-x: floor(math.div($padding, 1.5));
   $tag-padding-y: floor(math.div($padding, 6));
   $tag-font-size: floor(math.div($font-size, 1.05));
 
-	font-size: $font-size;
+  font-size: $font-size;
   padding: $tag-padding-y $tag-padding-x;
   margin-right: $tag-padding-x;
 
@@ -43,15 +43,22 @@
 		border-radius: $cui-border-radius-rounded;
   }
 
+  .cui-icon {
+    color: inherit;
+    cursor: pointer;
+    user-select: none;
+  }
+
   &.cui-primary,
   &.cui-positive,
   &.cui-negative,
   &.cui-warning {
     .cui-icon {
-      color: $blue-grey50;
+      color: white;
 
-      &:hover {
-        color: white;
+      &:hover,
+      &:focus {
+        color: $blue-grey50;
       }
     }
   }
