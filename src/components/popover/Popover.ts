@@ -197,12 +197,12 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
       this.createPopper(popoverEl as HTMLElement);
       safeCall(this.attrs.onOpened, contentEl);
     }
-  }
+  };
 
   private handleClosed = () => {
     this.destroyPopper();
     safeCall(this.attrs.onClosed);
-  }
+  };
 
   private handleOverlayClose = (e: Event) => {
     const target = e.target as HTMLElement;
@@ -211,7 +211,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     if (!isTriggerClick || e instanceof KeyboardEvent) {
       this.isControlled ? this.handleInteraction(e) : this.isOpen = false;
     }
-  }
+  };
 
   private createPopper(el: HTMLElement) {
     const { position, hasArrow, boundariesEl, modifiers } = this.attrs;
@@ -319,7 +319,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     if (this.attrs.closeOnContentClick || hasDimiss) {
       this.isControlled ? this.handleInteraction(e) : this.isOpen = false;
     } else (e as any).redraw = false;
-  }
+  };
 
   private handleTriggerClick() {
     this.isOpen = !this.isOpen;
@@ -357,7 +357,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     }
 
     (e as any).redraw = false;
-  }
+  };
 
   private handleTriggerMouseLeave = (e: MouseEvent) => {
     const { hoverCloseDelay } = this.attrs;
@@ -377,7 +377,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     }
 
     (e as any).redraw = false;
-  }
+  };
 
   private isHoverInteraction() {
     const interactionType = this.attrs.interactionType;
@@ -408,5 +408,5 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     data.offsets.popper[position] += offset;
 
     return data;
-  }
+  };
 }

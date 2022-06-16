@@ -55,7 +55,7 @@ export class DialogExample {
   private close = () => {
     this.isOpen = false;
     this.isSubmitting = false;
-  }
+  };
 
   private submit = () => {
     this.isSubmitting = true;
@@ -64,7 +64,7 @@ export class DialogExample {
       this.close();
       m.redraw();
     }, 1000);
-  }
+  };
 
   private renderOptions() {
     return [

@@ -93,5 +93,5 @@ export class Dialog extends AbstractComponent<IDialogAttrs> {
     if (isClickOutsideDialog && closeOnOutsideClick) {
       safeCall(onClose);
     } else (e as any).redraw = false;
-  }
+  };
 }

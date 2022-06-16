@@ -22,7 +22,7 @@ export class CalloutExample {
         icon: this.showIcon ? Icons.ALERT_CIRCLE : undefined,
         size: this.size,
         intent: this.intent,
-        onDismiss: this.dismissable ? console.log : undefined
+        onDismiss: this.dismissable ? () => null : undefined
       })
     ]);
   }

@@ -87,7 +87,7 @@ export class Toast extends AbstractComponent<IToastAttrs> {
 
   private handleCloseClick = () => {
     this.triggerDismiss(false);
-  }
+  };
 
   private triggerDismiss(didTimeoutExpire: boolean) {
     safeCall(this.attrs.onDismiss, this.attrs.key, didTimeoutExpire);
@@ -101,5 +101,5 @@ export class Toast extends AbstractComponent<IToastAttrs> {
     if (timeout! > 0) {
       this.setTimeout(() => this.triggerDismiss(true), timeout);
     }
-  }
+  };
 }

@@ -133,8 +133,6 @@ export class InputPopover extends AbstractComponent<IInputPopoverAttrs> {
     const { type, inputAttrs, placeholder } = this.attrs;
     const component = type === 'textarea' ? TextArea : Input;
 
-    console.log(this.value);
-
     return m(component, {
       autofocus: true,
       rows: 5,
@@ -158,13 +156,13 @@ export class InputPopover extends AbstractComponent<IInputPopoverAttrs> {
     }
 
     (e as any).redraw = false;
-  }
+  };
 
   private handleOnSubmit = (e: Event) => {
     const { submitButtonAttrs } = this.attrs;
     this.attrs.onSubmit(this.value);
     safeCall(submitButtonAttrs!.onclick, e);
-  }
+  };
 
   private handleOnOpened = (content: HTMLElement) => {
     const { type, hightlightOnOpen, onOpened } = this.attrs;
@@ -176,11 +174,11 @@ export class InputPopover extends AbstractComponent<IInputPopoverAttrs> {
     }
 
     safeCall(onOpened);
-  }
+  };
 
   private handleOnClosed = () => {
     const { onClosed } = this.attrs;
 
     safeCall(onClosed);
-  }
+  };
 }

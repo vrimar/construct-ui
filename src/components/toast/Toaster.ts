@@ -134,7 +134,7 @@ export class Toaster extends AbstractComponent<IToasterAttrs> {
     }
 
     m.redraw();
-  }
+  };
 
   public clear() {
     this.toasts.map((x) => safeCall(x.onDismiss, false));

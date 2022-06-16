@@ -34,12 +34,12 @@ export abstract class AbstractComponent<A> implements m.Component<A> {
     const handle = window.setTimeout(callback, timeout);
     this.timeoutStack.push(handle);
     return () => window.clearTimeout(handle);
-  }
+  };
 
   protected clearTimeouts = () => {
     if (this.timeoutStack.length) {
       this.timeoutStack.map((timeout) => clearTimeout(timeout));
       this.timeoutStack = [];
     }
-  }
+  };
 }

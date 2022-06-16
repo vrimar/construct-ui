@@ -186,7 +186,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
     if (this.shouldRender) {
       this.handleOpen(dom as HTMLElement);
     }
-  }
+  };
 
   private onContainerUpdate = ({ dom }: m.VnodeDOM) => {
     const isOpen = this.attrs.isOpen;
@@ -197,7 +197,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
     } else if (!isOpen && wasOpen) {
       this.handleClose();
     }
-  }
+  };
 
   private handleOpen(contentEl: HTMLElement) {
     const {
@@ -275,9 +275,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
     el.classList.remove(`${transitionName}-exit-active`);
     el.classList.add(`${transitionName}-enter`);
 
-    // tslint:disable-next-line:no-unused-expression
     el.scrollTop;
-
     el.classList.add(`${transitionName}-enter-active`);
   }
 
@@ -291,9 +289,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
     el.classList.remove(`${transitionName}-enter-active`);
     el.classList.add(`${transitionName}-exit`);
 
-    // tslint:disable-next-line:no-unused-expression
     el.scrollTop;
-
     el.classList.add(`${transitionName}-exit-active`);
   }
 
@@ -328,7 +324,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
     if (closeOnOutsideClick) {
       safeCall(onClose, e);
     } else (e as any).redraw = false;
-  }
+  };
 
   private handleDocumentMouseDown = (e: MouseEvent) => {
     const { isOpen, onClose, closeOnOutsideClick } = this.attrs;
@@ -339,7 +335,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
       safeCall(onClose, e);
       m.redraw();
     }
-  }
+  };
 
   private handleKeyDown = (e: KeyboardEvent) => {
     const { closeOnEscapeKey, onClose } = this.attrs;
@@ -349,7 +345,7 @@ export class Overlay extends AbstractComponent<IOverlayAttrs> {
       e.preventDefault();
       m.redraw();
     }
-  }
+  };
 
   private get lastOpened() {
     return this.attrs.addToStack ? Overlay.getLastOpened() === this.id : true;

@@ -42,7 +42,7 @@ export class SelectListExample {
     contentRight: m('', { style: `color:${Colors.BLUE_GREY200}` }, item.code),
     label: item.name,
     selected: this.selectedItem && this.selectedItem.name === item.name
-  })
+  });
 
   private itemPredicate(query: string, item: ICountryModel) {
     return item.name.toLowerCase().includes(query.toLowerCase());

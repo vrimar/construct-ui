@@ -28,7 +28,7 @@ export class InputSelectExample {
   private renderItem = (item: ICountryModel) => m(ListItem, {
     label: item.name,
     selected: this.selectedItem && this.selectedItem.name === item.name
-  })
+  });
 
   private itemPredicate(query: string, item: ICountryModel) {
     return item.name.toLowerCase().includes(query.toLowerCase());

@@ -132,7 +132,7 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
       selected: isSelected,
       label
     });
-  }
+  };
 
   private handleSelect = (item: Option) => {
     if (!('value' in this.attrs)) {
@@ -141,11 +141,11 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
 
     safeCall(this.attrs.onSelect, item);
     this.isOpen = false;
-  }
+  };
 
   private handleActiveItemChange = (_activeItem: Option, index: number) => {
     this.activeIndex = index;
-  }
+  };
 
   private handleTriggerKeyDown = (e: KeyboardEvent) => {
     const key = e.which;
@@ -165,11 +165,11 @@ export class CustomSelect extends AbstractComponent<ICustomSelectAttrs> {
     }
 
     safeCall(this.attrs.triggerAttrs!.onkeydown, e);
-  }
+  };
 
   private handlePopoverInteraction = (nextOpenState: boolean) => {
     this.isOpen = nextOpenState;
-  }
+  };
 
   private get selectedValue() {
     const selected = this.selected;

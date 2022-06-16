@@ -118,7 +118,7 @@ export class SelectList<T> extends AbstractComponent<ISelectListAttrs<T>> {
   private handleActiveItemChange = (activeItem: T, index: number) => {
     this.activeIndex = index;
     safeCall(this.attrs.onActiveItemChange, activeItem, index);
-  }
+  };
 
   private handleSelect = (item: T, e: Event, index: number) => {
     const { onSelect, closeOnSelect } = this.attrs;
@@ -128,7 +128,7 @@ export class SelectList<T> extends AbstractComponent<ISelectListAttrs<T>> {
     }
 
     safeCall(onSelect, item, e, index);
-  }
+  };
 
   private handlePopoverInteraction = (nextOpenState: boolean, e: Event) => {
     const { isOpen, onInteraction } = this.attrs.popoverAttrs!;
@@ -136,5 +136,5 @@ export class SelectList<T> extends AbstractComponent<ISelectListAttrs<T>> {
     if (isOpen != null) {
       safeCall(onInteraction, nextOpenState, e);
     } else this.isOpen = nextOpenState;
-  }
+  };
 }

@@ -20,13 +20,13 @@ class FocusManager {
 
   private handleMouseDown = () => {
     document.body.classList.add(Classes.FOCUS_DISABLED);
-  }
+  };
 
   private handleKeyDown = (e: KeyboardEvent) => {
     if (e.which === Keys.TAB) {
       document.body.classList.remove(Classes.FOCUS_DISABLED);
     }
-  }
+  };
 }
 
 export default new FocusManager();

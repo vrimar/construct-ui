@@ -18,14 +18,12 @@ export function getClosest(el: any, selector: string): HTMLElement | null {
     Element.prototype.matches =
       (Element as any).prototype.msMatchesSelector ||
       Element.prototype.webkitMatchesSelector ||
-      /* tslint:disable */
       function (s) {
         const matches = (this.document || this.ownerDocument).querySelectorAll(s);
         let i = matches.length;
         while (--i >= 0 && matches.item(i) !== this) { }
         return i > -1;
       };
-    /* tslint:enable */
   }
 
   for (; el && el !== document; el = el.parentNode) {

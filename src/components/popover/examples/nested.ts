@@ -31,7 +31,7 @@ export class PopoverNestedExample {
   private renderOptions() {
     return [
       m(Switch, {
-        label: `Add to stack`,
+        label: 'Add to stack',
         checked: this.addToStack,
         onchange: () => this.addToStack = !this.addToStack
       })

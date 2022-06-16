@@ -43,7 +43,7 @@ export class QueryListExample {
       disabled: index === 3 || index === 4,
       key: item.code
     });
-  }
+  };
 
   private itemPredicate(query: string, item: ICountryModel) {
     return item.name.toLowerCase().includes(query.toLowerCase());
@@ -51,7 +51,7 @@ export class QueryListExample {
 
   private handleSelect = (item: ICountryModel) => {
     this.selectedItem = item;
-  }
+  };
 
   private renderOptions() {
     return [

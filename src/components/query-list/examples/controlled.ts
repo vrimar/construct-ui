@@ -52,21 +52,21 @@ export class QueryListControlledExample {
 
   private handleSelect = (item: ICountryModel) => {
     this.selectedItem = item;
-  }
+  };
 
   private handleActiveItemChange = (_item: ICountryModel, index: number) => {
     this.activeIndex = index;
-  }
+  };
 
   private handleQueryChange = (query: string) => {
     this.query = query;
-  }
+  };
 
   private resetAll = () => {
     this.activeIndex = 0;
     this.selectedItem = undefined;
     this.query = '';
-  }
+  };
 
   private renderOptions() {
     return [

@@ -52,7 +52,7 @@ export class ToastDefaultExample {
       size: this.size,
       timeout: this.timeout
     });
-  }
+  };
 
   private updateFirst = () => {
     const toast = AppToaster.getToasts()[0];
@@ -60,12 +60,12 @@ export class ToastDefaultExample {
       message: 'UPDATED MESSAGE',
       intent: 'primary'
     });
-  }
+  };
 
   private dismissFirst = () => {
     const toast = AppToaster.getToasts()[0];
     AppToaster.dismiss(toast.key!, false);
-  }
+  };
 
   private renderOptions() {
     return [

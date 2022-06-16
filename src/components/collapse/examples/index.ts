@@ -31,9 +31,9 @@ export class CollapseExample {
 
   private appendContent = () => {
     this.content.push(SAMPLE_TEXT);
-  }
+  };
 
   private toggleOpen = () => {
     this.isOpen = !this.isOpen;
-  }
+  };
 }

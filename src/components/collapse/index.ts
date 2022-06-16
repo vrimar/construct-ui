@@ -95,11 +95,11 @@ export class Collapse implements m.Component<ICollapseAttrs> {
     this.contentEl = body.children[0] as HTMLElement;
     this.height = this.getContentHeight(this.contentEl);
     body.style.transform = `translateY(${-this.height}px)`;
-  }
+  };
 
   private handleExit = (node: HTMLElement) => {
     node.style.height = `${this.height}px`;
-  }
+  };
 
   private getContentHeight(element: HTMLElement) {
     if (!element) return 0;

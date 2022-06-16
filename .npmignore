@@ -6,5 +6,6 @@ test
 .editorconfig
 .travis.yml
 webpack.config.js
-tslint.json
+.eslintrc.js
+.eslintignore
 tsconfig*

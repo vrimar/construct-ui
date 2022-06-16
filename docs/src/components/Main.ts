@@ -3,7 +3,6 @@ import { Content, Nav } from './';
 import { IDocumentationData } from '..';
 import { ResponsiveManager, Drawer, Icons, Button, getClosest } from '@/';
 
-// tslint:disable-next-line:no-var-requires
 const logoSrc = require('../logo.svg');
 
 export default class Main implements m.Component<IDocumentationData> {
@@ -54,10 +53,10 @@ export default class Main implements m.Component<IDocumentationData> {
   private handleLinkClick = (e: Event) => {
     const contentEl = getClosest(e.target, '.Docs-nav');
     this.scrollPosition = contentEl!.scrollTop;
-  }
+  };
 
   private handleDrawerOnOpened = (el: HTMLElement) => {
     const contentEl = el.querySelector('.Docs-nav');
     contentEl!.scrollTop = this.scrollPosition;
-  }
+  };
 }

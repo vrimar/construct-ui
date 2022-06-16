@@ -111,7 +111,7 @@ export class TagInput extends AbstractComponent<ITagInputAttrs> {
     }
 
     safeCall(this.attrs.onclick, e);
-  }
+  };
 
   private handleInputKeyDown = (e: KeyboardEvent) => {
     if (e.which === Keys.ENTER) {
@@ -119,12 +119,12 @@ export class TagInput extends AbstractComponent<ITagInputAttrs> {
     }
 
     safeCall(this.attrs.inputAttrs!.onkeydown, e);
-  }
+  };
 
   private handleInputFocus = (e: FocusEvent) => {
     this.isActive = true;
     safeCall(this.attrs.inputAttrs!.onfocus, e);
-  }
+  };
 
   private handleInputBlur = (e: FocusEvent) => {
     const { addOnBlur, inputAttrs } = this.attrs;
@@ -136,7 +136,7 @@ export class TagInput extends AbstractComponent<ITagInputAttrs> {
     }
 
     safeCall(inputAttrs!.onblur, e);
-  }
+  };
 
   private handleOnAdd(e: Event) {
     const value = this.inputEl.value;

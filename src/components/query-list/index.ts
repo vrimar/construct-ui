@@ -314,7 +314,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
     }
 
     return listItem;
-  }
+  };
 
   private setControlledAttrs() {
     const { activeIndex, query } = this.attrs;
@@ -365,7 +365,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
   private handleInput = (e: Event) => {
     this.handleSearchDebounce(e);
     (e as any).redraw = false;
-  }
+  };
 
   private handleSearchDebounce = debounce((e: Event) => {
     const value = (e.target as HTMLInputElement).value;
@@ -385,7 +385,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
     if (this.inputEl) {
       this.inputEl.focus();
     }
-  }
+  };
 
   private handleSelect = (index: number, isDisabled: boolean, e: Event) => {
     const { onSelect } = this.attrs;
@@ -397,7 +397,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
       this.updateActiveIndex(index);
       safeCall(onSelect, selectedItem, e, index);
     } else (e as any).redraw = false;
-  }
+  };
 
   private handleKeyDown = (e: KeyboardEvent) => {
     const key = e.which;
@@ -426,7 +426,7 @@ export class QueryList<T> extends AbstractComponent<IQueryListAttrs<T>> {
     }
 
     (e as any).redraw = false;
-  }
+  };
 
   private moveActiveIndex(direction: Direction) {
     const { activeIndex } = this;

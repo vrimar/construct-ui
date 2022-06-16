@@ -44,7 +44,7 @@ export class TreeExample {
       position: 'bottom-end',
       trigger: m(Icon, {
         name: Icons.MORE_HORIZONTAL,
-        onclick: () => console.log(item)
+        onclick: () => null
       })
     });
 
@@ -69,14 +69,14 @@ export class TreeExample {
 
   private handleNodeExpand = (node: ITreeNodeAttrs) => {
     this.expandedMap.set(node.key, true);
-  }
+  };
 
   private handleNodeCollapse = (node: ITreeNodeAttrs) => {
     this.expandedMap.delete(node.key);
-  }
+  };
 
   private handleClick = (node: ITreeNodeAttrs) => {
     const id = node.key;
     this.selectedId = this.selectedId === id ? undefined : id;
-  }
+  };
 }

@@ -48,7 +48,7 @@ describe('callout', () => {
   });
 
   it('Renders dismiss icon when onDismiss set', () => {
-    mount({ onDismiss: console.log });
+    mount({ onDismiss: () => null });
 
     assert(hasChildClass(el(), Classes.CALLOUT_DISMISS_ICON));
   });

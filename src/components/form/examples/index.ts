@@ -93,5 +93,5 @@ export class FormExample {
 
       alert(JSON.stringify(values));
     }, 500);
-  }
+  };
 }

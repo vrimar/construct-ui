@@ -37,20 +37,20 @@ export class TagInputExample {
 
   private onAdd = (value: string) => {
     this.tags.push(value);
-  }
+  };
 
   private removeTag = (tag: string) => {
     const index = this.tags.indexOf(tag);
     this.tags.splice(index, 1);
-  }
+  };
 
   private clear = () => {
     this.tags = [];
-  }
+  };
 
   private reset = () => {
     this.tags = [...tags];
-  }
+  };
 
   public renderOptions() {
     return [

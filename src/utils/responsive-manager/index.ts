@@ -30,7 +30,7 @@ class ResponsiveManager {
         };
         m.redraw();
       }
-    }))
+    }));
   }
 
   /** Checks if current breakpoint string is active */

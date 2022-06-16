@@ -37,12 +37,12 @@ export class ToastDeclarativeExample {
       message: 'Toast message',
       key: Date.now()
     });
-  }
+  };
 
   private dismiss = (key: number) => {
     const index = this.notifications.findIndex(x => x.key === key);
     this.notifications.splice(index, 1);
-  }
+  };
 
   private renderOptions() {
     return [

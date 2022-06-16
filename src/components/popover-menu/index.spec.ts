@@ -24,7 +24,7 @@ describe('popover-menu', () => {
     const component = {
       view: () => m(PopoverMenu, {
         transitionDuration: 0,
-        trigger: m(``),
+        trigger: m(''),
         content: '',
         ...attrs
       })

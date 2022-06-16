@@ -32,7 +32,7 @@ export class SelectListMultipleExample {
   private renderItem = (item: ICountryModel) => m(ListItem, {
     label: item.name,
     selected: this.selectedItems.has(item.name)
-  })
+  });
 
   private itemPredicate(query: string, item: ICountryModel) {
     return item.name.toLowerCase().includes(query.toLowerCase());
@@ -42,5 +42,5 @@ export class SelectListMultipleExample {
     if (this.selectedItems.has(item.name)) {
       this.selectedItems.delete(item.name);
     } else this.selectedItems.set(item.name, item);
-  }
+  };
 }

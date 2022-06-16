@@ -7,7 +7,6 @@ import { normalizeDocs } from './utils/normalizeDocs';
 
 export type Data = IMarkdownPluginData & ITypescriptPluginData;
 
-// tslint:disable-next-line:no-var-requires
 const docs = normalizeDocs(require('../generated/docs.json') as Data);
 
 export interface IDocumentationData {
