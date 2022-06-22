@@ -9,7 +9,7 @@
 ### A [Mithril.js](https://github.com/MithrilJS/mithril.js) UI library.
 
 [![npm package](https://img.shields.io/npm/v/construct-ui/latest.svg)](https://www.npmjs.com/package/construct-ui)
-[![Travis (.org)](https://img.shields.io/travis/vrimar/construct-ui.svg)](https://travis-ci.org/vrimar/construct-ui)
+![Tests](https://github.com/vrimar/construct-ui/actions/workflows/run-tests.yml/badge.svg)
 [![Gitter](https://img.shields.io/gitter/room/vrimar/construct-ui.svg)](https://gitter.im/construct-ui/Lobby)
 
 </div>
