@@ -13,7 +13,7 @@ export interface ITreeNodeAttrs extends IAttrs {
   contentLeft?: m.Children;
 
   /** Array of TreeNodes */
-  children?: m.Vnode<ITreeNodeAttrs>[];
+  children?: m.Vnode<ITreeNodeAttrs, unknown>[];
 
   /** Toggles caret visiblity */
   hasCaret?: boolean;

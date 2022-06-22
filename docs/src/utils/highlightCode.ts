@@ -1,5 +1,5 @@
 import highlightjs from 'highlight.js';
-import 'highlight.js/styles/github-gist.css';
+import 'highlight.js/styles/github.css';
 
 export function highlightCode() {
   const blocks = document.querySelectorAll('pre code');
