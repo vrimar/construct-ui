@@ -28,6 +28,7 @@ export default class Main implements m.Component<IDocumentationData> {
         m(Button, {
           basic: true,
           iconLeft: Icons.MENU,
+          label: 'Menu',
           onclick: () => this.isDrawerOpen = true,
           size: 'xs'
         })

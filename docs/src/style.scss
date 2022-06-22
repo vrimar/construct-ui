@@ -5,11 +5,11 @@ $cui-docs-nav-width: 220px;
 
 body {
   overflow-y: scroll;
-  background:$white;
+  background: $white;
 }
 
 .Docs {
-  display:flex;
+  display: flex;
   max-width: 1020px;
   margin: 0 auto;
 
@@ -42,7 +42,7 @@ body {
     top: 0;
     right: 0;
     width: 50%;
-    background:white;
+    background: white;
     height: 100%;
   }
 }
@@ -71,6 +71,7 @@ body {
   z-index: 1;
   height: 45px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   box-shadow: $cui-elevation-2;
   padding: 0 10px;
@@ -78,7 +79,8 @@ body {
 
   .Docs-logo {
     height: 30px;
-    margin-right: 5px;
+    margin-right: 0px;
+    align-self: center;
   }
 }
 
@@ -124,7 +126,7 @@ body {
 }
 
 .Docs-nav-title {
-  font-weight:bold;
+  font-weight: bold;
   font-size: 14px;
 }
 
@@ -144,7 +146,7 @@ body {
 .Docs-nav-content {
   height: 100%;
   padding: 20px;
-  border-right:solid 1px $blue-grey100;
+  border-right: solid 1px $blue-grey100;
   background: tint($blue-grey50, 50%);
 }
 
@@ -152,7 +154,7 @@ body {
   margin-bottom: 20px;
 
   a {
-    display:block;
+    display: block;
     font-size: $cui-font-size;
     padding: 5px 10px;
     margin: 0 -10px;
@@ -166,14 +168,14 @@ body {
 
     &.is-active {
       background: $cui-primary-bg-color;
-      color:$white;
+      color: $white;
     }
   }
 
 }
 
 .Docs-container {
-  width:100%;
+  width: 100%;
   max-width: 800px;
   padding: 40px;
   margin-left: $cui-docs-nav-width;
@@ -201,7 +203,7 @@ body {
 
 .Docs-interface-type {
   display: inline-block;
-  font-weight:bold;
+  font-weight: bold;
   font-size: 12px;
 
   &.is-popover {
