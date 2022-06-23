@@ -47,6 +47,7 @@ export class Tooltip implements m.Component<ITooltipAttrs> {
 
     return m(Popover, {
       addToStack: false,
+      triggerActiveClass: '',
       ...otherAttrs as IPopoverAttrs,
       class: classes,
       interactionType: 'hover-trigger'

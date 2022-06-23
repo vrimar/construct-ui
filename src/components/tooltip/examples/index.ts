@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { Tooltip, PopoverPosition, Size, Switch } from '@/';
+import { Tooltip, PopoverPosition, Size, Switch, Button } from '@/';
 import { Example, PopoverPositionSelect, SizeSelect } from '@shared/examples';
 
 const EXAMPLE_SRC = 'components/tooltip/examples/index.ts';
@@ -16,7 +16,9 @@ export class TooltipExample {
         position: this.position,
         hasArrow: this.hasArrow,
         size: this.size,
-        trigger: m('span', 'Tooltip hover text')
+        trigger: m(Button, {
+          label: 'Hover me'
+        })
       })
     ]);
   }
