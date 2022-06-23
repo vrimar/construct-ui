@@ -84,6 +84,12 @@ export interface IPopoverAttrs extends IOverlayableAttrs, IAttrs {
 
   /** Trigger element */
   trigger: m.Vnode<any, any>;
+
+  /**
+   * Class added to trigger element on interaction
+   * @default 'cui-active'
+   */
+  triggerActiveClass?: string;
 }
 
 export interface IPopoverTriggerAttrs extends IAttrs {
@@ -109,7 +115,8 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
       hoverOpenDelay: 0,
       interactionType: 'click',
       position: 'bottom',
-      hasArrow: true
+      hasArrow: true,
+      triggerActiveClass: Classes.ACTIVE
     } as IPopoverAttrs;
   }
 
@@ -167,9 +174,9 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
       onmouseleave: this.handleTriggerMouseLeave,
       style
     }, [
-        hasArrow && m(`.${Classes.POPOVER_ARROW}`),
-        m(`.${Classes.POPOVER_CONTENT}`, content)
-      ]);
+      hasArrow && m(`.${Classes.POPOVER_ARROW}`),
+      m(`.${Classes.POPOVER_CONTENT}`, content)
+    ]);
 
     return m.fragment({}, [
       this.trigger,
@@ -262,7 +269,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
     if (this.isOpen) {
       triggerAttrs.class = classnames(
         triggerAttrs.className || triggerAttrs.class,
-        Classes.ACTIVE,
+        this.attrs.triggerActiveClass,
         Classes.POPOVER_TRIGGER_ACTIVE
       );
     } else triggerAttrs.class = triggerAttrs.className || triggerAttrs.class || '';

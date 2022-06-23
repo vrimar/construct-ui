@@ -223,6 +223,17 @@ describe('popover', () => {
     assert.equal(popover().getAttribute('x-placement'), 'right');
   });
 
+  it('Correctly sets triggerActiveClass', () => {
+    const triggerActiveClass = 'trigger-active';
+
+    mount({
+      defaultIsOpen: true,
+      triggerActiveClass
+    });
+
+    assert(hasClass(trigger(), triggerActiveClass));
+  });
+
   // TODO: add controlled mode tests
 
   function mount(attrs: Partial<IPopoverAttrs>, triggerAttrs?: IButtonAttrs) {
