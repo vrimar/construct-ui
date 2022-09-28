@@ -16,7 +16,7 @@
     "watch": "npm-run-all --parallel watch:js watch:css",
     "watch:js": "tsc -p tsconfig.esm.json --watch",
     "watch:css": "sass -w src:lib",
-    "build:umd": "webpack --mode=production",
+    "build:umd": "webpack --mode=production && npm run generate:dts-bundle",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "clean:css": "cleancss lib/index.css -o lib/index.css -O 2",
@@ -30,7 +30,8 @@
     "build:all": "npm run build && npm run build:docs",
     "deploy:docs": "gh-pages -d docs/public",
     "version": "npm run build:all && git add *",
-    "postversion": "git push && git push --tags && npm publish && npm run deploy:docs"
+    "postversion": "git push && git push --tags && npm publish && npm run deploy:docs",
+    "generate:dts-bundle": "dts-bundle-generator --no-check --umd-module-name CUI -o lib/cui.d.ts src/index.ts"
   },
   "peerDependencies": {
     "mithril": ">=2.0.4"
@@ -64,6 +65,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
+    "dts-bundle-generator": "^6.13.0",
     "eslint": "^8.18.0",
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^7.2.11",
