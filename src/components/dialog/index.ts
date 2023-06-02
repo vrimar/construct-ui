@@ -1,7 +1,7 @@
 import m from 'mithril';
 import classnames from 'classnames';
 import { AbstractComponent } from '../abstract-component';
-import { IAttrs, Classes, safeCall, getClosest } from '../../_shared';
+import { IAttrs, Classes, safeCall } from '../../_shared';
 import { Overlay, IOverlayableAttrs } from '../overlay';
 import { Button } from '../button';
 import { Icons } from '../icon';
@@ -88,7 +88,7 @@ export class Dialog extends AbstractComponent<IDialogAttrs> {
   private handleContainerClick = (e: Event) => {
     const { closeOnOutsideClick, onClose } = this.attrs;
     const target = e.target as HTMLElement;
-    const isClickOutsideDialog = getClosest(target, `.${Classes.DIALOG_CONTENT}`) == null;
+    const isClickOutsideDialog = target.closest(`.${Classes.DIALOG_CONTENT}`) == null;
 
     if (isClickOutsideDialog && closeOnOutsideClick) {
       safeCall(onClose);

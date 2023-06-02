@@ -1,6 +1,6 @@
 import m from 'mithril';
 import classnames from 'classnames';
-import { Classes, IAttrs, getClosest, safeCall, isFunction } from '../../_shared';
+import { Classes, IAttrs, safeCall, isFunction } from '../../_shared';
 
 export interface IListItemAttrs extends IAttrs {
   /** Toggles active state */
@@ -68,8 +68,8 @@ export class ListItem implements m.Component<IListItemAttrs> {
   private handleClick(e: Event, attrs: IListItemAttrs) {
     const { allowOnContentClick, onclick } = attrs;
     const el = e.target as HTMLElement;
-    const isLeftContentClick = getClosest(el, `.${Classes.LIST_ITEM_CONTENT_LEFT}`);
-    const isRightContentClick = getClosest(el, `.${Classes.LIST_ITEM_CONTENT_RIGHT}`);
+    const isLeftContentClick = el.closest(`.${Classes.LIST_ITEM_CONTENT_LEFT}`);
+    const isRightContentClick = el.closest(`.${Classes.LIST_ITEM_CONTENT_RIGHT}`);
     const allowContentClick = allowOnContentClick || (!isLeftContentClick && !isRightContentClick);
 
     if (isFunction(onclick) && allowContentClick) {

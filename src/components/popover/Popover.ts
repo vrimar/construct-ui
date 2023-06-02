@@ -1,7 +1,7 @@
 import m from 'mithril';
 import classnames from 'classnames';
 import PopperJS, { Boundary } from 'popper.js';
-import { Classes, IAttrs, Style, safeCall, getClosest, elementIsOrContains } from '../../_shared';
+import { Classes, IAttrs, Style, safeCall, elementIsOrContains } from '../../_shared';
 import { AbstractComponent } from '../abstract-component';
 import { IOverlayableAttrs, Overlay } from '../overlay';
 import { PopoverInteraction, PopoverPosition } from './popoverTypes';
@@ -321,7 +321,7 @@ export class Popover extends AbstractComponent<IPopoverAttrs> {
 
   private handlePopoverClick = (e: Event) => {
     const target = e.target as HTMLElement;
-    const hasDimiss = getClosest(target, `.${Classes.POPOVER_DISSMISS}`) != null;
+    const hasDimiss = target.closest(`.${Classes.POPOVER_DISSMISS}`) != null;
 
     if (this.attrs.closeOnContentClick || hasDimiss) {
       this.isControlled ? this.handleInteraction(e) : this.isOpen = false;

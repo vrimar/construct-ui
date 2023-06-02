@@ -6,7 +6,7 @@ import { QueryList, IQueryableAttrs, IQueryListEvents } from '../query-list';
 import { Popover, IPopoverAttrs } from '../popover';
 import { Input, IInputAttrs } from '../input';
 import { Spinner } from '../spinner';
-import { safeCall, Classes, getClosest, Keys } from '../../_shared';
+import { safeCall, Classes, Keys } from '../../_shared';
 
 export interface IInputSelectAttrs<T> extends IQueryableAttrs<T> {
   /**
@@ -195,7 +195,8 @@ export class InputSelect<T> extends AbstractComponent<IInputSelectAttrs<T>> {
   };
 
   private handlePopoverInteraction = (nextOpenState: boolean, e: Event) => {
-    const isClickOnInput = getClosest(e.target, `.${Classes.INPUT}`);
+    const target = e.target as HTMLElement;
+    const isClickOnInput = target.closest(`.${Classes.INPUT}`);
 
     if (!isClickOnInput) {
       this.isOpen = false;

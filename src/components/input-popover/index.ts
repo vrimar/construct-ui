@@ -5,7 +5,7 @@ import { IInputAttrs, Input } from '../input';
 import { IButtonAttrs, Button } from '../button';
 import { IPopoverAttrs, Popover } from '../popover';
 import { TextArea } from '../text-area';
-import { Classes, safeCall, Keys, getClosest } from '../../_shared';
+import { Classes, safeCall, Keys } from '../../_shared';
 
 export interface IInputPopoverAttrs extends Omit<IPopoverAttrs, 'content'> {
   /**
@@ -146,9 +146,10 @@ export class InputPopover extends AbstractComponent<IInputPopoverAttrs> {
 
   private handleOnKeyDown = (e: KeyboardEvent) => {
     const { type, submitOnEnter } = this.attrs;
+    const target = e.target as HTMLElement;
 
     if (e.which === Keys.ENTER && type === 'input' && submitOnEnter) {
-      const contentEl = getClosest(e.target, `.${Classes.INPUT_POPOVER_CONTENT}`)!;
+      const contentEl = target.closest(`.${Classes.INPUT_POPOVER_CONTENT}`)!;
       const submitBtnEl = contentEl.querySelector(`.${Classes.POPOVER_DISSMISS}`) as HTMLElement;
       submitBtnEl.click();
 

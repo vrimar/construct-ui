@@ -1,7 +1,7 @@
 import m from 'mithril';
 import { Content, Nav } from './';
 import { IDocumentationData } from '..';
-import { ResponsiveManager, Drawer, Icons, Button, getClosest } from '@/';
+import { ResponsiveManager, Drawer, Icons, Button } from '@/';
 import logoSrc from '../logo.svg';
 
 export class Main implements m.Component<IDocumentationData> {
@@ -51,7 +51,8 @@ export class Main implements m.Component<IDocumentationData> {
   private closeDrawer = () => this.isDrawerOpen = false;
 
   private handleLinkClick = (e: Event) => {
-    const contentEl = getClosest(e.target, '.Docs-nav');
+    const target = e.target as HTMLElement;
+    const contentEl = target.closest('.Docs-nav');
     this.scrollPosition = contentEl!.scrollTop;
   };
 

@@ -1,6 +1,6 @@
 import m from 'mithril';
 import classnames from 'classnames';
-import { Classes, safeCall, getClosest, IAttrs } from '../../_shared';
+import { Classes, safeCall, IAttrs } from '../../_shared';
 import { Icon, Icons } from '../icon';
 
 export interface ITreeNodeAttrs extends IAttrs {
@@ -105,7 +105,7 @@ export class TreeNode implements m.Component<ITreeNodeAttrs> {
   private handleClick(e: Event, attrs: ITreeNodeAttrs) {
     const { onClick } = attrs;
     const el = e.target as HTMLElement;
-    const isClickOnRightContent = getClosest(el, `.${Classes.TREE_NODE_CONTENT_RIGHT}`);
+    const isClickOnRightContent = el.closest(`.${Classes.TREE_NODE_CONTENT_RIGHT}`);
 
     if (onClick && !isClickOnRightContent) {
       safeCall(onClick, attrs, e);
