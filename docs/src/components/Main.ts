@@ -2,10 +2,9 @@ import m from 'mithril';
 import { Content, Nav } from './';
 import { IDocumentationData } from '..';
 import { ResponsiveManager, Drawer, Icons, Button, getClosest } from '@/';
+import logoSrc from '../logo.svg';
 
-const logoSrc = require('../logo.svg');
-
-export default class Main implements m.Component<IDocumentationData> {
+export class Main implements m.Component<IDocumentationData> {
   private isDrawerOpen: boolean = false;
   private scrollPosition: number;
 

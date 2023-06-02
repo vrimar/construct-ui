@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "declaration": false,
-    "module": "commonjs",
+    "module": "ES2020",
     "resolveJsonModule": true
   },
   "include": [

@@ -5,7 +5,7 @@ scripts
 test
 .editorconfig
 .travis.yml
-webpack.config.js
+vite.config.js
 .eslintrc.js
 .eslintignore
 tsconfig*

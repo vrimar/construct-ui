@@ -1,13 +1,13 @@
 import './style.scss';
-import './favicon.ico';
 import m from 'mithril';
-import Main from './components/Main';
+import { Main } from './components/Main';
 import { IMarkdownPluginData, ITypescriptPluginData } from '@documentalist/client';
 import { normalizeDocs } from './utils/normalizeDocs';
+import json from '../generated/docs.json';
 
 export type Data = IMarkdownPluginData & ITypescriptPluginData;
 
-const docs = normalizeDocs(require('../generated/docs.json') as Data);
+const docs = normalizeDocs(json as any);
 
 export interface IDocumentationData {
   docs: IMarkdownPluginData & ITypescriptPluginData;
@@ -41,10 +41,3 @@ const initRoutes = (layout: any) => {
 };
 
 initRoutes(Main);
-
-if (module.hot) {
-  module.hot.accept('./components/Main', () => {
-    const main = require('./components/Main').default;
-    initRoutes(main);
-  });
-}
