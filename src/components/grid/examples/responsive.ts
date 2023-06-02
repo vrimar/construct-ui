@@ -1,9 +1,9 @@
 import m from 'mithril';
-import { Col, Grid, Table, Breakpoints } from '@/';
+import { Col, Grid, Table, Breakpoints, getObjectKeys } from '@/';
 import { Example } from '@shared/examples';
 
 const EXAMPLE_SRC = 'components/grid/examples/responsive.ts';
-const breakpoints = Object.keys(Breakpoints);
+const breakpoints = getObjectKeys(Breakpoints);
 
 export class GridResponsiveExample {
   public view() {

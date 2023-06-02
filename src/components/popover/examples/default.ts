@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { Button, Classes, Popover, PopoverInteraction, PopoverPosition, Select, Switch, Tooltip, Icon, Icons } from '@/';
+import { Button, Classes, Popover, PopoverInteraction, PopoverPosition, Select, Switch, Tooltip, Icon, Icons, getObjectKeys } from '@/';
 import { Example, PopoverPositionSelect } from '@shared/examples';
 
 const EXAMPLE_SRC = 'components/popover/examples/default.ts';
@@ -50,7 +50,7 @@ export class PopoverExample implements m.Component {
       m('h5', 'Interaction'),
       m(Select, {
         fluid: true,
-        options: Object.keys(PopoverInteraction).map(key => PopoverInteraction[key]),
+        options: getObjectKeys(PopoverInteraction).map(key => PopoverInteraction[key]),
         onchange: (e: Event) => {
           const target = e.target as HTMLSelectElement;
           this.interactionType = target.value as PopoverInteraction;

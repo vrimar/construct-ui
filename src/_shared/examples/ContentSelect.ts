@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { Select, IconName, Icon, Button, Spinner, Tag } from '../../';
+import { Select, IconName, Icon, Button, Spinner, Tag, getObjectKeys } from '../../';
 
 export const ContentType = {
   NONE: 'none',
@@ -19,7 +19,7 @@ export class ContentSelect implements m.Component<IContentSelectAttrs> {
   public view({ attrs: { onSelect } }: m.Vnode<IContentSelectAttrs>) {
     return m(Select, {
       fluid: true,
-      options: Object.keys(ContentType).map(key => ContentType[key]),
+      options: getObjectKeys(ContentType).map(key => ContentType[key]),
       onchange: (e: Event) => {
         const target = (e.target as HTMLSelectElement);
         const content = target.options[target.selectedIndex].value as ContentType;

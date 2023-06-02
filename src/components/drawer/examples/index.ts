@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { Button, Drawer, DrawerPosition, Switch, Select } from '@/';
+import { Button, Drawer, DrawerPosition, Switch, Select, getObjectKeys } from '@/';
 import { Example } from '@shared/examples';
 
 const EXAMPLE_SRC = 'components/drawer/examples/index.ts';
@@ -45,7 +45,7 @@ export class DrawerExample {
     return [
       m('h5', 'Position'),
       m(Select, {
-        options: Object.keys(DrawerPosition).map(key => DrawerPosition[key]),
+        options: getObjectKeys(DrawerPosition).map(key => DrawerPosition[key]),
         onchange: (e: Event) => this.position = (e.target as HTMLInputElement).value as DrawerPosition,
         size: 'xs',
         fluid: true,

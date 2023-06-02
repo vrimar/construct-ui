@@ -10,6 +10,8 @@ import { highlightCode } from '../utils/highlightCode';
 FocusManager.showFocusOnlyOnTab();
 ResponsiveManager.initialize();
 
+const examples = Examples as any;
+
 export function Content(attrs: IDocumentationData) {
   const pageData = attrs.docs.pages[attrs.page];
 
@@ -39,8 +41,8 @@ export function Content(attrs: IDocumentationData) {
         case 'interface':
           return InterfaceTable({ api: content.value, data: attrs });
         case 'example':
-          const example = Examples[content.value];
-          return example ? m(Examples[content.value]) : 'RENDER ERROR';
+          const example = examples[content.value];
+          return example ? m(example) : 'RENDER ERROR';
       }
     }))
   ]);

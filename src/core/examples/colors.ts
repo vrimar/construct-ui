@@ -1,8 +1,9 @@
 import m from 'mithril';
 import tinycolor from 'tinycolor2';
-import { Colors, Grid, Col } from '@/';
+import { Colors, Grid, Col, getObjectKeys } from '@/';
+import { Color } from '@shared/colors';
 
-const colors = Object.keys(Colors);
+const colors = getObjectKeys(Colors);
 
 const colorGroups = colors
   .filter(color => !color.includes('WHITE'))
@@ -32,7 +33,7 @@ export class ColorsExample {
     ]);
   }
 
-  private renderColorGrid(groups: string[][]) {
+  private renderColorGrid(groups: Color[][]) {
     const colSpan = {
       xs: 12,
       md: 6,
@@ -47,7 +48,7 @@ export class ColorsExample {
     ]));
   }
 
-  private renderColorbar(color: string) {
+  private renderColorbar(color: Color) {
     const style = {
       background: Colors[color],
       color: tinycolor(Colors[color]).isLight() ? 'black' : 'white'

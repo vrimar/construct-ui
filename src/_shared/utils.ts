@@ -36,7 +36,7 @@ export function elementIsOrContains(element: HTMLElement, testElement: HTMLEleme
 
 export function normalizeStyle(style?: Style) {
   if (typeof style === 'string') {
-    const result = {} as Object;
+    const result = {} as any;
     const attributes = style.replace(/\s/g, '').split(';');
 
     for (let i = 0; i < attributes.length; i++) {
@@ -85,3 +85,6 @@ function shouldAddPadding(element: HTMLElement) {
 export function isNullOrEmpty(item: any) {
   return item == null || item === '' || item === false;
 }
+
+type ObjectKeys<T extends object> = `${Exclude<keyof T, symbol>}`;
+export const getObjectKeys = Object.keys as <Type extends object>(value: Type) => Array<ObjectKeys<Type>>;

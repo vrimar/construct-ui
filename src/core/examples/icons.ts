@@ -1,7 +1,7 @@
 import m from 'mithril';
-import { Col, Grid, Icon, Icons, Card, Input } from '@/';
+import { Col, Grid, Icon, Icons, Card, Input, getObjectKeys } from '@/';
 
-const iconNames = Object.keys(Icons).slice(1);
+const iconNames = getObjectKeys(Icons).slice(1);
 
 export class IconsExample {
   private searchQuery: string = '';

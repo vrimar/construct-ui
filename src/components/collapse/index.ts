@@ -57,7 +57,7 @@ export class Collapse implements m.Component<ICollapseAttrs> {
           exiting: {
             height: '0px'
           }
-        };
+        } as Record<TransitionState, object>;
 
         const bodyTransitionStyles = {
           entering: {
@@ -68,7 +68,7 @@ export class Collapse implements m.Component<ICollapseAttrs> {
             transform: `translateY(${-this.height}px)`,
             transition: `transform ${this.duration}ms ease-out`
           }
-        };
+        } as Record<TransitionState, object>;
 
         const body = m('', {
           class: Classes.COLLAPSE_BODY,

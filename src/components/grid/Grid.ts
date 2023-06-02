@@ -1,6 +1,6 @@
 import m from 'mithril';
 import classnames from 'classnames';
-import { IAttrs, Classes, normalizeStyle } from '../../_shared';
+import { IAttrs, Classes, normalizeStyle, getObjectKeys } from '../../_shared';
 import { IColAttrs } from './Col';
 import { ResponsiveManager } from '../../utils';
 
@@ -68,7 +68,7 @@ export class Grid implements m.Component<IGridAttrs> {
     const breakPoints = ResponsiveManager.activeBreakpoints;
 
     if (typeof attrs.gutter === 'object' && breakPoints) {
-      const activeBreakpoints = Object.keys(breakPoints).filter((x) => breakPoints[x]);
+      const activeBreakpoints = getObjectKeys(breakPoints).filter((x) => breakPoints[x]);
       const currentBreakpoint = activeBreakpoints[activeBreakpoints.length - 1];
       return (attrs.gutter as any)[currentBreakpoint] || 0;
     } else return attrs.gutter;

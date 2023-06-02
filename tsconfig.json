@@ -27,7 +27,6 @@
     "sourceMap": false,
     "strictNullChecks": true,
     "skipLibCheck": true,
-    "suppressImplicitAnyIndexErrors": true,
     "target": "es5"
   },
   "include": [

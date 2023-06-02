@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { ISelectAttrs, Select, Size } from '../../';
+import { getObjectKeys, ISelectAttrs, Select, Size } from '../../';
 
 export interface ISizeSelectAttrs extends ISelectAttrs {
   onSelect: (size?: Size) => void;
@@ -14,7 +14,7 @@ export class SizeSelect implements m.Component<ISizeSelectAttrs> {
     return m(Select, {
       ...otherAttrs,
       fluid: true,
-      options: Object.keys(Size).map(key => Size[key]),
+      options: getObjectKeys(Size).map(key => Size[key]),
       onchange: (e: Event) => {
         const target = (e.target as HTMLSelectElement);
         const size = target.options[target.selectedIndex].value as Size;

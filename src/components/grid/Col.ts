@@ -1,6 +1,6 @@
 import m from 'mithril';
 import classnames from 'classnames';
-import { Classes, IAttrs, Breakpoints } from '../../_shared';
+import { Classes, IAttrs, Breakpoints, getObjectKeys } from '../../_shared';
 import { IBreakpointMap } from './Grid';
 
 export interface IColAttrs extends IAttrs {
@@ -22,7 +22,7 @@ export class Col implements m.Component<IColAttrs> {
 
     let breakpointClasses: string = '';
 
-    Object.keys(Breakpoints).map(breakpoint => {
+    getObjectKeys(Breakpoints).map(breakpoint => {
       breakpointClasses = classnames(
         breakpointClasses,
         typeof span === 'object' && span[breakpoint] && `${Classes.COL}-${breakpoint}-${span[breakpoint]}`,

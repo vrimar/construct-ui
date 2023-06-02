@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { Size, Switch, Select, Align, Icon, Icons } from '@/';
+import { Size, Switch, Select, Align, Icon, Icons, getObjectKeys } from '@/';
 import { Example, SizeSelect } from '@shared/examples';
 import { Tabs } from '../Tabs';
 import { TabItem } from '../TabsItem';
@@ -28,19 +28,19 @@ export class TabsExample {
         fluid: this.fluid,
         size: this.size
       }, [
-          items.map(item => m(TabItem, {
-            label: [
-              item === 'Settings' && m(Icon, {
-                name: Icons.SETTINGS,
-                style: 'margin-right: 5px'
-              }),
-              item
-            ],
-            active: this.active === item,
-            loading: item === 'Projects' && this.isLoading,
-            onclick: () => this.active = item
-          }))
-        ])
+        items.map(item => m(TabItem, {
+          label: [
+            item === 'Settings' && m(Icon, {
+              name: Icons.SETTINGS,
+              style: 'margin-right: 5px'
+            }),
+            item
+          ],
+          active: this.active === item,
+          loading: item === 'Projects' && this.isLoading,
+          onclick: () => this.active = item
+        }))
+      ])
     ]);
   }
 
@@ -52,7 +52,7 @@ export class TabsExample {
       m(Select, {
         fluid: true,
         defaultValue: 'center',
-        options: Object.keys(Align).map(key => Align[key]),
+        options: getObjectKeys(Align).map(key => Align[key]),
         onchange: (e: Event) => this.align = (e.target as HTMLInputElement).value as Align,
         size: 'xs'
       }),

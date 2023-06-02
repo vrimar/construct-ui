@@ -146,3 +146,5 @@ export const Colors = {
   ORANGE800: '#EF6C00',
   ORANGE900: '#E65100'
 } as const;
+
+export type Color = keyof typeof Colors;

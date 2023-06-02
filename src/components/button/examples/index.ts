@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { Switch, Button, Icons, Size, Intent, Align, Select } from '@/';
+import { Switch, Button, Icons, Size, Intent, Align, Select, getObjectKeys } from '@/';
 import { IntentSelect, SizeSelect, Example } from '@shared/examples';
 
 const EXAMPLE_SRC = 'components/button/examples/index.ts';
@@ -74,7 +74,7 @@ export class ButtonExample {
       m(Select, {
         fluid: true,
         defaultValue: 'center',
-        options: Object.keys(Align).map(key => Align[key]),
+        options: getObjectKeys(Align).map(key => Align[key]),
         onchange: (e: Event) => this.align = (e.target as HTMLInputElement).value as Align,
         size: 'xs'
       }),

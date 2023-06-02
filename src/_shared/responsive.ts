@@ -6,4 +6,4 @@ export const Breakpoints = {
   xl: '(min-width: 1200px)'
 } as const;
 
-export type Breakpoint = typeof Breakpoints[keyof typeof Breakpoints];
+export type Breakpoint = keyof typeof Breakpoints;

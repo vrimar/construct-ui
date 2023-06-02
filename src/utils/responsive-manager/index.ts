@@ -1,16 +1,16 @@
 import m from 'mithril';
-import { Breakpoints } from '../../_shared';
+import { Breakpoint, Breakpoints, getObjectKeys } from '../../_shared';
 // @ts-ignore
 import ssm from 'simplestatemanager/dist/ssm.min.js';
 
-const breakpointKeys = Object.keys(Breakpoints);
+const breakpointKeys = getObjectKeys(Breakpoints);
 
 class ResponsiveManager {
   /** Key value of active breakpoints */
-  public activeBreakpoints: Record<keyof typeof Breakpoints, boolean>;
+  public activeBreakpoints: Record<Breakpoint, boolean>;
 
   /** Binds breakpoints */
-  public initialize(breakpoints: Record<keyof typeof Breakpoints, string> = Breakpoints) {
+  public initialize(breakpoints: Record<Breakpoint, string> = Breakpoints) {
     this.destroy();
 
     breakpointKeys.map(key => ssm.addState({

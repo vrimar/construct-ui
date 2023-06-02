@@ -84,7 +84,7 @@ export class FormExample {
 
       const target = e.target as HTMLFormElement;
       const inputs = target.elements;
-      const values = {};
+      const values = {} as Record<string, any>;
 
       for (let i = 0; i < inputs.length; i++) {
         const input = inputs[i] as HTMLInputElement;

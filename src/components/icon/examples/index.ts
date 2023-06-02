@@ -1,9 +1,10 @@
 import m from 'mithril';
-import { Switch, Icon, Intent, Icons, IconName, SelectList, ListItem, Button } from '@/';
+import { Switch, Icon, Intent, Icons, IconName, SelectList, ListItem, Button, getObjectKeys } from '@/';
 import { Example, IntentSelect } from '@shared/examples';
 
 const EXAMPLE_SRC = 'components/icon/examples/index.ts';
-const iconNames = Object.keys(Icons).slice(1);
+const iconNames = getObjectKeys(Icons).slice(1);
+const icons = Icons as any;
 
 export class IconExample {
   private intent: Intent;
@@ -30,9 +31,9 @@ export class IconExample {
         closeOnSelect: false,
         items: iconNames,
         itemRender: (iconName: IconName) => m(ListItem, {
-          contentLeft: m(Icon, { name: Icons[iconName] }),
+          contentLeft: m(Icon, { name: icons[iconName] }),
           label: iconName,
-          selected: this.iconName === Icons[iconName]
+          selected: this.iconName === icons[iconName]
         }),
         itemPredicate: (query: string, item: string) => {
           return item.toLowerCase().includes(query.toLowerCase());
@@ -46,7 +47,7 @@ export class IconExample {
           style: 'margin-bottom: 10px',
           fluid: true
         }),
-        onSelect: (iconName: IconName) => this.iconName = Icons[iconName]
+        onSelect: (iconName: IconName) => this.iconName = icons[iconName]
       }),
 
       m(Switch, {
