@@ -1,9 +1,9 @@
 export const Size = {
-  XS: 'xs' as 'xs',
-  SM: 'sm' as 'sm',
-  DEFAULT: 'default' as 'default',
-  LG: 'lg' as 'lg',
-  XL: 'xl' as 'xl'
-};
+  XS: 'xs',
+  SM: 'sm',
+  DEFAULT: 'default',
+  LG: 'lg',
+  XL: 'xl'
+} as const;
 
 export type Size = typeof Size[keyof typeof Size];

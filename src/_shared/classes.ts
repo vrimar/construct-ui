@@ -212,4 +212,4 @@ export const Classes = {
   TREE_NODE_LABEL: 'cui-tree-node-label',
   TREE_NODE_CONTENT_RIGHT: 'cui-tree-node-content-right',
   TREE_NODE_CONTENT_LEFT: 'cui-tree-node-content-left'
-};
+} as const;

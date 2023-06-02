@@ -4,11 +4,11 @@ import { Classes } from '../../_shared';
 import { IOverlayAttrs, Overlay } from '../overlay';
 
 export const DrawerPosition = {
-  TOP: 'top' as 'top',
-  BOTTOM: 'bottom' as 'bottom',
-  RIGHT: 'right' as 'right',
-  LEFT: 'left' as 'left'
-};
+  TOP: 'top',
+  BOTTOM: 'bottom',
+  RIGHT: 'right',
+  LEFT: 'left'
+} as const;
 
 export type DrawerPosition = typeof DrawerPosition[keyof typeof DrawerPosition];
 

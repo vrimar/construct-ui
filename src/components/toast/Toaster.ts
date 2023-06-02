@@ -8,13 +8,13 @@ import { Overlay } from '../overlay';
 export type IToastOptions = IToastAttrs & { key?: string };
 
 export const ToasterPosition = {
-  TOP: 'top' as 'top',
-  TOP_START: 'top-start' as 'top-start',
-  TOP_END: 'top-end' as 'top-end',
-  BOTTOM: 'bottom' as 'bottom',
-  BOTTOM_START: 'bottom-start' as 'bottom-start',
-  BOTTOM_END: 'bottom-end' as 'bottom-end'
-};
+  TOP: 'top',
+  TOP_START: 'top-start',
+  TOP_END: 'top-end',
+  BOTTOM: 'bottom',
+  BOTTOM_START: 'bottom-start',
+  BOTTOM_END: 'bottom-end'
+} as const;
 
 export type ToasterPosition = typeof ToasterPosition[keyof typeof ToasterPosition];
 

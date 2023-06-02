@@ -2,12 +2,12 @@ import m from 'mithril';
 import { Select, IconName, Icon, Button, Spinner, Tag } from '../../';
 
 export const ContentType = {
-  NONE: 'none' as 'none',
-  ICON: 'Icon' as 'Icon',
-  BUTTON: 'Button' as 'Button',
-  SPINNER: 'Spinner' as 'Spinner',
-  TAG: 'Tag' as 'Tag'
-};
+  NONE: 'none',
+  ICON: 'Icon',
+  BUTTON: 'Button',
+  SPINNER: 'Spinner',
+  TAG: 'Tag'
+} as const;
 
 export type ContentType = typeof ContentType[keyof typeof ContentType];
 

@@ -1,9 +1,9 @@
 export const Intent = {
-  NONE: 'none' as 'none',
-  PRIMARY: 'primary' as 'primary',
-  NEGATIVE: 'negative' as 'negative',
-  POSITIVE: 'positive' as 'positive',
-  WARNING: 'warning' as 'warning'
-};
+  NONE: 'none',
+  PRIMARY: 'primary',
+  NEGATIVE: 'negative',
+  POSITIVE: 'positive',
+  WARNING: 'warning'
+} as const;
 
 export type Intent = typeof Intent[keyof typeof Intent];

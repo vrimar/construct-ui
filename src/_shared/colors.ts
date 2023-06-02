@@ -145,4 +145,4 @@ export const Colors = {
   ORANGE700: '#F57C00',
   ORANGE800: '#EF6C00',
   ORANGE900: '#E65100'
-};
+} as const;
