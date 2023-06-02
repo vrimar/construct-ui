@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Drawer, IDrawerAttrs, Classes } from '@/';
 import { hasChildClass, hasClass } from '@test-utils';
 
@@ -15,21 +15,21 @@ describe('drawer', () => {
       position: 'right'
     });
 
-    assert(hasClass(drawer(), Classes.DRAWER));
-    assert(hasClass(drawer(), `${Classes.DRAWER}-right`));
+    expect(hasClass(drawer(), Classes.DRAWER)).toBeTruthy();
+    expect(hasClass(drawer(), `${Classes.DRAWER}-right`)).toBeTruthy();
   });
 
   it('Renders children', () => {
     mount({ content: 'content' });
 
-    assert(hasChildClass(drawer(), Classes.DRAWER_CONTENT));
+    expect(hasChildClass(drawer(), Classes.DRAWER_CONTENT)).toBeTruthy();
   });
 
   it('Sets correct position class', () => {
     const position = 'top';
     mount({ position });
 
-    assert(hasClass(drawer(), `${Classes.DRAWER}-${position}`));
+    expect(hasClass(drawer(), `${Classes.DRAWER}-${position}`)).toBeTruthy();
   });
 
   function mount(attrs: IDrawerAttrs) {

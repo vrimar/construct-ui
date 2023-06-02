@@ -3,7 +3,6 @@
   "compilerOptions": {
     "baseUrl": "../",
     "declaration": false,
-    "module": "commonjs"
   },
   "include": [
     "../src/**/*.spec.ts"

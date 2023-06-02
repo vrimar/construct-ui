@@ -1,7 +1,7 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Overlay, IOverlayAttrs, Classes, Input, Keys } from '@/';
-import { hasClass, TIMEOUT, triggerEvent } from '@test-utils';
+import { hasClass, sleep, TIMEOUT, triggerEvent } from '@test-utils';
 
 describe('overlay', () => {
   const portal = () => document.body.querySelector(`.${Classes.PORTAL}`) as HTMLElement;
@@ -19,14 +19,14 @@ describe('overlay', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(overlay(), Classes.POSITIVE));
-    assert.equal(overlay().style.color, 'red');
+    expect(hasClass(overlay(), Classes.POSITIVE)).toBeTruthy();
+    expect(overlay().style.color).toBe('red');
   });
 
   it('Renders portal correctly', () => {
     mount({});
 
-    assert(hasClass(portal(), Classes.PORTAL));
+    expect(hasClass(portal(), Classes.PORTAL)).toBeTruthy();
   });
 
   it('Passes through attrs to portal', () => {
@@ -37,26 +37,26 @@ describe('overlay', () => {
       }
     });
 
-    assert(hasClass(portal(), Classes.POSITIVE));
-    assert.equal(portal().style.color, 'red');
+    expect(hasClass(portal(), Classes.POSITIVE)).toBeTruthy();
+    expect(portal().style.color).toBe('red');
   });
 
   it('Renders content', () => {
     mount({ content: 'content' });
 
-    assert(overlay().innerHTML.includes('content'));
+    expect(overlay().innerHTML.includes('content')).toBeTruthy();
   });
 
   it('Renders inline', () => {
     mount({ inline: true });
 
-    assert(!portal());
+    expect(portal()).toBeFalsy();
   });
 
   it('Has backdrop by default', () => {
     mount({});
 
-    assert(backdrop());
+    expect(backdrop()).toBeTruthy();
   });
 
   it('Sets backdrop class', () => {
@@ -64,12 +64,12 @@ describe('overlay', () => {
       backdropClass: Classes.POSITIVE
     });
 
-    assert(hasClass(backdrop(), Classes.POSITIVE));
+    expect(hasClass(backdrop(), Classes.POSITIVE)).toBeTruthy();
   });
 
   it('hasBackdrop=false hides backdrop', () => {
     mount({ hasBackdrop: false });
-    assert(!backdrop());
+    expect(backdrop()).toBeFalsy();
   });
 
   it('Sets autofocus', () => {
@@ -79,10 +79,10 @@ describe('overlay', () => {
 
     const input = overlay().querySelector('input') as HTMLInputElement;
 
-    assert((input as any).autofocus);
+    expect((input as any).autofocus).toBeTruthy();
   });
 
-  it('closeOnOutsideClick=true invokes onClose', (done) => {
+  it('closeOnOutsideClick=true invokes onClose', async () => {
     let count = 0;
 
     mount({
@@ -90,10 +90,8 @@ describe('overlay', () => {
       onClose: () => count++
     });
 
-    triggerEvent(backdrop(), 'mousedown', () => {
-      assert.equal(count, 1);
-      done();
-    });
+    await triggerEvent(backdrop(), 'mousedown');
+    expect(count).toBe(1);
   });
 
   it('Handles closeOnEscapeKey', () => {
@@ -106,10 +104,10 @@ describe('overlay', () => {
 
     document.dispatchEvent(new KeyboardEvent('keydown', { which: Keys.ESCAPE } as any));
 
-    assert.equal(count, 1);
+    expect(count).toBe(1);
   });
 
-  it('Handles lifecycle callbacks', done => {
+  it('Handles lifecycle callbacks', async () => {
     let count = 0;
 
     const component = mount({
@@ -120,13 +118,12 @@ describe('overlay', () => {
     component.isOpen = false;
     m.redraw();
 
-    setTimeout(() => {
-      assert.equal(count, 2);
-      done();
-    }, TIMEOUT);
+    await sleep(TIMEOUT);
+
+    expect(count).toBe(2);
   });
 
-  it('onClosed called when transitionDuration finishes', done => {
+  it('onClosed called when transitionDuration finishes', async () => {
     let count = 0;
     const transitionDuration = 100;
 
@@ -138,10 +135,8 @@ describe('overlay', () => {
     component.isOpen = false;
     m.redraw();
 
-    setTimeout(() => {
-      assert.equal(count, 1);
-      done();
-    }, transitionDuration + TIMEOUT);
+    await sleep(transitionDuration + TIMEOUT);
+    expect(count).toBe(1);
   });
 
   function mount(attrs: IOverlayAttrs) {

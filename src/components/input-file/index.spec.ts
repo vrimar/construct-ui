@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { InputFile, IInputFileAttrs, Classes, Tag, Icon, Icons } from '@/';
 import { hasClass, hasChildClass } from '@test-utils';
 
@@ -18,24 +18,24 @@ describe('input-file', () => {
       fluid: true
     });
 
-    assert(hasClass(el(), Classes.INPUT_FILE));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(hasClass(el(), Classes.XS));
-    assert(hasClass(el(), Classes.FLUID));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.INPUT_FILE)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
+    expect(hasClass(el(), Classes.FLUID)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Renders browse button', () => {
     mount({});
 
-    assert(hasChildClass(el(), Classes.INPUT_FILE_BUTTON));
+    expect(hasChildClass(el(), Classes.INPUT_FILE_BUTTON)).toBeTruthy();
   });
 
   it('Renders file text container', () => {
     mount({});
 
-    assert(hasChildClass(el(), Classes.INPUT_FILE_CONTENT));
+    expect(hasChildClass(el(), Classes.INPUT_FILE_CONTENT)).toBeTruthy();
   });
 
   it('Renders left content', () => {
@@ -45,8 +45,8 @@ describe('input-file', () => {
 
     const tag = el().querySelector(`.${Classes.TAG}`) as HTMLElement;
 
-    assert(hasChildClass(el(), Classes.TAG));
-    assert(el().firstChild === tag);
+    expect(hasChildClass(el(), Classes.TAG)).toBeTruthy();
+    expect(el().firstChild).toBe(tag);
   });
 
   it('Renders right content', () => {
@@ -56,8 +56,8 @@ describe('input-file', () => {
 
     const icon = el().querySelector(`.${Classes.ICON}`) as HTMLElement;
 
-    assert(hasChildClass(el(), Classes.ICON));
-    assert(el().lastChild === icon);
+    expect(hasChildClass(el(), Classes.ICON)).toBeTruthy();
+    expect(el().lastChild).toBe(icon);
   });
 
   it('Passes through html attrs', () => {
@@ -66,8 +66,8 @@ describe('input-file', () => {
       name: 'name'
     });
 
-    assert(input().hasAttribute('id'));
-    assert(input().hasAttribute('name'));
+    expect(input().hasAttribute('id')).toBeTruthy();
+    expect(input().hasAttribute('name')).toBeTruthy();
   });
 
   function mount(attrs: IInputFileAttrs) {

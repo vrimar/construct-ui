@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Input, IInputAttrs, Classes, Tag } from '@/';
 import { hasClass, hasChildClass } from '@test-utils';
 
@@ -20,27 +20,27 @@ describe('input', () => {
       fluid: true
     });
 
-    assert(hasClass(el(), Classes.INPUT));
-    assert(hasClass(el(), Classes.BASIC));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(hasClass(el(), Classes.XS));
-    assert(hasClass(el(), Classes.FLUID));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.INPUT)).toBeTruthy();
+    expect(hasClass(el(), Classes.BASIC)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
+    expect(hasClass(el(), Classes.FLUID)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Renders left content', () => {
     mount({ contentLeft: m(Tag) });
 
-    assert(hasChildClass(el(), Classes.TAG));
-    assert(el().firstChild === tag());
+    expect(hasChildClass(el(), Classes.TAG)).toBeTruthy();
+    expect(el().firstChild).toBe(tag());
   });
 
   it('Renders right content', () => {
     mount({ contentRight: m(Tag) });
 
-    assert(hasChildClass(el(), Classes.TAG));
-    assert(el().lastChild === tag());
+    expect(hasChildClass(el(), Classes.TAG));
+    expect(el().lastChild).toBe(tag());
   });
 
   it('Passes through html attrs', () => {
@@ -50,9 +50,9 @@ describe('input', () => {
       defaultValue: 'defaultValue'
     });
 
-    assert(input().hasAttribute('id'));
-    assert(input().hasAttribute('name'));
-    assert.equal(input().value, 'defaultValue');
+    expect(input().hasAttribute('id')).toBeTruthy();
+    expect(input().hasAttribute('name')).toBeTruthy();
+    expect(input().value).toBe('defaultValue');
   });
 
   function mount(attrs: IInputAttrs) {

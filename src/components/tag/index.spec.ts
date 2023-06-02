@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Tag, ITagAttrs, Icons, Classes } from '@/';
 import { hasClass, hasChildClass } from '@test-utils';
 
@@ -17,13 +17,13 @@ describe('tag', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(el(), Classes.TAG));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(hasClass(el(), Classes.ROUNDED));
-    assert(hasClass(el(), Classes.XS));
+    expect(hasClass(el(), Classes.TAG)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(hasClass(el(), Classes.ROUNDED)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
 
-    assert(el().hasAttribute('style'));
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Renders label', () => {
@@ -31,7 +31,7 @@ describe('tag', () => {
       label: 'label'
     });
 
-    assert(el().textContent!.includes('label'));
+    expect(el().textContent?.includes('label')).toBeTruthy();
   });
 
   it('Passes through html attrs', () => {
@@ -40,13 +40,13 @@ describe('tag', () => {
       name: 'name'
     });
 
-    assert(el().hasAttribute('id'));
-    assert(el().hasAttribute('name'));
+    expect(el().hasAttribute('id')).toBeTruthy();
+    expect(el().hasAttribute('name')).toBeTruthy();
   });
 
   it('Remove icon visible when onRemove specified', () => {
     mount({ onRemove: () => null });
-    assert(hasChildClass(el(), `${Classes.ICON}-${Icons.X}`));
+    expect(hasChildClass(el(), `${Classes.ICON}-${Icons.X}`)).toBeTruthy();
   });
 
   it('onRemove called when remove icon clicked', () => {
@@ -56,7 +56,7 @@ describe('tag', () => {
     const icon = el().querySelector(`.${Classes.ICON}`);
     icon!.dispatchEvent(new Event('click'));
 
-    assert.equal(count, 1);
+    expect(count).toBe(1);
   });
 
   function mount(attrs: ITagAttrs) {

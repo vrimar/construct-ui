@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Icon, IIconAttrs, Classes, Icons } from '@/';
 import { hasClass } from '@test-utils';
 
@@ -16,11 +16,11 @@ describe('icon', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(el(), Classes.ICON));
-    assert(hasClass(el(), `${Classes.ICON}-${Icons.ACTIVITY}`));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.ICON)).toBeTruthy();
+    expect(hasClass(el(), `${Classes.ICON}-${Icons.ACTIVITY}`)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Passes through html attrs', () => {
@@ -29,7 +29,7 @@ describe('icon', () => {
       name: Icons.ACTIVITY
     });
 
-    assert(el().hasAttribute('id'));
+    expect(el().hasAttribute('id')).toBeTruthy();
   });
 
   it('Passing onclick sets interactive class', () => {
@@ -38,7 +38,7 @@ describe('icon', () => {
       name: Icons.ACTIVITY
     });
 
-    assert(hasClass(el(), Classes.ICON_ACTION));
+    expect(hasClass(el(), Classes.ICON_ACTION)).toBeTruthy();
   });
 
   function mount(attrs: IIconAttrs) {

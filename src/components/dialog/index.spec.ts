@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Dialog, IDialogAttrs, Classes } from '@/';
 import { hasChildClass, hasClass } from '@test-utils';
 
@@ -15,9 +15,9 @@ describe('dialog', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(dialog(), Classes.BASIC));
-    assert(hasClass(dialog(), Classes.POSITIVE));
-    assert.equal(dialog().style.color, 'red');
+    expect(hasClass(dialog(), Classes.BASIC)).toBeTruthy();
+    expect(hasClass(dialog(), Classes.POSITIVE)).toBeTruthy();
+    expect(dialog().style.color).toBe('red');
   });
 
   it('Renders children', () => {
@@ -27,9 +27,9 @@ describe('dialog', () => {
       title: 'title'
     });
 
-    assert(hasChildClass(dialog(), Classes.DIALOG_BODY));
-    assert(hasChildClass(dialog(), Classes.DIALOG_HEADER));
-    assert(hasChildClass(dialog(), Classes.DIALOG_FOOTER));
+    expect(hasChildClass(dialog(), Classes.DIALOG_BODY));
+    expect(hasChildClass(dialog(), Classes.DIALOG_HEADER));
+    expect(hasChildClass(dialog(), Classes.DIALOG_FOOTER));
   });
 
   it('hasCloseButton=false hides close button', () => {
@@ -38,7 +38,7 @@ describe('dialog', () => {
       hasCloseButton: false
     });
 
-    assert(!hasChildClass(dialog(), Classes.DIALOG_CLOSE_BUTTON));
+    expect(hasChildClass(dialog(), Classes.DIALOG_CLOSE_BUTTON)).toBeFalsy();
   });
 
   it('Close button click calls onClose', () => {
@@ -52,7 +52,7 @@ describe('dialog', () => {
     const backdrop = dialog().querySelector(`.${Classes.DIALOG_CLOSE_BUTTON}`)!;
     backdrop.dispatchEvent(new Event('click'));
 
-    assert.equal(count, 1);
+    expect(count).toBe(1);
   });
 
   it('Header hidden when no title attr', () => {
@@ -61,13 +61,13 @@ describe('dialog', () => {
       footer: 'footer'
     });
 
-    assert(!hasChildClass(dialog(), Classes.DIALOG_HEADER));
+    expect(!hasChildClass(dialog(), Classes.DIALOG_HEADER));
   });
 
   it('Footer hidden when no footer attr', () => {
     mount({ content: 'content' });
 
-    assert(!hasChildClass(dialog(), Classes.DIALOG_FOOTER));
+    expect(!hasChildClass(dialog(), Classes.DIALOG_FOOTER));
   });
 
   function mount(attrs: IDialogAttrs) {

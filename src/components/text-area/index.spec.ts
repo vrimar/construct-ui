@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { TextArea, ITextAreaAttrs, Classes } from '@/';
 import { hasClass } from '@test-utils';
 
@@ -19,13 +19,13 @@ describe('textarea', () => {
       fluid: true
     });
 
-    assert(hasClass(el(), Classes.INPUT));
-    assert(hasClass(el(), Classes.BASIC));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(hasClass(el(), Classes.XS));
-    assert(hasClass(el(), Classes.FLUID));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.INPUT)).toBeTruthy();
+    expect(hasClass(el(), Classes.BASIC)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
+    expect(hasClass(el(), Classes.FLUID)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Passes through html attrs', () => {
@@ -35,9 +35,9 @@ describe('textarea', () => {
       defaultValue: 'defaultValue'
     });
 
-    assert(textarea().hasAttribute('id'));
-    assert(textarea().hasAttribute('name'));
-    assert.equal(textarea().value, 'defaultValue');
+    expect(textarea().hasAttribute('id')).toBeTruthy();
+    expect(textarea().hasAttribute('name')).toBeTruthy();
+    expect(textarea().value).toBe('defaultValue');
   });
 
   function mount(attrs: ITextAreaAttrs) {

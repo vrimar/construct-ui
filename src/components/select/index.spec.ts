@@ -1,7 +1,7 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Select, Tag, ISelectAttrs, Classes, IOption } from '@/';
-import { hasClass, hasChildClass, TIMEOUT } from '@test-utils';
+import { hasClass, hasChildClass, TIMEOUT, sleep } from '@test-utils';
 
 const options = ['1', '2'];
 const firstOption = options[0];
@@ -29,50 +29,50 @@ describe('select', () => {
       fluid: true
     });
 
-    assert(hasClass(el(), Classes.SELECT));
-    assert(hasClass(el(), Classes.BASIC));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(hasClass(el(), Classes.XS));
-    assert(hasClass(el(), Classes.FLUID));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.SELECT)).toBeTruthy();
+    expect(hasClass(el(), Classes.BASIC)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
+    expect(hasClass(el(), Classes.FLUID)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Renders right chevron icon', () => {
     mount();
-    assert((el().lastChild as HTMLElement).classList.contains(`${Classes.ICON}`));
+    expect((el().lastChild as HTMLElement).classList.contains(`${Classes.ICON}`)).toBeTruthy();
   });
 
   it('Renders options: string array', () => {
     mount({ options });
 
     const children = select().children;
-    assert.equal(children.length, 2);
-    assert.equal(children[0].textContent, options[0]);
-    assert.equal(children[1].textContent, options[1]);
+    expect(children.length).toBe(2);
+    expect(children[0].textContent).toBe(options[0]);
+    expect(children[1].textContent).toBe(options[1]);
   });
 
   it('Renders options: object array', () => {
     mount({ options: objOptions });
 
     const children = select().children;
-    assert.equal(children.length, 2);
-    assert.equal(children[0].textContent, objOptions[0].label);
-    assert.equal(children[1].textContent, objOptions[1].label);
+    expect(children.length).toBe(2);
+    expect(children[0].textContent).toBe(objOptions[0].label);
+    expect(children[1].textContent).toBe(objOptions[1].label);
   });
 
   it('Renders left content', () => {
     mount({ contentLeft: m(Tag) });
 
-    assert(hasChildClass(el(), Classes.TAG));
-    assert(el().firstChild === tag());
+    expect(hasChildClass(el(), Classes.TAG)).toBeTruthy();
+    expect(el().firstChild).toBe(tag());
   });
 
   it('Renders right content', () => {
     mount({ contentRight: m(Tag) });
 
-    assert(hasChildClass(el(), Classes.TAG));
-    assert(el().lastChild === tag());
+    expect(hasChildClass(el(), Classes.TAG));
+    expect(el().lastChild).toBe(tag());
   });
 
   it('Correctly sets defaultValue', () => {
@@ -81,7 +81,7 @@ describe('select', () => {
       defaultValue: secondOption
     });
 
-    assert.equal(selectedValue(), secondOption);
+    expect(selectedValue()).toBe(secondOption);
   });
 
   it('Correctly sets value', () => {
@@ -90,10 +90,10 @@ describe('select', () => {
       value: secondOption
     });
 
-    assert.equal(selectedValue(), secondOption);
+    expect(selectedValue()).toBe(secondOption);
   });
 
-  it('Handles onChange', (done) => {
+  it('Handles onChange', async () => {
     let value = secondOption;
 
     mount({
@@ -105,10 +105,9 @@ describe('select', () => {
     select().value = firstOption;
     select().dispatchEvent(new Event('change'));
 
-    setTimeout(() => {
-      assert.equal(value, firstOption);
-      done();
-    }, TIMEOUT);
+    await sleep(TIMEOUT);
+
+    expect(value).toBe(firstOption);
   });
 
   function mount(attrs?: ISelectAttrs) {

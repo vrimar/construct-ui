@@ -1,7 +1,7 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { QueryList, Classes, Tag, Keys, IQueryListAttrs } from '@/';
-import { hasClass, hasChildClass, TIMEOUT, keyboardEvent } from '@shared/test/utils';
+import { hasClass, hasChildClass, TIMEOUT, keyboardEvent, sleep } from '@shared/test/utils';
 import { Icons } from '../icon';
 import { ListItem } from '../list';
 
@@ -28,17 +28,17 @@ describe('query-list', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(el(), Classes.QUERY_LIST));
-    assert(hasChildClass(el(), Classes.LIST));
-    assert(hasClass(el(), Classes.QUERY_LIST_CHECKMARK));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert.equal(el().style.color, 'red');
+    expect(hasClass(el(), Classes.QUERY_LIST)).toBeTruthy();
+    expect(hasChildClass(el(), Classes.LIST)).toBeTruthy();
+    expect(hasClass(el(), Classes.QUERY_LIST_CHECKMARK)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(el().style.color).toBe('red');
   });
 
   it('Renders control group', () => {
     mount();
 
-    assert(controlGroup());
+    expect(controlGroup()).toBeTruthy();
   });
 
   it('Passes through controlGroupAttrs', () => {
@@ -46,7 +46,7 @@ describe('query-list', () => {
       controlGroupAttrs: { id: 'test' }
     });
 
-    assert.equal(controlGroup().id, 'test');
+    expect(controlGroup().id).toBe('test');
   });
 
   it('Renders control group left content', () => {
@@ -54,7 +54,7 @@ describe('query-list', () => {
       contentLeft: m(Tag)
     });
 
-    assert(hasChildClass(controlGroup(), Classes.TAG));
+    expect(hasChildClass(controlGroup(), Classes.TAG)).toBeTruthy();
   });
 
   it('Renders control group right content', () => {
@@ -62,49 +62,43 @@ describe('query-list', () => {
       contentRight: m(Tag)
     });
 
-    assert(hasChildClass(controlGroup(), Classes.TAG));
+    expect(hasChildClass(controlGroup(), Classes.TAG)).toBeTruthy();
   });
 
   it('Renders filter input', () => {
     mount();
 
-    assert(hasChildClass(el(), Classes.INPUT));
+    expect(hasChildClass(el(), Classes.INPUT)).toBeTruthy();
   });
 
   it('Renders clear icon when query is set', () => {
     mount({ defaultQuery: '1' });
-    assert(inputClearIcon());
+    expect(inputClearIcon()).toBeTruthy();
   });
 
-  it('Clicking on clear icon resets input value', (done) => {
+  it('Clicking on clear icon resets input value', async () => {
     mount({ defaultQuery: '1' });
     inputClearIcon().dispatchEvent(new Event('click'));
 
-    setTimeout(() => {
-      assert.equal(input().value, '');
-      done();
-    }, TIMEOUT);
+    await sleep(TIMEOUT);
+    expect(input().value).toBe('');
   });
 
-  it('ESCAPE key clears input value', done => {
+  it('ESCAPE key clears input value', async () => {
     const defaultQuery = 'testing';
 
     mount({ defaultQuery });
 
-    assert.equal(input().value, defaultQuery);
+    expect(input().value).toBe(defaultQuery);
     input().focus();
 
-    keyboardEvent(el(), Keys.ESCAPE);
-
-    setTimeout(() => {
-      assert(!input().value);
-      done();
-    }, TIMEOUT);
+    await keyboardEvent(el(), Keys.ESCAPE);
+    expect(input().value).toBeFalsy();
   });
 
   it('filterable=false hides filter input', () => {
     mount({ filterable: false });
-    assert(!hasChildClass(el(), Classes.INPUT));
+    expect(hasChildClass(el(), Classes.INPUT)).toBeFalsy();
   });
 
   it('Passes through inputAttrs', () => {
@@ -112,15 +106,15 @@ describe('query-list', () => {
       inputAttrs: { name: 'test' }
     });
 
-    assert.equal(input().name, 'test');
+    expect(input().name).toBe('test');
   });
 
   it('Renders initialContent when query is empty', () => {
     const initialContent = 'Search...';
     mount({ initialContent });
 
-    assert(hasClass(list(), Classes.QUERY_LIST_INITIAL));
-    assert(list().innerHTML.includes(initialContent));
+    expect(hasClass(list(), Classes.QUERY_LIST_INITIAL)).toBeTruthy();
+    expect(list().innerHTML.includes(initialContent)).toBeTruthy();
   });
 
   it('Renders empty content message when no results', () => {
@@ -131,19 +125,19 @@ describe('query-list', () => {
       emptyContent
     });
 
-    assert(list().innerHTML.includes(emptyContent));
+    expect(list().innerHTML.includes(emptyContent)).toBeTruthy();
   });
 
   it('Sets default query', () => {
     mount({ defaultQuery: '1' });
 
-    assert.equal(input().value, '1');
+    expect(input().value).toBe('1');
   });
 
   it('Renders list items', () => {
     mount();
 
-    assert.equal(list().children.length, items.length);
+    expect(list().children.length).toBe(items.length);
   });
 
   it('Renders checkmark icon when item selected=true', () => {
@@ -153,19 +147,19 @@ describe('query-list', () => {
 
     const item = getItem(endIndex);
 
-    assert(hasChildClass(item, `${Classes.ICON}-${Icons.CHECK}`));
+    expect(hasChildClass(item, `${Classes.ICON}-${Icons.CHECK}`)).toBeTruthy();
   });
 
   it('Passes through listAttrs', () => {
     mount({ listAttrs: { size: 'xs' } });
 
-    assert(hasClass(list(), Classes.XS));
+    expect(hasClass(list(), Classes.XS)).toBeTruthy();
   });
 
   it('Sets default active index', () => {
     mount({ defaultActiveIndex: endIndex });
 
-    assert(hasClass(getItem(endIndex), Classes.ACTIVE));
+    expect(hasClass(getItem(endIndex), Classes.ACTIVE)).toBeTruthy();
   });
 
   it('Handles filtering when itemPredicate specified', () => {
@@ -174,7 +168,7 @@ describe('query-list', () => {
       defaultQuery: '1'
     });
 
-    assert.equal(list().children.length, 1);
+    expect(list().children.length).toBe(1);
   });
 
   it('Handles itemListPredicate', () => {
@@ -184,7 +178,7 @@ describe('query-list', () => {
       defaultQuery: '1'
     });
 
-    assert.equal(list().children.length, 1);
+    expect(list().children.length).toBe(1);
   });
 
   it('Item click calls onSelect', () => {
@@ -194,7 +188,7 @@ describe('query-list', () => {
     const itemEl = getItem(0);
     itemEl.dispatchEvent(new Event('click'));
 
-    assert.equal(count, 1);
+    expect(count).toBe(1);
   });
 
   it('Disabled item click does not trigger onSelect', () => {
@@ -208,76 +202,59 @@ describe('query-list', () => {
     const itemEl = getItem(0);
     itemEl.dispatchEvent(new Event('click'));
 
-    assert.equal(count, 0);
+    expect(count).toBe(0);
   });
 
   describe('Keyboard navigation', () => {
-    it('ARROW_DOWN updates active item', (done) => {
+    it('ARROW_DOWN updates active item', async () => {
       mount();
-      keyboardEvent(el(), Keys.ARROW_DOWN);
-
-      setTimeout(() => {
-        assert(hasClass(getItem(1), Classes.ACTIVE));
-        done();
-      }, TIMEOUT);
+      await keyboardEvent(el(), Keys.ARROW_DOWN);
+      expect(hasClass(getItem(1), Classes.ACTIVE)).toBeTruthy();
     });
 
-    it('ARROW_UP updates active item', (done) => {
+    it('ARROW_UP updates active item', async () => {
       mount();
-      keyboardEvent(el(), Keys.ARROW_UP);
-
-      setTimeout(() => {
-        assert(hasClass(getItem(endIndex), Classes.ACTIVE));
-        done();
-      }, TIMEOUT);
+      await keyboardEvent(el(), Keys.ARROW_UP);
+      expect(hasClass(getItem(endIndex), Classes.ACTIVE)).toBeTruthy();
     });
 
-    it('ARROW_DOWN wraps to start item when at end of list', (done) => {
+    it('ARROW_DOWN wraps to start item when at end of list', async () => {
       mount({ defaultActiveIndex: endIndex });
-      keyboardEvent(el(), Keys.ARROW_DOWN);
-
-      setTimeout(() => {
-        assert(hasClass(getItem(0), Classes.ACTIVE));
-        done();
-      }, TIMEOUT);
+      await keyboardEvent(el(), Keys.ARROW_DOWN);
+      expect(hasClass(getItem(0), Classes.ACTIVE)).toBeTruthy();
     });
 
-    it('ARROW_UP wraps to end item when at start of list', (done) => {
+    it('ARROW_UP wraps to end item when at start of list', async () => {
       mount();
-      keyboardEvent(el(), Keys.ARROW_UP);
-
-      setTimeout(() => {
-        assert(hasClass(getItem(endIndex), Classes.ACTIVE));
-        done();
-      }, TIMEOUT);
+      await keyboardEvent(el(), Keys.ARROW_UP);
+      expect(hasClass(getItem(endIndex), Classes.ACTIVE)).toBeTruthy();
     });
 
-    it('ENTER on active item calls onSelect', () => {
+    it('ENTER on active item calls onSelect', async () => {
       let count = 0;
       mount({ onSelect: () => count++ });
 
-      keyboardEvent(el(), Keys.ENTER);
-
-      assert.equal(count, 1);
+      await keyboardEvent(el(), Keys.ENTER);
+      expect(count).toBe(1);
     });
   });
 
   describe('controlled', () => {
     it('Sets activeIndex', () => {
       mount({ activeIndex: endIndex });
-      assert(getItem(endIndex), Classes.ACTIVE);
+      expect(getItem(endIndex), Classes.ACTIVE).toBeTruthy();
     });
 
-    it('Keyboard navigation calls onActiveItemChange', () => {
+    it('Keyboard navigation calls onActiveItemChange', async () => {
       let count = 0;
       mount({
         activeIndex: 0,
         onActiveItemChange: () => count++
       });
-      keyboardEvent(el(), Keys.ARROW_DOWN);
-      keyboardEvent(el(), Keys.ARROW_UP);
+      await keyboardEvent(el(), Keys.ARROW_DOWN);
+      await keyboardEvent(el(), Keys.ARROW_UP);
 
-      assert.equal(count, 2);
+      expect(count).toBe(2);
     });
 
     it('Sets input query', () => {
@@ -285,10 +262,10 @@ describe('query-list', () => {
 
       mount({ query });
 
-      assert.equal(input().value, query);
+      expect(input().value).toBe(query);
     });
 
-    it('Input value change calls onQueryChange', (done) => {
+    it('Input value change calls onQueryChange', async () => {
       const query = 'testing';
       let count = 0;
       mount({
@@ -300,10 +277,8 @@ describe('query-list', () => {
       input().dispatchEvent(new Event('input'));
 
       // onChange is debounced at 200 ms
-      setTimeout(() => {
-        assert.equal(count, 1);
-        done();
-      }, 250);
+      await sleep(200);
+      expect(count).toBe(1);
     });
   });
 

@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Form, IFormAttrs, Classes } from '@/';
 import { hasClass } from '@test-utils';
 
@@ -15,9 +15,9 @@ describe('form', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(el(), Classes.FORM));
-    assert.equal(el().tagName, 'FORM');
-    assert.equal(el().style.color, 'red');
+    expect(hasClass(el(), Classes.FORM)).toBeTruthy();
+    expect(el().tagName).toBe('FORM');
+    expect(el().style.color).toBe('red');
   });
 
   function mount(attrs: IFormAttrs) {

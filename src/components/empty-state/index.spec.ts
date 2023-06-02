@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { EmptyState, IEmptyStateAttrs, Classes, Icons } from '@/';
 import { hasChildClass, hasClass } from '@test-utils';
 
@@ -15,10 +15,10 @@ describe('empty-state', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(el(), Classes.EMPTY_STATE));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.EMPTY_STATE_FILL));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.EMPTY_STATE)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.EMPTY_STATE_FILL)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Renders children', () => {
@@ -28,9 +28,9 @@ describe('empty-state', () => {
       icon: Icons.ACTIVITY
     });
 
-    assert(hasChildClass(el(), Classes.EMPTY_STATE_CONTENT));
-    assert(hasChildClass(el(), Classes.EMPTY_STATE_HEADER));
-    assert(hasChildClass(el(), Classes.ICON));
+    expect(hasChildClass(el(), Classes.EMPTY_STATE_CONTENT)).toBeTruthy();
+    expect(hasChildClass(el(), Classes.EMPTY_STATE_HEADER)).toBeTruthy();
+    expect(hasChildClass(el(), Classes.ICON)).toBeTruthy();
   });
 
   it('Passes through html attrs', () => {
@@ -39,8 +39,8 @@ describe('empty-state', () => {
       name: 'name'
     });
 
-    assert(el().hasAttribute('id'));
-    assert(el().hasAttribute('name'));
+    expect(el().hasAttribute('id')).toBeTruthy();
+    expect(el().hasAttribute('name')).toBeTruthy();
   });
 
   function mount(attrs: IEmptyStateAttrs) {

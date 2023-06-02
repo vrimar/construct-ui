@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Spinner, ISpinnerAttrs, Classes } from '@/';
 import { hasClass, hasChildClass } from '@test-utils';
 
@@ -19,26 +19,26 @@ describe('spinner', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(el(), Classes.SPINNER_ACTIVE));
-    assert(hasClass(el(), Classes.SPINNER_BG));
-    assert(hasClass(el(), Classes.SPINNER_FILL));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(hasClass(el(), Classes.XS));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.SPINNER_ACTIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.SPINNER_BG)).toBeTruthy();
+    expect(hasClass(el(), Classes.SPINNER_FILL)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
 
-    assert(hasChildClass(el(), Classes.SPINNER_CONTENT));
-    assert(hasChildClass(el(), Classes.SPINNER_ICON));
+    expect(hasChildClass(el(), Classes.SPINNER_CONTENT)).toBeTruthy();
+    expect(hasChildClass(el(), Classes.SPINNER_ICON)).toBeTruthy();
   });
 
   it('Renders message', () => {
     const message = 'Uploading files';
     mount({ message });
 
-    assert(hasChildClass(el(), Classes.SPINNER_MESSAGE));
+    expect(hasChildClass(el(), Classes.SPINNER_MESSAGE)).toBeTruthy();
 
     const messageEl = el().querySelector(`.${Classes.SPINNER_MESSAGE}`) as HTMLElement;
-    assert.equal(messageEl.innerHTML, message);
+    expect(messageEl.innerHTML).toBe(message);
   });
 
   it('Passes through html attrs', () => {
@@ -47,8 +47,8 @@ describe('spinner', () => {
       name: 'name'
     });
 
-    assert(el().hasAttribute('id'));
-    assert(el().hasAttribute('name'));
+    expect(el().hasAttribute('id')).toBeTruthy();
+    expect(el().hasAttribute('name')).toBeTruthy();
   });
 
   function mount(attrs?: ISpinnerAttrs) {

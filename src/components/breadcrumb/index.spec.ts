@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, beforeEach, expect, it } from 'vitest';
 import { Classes, Breadcrumb, BreadcrumbItem, IBreadcrumbAttrs, Icon, Icons } from '@/';
 import { hasChildClass, hasClass } from '@test-utils';
 
@@ -14,9 +14,9 @@ describe('breadcrumb', () => {
       size: 'xs'
     });
 
-    assert(hasClass(el(), Classes.BREADCRUMB));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.XS));
+    expect(hasClass(el(), Classes.BREADCRUMB)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
   });
 
   it('Renders children', () => {
@@ -25,8 +25,8 @@ describe('breadcrumb', () => {
     const childrenLength = el().querySelectorAll(`.${Classes.BREADCRUMB_ITEM}`).length;
     const seperatorLength = el().querySelectorAll(`.${Classes.BREADCRUMB_SEPERATOR}`).length;
 
-    assert.equal(childrenLength, 2);
-    assert.equal(seperatorLength, 2);
+    expect(childrenLength).toBe(2);
+    expect(seperatorLength).toBe(2);
   });
 
   it('Passes through html attrs', () => {
@@ -35,8 +35,8 @@ describe('breadcrumb', () => {
       name: 'name'
     });
 
-    assert(el().hasAttribute('id'));
-    assert(el().hasAttribute('name'));
+    expect(el().hasAttribute('id')).toBeTruthy();
+    expect(el().hasAttribute('name')).toBeTruthy();
   });
 
   it('Renders custom seperator', () => {
@@ -44,7 +44,7 @@ describe('breadcrumb', () => {
       seperator: m(Icon, { name: Icons.ACTIVITY })
     });
 
-    assert(hasChildClass(el(), `${Classes.ICON}-${Icons.ACTIVITY}`));
+    expect(hasChildClass(el(), `${Classes.ICON}-${Icons.ACTIVITY}`)).toBeTruthy();
   });
 
   function mount(attrs: IBreadcrumbAttrs) {

@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, beforeEach, expect, it } from 'vitest';
 import { Callout, Classes, ICalloutAttrs, Icons } from '@/';
 import { hasClass, hasChildClass } from '@test-utils';
 
@@ -16,12 +16,12 @@ describe('callout', () => {
       style: 'margin: 0'
     });
 
-    assert(hasClass(el(), Classes.CALLOUT));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(hasClass(el(), Classes.XS));
+    expect(hasClass(el(), Classes.CALLOUT)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
 
-    assert(el().hasAttribute('style'));
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Renders children', () => {
@@ -31,10 +31,10 @@ describe('callout', () => {
       icon: Icons.ACTIVITY
     });
 
-    assert(hasClass(el(), Classes.CALLOUT_ICON));
-    assert(hasChildClass(el(), Classes.CALLOUT_CONTENT));
-    assert(hasChildClass(el(), Classes.CALLOUT_HEADER));
-    assert(hasChildClass(el(), Classes.ICON));
+    expect(hasClass(el(), Classes.CALLOUT_ICON)).toBeTruthy();
+    expect(hasChildClass(el(), Classes.CALLOUT_CONTENT)).toBeTruthy();
+    expect(hasChildClass(el(), Classes.CALLOUT_HEADER)).toBeTruthy();
+    expect(hasChildClass(el(), Classes.ICON)).toBeTruthy();
   });
 
   it('Passes through html attrs', () => {
@@ -43,14 +43,14 @@ describe('callout', () => {
       name: 'name'
     });
 
-    assert(el().hasAttribute('id'));
-    assert(el().hasAttribute('name'));
+    expect(el().hasAttribute('id')).toBeTruthy();
+    expect(el().hasAttribute('name')).toBeTruthy();
   });
 
   it('Renders dismiss icon when onDismiss set', () => {
     mount({ onDismiss: () => null });
 
-    assert(hasChildClass(el(), Classes.CALLOUT_DISMISS_ICON));
+    expect(hasChildClass(el(), Classes.CALLOUT_DISMISS_ICON)).toBeTruthy();
   });
 
   function mount(attrs: ICalloutAttrs) {

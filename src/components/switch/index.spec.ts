@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, beforeEach, expect, it } from 'vitest';
 import { Switch, Classes } from '@/';
 import { hasClass, hasChildClass } from '@test-utils';
 import { IControlAttrs } from '../base-control';
@@ -20,16 +20,16 @@ describe('switch', () => {
       style: 'margin: 0'
     });
 
-    assert(hasClass(el(), Classes.CONTROL));
-    assert(hasClass(el(), Classes.SWITCH));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(hasClass(el(), Classes.XS));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.CONTROL)).toBeTruthy();
+    expect(hasClass(el(), Classes.SWITCH)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
 
-    assert(hasChildClass(el(), Classes.CONTROL_INDICATOR));
+    expect(hasChildClass(el(), Classes.CONTROL_INDICATOR)).toBeTruthy();
 
-    assert(el().innerHTML.includes('label'));
+    expect(el().innerHTML.includes('label')).toBeTruthy();
   });
 
   it('Passes through attrs to input', () => {
@@ -38,14 +38,14 @@ describe('switch', () => {
       name: 'name'
     });
 
-    assert(input().hasAttribute('id'));
-    assert(input().hasAttribute('name'));
+    expect(input().hasAttribute('id')).toBeTruthy();
+    expect(input().hasAttribute('name')).toBeTruthy();
   });
 
   it('Handles defaultChecked', () => {
     mount({ defaultChecked: true });
 
-    assert(input().checked);
+    expect(input().checked).toBeTruthy();
   });
 
   it('Handles disabled', () => {
@@ -53,7 +53,7 @@ describe('switch', () => {
 
     el().dispatchEvent(new Event('click'));
 
-    assert(!input().checked);
+    expect(input().checked).toBeFalsy();
   });
 
   it('Handles readonly', () => {
@@ -61,7 +61,7 @@ describe('switch', () => {
 
     el().dispatchEvent(new Event('click'));
 
-    assert(!input().checked);
+    expect(input().checked).toBeFalsy();
   });
 
   it('Handles onchange', () => {
@@ -70,7 +70,7 @@ describe('switch', () => {
 
     el().click();
 
-    assert.equal(count, 1);
+    expect(count).toBe(1);
   });
 
   describe('controlled mode', () => {
@@ -82,11 +82,11 @@ describe('switch', () => {
         onchange: () => checked = !checked
       });
 
-      assert(!input().checked);
+      expect(input().checked).toBeFalsy();
 
       el().click();
 
-      assert(input().checked);
+      expect(input().checked).toBeTruthy();
     });
   });
 

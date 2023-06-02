@@ -1,7 +1,7 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, beforeEach, expect, it } from 'vitest';
 import { Grid, IGridAttrs, Classes, Col, IColAttrs, IBreakpointMap } from '@/';
-import { hasClass, TIMEOUT } from '@test-utils';
+import { hasClass, sleep, TIMEOUT } from '@test-utils';
 
 describe('grid', () => {
   const el = () => document.body.firstChild as HTMLElement;
@@ -17,17 +17,17 @@ describe('grid', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(el(), Classes.GRID));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), `${Classes.GRID}-align-top`));
-    assert(hasClass(el(), `${Classes.GRID}-justify-center`));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.GRID)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), `${Classes.GRID}-align-top`)).toBeTruthy();
+    expect(hasClass(el(), `${Classes.GRID}-justify-center`)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Renders children', () => {
     mount({});
 
-    assert.equal(cols().length, 2);
+    expect(cols().length).toBe(2);
   });
 
   it('Passes through html attrs', () => {
@@ -36,38 +36,34 @@ describe('grid', () => {
       name: 'name'
     });
 
-    assert(el().hasAttribute('id'));
-    assert(el().hasAttribute('name'));
+    expect(el().hasAttribute('id')).toBeTruthy();
+    expect(el().hasAttribute('name')).toBeTruthy();
   });
 
   it('Sets correct element to render into', () => {
     mount({ element: 'form' });
 
-    assert.equal(el().tagName, 'FORM');
+    expect(el().tagName).toBe('FORM');
   });
 
   it('Sets gutter margin', () => {
     mount({ gutter: 20 });
 
-    assert.equal(el().style.marginLeft, '-10px');
-    assert.equal(el().style.marginRight, '-10px');
+    expect(el().style.marginLeft).toBe('-10px');
+    expect(el().style.marginRight).toBe('-10px');
   });
 
-  it('Handles responsive gutter margin', (done) => {
+  it('Handles responsive gutter margin', async () => {
     const gutter = { xs: 50 } as IBreakpointMap;
 
     mount({ gutter });
 
-    setTimeout(() => {
-      // Resize to xs
-      window.resizeTo(100, 100);
+    window.resizeTo(100, 100);
 
-      setTimeout(() => {
-        assert.equal(el().style.marginLeft, '-25px');
-        assert.equal(el().style.marginRight, '-25px');
-        done();
-      });
-    }, TIMEOUT);
+    await sleep(TIMEOUT);
+
+    expect(el().style.marginLeft).toBe('-25px');
+    expect(el().style.marginRight).toBe('-25px');
   });
 
   describe('column', () => {
@@ -82,11 +78,11 @@ describe('grid', () => {
         style: 'margin: 0'
       });
 
-      assert(hasClass(col(), `${Classes.COL}-1`));
-      assert(hasClass(col(), Classes.POSITIVE));
-      assert(hasClass(col(), `${Classes.COL}-offset-1`));
-      assert(hasClass(col(), `${Classes.COL}-order-1`));
-      assert(col().hasAttribute('style'));
+      expect(hasClass(col(), `${Classes.COL}-1`)).toBeTruthy();
+      expect(hasClass(col(), Classes.POSITIVE)).toBeTruthy();
+      expect(hasClass(col(), `${Classes.COL}-offset-1`)).toBeTruthy();
+      expect(hasClass(col(), `${Classes.COL}-order-1`)).toBeTruthy();
+      expect(col().hasAttribute('style')).toBeTruthy();
     });
 
     it('Passes through html attrs', () => {
@@ -95,33 +91,29 @@ describe('grid', () => {
         name: 'name'
       });
 
-      assert(col().hasAttribute('id'));
-      assert(col().hasAttribute('name'));
+      expect(col().hasAttribute('id')).toBeTruthy();
+      expect(col().hasAttribute('name')).toBeTruthy();
     });
 
     it('Sets gutter padding', () => {
       mount({ gutter: 20 });
 
-      assert.equal(col().style.paddingLeft, '10px');
-      assert.equal(col().style.paddingRight, '10px');
+      expect(col().style.paddingLeft).toBe('10px');
+      expect(col().style.paddingRight).toBe('10px');
     });
 
-    it('Handles responsive padding', done => {
+    it('Handles responsive padding', async () => {
       const gutter = { xs: 50 } as IBreakpointMap;
 
       mount({ gutter });
 
-      setTimeout(() => {
+      // Resize to xs
+      window.resizeTo(100, 100);
 
-        // Resize to xs
-        window.resizeTo(100, 100);
+      await sleep(TIMEOUT);
 
-        setTimeout(() => {
-          assert.equal(col().style.paddingLeft, '25px');
-          assert.equal(col().style.paddingRight, '25px');
-          done();
-        });
-      }, TIMEOUT);
+      expect(el().style.marginLeft).toBe('-25px');
+      expect(el().style.marginRight).toBe('-25px');
     });
   });
 

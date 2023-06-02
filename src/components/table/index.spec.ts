@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Table, ITableAttrs, Classes } from '@/';
 import { hasClass } from '@test-utils';
 
@@ -17,12 +17,12 @@ describe('table', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(el(), Classes.TABLE));
-    assert(hasClass(el(), Classes.TABLE_BORDERED));
-    assert(hasClass(el(), Classes.TABLE_INTERACTIVE));
-    assert(hasClass(el(), Classes.TABLE_STRIPED));
+    expect(hasClass(el(), Classes.TABLE)).toBeTruthy();
+    expect(hasClass(el(), Classes.TABLE_BORDERED)).toBeTruthy();
+    expect(hasClass(el(), Classes.TABLE_INTERACTIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.TABLE_STRIPED)).toBeTruthy();
 
-    assert(el().hasAttribute('style'));
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Passes through html attrs', () => {
@@ -31,8 +31,8 @@ describe('table', () => {
       name: 'name'
     });
 
-    assert(el().hasAttribute('id'));
-    assert(el().hasAttribute('name'));
+    expect(el().hasAttribute('id')).toBeTruthy();
+    expect(el().hasAttribute('name')).toBeTruthy();
   });
 
   function mount(attrs: ITableAttrs, children?: m.Children) {

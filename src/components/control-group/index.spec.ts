@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, beforeEach, expect, it } from 'vitest';
 import { ControlGroup, Classes, IControlGroupAttrs, Button, Input } from '@/';
 import { hasClass } from '@test-utils';
 
@@ -13,15 +13,15 @@ describe('control-group', () => {
       style: 'margin: 0'
     });
 
-    assert(hasClass(el(), Classes.CONTROL_GROUP));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.CONTROL_GROUP)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Renders children', () => {
     mount({});
 
     const length = el().children.length;
-    assert.equal(length, 2);
+    expect(length).toBe(2);
   });
 
   it('Passes through html attrs', () => {
@@ -30,8 +30,8 @@ describe('control-group', () => {
       name: 'name'
     });
 
-    assert(el().hasAttribute('id'));
-    assert(el().hasAttribute('name'));
+    expect(el().hasAttribute('id')).toBeTruthy();
+    expect(el().hasAttribute('name')).toBeTruthy();
   });
 
   function mount(attrs: IControlGroupAttrs) {

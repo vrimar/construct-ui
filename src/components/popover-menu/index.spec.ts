@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, expect, it } from 'vitest';
 import { Classes, IPopoverMenuAttrs } from '@/';
 import { PopoverMenu } from '.';
 import { MenuItem } from '../menu';
@@ -16,8 +16,8 @@ describe('popover-menu', () => {
       ]
     });
 
-    assert(hasClass(popover(), Classes.POPOVER_MENU));
-    assert(hasChildClass(popover(), Classes.MENU));
+    expect(hasClass(popover(), Classes.POPOVER_MENU)).toBeTruthy();
+    expect(hasChildClass(popover(), Classes.MENU)).toBeTruthy();
   });
 
   function mount(attrs: Partial<IPopoverMenuAttrs>) {

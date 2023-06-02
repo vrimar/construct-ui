@@ -1,7 +1,7 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Classes, SelectList, ISelectListAttrs, Button } from '@/';
-import { hasClass, hasChildClass, TIMEOUT } from '@test-utils';
+import { hasClass, hasChildClass, TIMEOUT, sleep } from '@test-utils';
 
 const items = ['1', '2', '3'];
 
@@ -17,39 +17,37 @@ describe('select-list', () => {
   it('Renders correctly', () => {
     mount();
 
-    assert(hasClass(el(), Classes.SELECT_LIST));
+    expect(hasClass(el(), Classes.SELECT_LIST)).toBeTruthy();
   });
 
   it('Renders header', () => {
     const header = 'header';
     mount({ header });
 
-    assert(el().innerHTML.includes(header));
+    expect(el().innerHTML.includes(header)).toBeTruthy();
   });
 
   it('Renders footer', () => {
     const footer = 'footer';
     mount({ footer });
 
-    assert(el().innerHTML.includes(footer));
+    expect(el().innerHTML.includes(footer)).toBeTruthy();
   });
 
   it('Sets loading class', () => {
     mount({ loading: true });
 
-    assert(hasChildClass(el(), Classes.SPINNER_ACTIVE));
+    expect(hasChildClass(el(), Classes.SPINNER_ACTIVE)).toBeTruthy();
   });
 
-  it('closeOnSelect=true closes popover on item click', (done) => {
+  it('closeOnSelect=true closes popover on item click', async () => {
     mount({ closeOnSelect: true });
 
     const item = el().querySelector(`.${Classes.LIST}`)!.firstChild!;
     item.dispatchEvent(new Event('click'));
 
-    setTimeout(() => {
-      assert(!el());
-      done();
-    }, TIMEOUT);
+    await sleep(TIMEOUT);
+    expect(el()).toBeFalsy();
   });
 
   it('Passes through popoverAttrs', () => {
@@ -61,7 +59,7 @@ describe('select-list', () => {
       }
     });
 
-    assert(hasClass(popover(), Classes.POSITIVE));
+    expect(hasClass(popover(), Classes.POSITIVE)).toBeTruthy();
   });
 
   function mount(attrs?: Partial<ISelectListAttrs<any>>) {

@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Tag, TagInput, ITagInputAttrs, Classes, Keys } from '@/';
 import { hasClass, hasChildClass, keyboardEvent as simulateKeyDown } from '@shared/test/utils';
 import { Button } from '../button';
@@ -24,12 +24,12 @@ describe('tag-input', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(el(), Classes.TAG_INPUT));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(hasClass(el(), Classes.XS));
-    assert(hasClass(el(), Classes.FLUID));
-    assert.equal(el().style.color, 'red');
+    expect(hasClass(el(), Classes.TAG_INPUT)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
+    expect(hasClass(el(), Classes.FLUID)).toBeTruthy();
+    expect(el().style.color).toBe('red');
   });
 
   it('Renders child tags', () => {
@@ -37,34 +37,34 @@ describe('tag-input', () => {
 
     const tags = el().querySelectorAll(`.${Classes.TAG}`);
 
-    assert.equal(tags.length, 2);
+    expect(tags.length).toBe(2);
   });
 
   it('Renders left content', () => {
     mount({ contentLeft: m(Button) });
 
-    assert(hasChildClass(el(), Classes.BUTTON));
-    assert(el().firstChild === button());
+    expect(hasChildClass(el(), Classes.BUTTON)).toBeTruthy();
+    expect(el().firstChild).toBe(button());
   });
 
   it('Renders right content', () => {
     mount({ contentRight: m(Button) });
 
-    assert(hasChildClass(el(), Classes.BUTTON));
-    assert(el().lastChild === button());
+    expect(hasChildClass(el(), Classes.BUTTON));
+    expect(el().lastChild).toBe(button());
   });
 
   it('Clicking should focus input', () => {
     mount();
 
     el().dispatchEvent(new Event('click'));
-    assert.equal(input(), document.activeElement);
+    expect(input()).toBe(document.activeElement);
   });
 
   it('disabled=true should prevent input focus on click', () => {
     mount({ disabled: true });
     el().dispatchEvent(new Event('click'));
-    assert.notEqual(input(), document.activeElement);
+    expect(input()).not.toBe(document.activeElement);
   });
 
   it('ENTER key calls onAdd when input has value ', () => {
@@ -74,7 +74,7 @@ describe('tag-input', () => {
     input().value = 'test';
     input().focus();
     simulateKeyDown(input(), Keys.ENTER);
-    assert.equal(count, 1);
+    expect(count).toBe(1);
   });
 
   it('addOnBlur=true calls onAdd when input loses focus', () => {
@@ -88,7 +88,7 @@ describe('tag-input', () => {
     input().focus();
     input().blur();
 
-    assert.equal(count, 1);
+    expect(count).toBe(1);
   });
 
   it('passes through inputAttrs', () => {
@@ -101,8 +101,8 @@ describe('tag-input', () => {
       }
     });
 
-    assert.equal(input().name, name);
-    assert.equal(input().id, name);
+    expect(input().name).toBe(name);
+    expect(input().id).toBe(name);
   });
 
   function mount(attrs?: Partial<ITagInputAttrs>) {

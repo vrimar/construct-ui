@@ -1,7 +1,7 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Menu, MenuItem, IMenuAttrs, IMenuItemAttrs, Classes, IPopoverAttrs, Icons } from '@/';
-import { hasClass, hasChildClass, TIMEOUT } from '@test-utils';
+import { hasClass, hasChildClass, TIMEOUT, sleep } from '@test-utils';
 
 describe('menu', () => {
   const el = () => document.body.firstChild as HTMLElement;
@@ -17,16 +17,16 @@ describe('menu', () => {
       style: 'margin:0'
     });
 
-    assert(hasClass(el(), Classes.MENU));
-    assert(hasClass(el(), Classes.BASIC));
-    assert(hasClass(el(), Classes.XS));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.MENU)).toBeTruthy();
+    expect(hasClass(el(), Classes.BASIC)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Renders children', () => {
     mount({});
 
-    assert.equal(el().children.length, 1);
+    expect(el().children.length).toBe(1);
   });
 
   it('Passes through html attrs', () => {
@@ -35,8 +35,8 @@ describe('menu', () => {
       name: 'name'
     });
 
-    assert(el().hasAttribute('id'));
-    assert(el().hasAttribute('name'));
+    expect(el().hasAttribute('id')).toBeTruthy();
+    expect(el().hasAttribute('name')).toBeTruthy();
   });
 
   describe('menu-item', () => {
@@ -47,10 +47,10 @@ describe('menu', () => {
 
       mount({}, { submenu });
 
-      assert(hasChildClass(menuItem(), `${Classes.ICON}-${Icons.CHEVRON_RIGHT}`));
+      expect(hasChildClass(menuItem(), `${Classes.ICON}-${Icons.CHEVRON_RIGHT}`)).toBeTruthy();
     });
 
-    it('Passes through Popover attrs to submenu', done => {
+    it('Passes through Popover attrs to submenu', async () => {
       const submenu = m(Menu, m(MenuItem));
 
       mount({}, {
@@ -63,15 +63,14 @@ describe('menu', () => {
 
       menuItem().dispatchEvent(new MouseEvent('mouseenter'));
 
-      setTimeout(() => {
-        const popover = document.body.querySelector(`.${Classes.POPOVER}`) as HTMLElement;
-        assert(hasClass(popover, Classes.POSITIVE));
-        assert.equal(popover.style.color, 'red');
-        done();
-      }, TIMEOUT);
+      await sleep(TIMEOUT);
+
+      const popover = document.body.querySelector(`.${Classes.POPOVER}`) as HTMLElement;
+      expect(hasClass(popover, Classes.POSITIVE)).toBeTruthy();
+      expect(popover.style.color).toBe('red');
     });
 
-    it('Triggers submenu popover on mouse hover', (done) => {
+    it('Triggers submenu popover on mouse hover', async () => {
       let count = 0;
       const submenu = m(Menu, m(MenuItem));
 
@@ -84,10 +83,9 @@ describe('menu', () => {
 
       menuItem().dispatchEvent(new MouseEvent('mouseenter'));
 
-      setTimeout(() => {
-        assert.equal(count, 1);
-        done();
-      }, TIMEOUT);
+      await sleep(TIMEOUT);
+
+      expect(count).toBe(1);
     });
   });
 

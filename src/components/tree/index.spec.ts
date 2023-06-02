@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Tree, TreeNode, Classes } from '@/';
 import { hasClass, hasChildClass } from '@test-utils';
 import { ITreeAttrs } from './Tree';
@@ -18,22 +18,22 @@ describe('tree', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(el(), Classes.TREE));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert.equal(el().style.color, 'red');
+    expect(hasClass(el(), Classes.TREE)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(el().style.color).toBe('red');
   });
 
   it('Passes through html attrs', () => {
     const id = 'id';
     mount({ id });
 
-    assert.equal(el().id, id);
+    expect(el().id).toBe(id);
   });
 
   it('Renders nodes', () => {
     mount();
 
-    assert.equal(el().children.length, 2);
+    expect(el().children.length).toBe(2);
   });
 
   describe('tree-node', () => {
@@ -51,11 +51,11 @@ describe('tree', () => {
         ]
       });
 
-      assert(hasClass(node(), Classes.TREE_NODE));
-      assert(hasChildClass(node(), Classes.TREE_NODE_CONTENT));
-      assert(hasClass(node(), Classes.POSITIVE));
-      assert.equal(node().style.color, 'red');
-      assert(node().innerHTML.includes(label));
+      expect(hasClass(node(), Classes.TREE_NODE)).toBeTruthy();
+      expect(hasChildClass(node(), Classes.TREE_NODE_CONTENT)).toBeTruthy();
+      expect(hasClass(node(), Classes.POSITIVE)).toBeTruthy();
+      expect(node().style.color).toBe('red');
+      expect(node().innerHTML.includes(label)).toBeTruthy();
     });
 
     it('Renders left content', () => {
@@ -68,8 +68,8 @@ describe('tree', () => {
         ]
       });
 
-      assert(hasChildClass(node(), Classes.TREE_NODE_CONTENT_LEFT));
-      assert(hasChildClass(node(), Classes.TAG));
+      expect(hasChildClass(node(), Classes.TREE_NODE_CONTENT_LEFT)).toBeTruthy();
+      expect(hasChildClass(node(), Classes.TAG)).toBeTruthy();
     });
 
     it('Renders right content', () => {
@@ -82,8 +82,8 @@ describe('tree', () => {
         ]
       });
 
-      assert(hasChildClass(node(), Classes.TREE_NODE_CONTENT_RIGHT));
-      assert(hasChildClass(node(), Classes.TAG));
+      expect(hasChildClass(node(), Classes.TREE_NODE_CONTENT_RIGHT)).toBeTruthy();
+      expect(hasChildClass(node(), Classes.TAG)).toBeTruthy();
     });
 
     it('Renders caret when hasCaret=true', () => {
@@ -96,8 +96,8 @@ describe('tree', () => {
         ]
       });
 
-      assert(hasChildClass(node(), Classes.TREE_NODE_CARET));
-      assert(hasChildClass(node(), Classes.TREE_NODE_CARET_CLOSED));
+      expect(hasChildClass(node(), Classes.TREE_NODE_CARET)).toBeTruthy();
+      expect(hasChildClass(node(), Classes.TREE_NODE_CARET_CLOSED)).toBeTruthy();
     });
 
     it('isExpanded=true sets correct class', () => {
@@ -110,7 +110,7 @@ describe('tree', () => {
         ]
       });
 
-      assert(hasClass(node(), Classes.TREE_NODE_EXPANDED));
+      expect(hasClass(node(), Classes.TREE_NODE_EXPANDED)).toBeTruthy();
     });
 
     it('Renders child nodes when expanded', () => {
@@ -126,7 +126,7 @@ describe('tree', () => {
         ]
       });
 
-      assert(hasChildClass(node(), Classes.TREE_NODE_LIST));
+      expect(hasChildClass(node(), Classes.TREE_NODE_LIST)).toBeTruthy();
     });
 
     it('isSelected=true sets correct class', () => {
@@ -139,7 +139,7 @@ describe('tree', () => {
         ]
       });
 
-      assert(hasClass(node(), Classes.TREE_NODE_SELECTED));
+      expect(hasClass(node(), Classes.TREE_NODE_SELECTED)).toBeTruthy();
     });
 
     describe('interaction', () => {
@@ -156,7 +156,7 @@ describe('tree', () => {
         });
 
         node().dispatchEvent(new Event('click'));
-        assert.equal(count, 1);
+        expect(count).toBe(1);
       });
 
       it('Handles onExpand when hasCaret=true', () => {
@@ -173,7 +173,7 @@ describe('tree', () => {
         });
 
         nodeCaret().dispatchEvent(new Event('click'));
-        assert.equal(count, 1);
+        expect(count).toBe(1);
       });
 
       it('Handles onCollapse when hasCaret=true and isExpanded=true', () => {
@@ -191,7 +191,7 @@ describe('tree', () => {
         });
 
         nodeCaret().dispatchEvent(new Event('click'));
-        assert.equal(count, 1);
+        expect(count).toBe(1);
       });
     });
 

@@ -1,7 +1,7 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Classes, InputSelect, IInputSelectAttrs } from '@/';
-import { hasClass, TIMEOUT } from '@test-utils';
+import { hasClass, sleep, TIMEOUT } from '@test-utils';
 
 const items = ['1', '2', '3'];
 const value = '1';
@@ -19,8 +19,8 @@ describe('input-select', () => {
   it('Renders correctly', () => {
     mount();
 
-    assert(input());
-    assert(hasClass(el(), Classes.INPUT_SELECT));
+    expect(input()).toBeTruthy();
+    expect(hasClass(el(), Classes.INPUT_SELECT)).toBeTruthy();
   });
 
   it('Input value is set when closed', () => {
@@ -32,17 +32,17 @@ describe('input-select', () => {
       value
     });
 
-    assert.equal(input().value, value);
+    expect(input().value).toBe(value);
   });
 
   it('Placeholder is set to value when open', () => {
     mount({ value });
 
-    assert.notEqual(input().value, value);
-    assert.equal(input().placeholder, value);
+    expect(input().value).not.toBe(value);
+    expect(input().placeholder).toBe(value);
   });
 
-  it('Focus opens list', done => {
+  it('Focus opens list', async () => {
     mount({
       popoverAttrs: {
         defaultIsOpen: false,
@@ -52,10 +52,9 @@ describe('input-select', () => {
 
     input().focus();
 
-    setTimeout(() => {
-      assert(el());
-      done();
-    }, TIMEOUT);
+    await sleep(TIMEOUT);
+
+    expect(el()).toBeTruthy();
   });
 
   it('Passes through inputAttrs', () => {
@@ -63,7 +62,7 @@ describe('input-select', () => {
       inputAttrs: { class: Classes.POSITIVE }
     });
 
-    assert(hasClass(inputContainer(), Classes.POSITIVE));
+    expect(hasClass(inputContainer(), Classes.POSITIVE)).toBeTruthy();
   });
 
   function mount(attrs?: Partial<IInputSelectAttrs<string>>) {

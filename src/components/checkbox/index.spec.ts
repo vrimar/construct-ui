@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, beforeEach, expect, it } from 'vitest';
 import { Checkbox, ICheckboxAttrs, Classes } from '@/';
 import { hasClass, hasChildClass } from '@test-utils';
 
@@ -18,16 +18,16 @@ describe('checkbox', () => {
       style: 'margin: 0'
     });
 
-    assert(hasClass(el(), Classes.CONTROL));
-    assert(hasClass(el(), Classes.CHECKBOX));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(hasClass(el(), Classes.XS));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.CONTROL)).toBeTruthy();
+    expect(hasClass(el(), Classes.CHECKBOX)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
 
-    assert(hasChildClass(el(), Classes.CONTROL_INDICATOR));
+    expect(hasChildClass(el(), Classes.CONTROL_INDICATOR)).toBeTruthy();
 
-    assert(el().innerHTML.includes('label'));
+    expect(el().innerHTML.includes('label')).toBeTruthy();
   });
 
   it('Passes through attrs to input', () => {
@@ -36,20 +36,20 @@ describe('checkbox', () => {
       name: 'name'
     });
 
-    assert(input().hasAttribute('id'));
-    assert(input().hasAttribute('name'));
+    expect(input().hasAttribute('id')).toBeTruthy();
+    expect(input().hasAttribute('name')).toBeTruthy();
   });
 
   it('Handles defaultChecked', () => {
     mount({ defaultChecked: true });
 
-    assert(input().checked);
+    expect(input().checked).toBeTruthy();
   });
 
   it('Handles defaultIndeterminate', () => {
     mount({ defaultIndeterminate: true });
 
-    assert(input().indeterminate);
+    expect(input().indeterminate).toBeTruthy();
   });
 
   it('Handles disabled', () => {
@@ -57,7 +57,7 @@ describe('checkbox', () => {
 
     el().dispatchEvent(new Event('click'));
 
-    assert(!input().checked);
+    expect(input().checked).toBeFalsy();
   });
 
   it('Handles readonly', () => {
@@ -65,7 +65,7 @@ describe('checkbox', () => {
 
     el().dispatchEvent(new Event('click'));
 
-    assert(!input().checked);
+    expect(input().checked).toBeFalsy();
   });
 
   it('Handles onchange', () => {
@@ -74,7 +74,7 @@ describe('checkbox', () => {
 
     el().click();
 
-    assert.equal(count, 1);
+    expect(count).toBe(1);
   });
 
   describe('controlled mode', () => {
@@ -86,21 +86,21 @@ describe('checkbox', () => {
         onchange: () => checked = !checked
       });
 
-      assert(!input().checked);
+      expect(input().checked).toBeFalsy();
 
       el().click();
 
-      assert(input().checked);
+      expect(input().checked).toBeTruthy();
     });
 
     it('Handles indeterminate', () => {
       mount({ indeterminate: true });
 
-      assert(input().indeterminate);
+      expect(input().indeterminate).toBeTruthy();
 
       input().dispatchEvent(new Event('click'));
 
-      assert(input().indeterminate);
+      expect(input().indeterminate).toBeTruthy();
     });
   });
 

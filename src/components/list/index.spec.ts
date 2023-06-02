@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { List, ListItem, IListAttrs, IListItemAttrs, Classes } from '@/';
 import { hasClass, hasChildClass } from '@test-utils';
 
@@ -18,16 +18,16 @@ describe('list', () => {
       style: 'margin:0'
     });
 
-    assert(hasClass(el(), Classes.LIST));
-    assert(hasClass(el(), Classes.INTERACTIVE));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(el().hasAttribute('style'));
+    expect(hasClass(el(), Classes.LIST)).toBeTruthy();
+    expect(hasClass(el(), Classes.INTERACTIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Renders children', () => {
     mount({});
 
-    assert.equal(el().children.length, 1);
+    expect(el().children.length).toBe(1);
   });
 
   it('Passes through html attrs', () => {
@@ -36,8 +36,8 @@ describe('list', () => {
       name: 'name'
     });
 
-    assert(el().hasAttribute('id'));
-    assert(el().hasAttribute('name'));
+    expect(el().hasAttribute('id')).toBeTruthy();
+    expect(el().hasAttribute('name')).toBeTruthy();
   });
 
   describe('list-item', () => {
@@ -50,26 +50,26 @@ describe('list', () => {
         style: 'margin:0'
       });
 
-      assert(hasClass(listItem(), Classes.LIST_ITEM));
-      assert(hasClass(listItem(), Classes.ACTIVE));
-      assert(hasClass(listItem(), Classes.POSITIVE));
-      assert(hasClass(listItem(), Classes.SELECTED));
-      assert(listItem().hasAttribute('style'));
-      assert.equal(listItem().innerHTML, 'label');
+      expect(hasClass(listItem(), Classes.LIST_ITEM)).toBeTruthy();
+      expect(hasClass(listItem(), Classes.ACTIVE)).toBeTruthy();
+      expect(hasClass(listItem(), Classes.POSITIVE)).toBeTruthy();
+      expect(hasClass(listItem(), Classes.SELECTED)).toBeTruthy();
+      expect(listItem().hasAttribute('style')).toBeTruthy();
+      expect(listItem().innerHTML).toBe('label');
     });
 
     it('Renders left content', () => {
       mount({}, { contentLeft: 'contentLeft' });
 
-      assert(hasChildClass(listItem(), Classes.LIST_ITEM_CONTENT_LEFT));
-      assert.equal(leftContent().innerHTML, 'contentLeft');
+      expect(hasChildClass(listItem(), Classes.LIST_ITEM_CONTENT_LEFT));
+      expect(leftContent().innerHTML).toBe('contentLeft');
     });
 
     it('Renders right content', () => {
       mount({}, { contentRight: 'contentRight' });
 
-      assert(hasChildClass(listItem(), Classes.LIST_ITEM_CONTENT_RIGHT));
-      assert.equal(rightContent().innerHTML, 'contentRight');
+      expect(hasChildClass(listItem(), Classes.LIST_ITEM_CONTENT_RIGHT));
+      expect(rightContent().innerHTML).toBe('contentRight');
     });
 
     it('Clicking right/left content should prevent onclick callback', () => {
@@ -85,7 +85,7 @@ describe('list', () => {
       leftContent().dispatchEvent(new Event('click', { bubbles: true }));
       rightContent().dispatchEvent(new Event('click', { bubbles: true }));
 
-      assert.equal(count, 1);
+      expect(count).toBe(1);
     });
 
     it('Clicking right/left content should call onclick callback when allowOnContentClick=true', () => {
@@ -101,7 +101,7 @@ describe('list', () => {
       listItem().dispatchEvent(new Event('click', { bubbles: true }));
       leftContent().dispatchEvent(new Event('click', { bubbles: true }));
       rightContent().dispatchEvent(new Event('click', { bubbles: true }));
-      assert.equal(count, 3);
+      expect(count).toBe(3);
     });
   });
 

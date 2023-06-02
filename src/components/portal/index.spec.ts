@@ -1,7 +1,7 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Button, Portal, IPortalAttrs, Classes } from '@/';
-import { hasClass, hasChildClass, TIMEOUT } from '@test-utils';
+import { hasClass, hasChildClass, TIMEOUT, sleep } from '@test-utils';
 
 describe('portal', () => {
   const portal = () => document.body.querySelector(`.${Classes.PORTAL}`) as HTMLElement;
@@ -17,9 +17,9 @@ describe('portal', () => {
       style: 'color: red'
     });
 
-    assert(hasClass(portal(), Classes.PORTAL));
-    assert(hasClass(portal(), Classes.POSITIVE));
-    assert.equal(portal().style.color, 'red');
+    expect(hasClass(portal(), Classes.PORTAL)).toBeTruthy();
+    expect(hasClass(portal(), Classes.POSITIVE)).toBeTruthy();
+    expect(portal().style.color).toBe('red');
   });
 
   it('Calls onContentMount', () => {
@@ -29,7 +29,7 @@ describe('portal', () => {
       onContentMount: () => count++
     });
 
-    assert.equal(count, 1);
+    expect(count).toBe(1);
   });
 
   it('Mounts to specified container', () => {
@@ -39,28 +39,26 @@ describe('portal', () => {
 
     mount({ container });
 
-    assert(container.children[0].classList.contains(Classes.PORTAL));
+    expect(container.children[0].classList.contains(Classes.PORTAL)).toBeTruthy();
   });
 
-  it('Updates children on redraw', done => {
+  it('Updates children on redraw', async () => {
     const component = mount({}, m(Button));
     const hasButton = () => hasChildClass(portal(), Classes.BUTTON);
-    assert(hasButton());
+    expect(hasButton()).toBeTruthy();
 
     component.showChildren = false;
     m.redraw();
 
-    setTimeout(() => {
-      assert(!hasButton());
-      done();
-    }, TIMEOUT);
+    await sleep(TIMEOUT);
+    expect(hasButton()).toBeFalsy();
   });
 
   it('Removes div from body on unmount', () => {
     mount({});
-    assert(portal());
+    expect(portal()).toBeTruthy();
     m.mount(document.body, null);
-    assert(!portal());
+    expect(portal()).toBeFalsy();
   });
 
   function mount(attrs?: IPortalAttrs, children?: m.Children) {

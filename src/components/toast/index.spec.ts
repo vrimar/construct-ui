@@ -1,7 +1,7 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Toaster, IToasterAttrs, Classes } from '@/';
-import { TIMEOUT, hasClass, hasChildClass } from '@shared/test/utils';
+import { TIMEOUT, hasClass, hasChildClass, sleep } from '@shared/test/utils';
 import { Icons } from '../icon';
 
 describe('toaster', () => {
@@ -10,7 +10,7 @@ describe('toaster', () => {
 
   afterEach(() => m.mount(document.body, null));
 
-  it('Renders correctly', done => {
+  it('Renders correctly', async () => {
     const position = 'bottom';
     const message = 'toast';
 
@@ -22,21 +22,19 @@ describe('toaster', () => {
     });
 
     toaster.show({ message });
+    await sleep(TIMEOUT);
 
-    setTimeout(() => {
-      assert(hasClass(el(), Classes.TOASTER));
-      assert(hasClass(el(), Classes.POSITIVE));
-      assert(hasClass(el(), Classes.TOASTER_INLINE));
-      assert(hasClass(el(), `${Classes.TOASTER}-${position}`));
+    expect(hasClass(el(), Classes.TOASTER)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.TOASTER_INLINE)).toBeTruthy();
+    expect(hasClass(el(), `${Classes.TOASTER}-${position}`)).toBeTruthy();
 
-      assert(toast().innerHTML.includes(message));
-      assert.equal(el().style.color, 'red');
-      done();
-    }, TIMEOUT);
+    expect(toast().innerHTML.includes(message)).toBeTruthy();
+    expect(el().style.color).toBe('red');
   });
 
   describe('Toast', () => {
-    it('Renders correctly', done => {
+    it('Renders correctly', async () => {
       const message = 'toast';
 
       const toaster = mountImperative();
@@ -49,24 +47,23 @@ describe('toaster', () => {
         id: 'id'
       });
 
-      setTimeout(() => {
-        assert(hasClass(toast(), Classes.TOAST));
-        assert(hasClass(toast(), Classes.POSITIVE));
+      await sleep(TIMEOUT);
 
-        assert(hasChildClass(toast(), Classes.TOAST_MESSAGE));
-        assert(hasChildClass(toast(), `${Classes.ICON}-${Icons.ACTIVITY}`));
+      expect(hasClass(toast(), Classes.TOAST)).toBeTruthy();
+      expect(hasClass(toast(), Classes.POSITIVE)).toBeTruthy();
 
-        // Check if dismiss icon present
-        assert(hasChildClass(toast(), `${Classes.ICON}-${Icons.X}`));
+      expect(hasChildClass(toast(), Classes.TOAST_MESSAGE)).toBeTruthy();
+      expect(hasChildClass(toast(), `${Classes.ICON}-${Icons.ACTIVITY}`)).toBeTruthy();
 
-        assert(toast().innerHTML.includes(message));
-        assert.equal(toast().style.color, 'red');
-        assert(toast().hasAttribute('id'));
-        done();
-      }, TIMEOUT);
+      // Check if dismiss icon present
+      expect(hasChildClass(toast(), `${Classes.ICON}-${Icons.X}`)).toBeTruthy();
+
+      expect(toast().innerHTML.includes(message)).toBeTruthy();
+      expect(toast().style.color).toBe('red');
+      expect(toast().hasAttribute('id')).toBeTruthy();
     });
 
-    it('Dismiss icon click calls onDismiss', done => {
+    it('Dismiss icon click calls onDismiss', async () => {
       let count = 0;
       const toaster = mountImperative();
 
@@ -74,84 +71,75 @@ describe('toaster', () => {
         onDismiss: () => count++
       });
 
-      setTimeout(() => {
-        const dismissIcon = toast().querySelector(`.${Classes.ICON}-${Icons.X}`)!;
-        dismissIcon.dispatchEvent(new Event('click'));
-        assert.equal(count, 1);
-        done();
-      }, TIMEOUT);
+      await sleep(TIMEOUT);
+
+      const dismissIcon = toast().querySelector(`.${Classes.ICON}-${Icons.X}`)!;
+      dismissIcon.dispatchEvent(new Event('click'));
+      expect(count).toBe(1);
     });
   });
 
   describe('imperative', () => {
-    it('show() toggles visiblity', done => {
+    it('show() toggles visiblity', async () => {
       const toaster = mountImperative();
 
       toaster.show({ message: 'toast' });
 
-      setTimeout(() => {
-        assert(toast());
-        done();
-      }, TIMEOUT);
+      await sleep(TIMEOUT);
+      expect(toast()).toBeTruthy();
     });
 
-    it('dismiss(key) hides toast', done => {
+    it('dismiss(key) hides toast', async () => {
       const toaster = mountImperative();
 
       const key = toaster.show({ timeout: 1000 });
 
-      setTimeout(() => {
-        assert(el());
-        toaster.dismiss(key);
-        m.redraw.sync();
-        assert(!el());
-        done();
-      }, TIMEOUT);
+      await sleep(TIMEOUT);
+
+      expect(el()).toBeTruthy();
+      toaster.dismiss(key);
+      m.redraw.sync();
+      expect(el()).toBeFalsy();
     });
 
-    it('update(key) updates toast', done => {
+    it('update(key) updates toast', async () => {
       const toaster = mountImperative();
       const message = 'updated-message';
 
       const key = toaster.show({});
+      await sleep(TIMEOUT);
 
-      setTimeout(() => {
-        toaster.update(key, { message });
-        m.redraw.sync();
-        assert(toast().innerHTML.includes(message));
-        done();
-      }, TIMEOUT);
+      toaster.update(key, { message });
+      m.redraw.sync();
+      expect(toast().innerHTML.includes(message)).toBeTruthy();
     });
 
-    it('clear() dismisses all toasts', done => {
+    it('clear() dismisses all toasts', async () => {
       const toaster = mountImperative();
 
       toaster.show({});
+      await sleep(TIMEOUT);
 
-      setTimeout(() => {
-        toaster.clear();
-        m.redraw.sync();
-        assert(!el());
-        done();
-      }, TIMEOUT);
+      toaster.clear();
+      m.redraw.sync();
+      expect(el()).toBeFalsy();
     });
   });
 
-  it('Correctly handles timeout', done => {
+  it('Correctly handles timeout', async () => {
     const toaster = mountImperative();
     const timeout = 100;
 
     toaster.show({ timeout });
 
-    setTimeout(() => {
-      m.redraw.sync();
-      assert(toast());
+    await sleep(TIMEOUT);
 
-      setTimeout(() => {
-        assert(!el());
-        done();
-      }, timeout);
-    }, TIMEOUT);
+    m.redraw.sync();
+    expect(toast()).toBeTruthy();
+
+    await sleep(timeout);
+
+    expect(el()).toBeFalsy();
   });
 
   function mountImperative(attrs?: Partial<IToasterAttrs>) {

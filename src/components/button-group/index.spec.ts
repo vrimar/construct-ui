@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, beforeEach, expect, it } from 'vitest';
 import { ButtonGroup, Classes, IButtonGroupAttrs, Button } from '@/';
 import { hasClass } from '@test-utils';
 
@@ -20,22 +20,22 @@ describe('button-group', () => {
       style: 'margin: 0'
     });
 
-    assert(hasClass(el(), Classes.BUTTON_GROUP));
-    assert(hasClass(el(), Classes.BASIC));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.FLUID));
-    assert(hasClass(el(), Classes.PRIMARY));
-    assert(hasClass(el(), Classes.ROUNDED));
-    assert(hasClass(el(), Classes.XS));
+    expect(hasClass(el(), Classes.BUTTON_GROUP)).toBeTruthy();
+    expect(hasClass(el(), Classes.BASIC)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.FLUID)).toBeTruthy();
+    expect(hasClass(el(), Classes.PRIMARY)).toBeTruthy();
+    expect(hasClass(el(), Classes.ROUNDED)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
 
-    assert(el().hasAttribute('style'));
+    expect(el().hasAttribute('style')).toBeTruthy();
   });
 
   it('Renders children', () => {
     mount({});
 
     const length = el().children.length;
-    assert.equal(length, 2);
+    expect(length).toBe(2);
   });
 
   it('Passes through html attrs', () => {
@@ -44,8 +44,8 @@ describe('button-group', () => {
       name: 'name'
     });
 
-    assert(el().hasAttribute('id'));
-    assert(el().hasAttribute('name'));
+    expect(el().hasAttribute('id')).toBeTruthy();
+    expect(el().hasAttribute('name')).toBeTruthy();
   });
 
   function mount(attrs: IButtonGroupAttrs) {

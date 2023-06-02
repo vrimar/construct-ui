@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Popover, Classes, IPopoverAttrs, Button, IButtonAttrs } from '@/';
 import { hasClass, hasChildClass, triggerEvent } from '@test-utils';
 
@@ -18,8 +18,8 @@ describe('popover', () => {
 
   it('Renders correctly when closed', () => {
     mount({});
-    assert(trigger());
-    assert(!popover());
+    expect(trigger()).toBeTruthy();
+    expect(popover()).toBeFalsy();
   });
 
   it('Renders correctly when open', () => {
@@ -29,10 +29,10 @@ describe('popover', () => {
       style: 'color: red'
     });
 
-    assert(hasChildClass(popover(), Classes.POPOVER_ARROW));
-    assert(hasChildClass(popover(), Classes.POPOVER_CONTENT));
-    assert(hasClass(popover(), Classes.POSITIVE));
-    assert.equal(popover().style.color, 'red');
+    expect(hasChildClass(popover(), Classes.POPOVER_ARROW)).toBeTruthy();
+    expect(hasChildClass(popover(), Classes.POPOVER_CONTENT)).toBeTruthy();
+    expect(hasClass(popover(), Classes.POSITIVE)).toBeTruthy();
+    expect(popover().style.color).toBe('red');
   });
 
   it('Renders content', () => {
@@ -40,45 +40,39 @@ describe('popover', () => {
       defaultIsOpen: true,
       content
     });
-    assert(popover().innerHTML.includes(content));
+    expect(popover().innerHTML.includes(content)).toBeTruthy();
   });
 
   it('Initially open when defaultIsOpen=true', () => {
     mount({ defaultIsOpen: true });
 
-    assert(popover());
+    expect(popover()).toBeTruthy();
   });
 
   describe('interactionType=click', () => {
-    it('trigger click opens popover', done => {
+    it('trigger click opens popover', async () => {
       mount({});
 
-      triggerEvent(trigger(), 'click', () => {
-        assert(popover());
-        done();
-      });
+      await triggerEvent(trigger(), 'click');
+      expect(popover()).toBeTruthy();
     });
 
-    it('trigger click closes popover when open', done => {
+    it('trigger click closes popover when open', async () => {
       mount({
         defaultIsOpen: true
       });
 
-      triggerEvent(trigger(), 'click', () => {
-        assert(!popover());
-        done();
-      });
+      await triggerEvent(trigger(), 'click');
+      expect(!popover()).toBeTruthy();
     });
 
-    it('outside click closes popover when open', done => {
+    it('outside click closes popover when open', async () => {
       mount({
         defaultIsOpen: true
       });
 
-      triggerEvent(document.body, 'mousedown', () => {
-        assert(!popover());
-        done();
-      });
+      await triggerEvent(document.body, 'mousedown');
+      expect(popover()).toBeFalsy();
     });
 
     it('trigger onclick is called', () => {
@@ -89,55 +83,47 @@ describe('popover', () => {
       });
 
       trigger().dispatchEvent(new Event('click'));
-      assert.equal(count, 1);
+      expect(count).toBe(1);
     });
   });
 
   describe('interactionType=click-trigger', () => {
-    it('trigger click opens popover', done => {
+    it('trigger click opens popover', async () => {
       mount({ interactionType: 'click-trigger' });
 
-      triggerEvent(trigger(), 'click', () => {
-        assert(popover());
-        done();
-      });
+      await triggerEvent(trigger(), 'click');
+      expect(popover()).toBeTruthy();
     });
 
-    it('trigger click closes popover when open', done => {
+    it('trigger click closes popover when open', async () => {
       mount({
         defaultIsOpen: true,
         interactionType: 'click-trigger'
       });
 
-      triggerEvent(trigger(), 'click', () => {
-        assert(!popover());
-        done();
-      });
+      await triggerEvent(trigger(), 'click');
+      expect(popover()).toBeFalsy();
     });
 
-    it('outside click does not close popover when open', done => {
+    it('outside click does not close popover when open', async () => {
       mount({
         defaultIsOpen: true,
         interactionType: 'click-trigger'
       });
 
-      triggerEvent(document.body, 'mousedown', () => {
-        assert(popover());
-        done();
-      });
+      await triggerEvent(document.body, 'mousedown');
+      expect(popover()).toBeTruthy();
     });
   });
 
   describe('interactionType=hover', () => {
-    it('trigger hover opens popover', done => {
+    it('trigger hover opens popover', async () => {
       mount({
         interactionType: 'hover'
       });
 
-      triggerEvent(trigger(), 'mouseenter', () => {
-        assert(popover());
-        done();
-      });
+      await triggerEvent(trigger(), 'mouseenter');
+      expect(popover()).toBeTruthy();
     });
 
     // TODO: Add mouseleave tests
@@ -150,23 +136,21 @@ describe('popover', () => {
       });
 
       trigger().dispatchEvent(new Event('mouseenter'));
-      assert.equal(count, 1);
+      expect(count).toBe(1);
     });
   });
 
-  it('closeOnContentClick=true triggers close', done => {
+  it('closeOnContentClick=true triggers close', async () => {
     mount({
       defaultIsOpen: true,
       closeOnContentClick: true
     });
 
-    triggerEvent(popover(), 'click', () => {
-      assert(!popover());
-      done();
-    });
+    await triggerEvent(popover(), 'click');
+    expect(popover()).toBeFalsy();
   });
 
-  it('Clicking on element with class=Classes.POPOVER_DISMISS triggers close', done => {
+  it('Clicking on element with class=Classes.POPOVER_DISMISS triggers close', async () => {
     mount({
       defaultIsOpen: true,
       content: m(Button, {
@@ -176,22 +160,18 @@ describe('popover', () => {
 
     const button = popover().querySelector(`.${Classes.POPOVER_DISSMISS}`)!;
 
-    triggerEvent(button, 'click', () => {
-      assert(!popover());
-      done();
-    });
+    await triggerEvent(button, 'click');
+    expect(popover()).toBeFalsy();
   });
 
-  it('Handles openOnTriggerFocus=true', done => {
+  it('Handles openOnTriggerFocus=true', async () => {
     mount({
       interactionType: 'hover',
       openOnTriggerFocus: true
     });
 
-    triggerEvent(trigger(), 'focus', () => {
-      assert(popover());
-      done();
-    });
+    await triggerEvent(trigger(), 'focus');
+    expect(popover()).toBeTruthy();
   });
 
   it('hasArrow=false hides arrow', () => {
@@ -200,7 +180,7 @@ describe('popover', () => {
       hasArrow: false
     });
 
-    assert(!hasChildClass(popover(), Classes.POPOVER_ARROW));
+    expect(hasChildClass(popover(), Classes.POPOVER_ARROW)).toBeFalsy();
   });
 
   it('Passes through attrs to Overlay', () => {
@@ -210,8 +190,8 @@ describe('popover', () => {
       overlayStyle: 'color: red'
     });
 
-    assert(hasClass(overlay(), Classes.POSITIVE));
-    assert.equal(overlay().style.color, 'red');
+    expect(hasClass(overlay(), Classes.POSITIVE)).toBeTruthy();
+    expect(overlay().style.color).toBe('red');
   });
 
   it('Correctly sets position', () => {
@@ -220,7 +200,7 @@ describe('popover', () => {
       position: 'right'
     });
 
-    assert.equal(popover().getAttribute('x-placement'), 'right');
+    expect(popover().getAttribute('x-placement')).toBe('right');
   });
 
   it('Correctly sets triggerActiveClass', () => {
@@ -231,7 +211,7 @@ describe('popover', () => {
       triggerActiveClass
     });
 
-    assert(hasClass(trigger(), triggerActiveClass));
+    expect(hasClass(trigger(), triggerActiveClass)).toBeTruthy();
   });
 
   // TODO: add controlled mode tests

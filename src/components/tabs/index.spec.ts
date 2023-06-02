@@ -1,5 +1,5 @@
 import m from 'mithril';
-import assert from 'assert';
+import { describe, afterEach, expect, it } from 'vitest';
 import { Classes } from '@/';
 import { hasClass } from '@test-utils';
 import { Tabs, ITabsAttrs } from './Tabs';
@@ -20,18 +20,18 @@ describe('tabs', () => {
       size: 'xs'
     });
 
-    assert(hasClass(el(), Classes.TABS));
-    assert(hasClass(el(), Classes.ALIGN_LEFT));
-    assert(hasClass(el(), Classes.TABS_BORDERED));
-    assert(hasClass(el(), Classes.POSITIVE));
-    assert(hasClass(el(), Classes.FLUID));
-    assert(hasClass(el(), Classes.XS));
-    assert(el().childNodes.length === 1);
+    expect(hasClass(el(), Classes.TABS)).toBeTruthy();
+    expect(hasClass(el(), Classes.ALIGN_LEFT)).toBeTruthy();
+    expect(hasClass(el(), Classes.TABS_BORDERED)).toBeTruthy();
+    expect(hasClass(el(), Classes.POSITIVE)).toBeTruthy();
+    expect(hasClass(el(), Classes.FLUID)).toBeTruthy();
+    expect(hasClass(el(), Classes.XS)).toBeTruthy();
+    expect(el().childNodes.length).toBe(1);
   });
 
   it('Passes through html attrs', () => {
     mount({ id: 1 });
-    assert(el().hasAttribute('id'));
+    expect(el().hasAttribute('id')).toBeTruthy();
   });
 
   describe('tab-item', () => {
@@ -43,15 +43,15 @@ describe('tabs', () => {
         loading: true
       });
 
-      assert(hasClass(tabItem(), Classes.TABS_ITEM));
-      assert(hasClass(tabItem(), Classes.ACTIVE));
-      assert(hasClass(tabItem(), Classes.POSITIVE));
-      assert(hasClass(tabItem(), Classes.LOADING));
+      expect(hasClass(tabItem(), Classes.TABS_ITEM)).toBeTruthy();
+      expect(hasClass(tabItem(), Classes.ACTIVE)).toBeTruthy();
+      expect(hasClass(tabItem(), Classes.POSITIVE)).toBeTruthy();
+      expect(hasClass(tabItem(), Classes.LOADING)).toBeTruthy();
     });
 
     it('Passes through html attrs', () => {
       mount({}, { id: 1, label: 'testing' });
-      assert(tabItem().hasAttribute('id'));
+      expect(tabItem().hasAttribute('id')).toBeTruthy();
     });
   });
 
