@@ -3,7 +3,7 @@ Construct-ui is a [Mithril.js](https://github.com/MithrilJS/mithril.js) UI libra
 
 ## Installation
 ```sh
- npm i --save construct-ui 
+ npm i --save construct-ui
 ```
 
 ## Usage
@@ -35,5 +35,4 @@ import 'path/to/node_modules/construct-ui/lib/index.css'
 + Chrome >= 54
 + Firefox >= 52
 + Edge >= 14
-+ IE 11 (requires a polyfill for  `Array.findIndex`, `Array.find` and `Array.includes`)
-+ Safari 9 +
++ Safari 9+

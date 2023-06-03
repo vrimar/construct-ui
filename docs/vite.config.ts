@@ -1,5 +1,4 @@
 import { defineConfig, PluginOption } from 'vite';
-import legacy from '@vitejs/plugin-legacy';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import checker from 'vite-plugin-checker';
 import packageJson from '../package.json';
@@ -26,9 +25,6 @@ export default defineConfig({
     tsconfigPaths(),
     checker({
       typescript: true
-    }),
-    legacy({
-      targets: ['defaults', 'not IE 11']
     })
   ]
 });

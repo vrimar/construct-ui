@@ -54,7 +54,6 @@
     "@types/tinycolor2": "^1.4.3",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
-    "@vitejs/plugin-legacy": "^4.0.4",
     "clean-css": "^5.3.2",
     "clean-css-cli": "^5.6.2",
     "dts-bundle-generator": "^8.0.1",
@@ -93,7 +92,6 @@
   ],
   "browserslist": [
     "> 1%",
-    "last 2 versions",
-    "not ie <= 10"
+    "last 2 versions"
   ]
 }
