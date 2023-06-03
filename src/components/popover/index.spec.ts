@@ -1,7 +1,7 @@
 import m from 'mithril';
 import { describe, afterEach, expect, it } from 'vitest';
 import { Popover, Classes, IPopoverAttrs, Button, IButtonAttrs } from '@/';
-import { hasClass, hasChildClass, triggerEvent } from '@test-utils';
+import { hasClass, hasChildClass, triggerEvent, sleep, TIMEOUT } from '@test-utils';
 
 const triggerClass = 'TRIGGER';
 const content = 'popover-test-content';
@@ -194,13 +194,15 @@ describe('popover', () => {
     expect(overlay().style.color).toBe('red');
   });
 
-  it('Correctly sets position', () => {
+  it('Correctly sets position', async () => {
     mount({
       defaultIsOpen: true,
       position: 'right'
     });
 
-    expect(popover().getAttribute('x-placement')).toBe('right');
+    await sleep(TIMEOUT);
+
+    expect(popover().getAttribute('data-popper-placement')).toBe('right');
   });
 
   it('Correctly sets triggerActiveClass', () => {

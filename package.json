@@ -37,10 +37,10 @@
     "mithril": ">=2.0.4"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "feather-icons": "^4.29.0",
     "lodash.debounce": "^4.0.8",
     "mithril-transition-group": "^0.2.0",
-    "popper.js": "^1.16.1",
     "simplestatemanager": "^4.1.1",
     "tslib": "^2.5.3"
   },
